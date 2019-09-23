@@ -4,17 +4,20 @@
 //ici on déclare les variables de l'algo
 nombre:entier // Nombre à traiter
 resultat:entier // Carré calculé
-pi:const réel <- 3.141592 //une constante
-tableau:entier[taille] //tableau d'entiers
+pi:const reel <- 3.141592 //une constante
+tableau:entier[5] //tableau d'entiers
 i:entier
+bou:booleen
 
 //Un seul algo par fichier ! > Pour differencier l'algo principal d'un module ou autre
 algo Carre{
     lire(nombre)
+    bou <- Faux
+    bou <- Vrai
     resultat <- fnc_carre(nombre)
     modu_resultat(resultat, message)
 	si message = "yay" alors
-		pour i <- 0 à 5 faire  
+		pour i <- 0 a 5 faire
 			ecrire(message)
 		fpour
 	fsi
@@ -35,8 +38,5 @@ structure personne{
     age:entier
 }
 
-/*
-opérateurs : + - * / mod div et ou non <- < <= > >= = !=
 
-
-*/
+/*opérateurs :*/ + - * / mod div et ou non <- < <= > >= = !=

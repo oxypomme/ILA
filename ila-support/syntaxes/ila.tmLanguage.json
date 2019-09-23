@@ -5,30 +5,66 @@
 		{
 			"include": "#keywords"
 		},
-		{
-			"include": "#strings"
-		}
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#constant"
+    },
+    {
+      "include": "#comments"
+    }
 	],
-	"repository": {
-		"keywords": {
+  "repository": {
+    "keywords": {
       "patterns": [
         {
           "name": "keyword.control.ila",
-          "match": "\\b(si|sinon|sinonsi|alors|fsi|tant_que|ftq|pour|fpour|faire)\\b"
+          "match": "\\b(si|sinon|sinonsi|alors|fsi|tant_que|ftq|pour|a|fpour|faire)\\b"
+        },
+        {
+          "match": "\\b(entier|reel|booleen|chaine|const)\\b",
+          "name": "keyword.type.ila"
+        },
+        {
+          "match": "\\b(algo|fonction|module)\\b",
+          "name": "keyword.other.class.ila"
+        },
+        {
+          "match": "[0-9]+(\\.[0-9]+)?",
+          "name": "keyword.other.unit.hexadecimal.ila"
         }
       ]
-		},
-		"strings": {
-			"name": "string.quoted.double.ila",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.ila",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
+    },
+    "strings": {
+      "name": "string.quoted.double.ila",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.ila",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "constant": {
+      "match": "\\b(Vrai|Faux)\\b",
+      "name": "constant.language.ila"
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.typehint.ignore.ila",
+          "begin": "//",
+          "end": "\n"
+        },
+        {
+          "name": "comment.typehint.ignore.ila",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    }
+  },
 	"scopeName": "source.ila"
 }
