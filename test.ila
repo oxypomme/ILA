@@ -5,7 +5,7 @@
 nombre:entier // Nombre à traiter
 resultat:entier // Carré calculé
 pi:const réel <- 3.141592 //une constante
-tableau[taille]:entier //tableau d'entiers
+tableau:entier[taille] //tableau d'entiers
 i:entier
 
 //Un seul algo par fichier ! > Pour differencier l'algo principal d'un module ou autre
