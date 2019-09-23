@@ -1,0 +1,22 @@
+// Ceci est un commentaire (slt du coup)
+// Ce fichier est là pour tester et donne un exemple fonctionnel
+// ; ou pas ; ?
+
+nombre:entier // Nombre à traiter
+resultat:entier // Carré calculé
+
+algo Carre{
+    lire(nombre)
+    resultat < fnc_carre(nombre)
+    modu_resultat(resultat, message)
+    ecrire(message)
+}
+
+fonction fnc_carre(nombre:entier):entier{
+    fnc_carre < nombre * nombre
+}
+
+module modu_resultat(\resultat:entier, /message:chaine){
+    ecrire(resultat)
+    message < "yay"
+}
