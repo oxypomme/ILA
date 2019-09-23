@@ -349,4 +349,4 @@ healthchecksdb
 MigrationBackup/
 
 # VS CODE TESTS
-/ila-test
+/ila-support
