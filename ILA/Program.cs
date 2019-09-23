@@ -11,7 +11,10 @@ namespace ILA
         private static void Main(string[] args)
         {
             if (args.Length > 0)
+            {
+                Init();
                 ParseFile(args[0]);
+            }
         }
 
         #endregion Private Methods

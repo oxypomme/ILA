@@ -8,13 +8,26 @@ namespace ILA
 {
     partial class Program
     {
-        #region Private Methods
+        #region Public Properties
 
-        private static void ParseAlgo(string start, ref int index)
+        public static List<Module> Algos { get; set; }
+        public static List<Variable> CurrentVars { get; set; }
+        public static List<Module> Functions { get; set; }
+        public static List<Module> Modules { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public static void Init()
         {
         }
 
-        private static void ParseFile(string file)
+        public static void ParseAlgo(string start, ref int index)
+        {
+        }
+
+        public static void ParseFile(string file)
         {
             string fileContent;
             using (var stream = new StreamReader(file))
@@ -30,7 +43,7 @@ namespace ILA
             }
         }
 
-        private static string ReadAlphaString(string str, ref int index)
+        public static string ReadAlphaString(string str, ref int index)
         {
             string result = "";
             while (index < str.Length && char.IsLetter(str[index]))
@@ -41,13 +54,13 @@ namespace ILA
             return result;
         }
 
-        private static void SkipBlankSpaces(string str, ref int index)
+        public static void SkipBlankSpaces(string str, ref int index)
         {
             var skippedChars = new char[] { ' ', '\t', '\n' };
             while (index < str.Length && skippedChars.Contains(str[index]))
                 index++;
         }
 
-        #endregion Private Methods
+        #endregion Public Methods
     }
 }
