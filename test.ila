@@ -1,6 +1,5 @@
 // Ceci est un commentaire (slt du coup)
 // Ce fichier est là pour tester et donne un exemple fonctionnel
-// ; ou pas ; ? > pas de ; (on reste sur de l'algo, donc le caractère de fin d'instruction serait plutot \n)
 
 //ici on déclare les variables de l'algo
 nombre:entier // Nombre à traiter
@@ -8,7 +7,7 @@ resultat:entier // Carré calculé
 pi:const réel <- 3.141592 //une constante
 tableau[taille]:entier //tableau d'entiers
 
-//Un seul algo par fichier !
+//Un seul algo par fichier ! > Pour differencier l'algo principal d'un module ou autre
 algo Carre{
     lire(nombre)
     resultat <- fnc_carre(nombre)
@@ -20,13 +19,12 @@ fonction fnc_carre(nombre:entier):entier{
     fnc_carre <- nombre * nombre
 }
 
-// pourquoi pas e:resultat:enter et s:message:chaine ? et es:variable:enter pour entrée/sortie ?
-module modu_resultat(↓resultat:entier, ↑message:chaine){
+module modu_resultat(e::resultat:entier, s::message:chaine){
     ecrire(resultat)
     message <- "yay"
 }
 
-//structure ou struct ?
+//structure
 structure personne{
     nom:chaine
     age:entier
