@@ -1,0 +1,25 @@
+{
+    "name": "ila-support",
+    "displayName": "ILA Support",
+    "description": "ILA support for VSCode",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.38.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "ila",
+            "aliases": ["ILA", "ila"],
+            "extensions": [".ila"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "ila",
+            "scopeName": "source.ila",
+            "path": "./syntaxes/ila.tmLanguage.json"
+        }]
+    }
+}

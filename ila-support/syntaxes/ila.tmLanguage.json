@@ -1,0 +1,34 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ILA",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.ila",
+          "match": "\\b(si|sinon|sinonsi|alors|fsi|tant_que|ftq|pour|fpour|faire)\\b"
+        }
+      ]
+		},
+		"strings": {
+			"name": "string.quoted.double.ila",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.ila",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.ila"
+}
