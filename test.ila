@@ -15,11 +15,12 @@ message:chaine
 algo Carre{
     lire(nombre)
     bou <- Faux
+    ecrire(tab[2])
     bou <- Vrai
     resultat <- fnc_carre(nombre)
     modu_resultat(resultat, message)
     si message = "yay" alors
-        pour i <- 0 a 5 faire
+        pour i <- 1 a 5 faire
             ecrire(message)
         fpour
     fsi
