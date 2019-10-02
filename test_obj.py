@@ -20,6 +20,7 @@ def modu_resultat(resultat):
 def Carre():
     input(nombre)
     bou = False
+    print(tab[(1)])
     bou = True
     resultat = fnc_carre(nombre)
     global message
