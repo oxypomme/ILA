@@ -3,7 +3,7 @@
 nombre = 0 # Variables étant initialisées à 0 si non constantes
 resultat = 0
 pi = 3.141592
-tableau = {} # tableau devant un dict, histoire de pas avoir des listes de listes de listes...
+tab = {(0):0, (1):0, (2):0} # tableau devant un dict, histoire de pas avoir des listes de listes de listes...
 i = 0
 message = ""
 bou = False
