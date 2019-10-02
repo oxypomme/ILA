@@ -20,7 +20,7 @@ def modu_resultat(resultat):
     return out0, out1
 
 def Carre():
-    input(nombre)
+    nombre = input()
     bou = False
     print(tab[(1)])
     bou = True
