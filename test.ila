@@ -18,7 +18,7 @@ algo Carre{
     ecrire(tab[2])
     bou <- Vrai
     resultat <- fnc_carre(nombre)
-    modu_resultat(resultat, message)
+    modu_resultat(resultat, message, bou)
     si message = "yay" alors
         pour i <- 1 a 5 faire
             ecrire(message)
@@ -30,9 +30,10 @@ fonction fnc_carre(nombre:entier):entier{
     fnc_carre <- nombre * nombre
 }
 
-module modu_resultat(e::resultat:entier, s::message:chaine){
+module modu_resultat(e::resultat:entier, s::message:chaine, s::bou:booleen){
     ecrire(resultat)
     message <- "yay"
+    bou <- Faux
 }
 
 /*opérateurs :*/ + - * / mod div et ou non <- < <= > >= = !=
