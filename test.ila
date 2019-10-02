@@ -5,7 +5,8 @@
 nombre:entier // Nombre à traiter
 resultat:entier // Carré calculé
 pi:const reel <- 3.141592 //une constante
-TODO //tableau d'entiers
+t_tab:type tableau[1..3] : entier //tableau d'entiers
+tab:t_test
 i:entier
 bou:booleen
 message:chaine
