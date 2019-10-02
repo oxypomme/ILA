@@ -15,7 +15,9 @@ def fnc_carre(nombre):
 
 def modu_resultat(resultat):
     print(resultat)
-    message = "yay"
+    out0 = "yay"
+    out1 = False
+    return out0, out1
 
 def Carre():
     input(nombre)
@@ -23,8 +25,7 @@ def Carre():
     print(tab[(1)])
     bou = True
     resultat = fnc_carre(nombre)
-    global message
-    modu_resultat(resultat)
+    message, bou = modu_resultat(resultat)
     if message == "yay":
         for i in range(0,5):
             print(message)
