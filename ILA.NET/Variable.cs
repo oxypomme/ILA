@@ -4,11 +4,13 @@ using System.Text;
 
 namespace ILANET
 {
-    public class VariableDeclaration : Declaration
+    public class Variable : Value
     {
         #region Public Properties
 
-        public Variable CreatedVariable { get; internal set; }
+        public bool Constant { get; internal set; }
+        public Value ConstantValue { get; internal set; }
+        public string Name { get; internal set; }
 
         #endregion Public Properties
 
