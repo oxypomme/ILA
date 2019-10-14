@@ -11,5 +11,13 @@ namespace ILANET
         public VarType ReturnType { get; internal set; }
 
         #endregion Public Properties
+
+        #region Internal Properties
+
+        internal override string LuaCode => base.LuaCode;
+
+        internal override string PythonCode => base.PythonCode;
+
+        #endregion Internal Properties
     }
 }
