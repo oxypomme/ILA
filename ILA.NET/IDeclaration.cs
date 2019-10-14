@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ILANET
 {
-    public abstract class Declaration : BaseObject
+    public interface IDeclaration : IBaseObject
     {
     }
 }

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ILANET
 {
-    public abstract class Value : BaseObject
+    public interface IValue : IBaseObject
     {
         #region Public Properties
 
-        public VarType Type { get; internal set; }
+        public VarType Type { get; }
 
         #endregion Public Properties
     }

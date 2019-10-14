@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ILANET
 {
-    public class TypeDeclaration : Declaration
+    public class TypeDeclaration : IDeclaration
     {
         #region Public Properties
 
@@ -12,12 +12,15 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Protected Properties
+        #region Internal Properties
 
-        protected override string LuaCode => throw new NotImplementedException();
+        string IBaseObject.PythonCode => PythonCode;
+        string IBaseObject.LuaCode => LuaCode;
 
-        protected override string PythonCode => throw new NotImplementedException();
+        #endregion Internal Properties
 
-        #endregion Protected Properties
+        internal string LuaCode => throw new NotImplementedException();
+
+        internal string PythonCode => throw new NotImplementedException();
     }
 }

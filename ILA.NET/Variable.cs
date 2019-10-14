@@ -4,22 +4,25 @@ using System.Text;
 
 namespace ILANET
 {
-    public class Variable : Value
+    public class Variable : IValue
     {
         #region Public Properties
 
         public bool Constant { get; internal set; }
-        public Value ConstantValue { get; internal set; }
+        public IValue ConstantValue { get; internal set; }
+        string IBaseObject.LuaCode => LuaCode;
         public string Name { get; internal set; }
+        string IBaseObject.PythonCode => PythonCode;
+        VarType IValue.Type => Type;
 
         #endregion Public Properties
 
-        #region Protected Properties
+        #region Internal Properties
 
-        protected override string LuaCode => throw new NotImplementedException();
+        internal string LuaCode => throw new NotImplementedException();
+        internal string PythonCode => throw new NotImplementedException();
+        internal VarType Type { get; set; }
 
-        protected override string PythonCode => throw new NotImplementedException();
-
-        #endregion Protected Properties
+        #endregion Internal Properties
     }
 }

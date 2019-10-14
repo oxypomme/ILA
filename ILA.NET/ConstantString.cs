@@ -4,8 +4,14 @@ using System.Text;
 
 namespace ILANET
 {
-    public class ConstantString : Value
+    public class ConstantString : IValue
     {
+        #region Internal Fields
+
+        internal VarType Type;
+
+        #endregion Internal Fields
+
         #region Public Constructors
 
         public ConstantString()
@@ -17,16 +23,13 @@ namespace ILANET
 
         #region Public Properties
 
-        public string Value { get; internal set; }
+        string IBaseObject.LuaCode => throw new NotImplementedException();
+        string IBaseObject.PythonCode => throw new NotImplementedException();
+        VarType IValue.Type => throw new NotImplementedException();
+
+        public string Value
+        { get; internal set; }
 
         #endregion Public Properties
-
-        #region Protected Properties
-
-        protected override string LuaCode => throw new NotImplementedException();
-
-        protected override string PythonCode => throw new NotImplementedException();
-
-        #endregion Protected Properties
     }
 }
