@@ -8,6 +8,7 @@ namespace ILANET
     {
         #region Public Fields
 
+        public static readonly GenericType Bool = new GenericType(Flags.BOOL) { Name = "bool" };
         public static readonly GenericType Char = new GenericType(Flags.CHAR) { Name = "char" };
         public static readonly GenericType Float = new GenericType(Flags.FLOAT) { Name = "float" };
         public static readonly GenericType Int = new GenericType(Flags.INT) { Name = "int" };
@@ -28,7 +29,8 @@ namespace ILANET
             INT,
             FLOAT,
             CHAR,
-            STRING
+            STRING,
+            BOOL
         }
 
         #endregion Public Enums
