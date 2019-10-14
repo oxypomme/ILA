@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "ILA": {
-      "commandName": "Project",
-      "commandLineArgs": "../../../../test.ila"
-    }
-  }
-}
