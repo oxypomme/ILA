@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ILANET
 {
-    public class GenericType : VarType
+    public sealed class GenericType : VarType
     {
         #region Public Fields
 
-        public readonly GenericType Char = new GenericType(Flags.CHAR) { Name = "char" };
-        public readonly GenericType Float = new GenericType(Flags.FLOAT) { Name = "float" };
-        public readonly GenericType Int = new GenericType(Flags.INT) { Name = "int" };
-        public readonly GenericType String = new GenericType(Flags.STRING) { Name = "string" };
+        public static readonly GenericType Char = new GenericType(Flags.CHAR) { Name = "char" };
+        public static readonly GenericType Float = new GenericType(Flags.FLOAT) { Name = "float" };
+        public static readonly GenericType Int = new GenericType(Flags.INT) { Name = "int" };
+        public static readonly GenericType String = new GenericType(Flags.STRING) { Name = "string" };
 
         #endregion Public Fields
 
