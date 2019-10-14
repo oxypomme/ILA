@@ -25,7 +25,7 @@ namespace ILANET
 
         string IBaseObject.LuaCode => throw new NotImplementedException();
         string IBaseObject.PythonCode => throw new NotImplementedException();
-        VarType IValue.Type => throw new NotImplementedException();
+        VarType IValue.Type => Type;
 
         public string Value
         { get; internal set; }
