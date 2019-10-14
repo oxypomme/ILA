@@ -16,7 +16,7 @@ namespace ILANET
 
         public ConstantBool()
         {
-            Type = GenericType.Float;
+            Type = GenericType.Bool;
         }
 
         #endregion Public Constructors
