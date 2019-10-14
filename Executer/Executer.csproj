@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>F:\programmation\C#\ILA.NET\Executer\Executer.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="ILA.NET">
+      <HintPath>..\ILA.NET\bin\Release\netcoreapp3.0\ILA.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

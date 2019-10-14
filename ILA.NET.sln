@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILA.NET", "ILA.NET\ILA.NET.csproj", "{9B195084-439D-404E-AD20-842B9EA6F20B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILA.NET", "ILA.NET\ILA.NET.csproj", "{9B195084-439D-404E-AD20-842B9EA6F20B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Executer", "Executer\Executer.csproj", "{9455ADD8-4D17-420F-84D8-7200CFF6E757}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9B195084-439D-404E-AD20-842B9EA6F20B} = {9B195084-439D-404E-AD20-842B9EA6F20B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{9B195084-439D-404E-AD20-842B9EA6F20B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B195084-439D-404E-AD20-842B9EA6F20B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B195084-439D-404E-AD20-842B9EA6F20B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9455ADD8-4D17-420F-84D8-7200CFF6E757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9455ADD8-4D17-420F-84D8-7200CFF6E757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9455ADD8-4D17-420F-84D8-7200CFF6E757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9455ADD8-4D17-420F-84D8-7200CFF6E757}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
