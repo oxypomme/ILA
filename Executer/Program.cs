@@ -2,11 +2,16 @@
 
 namespace Executer
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        #region Private Methods
+
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var test = new ILANET.Program();
+            Console.WriteLine(test.GenerateCode(ILANET.Program.Language.PYTHON));
         }
+
+        #endregion Private Methods
     }
 }

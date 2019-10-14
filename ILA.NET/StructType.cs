@@ -8,7 +8,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        public VarType[] Members { get; internal set; }
+        public Dictionary<string, VarType> Members { get; internal set; }
 
         #endregion Public Properties
 

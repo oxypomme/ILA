@@ -6,13 +6,23 @@ namespace ILANET
 {
     public class Program : IExecutable
     {
+        #region Public Enums
+
+        public enum Language
+        {
+            PYTHON,
+            LUA
+        }
+
+        #endregion Public Enums
+
         #region Public Properties
 
         IDeclaration[] IExecutable.Declarations => Declarations;
         Instruction[] IExecutable.Instructions => Instructions;
-        string IBaseObject.LuaCode => throw new NotImplementedException();
+        string IBaseObject.LuaCode => LuaCode;
         public string Name { get; internal set; }
-        string IBaseObject.PythonCode => throw new NotImplementedException();
+        string IBaseObject.PythonCode => PythonCode;
 
         #endregion Public Properties
 
@@ -20,7 +30,28 @@ namespace ILANET
 
         internal IDeclaration[] Declarations { get; set; }
         internal Instruction[] Instructions { get; set; }
+        internal string LuaCode => throw new NotImplementedException();
+        internal string PythonCode => throw new NotImplementedException();
 
         #endregion Internal Properties
+
+        #region Public Methods
+
+        public string GenerateCode(Language language)
+        {
+            switch (language)
+            {
+                case Language.PYTHON:
+                    return PythonCode;
+
+                case Language.LUA:
+                    return LuaCode;
+
+                default:
+                    return null;
+            }
+        }
+
+        #endregion Public Methods
     }
 }
