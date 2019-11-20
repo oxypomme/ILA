@@ -4,15 +4,13 @@ using System.Text;
 
 namespace ILANET
 {
-    public class StructCall : IValue
+    public class StructCall : Variable
     {
         #region Public Properties
-
-        string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => throw new NotImplementedException();
-        public Variable Struct { get; internal set; }
-        VarType IValue.Type => ((StructType)Struct.Type).Members[Value];
-        public string Value { get; internal set; }
+        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => ((StructType)Struct.Type).Members[Name] = value; }
+        internal override string LuaCode => throw new NotImplementedException();
+        internal override string PythonCode => throw new NotImplementedException();
+        public Variable Struct { get; set; }
 
         #endregion Public Properties
     }
