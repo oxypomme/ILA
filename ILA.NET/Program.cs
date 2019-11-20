@@ -18,9 +18,10 @@ namespace ILANET
 
         #region Public Properties
 
-        public Comment Comment { get; set; }
-        Comment IExecutable.Comment => Comment;
+        public Comment AlgoComment { get; set; }
+        Comment IExecutable.Comment => AlgoComment;
         public List<IDeclaration> Declarations { get; set; }
+        public List<Comment> FileComments { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
         public List<Instruction> Instructions { get; set; }
         string IBaseObject.LuaCode => LuaCode;
