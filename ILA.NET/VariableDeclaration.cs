@@ -21,7 +21,7 @@ namespace ILANET
 
         internal string LuaCode => throw new NotImplementedException();
 
-        internal string PythonCode => CreatedVariable.PythonCode;
+        internal string PythonCode => CreatedVariable.PythonCode + Comment;
         public string Comment { get; set; }
         string IDeclaration.Comment => Comment;
     }
