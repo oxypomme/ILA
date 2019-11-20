@@ -22,6 +22,8 @@ namespace ILANET
         internal Instruction[] Instructions { get; set; }
         internal virtual string LuaCode => throw new NotImplementedException();
         internal virtual string PythonCode => throw new NotImplementedException();
+        public List<Comment> Comments { get; set; }
+        Comment[] IExecutable.Comments => Comments.ToArray();
 
         #endregion Internal Properties
     }

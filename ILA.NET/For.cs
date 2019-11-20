@@ -15,6 +15,8 @@ namespace ILANET
         string IBaseObject.PythonCode => throw new NotImplementedException();
         public IValue Start { get; internal set; }
         public IValue Step { get; internal set; }
+        public string Comment { get; set; }
+        string Instruction.Comment => Comment;
 
         #endregion Public Properties
     }

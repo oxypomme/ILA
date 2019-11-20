@@ -4,16 +4,17 @@ using System.Text;
 
 namespace ILANET
 {
-    public class ModuleCall : Instruction
+    public class Comment : Instruction
     {
         #region Public Properties
 
-        public IValue[] Args { get; internal set; }
-        public Module CalledModule { get; internal set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
         string IBaseObject.PythonCode => throw new NotImplementedException();
-        public string Comment { get; set; }
-        string Instruction.Comment => Comment;
+
+        public bool MultiLine { get; set; }
+
+        public string Message { get; set; }
+        string Instruction.Comment => Message;
 
         #endregion Public Properties
     }
