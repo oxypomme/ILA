@@ -21,18 +21,8 @@ namespace ILANET
 
         internal string LuaCode => throw new NotImplementedException();
 
-        internal string PythonCode => GenPythonCode();
+        internal string PythonCode => CreatedVariable.PythonCode;
         public string Comment { get; set; }
         string IDeclaration.Comment => Comment;
-
-        internal string GenPythonCode()
-        {
-            var SB_var = new StringBuilder().Append(CreatedVariable.Name).Append(" = ");
-            if (CreatedVariable.Constant)
-                SB_var.Append(CreatedVariable.ConstantValue);
-            else
-                SB_var.Append(0);
-            return SB_var.ToString();
-        }
     }
 }

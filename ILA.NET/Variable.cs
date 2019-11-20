@@ -20,7 +20,7 @@ namespace ILANET
         #region Internal Properties
 
         internal virtual string LuaCode => throw new NotImplementedException();
-        internal virtual string PythonCode => throw new NotImplementedException();
+        internal virtual string PythonCode => Name + " = " + ConstantValue.PythonCode;
         public virtual VarType Type { get; set; }
 
         #endregion Internal Properties
