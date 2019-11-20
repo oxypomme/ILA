@@ -34,7 +34,13 @@ algo Carre{
         pour i <- 1 a 5 faire
             ecrire(message)
         fpour
+        pour i <- 5 a 1 pas -1 faire
+            ecrire(message)
+        fpour
     fsi
+    tantque i<10 faire
+        ecrire(i)
+    ftantque //ftq
 }
 /*
     Une fonction qui calcule le carré d'un nombre.
@@ -47,7 +53,10 @@ fonction fnc_carre(nombre:entier):entier{
 module modu_resultat(e::resultat:entier, s::message:chaine, s::bou:booleen){
     ecrire(resultat)
     message <- "yay"
-    bou <- Faux
+    bou <- faux
+    repeter
+        bou <- vrai
+    jusqua faux
 }
 
 //opérateurs : + - * / mod div et ou non <- < <= > >= = !=
