@@ -10,6 +10,10 @@ namespace ILANET
 
         public enum Tag
         {
+            /// <summary>
+            /// the MINUS operator has only a right value and no left value.
+            /// </summary>
+            MINUS,
             ADD,
             SUB,
             DIV,
