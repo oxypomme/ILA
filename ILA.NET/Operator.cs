@@ -40,9 +40,10 @@ namespace ILANET
 
         #region Public Properties
 
+        public Tag OpTag { get; set; }
         public IValue Left { get; set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => throw new NotImplementedException();
+        string IBaseObject.PythonCode => "(" + Left.PythonCode + OpTag + Right.PythonCode + ")";
         public IValue Right { get; set; }
 
         #endregion Public Properties
