@@ -24,7 +24,7 @@ namespace ILANET
         #region Public Properties
 
         string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => throw new NotImplementedException();
+        string IBaseObject.PythonCode => Value.ToString();
         VarType IValue.Type { get => Type; }
         public char Value { get; set; }
 
