@@ -8,9 +8,9 @@ namespace ILANET
     {
         #region Public Properties
 
+        public Comment Comment { get; }
         public IDeclaration[] Declarations { get; }
         public Instruction[] Instructions { get; }
-        public Comment[] Comments { get; }
 
         #endregion Public Properties
     }
