@@ -8,6 +8,8 @@ namespace ILANET
     {
         #region Public Properties
 
+        public Comment Comment { get; set; }
+        Comment IExecutable.Comment => Comment;
         IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
         string IBaseObject.LuaCode => LuaCode;
@@ -22,8 +24,6 @@ namespace ILANET
         internal List<Instruction> Instructions { get; set; }
         internal virtual string LuaCode => throw new NotImplementedException();
         internal virtual string PythonCode => throw new NotImplementedException();
-        public List<Comment> Comments { get; set; }
-        Comment[] IExecutable.Comments => Comments.ToArray();
 
         #endregion Internal Properties
     }
