@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ILANET
@@ -116,10 +117,52 @@ namespace ILANET
                         if (ilaCode[index] != '(')
                             throw new ILAException("caractère non attendu '" + ilaCode[index] + "'. Caractère attendu : (   ligne " + CountRow(ilaCode, index));
                         index++;
-                        string pars = "";
+                        string parametersStr = "";
                         while (ilaCode.Length > index && ilaCode[index] != ')')
-                            pars += ilaCode[index++];
+                            parametersStr += ilaCode[index++];
+                        {
+                            var singleParamsStr = parametersStr.Split(',');
+                            foreach (var item in singleParamsStr)
+                            {
+                                var parameter = new Parameter();
+                                item.Trim();
+                                var comps = item.Split("::");
+                                if (comps.Length > 2)
+                                    throw new ILAException("Trop de mode de paramètre : ligne " + CountRow(ilaCode, index));
+                                if (comps.Length > 1)
+                                {
+                                    comps[0] = RemoveBlanks(comps.First());
+                                    foreach (var item2 in comps.First())
+                                    {
+                                        switch (item2)
+                                        {
+                                            case 'e':
+                                                parameter.Mode |= Parameter.Flags.INPUT;
+                                                break;
 
+                                            case 's':
+                                                parameter.Mode |= Parameter.Flags.OUTPUT;
+                                                break;
+
+                                            default:
+                                                throw new ILAException("Mode de paramètre '" + item2 + "' inconnu : ligne " + CountRow(ilaCode, index));
+                                        }
+                                    }
+                                }
+                                else
+                                    parameter.Mode = Parameter.Flags.INPUT;
+                                var comps2 = comps.Last().Split(':');
+                                if (comps.Length != 2)
+                                    throw new ILAException("Erreur de synthaxe ligne " + CountRow(ilaCode, index));
+                                parameter.ImportedVariable = new Variable
+                                {
+                                    Constant = false,
+                                    Name = comps.First()
+                                };
+                                {
+                                }
+                            }
+                        }
                         SkipLine(ilaCode, ref index, true);
                         while (ilaCode[index] != '}')
                             Instructions.Add(ParseInstru(ilaCode, ref index));
@@ -146,6 +189,15 @@ namespace ILANET
         internal static Instruction ParseInstru(string code, ref int index)
         {
             return null;
+        }
+
+        internal static string RemoveBlanks(string str)
+        {
+            var res = "";
+            foreach (var item in str)
+                if (!char.IsWhiteSpace(item))
+                    res += item;
+            return res;
         }
 
         #endregion Internal Methods
