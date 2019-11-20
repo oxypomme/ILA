@@ -4,15 +4,15 @@ using System.Text;
 
 namespace ILANET
 {
-    public class TableCall : IValue
+    public class TableCall : Variable
     {
         #region Public Properties
 
-        public int[] DimensionsIndex { get; internal set; }
-        string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => throw new NotImplementedException();
-        public Variable Table { get; internal set; }
-        VarType IValue.Type => ((TableType)Table.Type).InternalType;
+        public List<int> DimensionsIndex { get; set; }
+        internal override string LuaCode => throw new NotImplementedException();
+        internal override string PythonCode => throw new NotImplementedException();
+        public Variable Table { get; set; }
+        public override VarType Type { get => ((TableType)Table.Type).InternalType; set => ((TableType)Table.Type).InternalType = value; }
 
         #endregion Public Properties
     }

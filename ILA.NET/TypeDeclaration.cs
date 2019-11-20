@@ -8,7 +8,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        public VarType CreatedType { get; internal set; }
+        public VarType CreatedType { get; set; }
 
         #endregion Public Properties
 
@@ -22,5 +22,7 @@ namespace ILANET
         internal string LuaCode => throw new NotImplementedException();
 
         internal string PythonCode => throw new NotImplementedException();
+        public string Comment { get; set; }
+        string IDeclaration.Comment => Comment;
     }
 }

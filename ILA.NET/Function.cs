@@ -8,7 +8,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        public VarType ReturnType { get; internal set; }
+        public VarType ReturnType { get; set; }
 
         #endregion Public Properties
 

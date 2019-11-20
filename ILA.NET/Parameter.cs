@@ -19,9 +19,9 @@ namespace ILANET
 
         #region Public Properties
 
-        public Variable ImportedVariable { get; internal set; }
+        public Variable ImportedVariable { get; set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
-        public Flags Mode { get; internal set; }
+        public Flags Mode { get; set; }
         string IBaseObject.PythonCode => throw new NotImplementedException();
 
         #endregion Public Properties

@@ -8,7 +8,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        public string[] Values { get; internal set; }
+        public List<string> Values { get; set; }
 
         #endregion Public Properties
 

@@ -8,14 +8,16 @@ namespace ILANET
     {
         #region Public Properties
 
-        public Tuple<IValue, Instruction[]>[] Elif { get; internal set; }
-        public IValue ElseCondition { get; internal set; }
-        public Instruction[] ElseInstructions { get; internal set; }
-        public IValue IfCondition { get; internal set; }
-        public Instruction[] IfInstructions { get; internal set; }
+        public List<Tuple<IValue, List<Instruction>>> Elif { get; set; }
+        public IValue ElseCondition { get; set; }
+        public List<Instruction> ElseInstructions { get; set; }
+        public IValue IfCondition { get; set; }
+        public List<Instruction> IfInstructions { get; set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
 
         string IBaseObject.PythonCode => throw new NotImplementedException();
+        public string Comment { get; set; }
+        string Instruction.Comment => Comment;
 
         #endregion Public Properties
     }

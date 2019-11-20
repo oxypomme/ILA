@@ -6,5 +6,6 @@ namespace ILANET
 {
     public interface IDeclaration : IBaseObject
     {
+        public string Comment { get; }
     }
 }

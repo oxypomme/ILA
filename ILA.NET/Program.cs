@@ -18,20 +18,22 @@ namespace ILANET
 
         #region Public Properties
 
-        IDeclaration[] IExecutable.Declarations => Declarations;
-        Instruction[] IExecutable.Instructions => Instructions;
+        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
+        Instruction[] IExecutable.Instructions => Instructions.ToArray();
         string IBaseObject.LuaCode => LuaCode;
-        public string Name { get; internal set; }
+        public string Name { get; set; }
         string IBaseObject.PythonCode => PythonCode;
 
         #endregion Public Properties
 
         #region Internal Properties
 
-        internal IDeclaration[] Declarations { get; set; }
-        internal Instruction[] Instructions { get; set; }
+        public List<IDeclaration> Declarations { get; set; }
+        public List<Instruction> Instructions { get; set; }
         internal string LuaCode => throw new NotImplementedException();
         internal string PythonCode => throw new NotImplementedException();
+        public List<Comment> Comments { get; set; }
+        Comment[] IExecutable.Comments => Comments.ToArray();
 
         #endregion Internal Properties
 

@@ -6,5 +6,6 @@ namespace ILANET
 {
     public interface Instruction : IBaseObject
     {
+        public string Comment { get; }
     }
 }
