@@ -8,7 +8,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        public Variable CreatedVariable { get; internal set; }
+        public Variable CreatedVariable { get; set; }
 
         #endregion Public Properties
 

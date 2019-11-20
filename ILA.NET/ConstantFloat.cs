@@ -26,7 +26,7 @@ namespace ILANET
         string IBaseObject.LuaCode => throw new NotImplementedException();
         string IBaseObject.PythonCode => throw new NotImplementedException();
         VarType IValue.Type => Type;
-        public float Value { get; internal set; }
+        public float Value { get; set; }
 
         #endregion Public Properties
     }

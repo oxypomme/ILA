@@ -28,7 +28,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        public Range[] DimensionsSize { get; internal set; }
+        public List<Range> DimensionsSize { get; internal set; }
         public VarType InternalType { get; internal set; }
 
         #endregion Public Properties

@@ -8,11 +8,11 @@ namespace ILANET
     {
         #region Public Properties
 
-        public int[] DimensionsIndex { get; internal set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
         string IBaseObject.PythonCode => throw new NotImplementedException();
         public Variable Table { get; internal set; }
         VarType IValue.Type => ((TableType)Table.Type).InternalType;
+        public List<int> DimensionsIndex { get; set; }
 
         #endregion Public Properties
     }

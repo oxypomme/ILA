@@ -15,7 +15,7 @@ namespace ILANET
 
         #region Public Properties
 
-        public virtual string Name { get; internal set; }
+        public virtual string Name { get; set; }
         protected abstract string LuaCode { get; }
         protected abstract string PythonCode { get; }
 

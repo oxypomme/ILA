@@ -8,8 +8,8 @@ namespace ILANET
     {
         #region Public Properties
 
-        public IValue[] Args { get; internal set; }
-        public Module CalledModule { get; internal set; }
+        public List<IValue> Args { get; set; }
+        public Module CalledModule { get; set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
         string IBaseObject.PythonCode => throw new NotImplementedException();
         public string Comment { get; set; }

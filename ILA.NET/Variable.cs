@@ -8,10 +8,10 @@ namespace ILANET
     {
         #region Public Properties
 
-        public bool Constant { get; internal set; }
-        public IValue ConstantValue { get; internal set; }
+        public virtual bool Constant { get; set; }
+        public virtual IValue ConstantValue { get; set; }
         string IBaseObject.LuaCode => LuaCode;
-        public string Name { get; internal set; }
+        public virtual string Name { get; set; }
         string IBaseObject.PythonCode => PythonCode;
         VarType IValue.Type => Type;
 
@@ -19,9 +19,9 @@ namespace ILANET
 
         #region Internal Properties
 
-        internal string LuaCode => throw new NotImplementedException();
-        internal string PythonCode => throw new NotImplementedException();
-        internal VarType Type { get; set; }
+        internal virtual string LuaCode => throw new NotImplementedException();
+        internal virtual string PythonCode => throw new NotImplementedException();
+        public virtual VarType Type { get; set; }
 
         #endregion Internal Properties
     }

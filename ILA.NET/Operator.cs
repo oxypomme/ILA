@@ -40,10 +40,10 @@ namespace ILANET
 
         #region Public Properties
 
-        public IValue Left { get; internal set; }
+        public IValue Left { get; set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
         string IBaseObject.PythonCode => throw new NotImplementedException();
-        public IValue Right { get; internal set; }
+        public IValue Right { get; set; }
 
         #endregion Public Properties
 

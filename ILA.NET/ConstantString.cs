@@ -27,8 +27,7 @@ namespace ILANET
         string IBaseObject.PythonCode => throw new NotImplementedException();
         VarType IValue.Type => Type;
 
-        public string Value
-        { get; internal set; }
+        public string Value { get; set; }
 
         #endregion Public Properties
     }

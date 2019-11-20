@@ -8,13 +8,13 @@ namespace ILANET
     {
         #region Public Properties
 
-        public IValue End { get; internal set; }
-        public Variable Index { get; internal set; }
-        public Instruction[] Instructions { get; internal set; }
+        public IValue End { get; set; }
+        public Variable Index { get; set; }
+        public List<Instruction> Instructions { get; set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
         string IBaseObject.PythonCode => throw new NotImplementedException();
-        public IValue Start { get; internal set; }
-        public IValue Step { get; internal set; }
+        public IValue Start { get; set; }
+        public IValue Step { get; set; }
         public string Comment { get; set; }
         string Instruction.Comment => Comment;
 
