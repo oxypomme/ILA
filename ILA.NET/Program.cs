@@ -18,8 +18,13 @@ namespace ILANET
 
         #region Public Properties
 
+        public Comment AlgoComment { get; set; }
+        Comment IExecutable.Comment => AlgoComment;
         IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
+        public List<IDeclaration> Declarations { get; set; }
+        public List<Comment> FileComments { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
+        public List<Instruction> Instructions { get; set; }
         string IBaseObject.LuaCode => LuaCode;
         public string Name { get; set; }
         string IBaseObject.PythonCode => PythonCode;
@@ -28,40 +33,45 @@ namespace ILANET
 
         #region Internal Properties
 
-        public List<IDeclaration> Declarations { get; set; }
-        public List<Instruction> Instructions { get; set; }
         internal string LuaCode => throw new NotImplementedException();
         internal string PythonCode => throw new NotImplementedException();
-        public List<Comment> Comments { get; set; }
-        Comment[] IExecutable.Comments => Comments.ToArray();
 
         #endregion Internal Properties
 
         #region Public Methods
+
         /// <summary>
         /// Skips every blank character
         /// </summary>
         /// <param name="str">string to parse</param>
         /// <param name="index">index to start from</param>
-        /// <returns>new index after skipping blank spaces</returns>
-        public static int FastForward(string str, int index = 0)
+        /// <param name="requireData">
+        /// True if it has to throw an exception if it reach the end of string
+        /// </param>
+        public static void FastForward(string str, ref int index, bool requireData = false)
         {
             while (index < str.Length && char.IsWhiteSpace(str[index]))
                 index++;
-            return index;
+            if (requireData && index == str.Length)
+                throw new ILAException("Erreur : programme non terminé");
         }
+
         /// <summary>
         /// Skips blanks characters and line spacing
         /// </summary>
         /// <param name="str">string to parse</param>
-        /// <param name="index">index to start from</param>
-        /// <returns>new index after skipping blank spaces/lines</returns>
-        public static int SkipLine(string str, int index = 0)
+        /// <param name="requireData">
+        /// True if it has to throw an exception if it reach the end of string
+        /// </param>
+        /// <param name="requireData"></param>
+        public static void SkipLine(string str, ref int index, bool requireData = false)
         {
             while (index < str.Length && (char.IsWhiteSpace(str[index]) || str[index] == '\n' || str[index] == '\r'))
                 index++;
-            return index;
+            if (requireData && index == str.Length)
+                throw new ILAException("Erreur : programme non terminé");
         }
+
         public string GenerateCode(Language language)
         {
             switch (language)

@@ -4,10 +4,35 @@
         <name>ILA.NET</name>
     </assembly>
     <members>
+        <member name="F:ILANET.Operator.Tag.MINUS">
+            <summary>
+            the MINUS operator has only a right value and no left value.
+            </summary>
+        </member>
         <member name="F:ILANET.Operator.Tag.NOT">
             <summary>
             the NOT operator has only a right value and no left value.
             </summary>
+        </member>
+        <member name="M:ILANET.Program.FastForward(System.String,System.Int32@,System.Boolean)">
+            <summary>
+            Skips every blank character
+            </summary>
+            <param name="str">string to parse</param>
+            <param name="index">index to start from</param>
+            <param name="requireData">
+            True if it has to throw an exception if it reach the end of string
+            </param>
+        </member>
+        <member name="M:ILANET.Program.SkipLine(System.String,System.Int32@,System.Boolean)">
+            <summary>
+            Skips blanks characters and line spacing
+            </summary>
+            <param name="str">string to parse</param>
+            <param name="requireData">
+            True if it has to throw an exception if it reach the end of string
+            </param>
+            <param name="requireData"></param>
         </member>
     </members>
 </doc>
