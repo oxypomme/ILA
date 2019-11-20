@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ILANET
 {
-    public class Program : IExecutable
+    public partial class Program : IExecutable
     {
         #region Public Enums
 
