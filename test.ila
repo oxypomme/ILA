@@ -40,6 +40,7 @@ algo Carre{
     fsi
     tantque i<10 faire
         ecrire(i)
+		i <- i + 1
     ftantque //ftq
 }
 /*
