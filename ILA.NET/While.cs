@@ -16,8 +16,9 @@ namespace ILANET
         {
             get
             {
-                var sbWHILE = new StringBuilder().Append("while (")
-                .Append(Condition.PythonCode).Append(") :\n");
+                var sbWHILE = new StringBuilder().Append(
+                    "while (" + Condition.PythonCode + ") :\n"
+                );
                 foreach (Instruction instruction in Instructions)
                 {
                     sbWHILE.Append(instruction.PythonCode + "\n");

@@ -19,8 +19,9 @@ namespace ILANET
         {
             get
             {
-                var sbIF = new StringBuilder().Append("if (")
-                .Append(IfCondition.PythonCode).Append(") :\n");
+                var sbIF = new StringBuilder().Append(
+                    "if (" + IfCondition.PythonCode + ") :\n"
+                );
                 foreach (Instruction instruction in IfInstructions)
                 {
                     sbIF.Append(instruction.PythonCode + "\n");
