@@ -17,19 +17,17 @@ namespace ILANET
         {
             get
             {
-                var sbFOR = new StringBuilder().Append(Index.PythonCode + " = 0\n")
-                .Append("while ")
-                .Append(Index.PythonCode).Append(" > ").Append(Start.PythonCode)
-                .Append(" and ")
-                .Append(Index.PythonCode).Append(" < ").Append(End.PythonCode)
-                .Append(" :\n");
+                var sbFOR = new StringBuilder().Append(
+                    Index.PythonCode + " = " + Start.PythonCode + "\n" +
+                    "while (" + Index.PythonCode + " != " + Step.PythonCode + ") :\n"
+                );
                 foreach (Instruction instruction in Instructions)
                 {
                     sbFOR.Append(instruction.PythonCode + "\n");
                 }
-                return sbFOR.Append(Index.PythonCode +
-                    " = " + Index.PythonCode + " + " + Step.PythonCode)
-                    .ToString();
+                return sbFOR.Append(
+                        Index.PythonCode + " = " + Index.PythonCode + " + " + Step.PythonCode
+                    ).ToString();
             }
         }
 
