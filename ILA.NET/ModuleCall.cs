@@ -17,7 +17,8 @@ namespace ILANET
             get
             {
                 var stringBuilder = new StringBuilder().Append(CalledModule.PythonCode + "(");
-                for (int i = 0; i < Args.Count; i++) { stringBuilder.Append(Args[i].PythonCode); }
+                for (int i = 0; i < Args.Count; i++)
+                    stringBuilder.Append(Args[i].PythonCode);
                 return stringBuilder.Append(")").ToString();
             }
         }

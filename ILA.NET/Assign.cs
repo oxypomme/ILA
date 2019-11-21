@@ -10,7 +10,7 @@ namespace ILANET
 
         public Variable Left { get; set; }
         string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => Left.PythonCode + " = " + Right.PythonCode + Comment;
+        string IBaseObject.PythonCode => Left.PythonCode + " = " + Right.PythonCode;
         public IValue Right { get; set; }
         public string Comment { get; set; }
         string Instruction.Comment => Comment;
