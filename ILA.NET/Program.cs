@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -24,34 +25,20 @@ namespace ILANET
         public List<Comment> FileComments { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
         public List<Instruction> Instructions { get; set; }
-        string IBaseObject.LuaCode => LuaCode;
         public string Name { get; set; }
-        string IBaseObject.PythonCode => PythonCode;
 
         #endregion Public Properties
 
         #region Internal Properties
 
-        internal string LuaCode => throw new NotImplementedException();
-        internal string PythonCode => throw new NotImplementedException();
 
         #endregion Internal Properties
 
         #region Public Methods
 
-        public string GenerateCode(Language language)
+        public void WritePython(TextWriter textWriter)
         {
-            switch (language)
-            {
-                case Language.PYTHON:
-                    return PythonCode;
-
-                case Language.LUA:
-                    return LuaCode;
-
-                default:
-                    return null;
-            }
+            throw new NotImplementedException();
         }
 
         #endregion Public Methods

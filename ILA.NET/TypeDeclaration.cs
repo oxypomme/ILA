@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -14,15 +15,15 @@ namespace ILANET
 
         #region Internal Properties
 
-        string IBaseObject.PythonCode => PythonCode;
-        string IBaseObject.LuaCode => LuaCode;
 
         #endregion Internal Properties
 
-        internal string LuaCode => throw new NotImplementedException();
-
-        internal string PythonCode => throw new NotImplementedException();
         public string Comment { get; set; }
         string IDeclaration.Comment => Comment;
+
+        public void WritePython(TextWriter textWriter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

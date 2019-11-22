@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -41,8 +42,6 @@ namespace ILANET
         #region Public Properties
 
         public IValue Left { get; set; }
-        string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => throw new NotImplementedException();
         public IValue Right { get; set; }
 
         #endregion Public Properties
@@ -54,5 +53,10 @@ namespace ILANET
         #endregion Internal Properties
 
         internal VarType Type { get; set; }
+
+        public void WritePython(TextWriter textWriter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
