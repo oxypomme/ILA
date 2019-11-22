@@ -25,6 +25,7 @@ namespace ILANET
         public List<Comment> FileComments { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
         public List<Instruction> Instructions { get; set; }
+        public List<Module> Methods { get; set; }
         public string Name { get; set; }
 
         #endregion Public Properties
