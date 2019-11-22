@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -10,13 +11,15 @@ namespace ILANET
 
         public VarType ReturnType { get; set; }
 
+        public override void WritePython(TextWriter textWriter)
+        {
+            base.WritePython(textWriter);
+        }
+
         #endregion Public Properties
 
         #region Internal Properties
 
-        internal override string LuaCode => base.LuaCode;
-
-        internal override string PythonCode => base.PythonCode;
 
         #endregion Internal Properties
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -11,12 +12,15 @@ namespace ILANET
         public IValue End { get; set; }
         public Variable Index { get; set; }
         public List<Instruction> Instructions { get; set; }
-        string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => throw new NotImplementedException();
         public IValue Start { get; set; }
         public IValue Step { get; set; }
         public string Comment { get; set; }
         string Instruction.Comment => Comment;
+
+        public void WritePython(TextWriter textWriter)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion Public Properties
     }
