@@ -22,7 +22,6 @@ namespace ILANET
 
         public virtual void WritePython(TextWriter textWriter)
         {
-            _ = Name + " = " + ConstantValue.PythonCode
             throw new NotImplementedException();
         }
 
