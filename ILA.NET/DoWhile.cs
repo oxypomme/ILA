@@ -16,7 +16,25 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            //x .generateIndent()
+            textWriter.Write("while True :\n");
+            foreach (var instruction in Instructions)
+            {
+                // ident++
+                //x .generateIndent()
+                Condition.WritePython(textWriter);
+                textWriter.Write("\n");
+                // ident--
+            }
+            // ident++
+            //x .generateIndent()
+            textWriter.Write("if not (");
+            Condition.WritePython(textWriter);
+            textWriter.Write(") :\n");
+            // ident++
+            //x .generateIndent()
+            textWriter.Write("break \n");
+            // ident-=2
         }
 
         #endregion Public Properties
