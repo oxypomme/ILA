@@ -23,6 +23,7 @@ algo test
     fonction qui ne fait rien du tout
 */
 fonction fct(var:entier) : entier
+var_local:entier
 {
 }"
 );

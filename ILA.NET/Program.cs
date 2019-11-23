@@ -23,6 +23,7 @@ namespace ILANET
         public Comment AlgoComment { get; set; }
         string IExecutable.Comment => InlineComment;
         public List<IDeclaration> Declarations { get; set; }
+        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
         public List<Comment> FileComments { get; set; }
         public string InlineComment { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
@@ -30,6 +31,7 @@ namespace ILANET
         public List<Instruction> Instructions { get; set; }
         public List<Module> Methods { get; set; }
         public string Name { get; set; }
+        string IExecutable.Name => throw new NotImplementedException();
 
         #endregion Public Properties
 
