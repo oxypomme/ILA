@@ -8,7 +8,8 @@ namespace ILANET
     {
         #region Public Properties
         public string Name { get; }
-        public Comment Comment { get; }
+        public string Comment { get; }
+        public Comment AboveComment { get; }
         public Instruction[] Instructions { get; }
 
         #endregion Public Properties
