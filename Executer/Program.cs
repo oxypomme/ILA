@@ -8,10 +8,12 @@ namespace Executer
 
         private static void Main(string[] args)
         {
-            Console.WriteLine(char.IsNumber('.'));
             var prg = new ILANET.Program();
             prg.Parse(
-@"//test
+@"
+en:type enumeration(VALUE1,VALUE2)
+test_var:en
+//test
 algo test
 {
 }
@@ -19,7 +21,7 @@ fonction fct(var:entier) : entier
 {
 }"
 );
-            Console.WriteLine(prg.Instructions.Count);
+            Console.WriteLine(prg.Declarations.Count);
         }
 
         #endregion Private Methods
