@@ -20,13 +20,11 @@ namespace ILANET
         #region Public Properties
         public string InlineComment { get; set; }
         public Comment AlgoComment { get; set; }
-        Comment IExecutable.Comment => AlgoComment;
         Comment IExecutable.AboveComment => AlgoComment;
         public List<IDeclaration> Declarations { get; set; }
         public List<Comment> FileComments { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
 
-        public List<IDeclaration> Declarations { get; set; }
         public List<Instruction> Instructions { get; set; }
         public List<Module> Methods { get; set; }
         public string Name { get; set; }
