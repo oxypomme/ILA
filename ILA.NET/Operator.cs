@@ -61,52 +61,126 @@ namespace ILANET
             switch (OpTag)
             {
                 case Tag.MINUS:
-                    return "-" + Right.PythonCode;
+                    textWriter.Write("-");
+                    Right.WritePython(textWriter);
+                    break;
 
                 case Tag.ADD:
-                    return "(" + Left.PythonCode + " + " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" + ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.SUB:
-                    return "(" + Left.PythonCode + " - " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" - ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.DIV:
-                    return "(" + Left.PythonCode + " / " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" / ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.MULT:
-                    return "(" + Left.PythonCode + " * " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" * ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.INT_DIV:
-                    return "(" + Left.PythonCode + " // " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" // ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.MOD:
-                    return "(" + Left.PythonCode + " % " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" % ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.AND:
-                    return "(" + Left.PythonCode + " and " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" and ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.OR:
-                    return "(" + Left.PythonCode + " or " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" or ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.NOT:
-                    return "not " + Right.PythonCode;
+                    textWriter.Write("not ");
+                    Right.WritePython(textWriter);
+                    break;
 
                 case Tag.EQUAL:
-                    return "(" + Left.PythonCode + " == " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" == ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.DIFFRENT:
-                    return "(" + Left.PythonCode + " != " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" != ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.BIGGER:
-                    return "(" + Left.PythonCode + " > " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" > ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.BIGGER_EQUAL:
-                    return "(" + Left.PythonCode + " >= " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" >= ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.SMALLER:
-                    return "(" + Left.PythonCode + " < " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" < ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 case Tag.SMALLER_EQUAL:
-                    return "(" + Left.PythonCode + " <= " + Right.PythonCode + ")";
+                    textWriter.Write("(");
+                    Left.WritePython(textWriter);
+                    textWriter.Write(" <= ");
+                    Right.WritePython(textWriter);
+                    textWriter.Write(")");
+                    break;
 
                 default:
                     throw new Exception();
