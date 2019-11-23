@@ -13,6 +13,9 @@ namespace Executer
 @"//test
 algo test
 {
+}
+fonction fct(var:entier) : entier
+{
 }"
 );
             Console.WriteLine(prg.Instructions.Count);

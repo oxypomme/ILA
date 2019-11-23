@@ -20,6 +20,8 @@ namespace ILANET
 
         internal List<Instruction> Instructions { get; set; }
 
+        public string Name { get; set; }
+
         public virtual void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

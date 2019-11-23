@@ -7,7 +7,7 @@ namespace ILANET
     public interface IExecutable : IBaseObject
     {
         #region Public Properties
-
+        public string Name { get; }
         public Comment Comment { get; }
         public Instruction[] Instructions { get; }
 

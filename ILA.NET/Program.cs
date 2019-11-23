@@ -23,6 +23,8 @@ namespace ILANET
         Comment IExecutable.Comment => AlgoComment;
         public List<Comment> FileComments { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
+
+        public List<IDeclaration> Declarations { get; set; }
         public List<Instruction> Instructions { get; set; }
         public List<Module> Methods { get; set; }
         public string Name { get; set; }
