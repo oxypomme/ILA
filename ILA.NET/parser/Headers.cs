@@ -8,29 +8,6 @@ namespace ILANET
     {
         #region Public Methods
 
-        public static string CatchString(string str, ref int index)
-        {
-            var res = "";
-            if (index >= str.Length || !IsLetter(str[index]))
-                return res;
-
-            while (index < str.Length && IsLetterOrDigit(str[index]))
-            {
-                res += str[index];
-                index++;
-            }
-            return res;
-        }
-
-        public static int CountRow(string str, int index)
-        {
-            var row = 1;
-            for (int i = 0; i < str.Length && i < index; i++)
-                if (str[i] == '\n')
-                    row++;
-            return row;
-        }
-
         public void Parse(string ilaCode)
         {
             ilaCode = new string(ilaCode.Where(c => c != '\r').ToArray());
@@ -922,49 +899,5 @@ namespace ILANET
         }
 
         #endregion Public Methods
-
-        #region Internal Methods
-
-        internal static bool IsLetter(char c) => char.IsLetter(c) || c == '_';
-
-        internal static bool IsLetterOrDigit(char c) => IsLetter(c) || char.IsDigit(c);
-
-        internal static bool IsWhiteSpace(char c) => c == ' ' || c == '\t';
-
-        internal static Instruction ParseInstru(string code, ref int index)
-        {
-            return null;
-        }
-
-        internal static IValue ParseValue(string code, bool constLock = false)
-        {
-            return null;
-        }
-
-        internal static string RemoveBlanks(string str)
-        {
-            var res = "";
-            foreach (var item in str)
-                if (!IsWhiteSpace(item))
-                    res += item;
-            return res;
-        }
-
-        #endregion Internal Methods
-
-        #region Public Classes
-
-        public class ILAException : Exception
-        {
-            #region Public Constructors
-
-            public ILAException(string mess = "", Exception inner = null) : base(mess, inner)
-            {
-            }
-
-            #endregion Public Constructors
-        }
-
-        #endregion Public Classes
     }
 }
