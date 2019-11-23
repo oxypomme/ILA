@@ -37,6 +37,11 @@ namespace ILANET
             Declarations = new List<IDeclaration>();
             Instructions = new List<Instruction>();
             FileComments = new List<Comment>();
+            Methods = new List<Module>();
+            /*
+             * The dispatcher will keep track of executables blocks to parse them at the end, once
+             * all the variables, custom types and other executables header has been added.
+             */
             var dispatcher = new Dictionary<int, IExecutable>();
             AlgoComment = null;
             Name = "";
@@ -121,6 +126,7 @@ namespace ILANET
                     {
                         index += 7;
                         var module = new Module();
+                        Methods.Add(module);
                         if (lastComment != null)
                             module.Comment = new Comment() { Message = lastComment, MultiLine = multilineComm };
                         lastComment = null;
@@ -157,6 +163,7 @@ namespace ILANET
                     {
                         index += 9;
                         var fct = new Function();
+                        Methods.Add(fct);
                         if (lastComment != null)
                             fct.Comment = new Comment() { Message = lastComment, MultiLine = multilineComm };
                         lastComment = null;
@@ -188,11 +195,45 @@ namespace ILANET
                             }
                         }
                     }
+                    //start a declaration
+                    else
+                    {
+                        if (!char.IsLetter(ilaCode[index]))
+                            throw new ILAException("Erreur : Déclaration de variable, type, algo, module ou fonction attendu ligne " + CountRow(ilaCode, index));
+                        string name = CatchString(ilaCode, ref index);
+                        FastForward(ilaCode, ref index, true);
+                        if (ilaCode[index] != ':')
+                            throw new ILAException("Caractère attendu ':' ligne " + CountRow(ilaCode, index));
+                        index++;
+                        FastForward(ilaCode, ref index, true);
+                        string varType = CatchString(ilaCode, ref index);
+                        if (varType == "const")
+                        {
+                            var variable = new Variable();
+                            var declaration = new VariableDeclaration();
+                            declaration.CreatedVariable = variable;
+                            variable.Constant = true;
+                            FastForward(ilaCode, ref index, true);
+                            varType = CatchString(ilaCode, ref index);
+                            switch (varType)
+                            {
+                                case "entier":
+                                    variable.Type = GenericType.Int;
+                                    FastForward(ilaCode, ref index, true);
+                                    if (ilaCode.Substring(index, 2) != "<-")
+                                        throw new ILAException("Opérateur attendu '<-' ligne " + CountRow(ilaCode, index));
+                                    index += 2;
+                                    FastForward(ilaCode, ref index, true);
+                                    break;
+                            }
+                        }
+                    }
                     SkipLine(ilaCode, ref index);
                 }
                 if (lastComment != null)
                     FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                 lastComment = null;
+                //parsing inside the executables
                 foreach (var disp in dispatcher)
                 {
                     if (disp.Value is Program)

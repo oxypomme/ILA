@@ -8,6 +8,7 @@ namespace Executer
 
         private static void Main(string[] args)
         {
+            Console.WriteLine(char.IsNumber('.'));
             var prg = new ILANET.Program();
             prg.Parse(
 @"//test
