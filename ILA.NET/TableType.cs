@@ -5,9 +5,17 @@ using System.Text;
 
 namespace ILANET
 {
-    public struct Range
+    public class Range : IBaseObject
     {
         #region Public Fields
+        public readonly VarType Type;
+
+        public Range(int min, int max, VarType type)
+        {
+            Min = min;
+            Max = max;
+            Type = type;
+        }
 
         public readonly int Max;
         public readonly int Min;
@@ -16,10 +24,9 @@ namespace ILANET
 
         #region Public Constructors
 
-        public Range(int min, int max)
+        public void WritePython(TextWriter textWriter)
         {
-            Min = min;
-            Max = max;
+            throw new NotImplementedException();
         }
 
         #endregion Public Constructors
