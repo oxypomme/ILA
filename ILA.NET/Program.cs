@@ -69,6 +69,10 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
+            /*
+             * attention aux Methods, elles contiennent les instances de Print et Read
+             * qui ne doivent pas être définies
+             */
             throw new NotImplementedException();
         }
 
