@@ -16,14 +16,14 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //x .generateIndent()
+            //x .generateIdent()
             textWriter.Write("while (");
             Condition.WritePython(textWriter);
             textWriter.Write(") :\n");
             foreach (var instruction in Instructions)
             {
                 // ident++
-                //x .generateIndent()
+                //x .generateIdent()
                 Condition.WritePython(textWriter);
                 textWriter.Write("\n");
                 // ident--
