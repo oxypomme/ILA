@@ -43,6 +43,7 @@ namespace ILANET
                 // ident++
                 //x .generateIndent()
                 instruction.WritePython(textWriter);
+                textWriter.Write("\n");
                 // ident--
             }
         }
