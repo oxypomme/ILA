@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ILANET
 {
+    /// <summary>
+    /// A hard coded string value
+    /// </summary>
     public class ConstantString : IValue
     {
         #region Internal Fields
@@ -15,6 +18,9 @@ namespace ILANET
 
         #region Public Constructors
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ConstantString()
         {
             Type = GenericType.String;
@@ -26,8 +32,15 @@ namespace ILANET
 
         VarType IValue.Type => Type;
 
+        /// <summary>
+        /// Value of the string
+        /// </summary>
         public string Value { get; set; }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

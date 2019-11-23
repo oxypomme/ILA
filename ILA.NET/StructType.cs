@@ -5,22 +5,27 @@ using System.Text;
 
 namespace ILANET
 {
+    /// <summary>
+    /// A custom struct type
+    /// </summary>
     public class StructType : VarType
     {
         #region Public Properties
 
+        /// <summary>
+        /// The members of the structure
+        /// </summary>
         public Dictionary<string, VarType> Members { get; set; }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
         }
 
         #endregion Public Properties
-
-        #region Protected Properties
-
-
-        #endregion Protected Properties
     }
 }
