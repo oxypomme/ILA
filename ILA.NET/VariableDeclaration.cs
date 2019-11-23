@@ -25,8 +25,6 @@ namespace ILANET
             textWriter.Write(" = ");
             if (CreatedVariable.Constant)
                 CreatedVariable.ConstantValue.WritePython(textWriter);
-            else if (CreatedVariable.Type is TableType table)
-                textWriter.Write(table.Name);
             else if (!(CreatedVariable.Type is GenericType))
                 CreatedVariable.Type.WritePython(textWriter);
             else

@@ -61,6 +61,23 @@ namespace ILANET
                 }
                 // ident = baseIdent
             }
+            else if (CreatedType is StructType struc)
+            {
+                //x .generateIdent()
+                textWriter.Write("class ");
+                struc.WritePython(textWriter);
+                textWriter.Write(" :\n");
+
+                foreach (var member in struc.Members)
+                {
+                    // ident++
+                    //x .generateIdent()
+                    textWriter.Write(member.Key + " = ");
+                    member.Value.WritePython(textWriter);
+                    textWriter.Write("\n");
+                    // ident--
+                }
+            }
         }
     }
 }
