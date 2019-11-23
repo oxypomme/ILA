@@ -7,16 +7,6 @@ namespace ILANET
 {
     public class Program : IExecutable
     {
-        #region Public Enums
-
-        public enum Language
-        {
-            PYTHON,
-            LUA
-        }
-
-        #endregion Public Enums
-
         #region Public Properties
 
         Comment IExecutable.AboveComment => AlgoComment;
