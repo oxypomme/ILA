@@ -22,7 +22,7 @@ namespace ILANET
 
         public virtual void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            textWriter.Write(Name.ToString());
         }
 
         #endregion Internal Properties
