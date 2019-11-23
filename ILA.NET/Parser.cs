@@ -38,6 +38,8 @@ namespace ILANET
             Instructions = new List<Instruction>();
             FileComments = new List<Comment>();
             Methods = new List<Module>();
+            Methods.Add(Print.Instance);
+            Methods.Add(Read.Instance);
             /*
              * The dispatcher will keep track of executables blocks to parse them at the end, once
              * all the variables, custom types and other executables header has been added.
