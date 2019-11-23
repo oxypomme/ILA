@@ -22,6 +22,7 @@ namespace ILANET
         public void WritePython(TextWriter textWriter)
         {
             //_ = CreatedVariable.PythonCode;
+            // tenir compte de constante or not
             throw new NotImplementedException();
         }
     }

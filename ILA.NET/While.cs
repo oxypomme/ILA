@@ -20,7 +20,7 @@ namespace ILANET
             textWriter.Write("while (");
             Condition.WritePython(textWriter);
             textWriter.Write(") :\n");
-            foreach (Instruction instruction in Instructions)
+            foreach (var instruction in Instructions)
             {
                 // ident++
                 //x .generateIndent()
