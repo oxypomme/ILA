@@ -20,8 +20,12 @@ namespace ILANET
             CalledModule.WritePython(textWriter);
             textWriter.Write(" (");
             for (int i = 0; i < Args.Count; i++)
-                textWriter.Write("ERROR"/*Args[i].WritePython(textWriter)*/); //! Erreur CS1503  Argument 1: conversion impossible de 'void' en 'bool'
-            //TODO : fix CS1503
+            {
+                if (i != 0)
+                    textWriter.Write(", ");
+                Args[i].WritePython(textWriter);
+            }
+
             textWriter.Write(")");
         }
 
