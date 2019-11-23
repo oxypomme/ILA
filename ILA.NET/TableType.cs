@@ -8,17 +8,16 @@ namespace ILANET
     public class Range : IBaseObject
     {
         #region Public Fields
-        public readonly VarType Type;
 
-        public Range(int min, int max, VarType type)
+        public readonly IValue Max;
+
+        public readonly IValue Min;
+
+        public Range(IValue min, IValue max)
         {
             Min = min;
             Max = max;
-            Type = type;
         }
-
-        public readonly int Max;
-        public readonly int Min;
 
         #endregion Public Fields
 
@@ -45,10 +44,5 @@ namespace ILANET
         }
 
         #endregion Public Properties
-
-        #region Protected Properties
-
-
-        #endregion Protected Properties
     }
 }
