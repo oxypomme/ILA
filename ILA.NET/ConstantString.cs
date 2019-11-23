@@ -30,8 +30,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            _ = Value.ToString();
-            throw new NotImplementedException();
+            textWriter.Write(Value.ToString());
         }
 
         #endregion Public Properties
