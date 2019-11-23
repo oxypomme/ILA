@@ -11,7 +11,15 @@ t_struct:type structure(
     variable1:entier,
     variable2:chaine
 )
-t_joursSemaine:type enumeration(LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE)
+t_joursSemaine:type enumeration (
+        LUNDI,
+        MARDI,
+        MERCREDI,
+        JEUDI,
+        VENDREDI,
+        SAMEDI,
+        DIMANCHE
+    )
 tab:t_tab
 variableStruct:t_struct
 i:entier
