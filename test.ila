@@ -5,12 +5,12 @@
 nombre:entier // Nombre à traiter
 resultat:entier // Carré calculé
 pi:const reel <- 3.141592 //une constante
-t_tab:type tableau[1..3] : entier //tableau d'entiers
+t_tab:type tableau[1..3] : entier //tableau d'entiers, on peut aussi écrire "table" au lieu de "tableau"
 t_multiTab:type tableau[1..10, 1..5]: chaine //tableau à deux dimensions
 t_struct:type structure(
     variable1:entier,
     variable2:chaine
-)
+)   //on peut aussi écrire "struct" au lieu de "structure"
 t_joursSemaine:type enumeration (
         LUNDI,
         MARDI,
@@ -19,7 +19,7 @@ t_joursSemaine:type enumeration (
         VENDREDI,
         SAMEDI,
         DIMANCHE
-    )
+    ) //on peut aussi écrire "enum" au lieu de "enumeration"
 tab:t_tab
 variableStruct:t_struct
 i:entier
