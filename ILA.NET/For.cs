@@ -22,18 +22,29 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            var sbFOR = new StringBuilder().Append(
-                    Index.PythonCode + " = " + Start.PythonCode + "\n" +
-                    "while (" + Index.PythonCode + " != " + Step.PythonCode + ") :\n"
-                );
+            // Index initialiser
+            //x .generateIndent()
+            Index.WritePython(textWriter);
+            textWriter.Write(" = ");
+            Start.WritePython(textWriter);
+
+            // While condition
+            //x .generateIndent()
+            textWriter.Write("\n" +
+                "while (");
+            Index.WritePython(textWriter);
+            textWriter.Write(" != ");
+            Step.WritePython(textWriter);
+            textWriter.Write(") :\n");
+
+            // While content
             foreach (Instruction instruction in Instructions)
             {
-                sbFOR.Append(instruction.PythonCode + "\n");
+                // ident++
+                //x .generateIndent()
+                instruction.WritePython(textWriter);
+                // ident--
             }
-            return sbFOR.Append(
-                    Index.PythonCode + " = " + Index.PythonCode + " + " + Step.PythonCode
-                ).ToString();
-            throw new NotImplementedException();
         }
     }
 }
