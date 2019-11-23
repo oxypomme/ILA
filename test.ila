@@ -55,13 +55,16 @@ algo Carre{
     Une fonction qui calcule le carré d'un nombre.
     le carré, c'est quand on le multiplie par lui-même 
 */
-fonction fnc_carre(nombre:entier):entier{
+fonction fnc_carre(nombre:entier):entier
+{
     fnc_carre <- nombre * nombre
 }
 //le mode par défaut est ENTRÉE, donc le "e::" est optionnel
-module modu_resultat(e::resultat:entier, s::message:chaine, s::bou:booleen){
+module modu_resultat(e::resultat:entier, s::message:chaine, s::bou:booleen)
+variable_locale:chaine
+{
     ecrire(resultat)
-    message <- "yay"
+    message <- variable_locale
     bou <- faux
     repeter
         bou <- vrai
