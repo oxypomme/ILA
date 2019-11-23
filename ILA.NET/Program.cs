@@ -18,9 +18,9 @@ namespace ILANET
         #endregion Public Enums
 
         #region Public Properties
-
+        public string InlineComment { get; set; }
         public Comment AlgoComment { get; set; }
-        Comment IExecutable.Comment => AlgoComment;
+        Comment IExecutable.AboveComment => AlgoComment;
         public List<IDeclaration> Declarations { get; set; }
         public List<Comment> FileComments { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
@@ -28,12 +28,10 @@ namespace ILANET
         public List<Module> Methods { get; set; }
         public string Name { get; set; }
 
+        string IExecutable.Comment => InlineComment;
+
         #endregion Public Properties
 
-        #region Internal Properties
-
-
-        #endregion Internal Properties
 
         #region Public Methods
 

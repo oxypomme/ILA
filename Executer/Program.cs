@@ -8,7 +8,6 @@ namespace Executer
 
         private static void Main(string[] args)
         {
-            
         }
 
         #endregion Private Methods

@@ -17,13 +17,16 @@ namespace ILANET
 
 
         #endregion Internal Properties
+        public Comment AboveComment { get; set; }
+        public string InlineComment { get; set; }
+        string IDeclaration.Comment => InlineComment;
 
-        public string Comment { get; set; }
-        string IDeclaration.Comment => Comment;
+        Comment IDeclaration.AboveComment => AboveComment;
 
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
         }
+
     }
 }
