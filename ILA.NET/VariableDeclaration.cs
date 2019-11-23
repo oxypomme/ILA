@@ -21,7 +21,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            _ = CreatedVariable.PythonCode;
+            //_ = CreatedVariable.PythonCode;
             throw new NotImplementedException();
         }
     }

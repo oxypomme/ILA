@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ILA.NET\ILA.NET.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="ILA.NET">
       <HintPath>..\ILA.NET\bin\Release\netcoreapp3.0\ILA.NET.dll</HintPath>
     </Reference>
