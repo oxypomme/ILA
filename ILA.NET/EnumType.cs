@@ -13,14 +13,9 @@ namespace ILANET
 
         public override void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            textWriter.Write(Name);
         }
 
         #endregion Public Properties
-
-        #region Protected Properties
-
-
-        #endregion Protected Properties
     }
 }
