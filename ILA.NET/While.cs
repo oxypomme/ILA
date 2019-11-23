@@ -16,15 +16,18 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            var sbWHILE = new StringBuilder().Append(
-                    "while (" + Condition.PythonCode + ") :\n"
-                );
+            //x .generateIndent()
+            textWriter.Write("while (");
+            Condition.WritePython(textWriter);
+            textWriter.Write(") :\n");
             foreach (Instruction instruction in Instructions)
             {
-                sbWHILE.Append(instruction.PythonCode + "\n");
+                // ident++
+                //x .generateIndent()
+                Condition.WritePython(textWriter);
+                textWriter.Write("\n");
+                // ident--
             }
-            return sbWHILE.ToString();
-            throw new NotImplementedException();
         }
 
         #endregion Public Properties
