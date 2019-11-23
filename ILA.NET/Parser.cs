@@ -33,6 +33,7 @@ namespace ILANET
 
         public void Parse(string ilaCode)
         {
+            ilaCode = new string(ilaCode.Where(c => c != '\r').ToArray());
             Declarations = new List<IDeclaration>();
             Instructions = new List<Instruction>();
             FileComments = new List<Comment>();
@@ -62,7 +63,6 @@ namespace ILANET
                             comment += ilaCode[index];
                             index++;
                         }
-                        index++;
                         if (lastComment != null)
                             FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                         lastComment = comment;
@@ -263,7 +263,13 @@ namespace ILANET
                                 throw new ILAException("Opérateur attendu '<-' ligne " + CountRow(ilaCode, index));
                             index += 2;
                             FastForward(ilaCode, ref index, true);
-                            variable.ConstantValue = ParseValue(ilaCode, ref index);
+                            var constValue = "";
+                            while (ilaCode.Length - 1 > index && ilaCode.Substring(index, 2) != "//" && ilaCode[index] != '\n')
+                            {
+                                constValue += ilaCode[index];
+                                index++;
+                            }
+                            variable.ConstantValue = ParseValue(constValue, true);
                             if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
                             {
                                 index += 2;
@@ -437,31 +443,68 @@ namespace ILANET
                                                     FastForward(ilaCode, ref index, true);
                                                     while (ilaCode[index] != ']')
                                                     {
-                                                        //int range
-                                                        if (char.IsDigit(ilaCode[index]))
+                                                        string min = "", max = "";
+                                                        while (ilaCode.Substring(index, 2) != "..")
                                                         {
-                                                            string min = "", max = "";
-                                                            while (char.IsDigit(ilaCode[index]))
-                                                            {
-                                                                min += ilaCode[index];
-                                                                index++;
-                                                                if (index == ilaCode.Length)
-                                                                    throw new ILAException("Erreur : données manquantes : ligne " + CountRow(ilaCode, index));
-                                                            }
-                                                            FastForward(ilaCode, ref index, true);
-                                                            if (ilaCode.Substring(index, 2) != "..")
-                                                                throw new ILAException("Opérateur attendu : '..' ligne " + CountRow(ilaCode, index));
-                                                            FastForward(ilaCode, ref index, true);
-                                                            while (char.IsDigit(ilaCode[index]))
-                                                            {
-                                                                max += ilaCode[index];
-                                                                index++;
-                                                                if (index == ilaCode.Length)
-                                                                    throw new ILAException("Erreur : données manquantes : ligne " + CountRow(ilaCode, index));
-                                                            }
-                                                            type.DimensionsSize.Add(new Range(int.Parse(min), int.Parse(max), GenericType.Int));
+                                                            min += ilaCode[index];
+                                                            index++;
+                                                            if (index == ilaCode.Length - 1)
+                                                                throw new ILAException("Erreur : données manquantes : ligne " + CountRow(ilaCode, index));
                                                         }
+                                                        index += 2;
+                                                        while (ilaCode[index] != ']' && ilaCode[index] != ',')
+                                                        {
+                                                            max += ilaCode[index];
+                                                            index++;
+                                                            if (index == ilaCode.Length)
+                                                                throw new ILAException("Erreur : données manquantes : ligne " + CountRow(ilaCode, index));
+                                                        }
+                                                        if (ilaCode[index] == ',')
+                                                            index++;
+                                                        type.DimensionsSize.Add(new Range(ParseValue(min, true), ParseValue(max, true)));
                                                     }
+                                                    index++;
+                                                    FastForward(ilaCode, ref index, true);
+                                                    if (ilaCode[index] != ':')
+                                                        throw new ILAException("Caractère attendu ':' ligne " + CountRow(ilaCode, index));
+                                                    index++;
+                                                    FastForward(ilaCode, ref index, true);
+                                                    var caseTypeStr = CatchString(ilaCode, ref index);
+                                                    VarType caseType = null;
+                                                    switch (caseTypeStr)
+                                                    {
+                                                        case "entier":
+                                                            caseType = GenericType.Int;
+                                                            break;
+
+                                                        case "reel":
+                                                            caseType = GenericType.Float;
+                                                            break;
+
+                                                        case "caractere":
+                                                            caseType = GenericType.Char;
+                                                            break;
+
+                                                        case "chaine":
+                                                            caseType = GenericType.String;
+                                                            break;
+
+                                                        case "booleen":
+                                                            caseType = GenericType.Bool;
+                                                            break;
+
+                                                        default:
+                                                            foreach (var item in Declarations)
+                                                            {
+                                                                if (item is TypeDeclaration td)
+                                                                    if (td.CreatedType.Name == caseTypeStr)
+                                                                        caseType = td.CreatedType;
+                                                            }
+                                                            break;
+                                                    }
+                                                    if (caseType == null)
+                                                        throw new ILAException("Type '" + caseTypeStr + "' non reconnu ligne " + CountRow(ilaCode, index));
+                                                    type.InternalType = caseType;
                                                 }
                                                 break;
 
@@ -884,12 +927,14 @@ namespace ILANET
 
         internal static bool IsLetterOrDigit(char c) => IsLetter(c) || char.IsDigit(c);
 
+        internal static bool IsWhiteSpace(char c) => c == ' ' || c == '\t';
+
         internal static Instruction ParseInstru(string code, ref int index)
         {
             return null;
         }
 
-        internal static IValue ParseValue(string code, ref int index)
+        internal static IValue ParseValue(string code, bool constLock = false)
         {
             return null;
         }
@@ -898,7 +943,7 @@ namespace ILANET
         {
             var res = "";
             foreach (var item in str)
-                if (!char.IsWhiteSpace(item))
+                if (!IsWhiteSpace(item))
                     res += item;
             return res;
         }

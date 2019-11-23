@@ -18,21 +18,20 @@ namespace ILANET
         #endregion Public Enums
 
         #region Public Properties
-        public string InlineComment { get; set; }
-        public Comment AlgoComment { get; set; }
+
         Comment IExecutable.AboveComment => AlgoComment;
+        public Comment AlgoComment { get; set; }
+        string IExecutable.Comment => InlineComment;
         public List<IDeclaration> Declarations { get; set; }
         public List<Comment> FileComments { get; set; }
+        public string InlineComment { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
 
         public List<Instruction> Instructions { get; set; }
         public List<Module> Methods { get; set; }
         public string Name { get; set; }
 
-        string IExecutable.Comment => InlineComment;
-
         #endregion Public Properties
-
 
         #region Public Methods
 
@@ -46,7 +45,7 @@ namespace ILANET
         /// </param>
         public static void FastForward(string str, ref int index, bool requireData = false)
         {
-            while (index < str.Length && char.IsWhiteSpace(str[index]))
+            while (index < str.Length && IsWhiteSpace(str[index]))
                 index++;
             if (requireData && index == str.Length)
                 throw new ILAException("Erreur : données manquantes : ligne " + CountRow(str, index));
@@ -62,7 +61,7 @@ namespace ILANET
         /// </param>
         public static void SkipLine(string str, ref int index, bool requireData = false)
         {
-            while (index < str.Length && (char.IsWhiteSpace(str[index]) || str[index] == '\n' || str[index] == '\r'))
+            while (index < str.Length && (IsWhiteSpace(str[index]) || str[index] == '\n' || str[index] == '\r'))
                 index++;
             if (requireData && index == str.Length)
                 throw new ILAException("Erreur : programme non terminé");
