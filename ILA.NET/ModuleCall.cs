@@ -17,11 +17,12 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            var stringBuilder = new StringBuilder().Append(CalledModule.PythonCode + "(");
+            CalledModule.WritePython(textWriter);
+            textWriter.Write(" (");
             for (int i = 0; i < Args.Count; i++)
-                stringBuilder.Append(Args[i].PythonCode);
-            return stringBuilder.Append(")").ToString();
-            throw new NotImplementedException();
+                textWriter.Write("ERROR"/*Args[i].WritePython(textWriter)*/); //! Erreur CS1503  Argument 1: conversion impossible de 'void' en 'bool'
+            //TODO : fix CS1503
+            textWriter.Write(")");
         }
 
         #endregion Public Properties
