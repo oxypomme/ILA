@@ -19,16 +19,15 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            var sbIF = new StringBuilder().Append(
-                    "if (" + IfCondition.PythonCode + ") :\n"
-                );
+            textWriter.Write("if");
+            IfCondition.WritePython(textWriter);
+            textWriter.Write(") :\n");
+
             foreach (Instruction instruction in IfInstructions)
             {
-                sbIF.Append(instruction.PythonCode + "\n");
+                instruction.WritePython(textWriter);
             }
             // TODO : elif + else
-            return sbIF.ToString();
-            throw new NotImplementedException();
         }
 
         #endregion Public Properties
