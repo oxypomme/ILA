@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace ILANET
 {
@@ -41,68 +44,6 @@ namespace ILANET
 
         public Tag OpTag { get; set; }
         public IValue Left { get; set; }
-        string IBaseObject.LuaCode => throw new NotImplementedException();
-
-        string IBaseObject.PythonCode
-        {
-            get
-            {
-                switch (OpTag)
-                {
-                    case Tag.MINUS:
-                        return "-" + Right.PythonCode;
-
-                    case Tag.ADD:
-                        return "(" + Left.PythonCode + " + " + Right.PythonCode + ")";
-
-                    case Tag.SUB:
-                        return "(" + Left.PythonCode + " - " + Right.PythonCode + ")";
-
-                    case Tag.DIV:
-                        return "(" + Left.PythonCode + " / " + Right.PythonCode + ")";
-
-                    case Tag.MULT:
-                        return "(" + Left.PythonCode + " * " + Right.PythonCode + ")";
-
-                    case Tag.INT_DIV:
-                        return "(" + Left.PythonCode + " // " + Right.PythonCode + ")";
-
-                    case Tag.MOD:
-                        return "(" + Left.PythonCode + " % " + Right.PythonCode + ")";
-
-                    case Tag.AND:
-                        return "(" + Left.PythonCode + " and " + Right.PythonCode + ")";
-
-                    case Tag.OR:
-                        return "(" + Left.PythonCode + " or " + Right.PythonCode + ")";
-
-                    case Tag.NOT:
-                        return "not " + Right.PythonCode;
-
-                    case Tag.EQUAL:
-                        return "(" + Left.PythonCode + " == " + Right.PythonCode + ")";
-
-                    case Tag.DIFFRENT:
-                        return "(" + Left.PythonCode + " != " + Right.PythonCode + ")";
-
-                    case Tag.BIGGER:
-                        return "(" + Left.PythonCode + " > " + Right.PythonCode + ")";
-
-                    case Tag.BIGGER_EQUAL:
-                        return "(" + Left.PythonCode + " >= " + Right.PythonCode + ")";
-
-                    case Tag.SMALLER:
-                        return "(" + Left.PythonCode + " < " + Right.PythonCode + ")";
-
-                    case Tag.SMALLER_EQUAL:
-                        return "(" + Left.PythonCode + " <= " + Right.PythonCode + ")";
-
-                    default:
-                        throw new Exception();
-                }
-            }
-        }
-
         public IValue Right { get; set; }
 
         #endregion Public Properties
@@ -114,5 +55,63 @@ namespace ILANET
         #endregion Internal Properties
 
         internal VarType Type { get; set; }
+
+        public void WritePython(TextWriter textWriter)
+        {
+            switch (OpTag)
+            {
+                case Tag.MINUS:
+                    return "-" + Right.PythonCode;
+
+                case Tag.ADD:
+                    return "(" + Left.PythonCode + " + " + Right.PythonCode + ")";
+
+                case Tag.SUB:
+                    return "(" + Left.PythonCode + " - " + Right.PythonCode + ")";
+
+                case Tag.DIV:
+                    return "(" + Left.PythonCode + " / " + Right.PythonCode + ")";
+
+                case Tag.MULT:
+                    return "(" + Left.PythonCode + " * " + Right.PythonCode + ")";
+
+                case Tag.INT_DIV:
+                    return "(" + Left.PythonCode + " // " + Right.PythonCode + ")";
+
+                case Tag.MOD:
+                    return "(" + Left.PythonCode + " % " + Right.PythonCode + ")";
+
+                case Tag.AND:
+                    return "(" + Left.PythonCode + " and " + Right.PythonCode + ")";
+
+                case Tag.OR:
+                    return "(" + Left.PythonCode + " or " + Right.PythonCode + ")";
+
+                case Tag.NOT:
+                    return "not " + Right.PythonCode;
+
+                case Tag.EQUAL:
+                    return "(" + Left.PythonCode + " == " + Right.PythonCode + ")";
+
+                case Tag.DIFFRENT:
+                    return "(" + Left.PythonCode + " != " + Right.PythonCode + ")";
+
+                case Tag.BIGGER:
+                    return "(" + Left.PythonCode + " > " + Right.PythonCode + ")";
+
+                case Tag.BIGGER_EQUAL:
+                    return "(" + Left.PythonCode + " >= " + Right.PythonCode + ")";
+
+                case Tag.SMALLER:
+                    return "(" + Left.PythonCode + " < " + Right.PythonCode + ")";
+
+                case Tag.SMALLER_EQUAL:
+                    return "(" + Left.PythonCode + " <= " + Right.PythonCode + ")";
+
+                default:
+                    throw new Exception();
+            }
+            throw new NotImplementedException();
+        }
     }
 }

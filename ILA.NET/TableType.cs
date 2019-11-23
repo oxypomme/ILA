@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
 {
-    public struct Range
+    public class Range : IBaseObject
     {
         #region Public Fields
 
-        public readonly int Max;
-        public readonly int Min;
+        public readonly IValue Max;
+
+        public readonly IValue Min;
+
+        public Range(IValue min, IValue max)
+        {
+            Min = min;
+            Max = max;
+        }
 
         #endregion Public Fields
 
         #region Public Constructors
 
-        public Range(int min, int max)
+        public void WritePython(TextWriter textWriter)
         {
-            Min = min;
-            Max = max;
+            throw new NotImplementedException();
         }
 
         #endregion Public Constructors
@@ -31,14 +38,11 @@ namespace ILANET
         public List<Range> DimensionsSize { get; internal set; }
         public VarType InternalType { get; internal set; }
 
+        public override void WritePython(TextWriter textWriter)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion Public Properties
-
-        #region Protected Properties
-
-        protected override string LuaCode => throw new NotImplementedException();
-
-        protected override string PythonCode => throw new NotImplementedException();
-
-        #endregion Protected Properties
     }
 }

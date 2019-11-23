@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -10,18 +11,20 @@ namespace ILANET
 
         public virtual bool Constant { get; set; }
         public virtual IValue ConstantValue { get; set; }
-        string IBaseObject.LuaCode => LuaCode;
         public virtual string Name { get; set; }
-        string IBaseObject.PythonCode => PythonCode;
         VarType IValue.Type => Type;
 
         #endregion Public Properties
 
         #region Internal Properties
 
-        internal virtual string LuaCode => throw new NotImplementedException();
-        internal virtual string PythonCode => Name + " = " + ConstantValue.PythonCode;
         public virtual VarType Type { get; set; }
+
+        public virtual void WritePython(TextWriter textWriter)
+        {
+            _ = Name + " = " + ConstantValue.PythonCode
+            throw new NotImplementedException();
+        }
 
         #endregion Internal Properties
     }

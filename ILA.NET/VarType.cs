@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -8,16 +9,13 @@ namespace ILANET
     {
         #region Protected Properties
 
-        string IBaseObject.PythonCode => PythonCode;
-        string IBaseObject.LuaCode => LuaCode;
-
         #endregion Protected Properties
 
         #region Public Properties
 
         public virtual string Name { get; set; }
-        protected abstract string LuaCode { get; }
-        protected abstract string PythonCode { get; }
+
+        public abstract void WritePython(TextWriter textWriter);
 
         #endregion Public Properties
     }

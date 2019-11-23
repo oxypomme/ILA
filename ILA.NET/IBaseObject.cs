@@ -8,8 +8,7 @@ namespace ILANET
     {
         #region Protected Internal Properties
 
-        protected internal string LuaCode { get; }
-        protected internal string PythonCode { get; }
+        public void WritePython(System.IO.TextWriter textWriter);
 
         #endregion Protected Internal Properties
     }

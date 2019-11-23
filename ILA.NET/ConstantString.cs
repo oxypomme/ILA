@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ILANET
@@ -23,11 +24,15 @@ namespace ILANET
 
         #region Public Properties
 
-        string IBaseObject.LuaCode => throw new NotImplementedException();
-        string IBaseObject.PythonCode => Value;
         VarType IValue.Type => Type;
 
         public string Value { get; set; }
+
+        public void WritePython(TextWriter textWriter)
+        {
+            _ = Value.ToString();
+            throw new NotImplementedException();
+        }
 
         #endregion Public Properties
     }
