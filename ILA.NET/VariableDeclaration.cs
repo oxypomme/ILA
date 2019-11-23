@@ -21,9 +21,14 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //_ = CreatedVariable.PythonCode;
-            // tenir compte de constante or not
-            throw new NotImplementedException();
+            CreatedVariable.WritePython(textWriter);
+            textWriter.Write(" = ");
+            if (CreatedVariable.Constant)
+                CreatedVariable.ConstantValue.WritePython(textWriter);
+            else if (!(CreatedVariable.Type is GenericType))
+                CreatedVariable.Type.WritePython(textWriter);
+            else
+                textWriter.Write(0);
         }
     }
 }
