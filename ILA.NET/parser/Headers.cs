@@ -249,7 +249,7 @@ namespace ILANET.Parser
                                 constValue += ilaCode[index];
                                 index++;
                             }
-                            variable.ConstantValue = ParseValue(constValue, true);
+                            variable.ConstantValue = ParseValue(constValue, returnProg, true);
                             if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
                             {
                                 index += 2;
@@ -442,7 +442,7 @@ namespace ILANET.Parser
                                                         }
                                                         if (ilaCode[index] == ',')
                                                             index++;
-                                                        type.DimensionsSize.Add(new Range(ParseValue(min, true), ParseValue(max, true)));
+                                                        type.DimensionsSize.Add(new Range(ParseValue(min, returnProg, true), ParseValue(max, returnProg, true)));
                                                     }
                                                     index++;
                                                     FastForward(ilaCode, ref index, true);
@@ -840,7 +840,7 @@ namespace ILANET.Parser
                                         constValue += ilaCode[index];
                                         index++;
                                     }
-                                    variable.ConstantValue = ParseValue(constValue, true);
+                                    variable.ConstantValue = ParseValue(constValue, returnProg, true);
                                     if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
                                     {
                                         index += 2;
@@ -1033,7 +1033,7 @@ namespace ILANET.Parser
                                                                 }
                                                                 if (ilaCode[index] == ',')
                                                                     index++;
-                                                                type.DimensionsSize.Add(new Range(ParseValue(min, true), ParseValue(max, true)));
+                                                                type.DimensionsSize.Add(new Range(ParseValue(min, returnProg, true), ParseValue(max, returnProg, true)));
                                                             }
                                                             index++;
                                                             FastForward(ilaCode, ref index, true);
@@ -1381,7 +1381,7 @@ namespace ILANET.Parser
                                         constValue += ilaCode[index];
                                         index++;
                                     }
-                                    variable.ConstantValue = ParseValue(constValue, true);
+                                    variable.ConstantValue = ParseValue(constValue, returnProg, true);
                                     if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
                                     {
                                         index += 2;
@@ -1574,7 +1574,7 @@ namespace ILANET.Parser
                                                                 }
                                                                 if (ilaCode[index] == ',')
                                                                     index++;
-                                                                type.DimensionsSize.Add(new Range(ParseValue(min, true), ParseValue(max, true)));
+                                                                type.DimensionsSize.Add(new Range(ParseValue(min, returnProg, true), ParseValue(max, returnProg, true)));
                                                             }
                                                             index++;
                                                             FastForward(ilaCode, ref index, true);
