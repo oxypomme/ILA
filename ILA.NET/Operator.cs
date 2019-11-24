@@ -42,7 +42,6 @@ namespace ILANET
 
         #region Public Properties
 
-        public Tag OpTag { get; set; }
         public IValue Left { get; set; }
         public Tag OperatorType { get; set; }
         public IValue Right { get; set; }
@@ -59,7 +58,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            switch (OpTag)
+            switch (OperatorType)
             {
                 case Tag.MINUS:
                     textWriter.Write("-");
