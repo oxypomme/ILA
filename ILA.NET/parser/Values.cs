@@ -179,7 +179,7 @@ namespace ILANET.Parser
                                         //variable
                                         if (constLock)
                                             throw new ILAException("Erreur impossible de donner une valeur non constante");
-                                        if (code[n.Length] == '.')
+                                        if (n.Length < code.Length && code[n.Length] == '.')
                                         {
                                             //struct call
                                             var child = "";
