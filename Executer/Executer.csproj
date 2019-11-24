@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Reference Include="ILA.NET">
-      <HintPath>..\ILA.NET\bin\Release\netcoreapp3.0\ILA.NET.dll</HintPath>
+      <HintPath>..\ILA.NET\bin\Debug\netcoreapp3.0\ILA.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
 

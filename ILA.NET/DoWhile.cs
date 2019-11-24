@@ -27,6 +27,7 @@ namespace ILANET
             Condition.WriteILA(textWriter);
             textWriter.WriteLine();
         }
+        public string EndComment { get; set; }
 
         public void WritePython(TextWriter textWriter)
         {
