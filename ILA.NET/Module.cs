@@ -42,7 +42,7 @@ namespace ILANET
             {
                 // ident++
                 //x .generateIdent()
-                if ((parameter.Mode & Parameter.Flags.OUTPUT) != 0 || (parameter.Mode & Parameter.Flags.IO) != 0)
+                if ((parameter.Mode & Parameter.Flags.OUTPUT) != 0)
                 {
                     parameter.WritePython(textWriter);
                     textWriter.Write(" = 0\n");

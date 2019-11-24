@@ -21,7 +21,7 @@ namespace ILANET
         public void WritePython(TextWriter textWriter)
         {
             //x .generateIndent()
-            textWriter.Write("if");
+            textWriter.Write("if (");
             IfCondition.WritePython(textWriter);
             textWriter.Write(") :\n");
 
@@ -52,7 +52,7 @@ namespace ILANET
             }
 
             //x .generateIndent()
-            textWriter.Write("else");
+            textWriter.Write("else (");
             IfCondition.WritePython(textWriter);
             textWriter.Write(") :\n");
 
