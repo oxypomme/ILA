@@ -44,6 +44,7 @@ namespace ILANET
 
         public Tag OpTag { get; set; }
         public IValue Left { get; set; }
+        public Tag OperatorType { get; set; }
         public IValue Right { get; set; }
 
         #endregion Public Properties
