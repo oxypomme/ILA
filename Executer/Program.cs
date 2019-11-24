@@ -10,11 +10,12 @@ namespace Executer
 
         private static void Main(string[] args)
         {
-            /*var prg = Parser.Parse(
+            var prg = Parser.Parse(
 @"
 en:type enumeration(VALUE1,VALUE2)
 tab:type tableau[1..2, VALUE1 .. VALUE2 ]:entier
 test_var:en
+constant:const entier <- 4
 //test
 algo test
 {
@@ -26,10 +27,7 @@ var_local:entier
 {
 }"
 );
-            Console.WriteLine(prg.Declarations.Count);*/
-            Parser.ParseValue(
-@"7*(4+5)/(hk*test(7+6, 8))"
-                              , new ILANET.Program());
+            Console.WriteLine(prg.Declarations.Count);
         }
 
         #endregion Private Methods
