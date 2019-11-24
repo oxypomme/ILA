@@ -16,7 +16,16 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            CalledFunction.WritePython(textWriter);
+            textWriter.Write(" (");
+            for (int i = 0; i < Args.Count; i++)
+            {
+                if (i != 0)
+                    textWriter.Write(", ");
+                Args[i].WritePython(textWriter);
+            }
+
+            textWriter.Write(")");
         }
 
         #endregion Public Properties
