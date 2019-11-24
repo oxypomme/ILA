@@ -20,6 +20,11 @@ namespace ILANET
 
         public virtual VarType Type { get; set; }
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
