@@ -9,7 +9,7 @@ namespace Executer
 
         private static void Main(string[] args)
         {
-            var prg = new ILANET.Program();
+            /*var prg = new ILANET.Program();
             prg.Parse(
 @"
 en:type enumeration(VALUE1,VALUE2)
@@ -19,15 +19,16 @@ test_var:en
 algo test
 {
 }
-/*
-    fonction qui ne fait rien du tout
-*/
+
+//fonction qui ne fait rien du tout
 fonction fct(var:entier) : entier
 var_local:entier
 {
 }"
 );
-            Console.WriteLine(prg.Declarations.Count);
+            Console.WriteLine(prg.Declarations.Count);*/
+            ILANET.Program.ParseValue(
+@"7*(4+5)/(hk*test(7+6))");
         }
 
         #endregion Private Methods

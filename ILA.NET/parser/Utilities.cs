@@ -6,7 +6,7 @@ namespace ILANET
 {
     public partial class Program
     {
-        public static string CatchString(string str, ref int index)
+        internal static string CatchString(string str, ref int index)
         {
             var res = "";
             if (index >= str.Length || !IsLetter(str[index]))
@@ -20,7 +20,7 @@ namespace ILANET
             return res;
         }
 
-        public static int CountRow(string str, int index)
+        internal static int CountRow(string str, int index)
         {
             var row = 1;
             for (int i = 0; i < str.Length && i < index; i++)
@@ -29,36 +29,12 @@ namespace ILANET
             return row;
         }
 
-        /// <summary>
-        /// Skips every blank character
-        /// </summary>
-        /// <param name="str">string to parse</param>
-        /// <param name="index">index to start from</param>
-        /// <param name="requireData">
-        /// True if it has to throw an exception if it reach the end of string
-        /// </param>
-        public static void FastForward(string str, ref int index, bool requireData = false)
+        internal static void FastForward(string str, ref int index, bool requireData = false)
         {
             while (index < str.Length && IsWhiteSpace(str[index]))
                 index++;
             if (requireData && index == str.Length)
                 throw new ILAException("Erreur : données manquantes : ligne " + CountRow(str, index));
-        }
-
-        /// <summary>
-        /// Skips blanks characters and line spacing
-        /// </summary>
-        /// <param name="str">string to parse</param>
-        /// <param name="index">index to start from</param>
-        /// <param name="requireData">
-        /// True if it has to throw an exception if it reach the end of string
-        /// </param>
-        public static void SkipLine(string str, ref int index, bool requireData = false)
-        {
-            while (index < str.Length && (IsWhiteSpace(str[index]) || str[index] == '\n' || str[index] == '\r'))
-                index++;
-            if (requireData && index == str.Length)
-                throw new ILAException("Erreur : programme non terminé");
         }
 
         internal static bool IsLetter(char c) => char.IsLetter(c) || c == '_';
@@ -74,6 +50,14 @@ namespace ILANET
                 if (!IsWhiteSpace(item))
                     res += item;
             return res;
+        }
+
+        internal static void SkipLine(string str, ref int index, bool requireData = false)
+        {
+            while (index < str.Length && (IsWhiteSpace(str[index]) || str[index] == '\n' || str[index] == '\r'))
+                index++;
+            if (requireData && index == str.Length)
+                throw new ILAException("Erreur : programme non terminé");
         }
 
         public class ILAException : Exception
