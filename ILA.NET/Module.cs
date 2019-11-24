@@ -37,6 +37,19 @@ namespace ILANET
             }
             textWriter.Write("):\n");
 
+            // write the input-output / output params
+            foreach (var parameter in Parameters)
+            {
+                // ident++
+                //x .generateIdent()
+                if (parameter.Mode == Parameter.Flags.OUTPUT || parameter.Mode == Parameter.Flags.IO)
+                {
+                    parameter.WritePython(textWriter);
+                    textWriter.Write(" = 0\n");
+                }
+                // ident--
+            }
+
             // write the instructions
             foreach (var instruction in Instructions)
             {
@@ -49,6 +62,16 @@ namespace ILANET
             // return out vars
             // ident++
             //x .generateIdent()
+            textWriter.Write("return ");
+            foreach (var parameter in Parameters)
+            {
+                for (int i = 0; i < Parameters.Count; i++)
+                {
+                    Parameters[i].WritePython(textWriter);
+                    if (i < Parameters.Count - 1)
+                        textWriter.Write(", ");
+                }
+            }
             // ident--
         }
 

@@ -25,7 +25,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            textWriter.Write(ImportedVariable.Name);
         }
 
         #endregion Public Properties

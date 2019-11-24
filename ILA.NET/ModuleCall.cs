@@ -17,6 +17,16 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
+            for (int i = 0; i < Args.Count; i++)
+            {
+                //if (Args[i].Mode == Parameter.Flags.OUTPUT || Args[i].Mode == Parameter.Flags.IO)
+                //{
+                Args[i].WritePython(textWriter);
+                if (i < Args.Count - 1)
+                    textWriter.Write(", ");
+                //}
+            }
+
             CalledModule.WritePython(textWriter);
             textWriter.Write(" (");
             for (int i = 0; i < Args.Count; i++)
