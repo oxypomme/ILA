@@ -39,6 +39,54 @@ namespace ILANET.Parser
         internal static IValue ParseOperand(string code, Program mainProg, IExecutable currentBlock, Parenthesis p, bool constLock)
         {
             code = code.Trim();
+            if (code.Length == 0)
+            {
+                //fct/tab call
+                if (p.FunctionName != null)
+                {
+                    if (constLock)
+                        throw new ILAException("Erreur impossible de donner une valeur non constante");
+                    var call = new FunctionCall();
+                    call.CalledFunction = null;
+                    call.Args = new List<IValue>();
+                    foreach (var item in mainProg.Methods)
+                    {
+                        if (item.Name == p.FunctionName && item is Function f)
+                        {
+                            call.CalledFunction = f;
+                            break;
+                        }
+                    }
+                    if (call.CalledFunction == null)
+                        throw new ILAException("Aucune fonction nommée '" + p.FunctionName + "' trouvée");
+                    foreach (var item in p.FctIndexes)
+                        call.Args.Add(ParseParenthesis(item, mainProg, currentBlock, constLock));
+                    return call;
+                }
+                else if (p.TabName != null)
+                {
+                    if (!constLock)
+                        throw new ILAException("Erreur impossible de donner une valeur non constante");
+                    var call = new TableCall();
+                    call.Table = null;
+                    call.DimensionsIndex = new List<IValue>();
+                    foreach (var item in currentBlock.Declarations)
+                    {
+                        if (item is VariableDeclaration vd && vd.CreatedVariable.Name == p.TabName)
+                        {
+                            call.Table = vd.CreatedVariable;
+                            break;
+                        }
+                    }
+                    if (call.Table == null)
+                        throw new ILAException("Aucune variable nommée '" + p.TabName + "' trouvée");
+                    foreach (var item in p.TabIndexes)
+                        call.DimensionsIndex.Add(ParseParenthesis(item, mainProg, currentBlock, constLock));
+                    return call;
+                }
+                else
+                    return null;
+            }
             int index = Max(
                 code.LastIndexOf('='),
                 code.LastIndexOf('☻'),
@@ -86,53 +134,10 @@ namespace ILANET.Parser
                                     op.Right = ParseOperand(code.Substring(1), mainProg, currentBlock, p, constLock);
                                     return op;
                                 }
-                                else if (code.First() == '?')//parenthesis group, fct/tab call
+                                else if (code.First() == '?')//parenthesis group
                                 {
                                     int pNumber = int.Parse(code.Substring(1, 4));
-                                    if (p.FunctionName == null && p.TabName == null)
-                                        return ParseParenthesis(p.RecursiveParenthesis[pNumber], mainProg, currentBlock, constLock);
-                                    else if (p.FunctionName != null)
-                                    {
-                                        if (constLock)
-                                            throw new ILAException("Erreur impossible de donner une valeur non constante");
-                                        var call = new FunctionCall();
-                                        call.CalledFunction = null;
-                                        call.Args = new List<IValue>();
-                                        foreach (var item in mainProg.Methods)
-                                        {
-                                            if (item.Name == p.FunctionName && item is Function f)
-                                            {
-                                                call.CalledFunction = f;
-                                                break;
-                                            }
-                                        }
-                                        if (call.CalledFunction == null)
-                                            throw new ILAException("Aucune fonction nommée '" + p.FunctionName + "' trouvée");
-                                        foreach (var item in p.FctIndexes)
-                                            call.Args.Add(ParseParenthesis(item, mainProg, currentBlock, constLock));
-                                        return call;
-                                    }
-                                    else
-                                    {
-                                        if (constLock)
-                                            throw new ILAException("Erreur impossible de donner une valeur non constante");
-                                        var call = new TableCall();
-                                        call.Table = null;
-                                        call.DimensionsIndex = new List<IValue>();
-                                        foreach (var item in currentBlock.Declarations)
-                                        {
-                                            if (item is VariableDeclaration vd && vd.CreatedVariable.Name == p.TabName)
-                                            {
-                                                call.Table = vd.CreatedVariable;
-                                                break;
-                                            }
-                                        }
-                                        if (call.Table == null)
-                                            throw new ILAException("Aucune variable nommée '" + p.FunctionName + "' trouvée");
-                                        foreach (var item in p.FctIndexes)
-                                            call.DimensionsIndex.Add(ParseParenthesis(item, mainProg, currentBlock, constLock));
-                                        return call;
-                                    }
+                                    return ParseParenthesis(p.RecursiveParenthesis[pNumber], mainProg, currentBlock, constLock);
                                 }
                                 else
                                 {

@@ -13,9 +13,10 @@ namespace Executer
             var prg = Parser.Parse(
 @"
 en:type enumeration(VALUE1,VALUE2)
-tab:type tableau[1..2, VALUE1 .. VALUE2 ]:entier
+t_tab:type tableau[1..2, VALUE1 .. VALUE2 ]:entier
 test_var:en
-constant:const entier <- 4
+tab:t_tab
+constant:const entier <- (4+5)*tab[4]
 //test
 algo test
 {
