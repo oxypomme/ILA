@@ -15,6 +15,7 @@ namespace ILANET
             /// the MINUS operator has only a right value and no left value.
             /// </summary>
             MINUS,
+
             ADD,
             SUB,
             DIV,
@@ -42,6 +43,7 @@ namespace ILANET
         #region Public Properties
 
         public IValue Left { get; set; }
+        public Tag OperatorType { get; set; }
         public IValue Right { get; set; }
 
         #endregion Public Properties
