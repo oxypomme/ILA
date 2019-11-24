@@ -9,7 +9,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        public List<int> DimensionsIndex { get; set; }
+        public List<IValue> DimensionsIndex { get; set; }
         public Variable Table { get; set; }
         public override string Name { get => ""; set { } }
         public override VarType Type { get => ((TableType)Table.Type).InternalType; set => ((TableType)Table.Type).InternalType = value; }
