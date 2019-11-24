@@ -30,7 +30,25 @@ namespace ILANET
              * attention aux Methods, elles contiennent les instances de Print et Read
              * qui ne doivent pas être définies
              */
-            throw new NotImplementedException();
+            foreach (var declaration in Declarations)
+            {
+                declaration.WritePython(textWriter);
+            }
+
+            foreach (var module in Methods)
+            {
+                module.WritePython(textWriter);
+            }
+
+            textWriter.Write("def " + Name + "() :\n");
+            // ident++
+            //x .generateIdent()
+            foreach (var instruction in Instructions)
+            {
+                instruction.WritePython(textWriter);
+            }
+            // ident--
+            textWriter.Write(Name + "()");
         }
 
         #endregion Public Methods
