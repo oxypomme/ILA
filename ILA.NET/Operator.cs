@@ -186,7 +186,6 @@ namespace ILANET
                 default:
                     throw new Exception();
             }
-            throw new NotImplementedException();
         }
     }
 }
