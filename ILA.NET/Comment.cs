@@ -9,7 +9,6 @@ namespace ILANET
     {
         #region Public Properties
 
-
         public bool MultiLine { get; set; }
 
         public string Message { get; set; }
@@ -17,7 +16,6 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
         }
 
         #endregion Public Properties
