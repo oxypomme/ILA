@@ -6,7 +6,7 @@ namespace ILANET.Parser
 {
     public partial class Parser
     {
-        public static IValue ParseValue(string code, Program mainProg, bool constLock = false)
+        public static IValue ParseValue(string code, Program mainProg, IExecutable currentBlock, bool constLock = false)
         {
             var decomposed = Parenthesis.Generate(code);
             //var res = ParseParenthesis(decomposed, mainProg, constLock);
@@ -36,7 +36,7 @@ namespace ILANET.Parser
             return min;
         }
 
-        internal static IValue ParseOperand(string code, Program mainProg, Parenthesis p, bool constLock)
+        internal static IValue ParseOperand(string code, Program mainProg, IExecutable currentBlock, Parenthesis p, bool constLock)
         {
             code = code.Trim();
             int index = Max(
@@ -69,12 +69,124 @@ namespace ILANET.Parser
                                 );
                             if (index == -1)
                             {
-                                //non <val>, ?####, variable, constant
+                                //non <val>, ?####, variable, constant, enum
                                 if (code.First() == '○') //non
                                 {
                                     var op = new Operator();
                                     op.Left = null;
-                                    op.
+                                    op.OperatorType = Operator.Tag.NOT;
+                                    op.Right = ParseOperand(code.Substring(1), mainProg, currentBlock, p, constLock);
+                                    return op;
+                                }
+                                else if (code.First() == '?')//parenthesis group
+                                {
+                                    int pNumber = int.Parse(code.Substring(1, 4));
+                                    return ParseParenthesis(p.RecursiveParenthesis[pNumber], mainProg, currentBlock, constLock);
+                                }
+                                else
+                                {
+                                    //variable, constant, enum
+                                    if (IsLetter(code.First()))
+                                    {
+                                        //variable, enum, bool
+                                        string n = "";
+                                        int i = 0;
+                                        while (IsLetterOrDigit(code[i]))
+                                            n += code[i++];
+                                        if (n == "vrai")
+                                            return new ConstantBool() { Value = true };
+                                        if (n == "faux")
+                                            return new ConstantBool() { Value = false };
+                                        //variable, enum
+                                        foreach (var decl in mainProg.Declarations)
+                                        {
+                                            if (decl is TypeDeclaration td && td.CreatedType is EnumType en)
+                                            {
+                                                for (int j = 0; j < en.Values.Count; j++)
+                                                {
+                                                    if (en.Values[j] == n)
+                                                    {
+                                                        //enum call
+                                                        return new EnumCall()
+                                                        {
+                                                            Enum = en,
+                                                            Index = j
+                                                        };
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        //variable
+                                        if (code[n.Length] == '.')
+                                        {
+                                            //struct call
+                                            var child = "";
+                                            int j = n.Length + 1;
+                                            while (IsLetterOrDigit(code[j]) || code[j] == '.')
+                                                child += code[j];
+                                            foreach (var item in currentBlock.Declarations)
+                                            {
+                                                if (item is VariableDeclaration vd && vd.CreatedVariable.Type is StructType)
+                                                {
+                                                    if (vd.CreatedVariable.Name == n)
+                                                        return new StructCall() { Constant = false, Name = child, Struct = vd.CreatedVariable };
+                                                }
+                                            }
+                                            throw new ILAException("Erreur : variable '" + n + "' introuvable dans cette portée");
+                                        }
+                                        if (code[n.Length] == '[')
+                                        {
+                                            //table call
+                                            var indexValue = "";
+                                            int j = n.Length + 1;
+                                            int opened = 1;
+                                            while (opened > 0)
+                                            {
+                                                if (code[j] == '[')
+                                                    opened++;
+                                                else if (code[j] == ']')
+                                                    opened--;
+                                                else
+                                                    indexValue += code[j];
+                                                j++;
+                                                if (j == code.Length && opened > 0)
+                                                    throw new ILAException("Erreur de lecture du tableau");
+                                            }
+                                            var args = new List<string>();
+                                            opened = 0;
+                                            var currentIndex = "";
+                                            foreach (var c in indexValue)
+                                            {
+                                                if (code[j] == ',' && opened == 0)
+                                                {
+                                                    args.Add(currentIndex);
+                                                    currentIndex = "";
+                                                    continue;
+                                                }
+                                                if (code[j] == '[')
+                                                    opened++;
+                                                else if (code[j] == ']')
+                                                    opened--;
+                                                currentIndex += code[j];
+                                            }
+                                            foreach (var item in currentBlock.Declarations)
+                                            {
+                                                if (item is VariableDeclaration vd && vd.CreatedVariable.Type is TableType)
+                                                {
+                                                    if (vd.CreatedVariable.Name == n)
+                                                    {
+                                                        return new TableCall()
+                                                        {
+                                                            Constant = false,
+                                                            Table = vd.CreatedVariable,
+                                                            DimensionsIndex
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            throw new ILAException("Erreur : variable '" + n + "' introuvable dans cette portée");
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -83,7 +195,7 @@ namespace ILANET.Parser
             }
         }
 
-        internal static IValue ParseParenthesis(Parenthesis p, Program mainProg, bool constLock)
+        internal static IValue ParseParenthesis(Parenthesis p, Program mainProg, IExecutable currentBlock, bool constLock)
         {
             //We reduce the size of operators to one char using another code
             p.CodeInside = p.CodeInside.Replace("!=", "☻");
@@ -96,6 +208,11 @@ namespace ILANET.Parser
             p.CodeInside = p.CodeInside.Replace("non", "○");
             if (p.FunctionName == null)
             {
+                return ParseOperand(p.CodeInside, mainProg, currentBlock, p, constLock);
+            }
+            else
+            {
+                return ParseOperand(p.CodeInside, mainProg, currentBlock, p, constLock);
             }
         }
 

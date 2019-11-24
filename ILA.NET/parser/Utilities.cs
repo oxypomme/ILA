@@ -34,7 +34,7 @@ namespace ILANET.Parser
             while (index < str.Length && IsWhiteSpace(str[index]))
                 index++;
             if (requireData && index == str.Length)
-                throw new ILAException("Erreur : données manquantes : ligne " + CountRow(str, index));
+                throw new ILAException("Erreur : données manquantes : ");
         }
 
         internal static bool IsLetter(char c) => char.IsLetter(c) || c == '_';
