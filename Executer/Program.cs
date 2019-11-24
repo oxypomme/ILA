@@ -16,7 +16,7 @@ en:type enumeration(VALUE1,VALUE2)
 t_tab:type tableau[1..2, VALUE1 .. VALUE2 ]:entier
 test_var:en
 tab:t_tab
-constant:const entier <- (4+5)*tab[4]
+constant:const entier <- (4+5)<= ""test""
 //test
 algo test
 {
@@ -26,6 +26,17 @@ algo test
 fonction fct(var:entier) : entier
 var_local:entier
 {
+    si vrai alors
+        //test de comm
+    sinon si faux alors
+        /*
+            hello world
+        */
+    sinon
+        /*
+            comm multi
+        */
+    fsi //t
 }"
 );
             Console.WriteLine(prg.Declarations.Count);

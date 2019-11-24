@@ -46,6 +46,10 @@ algo Carre{
             ecrire(message)
         fpour
     fsi
+    /*
+        sinon si <condition> alors
+        sinon
+    */
     tantque i<10 faire
         ecrire(i)
 		i <- i + 1

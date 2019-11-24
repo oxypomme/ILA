@@ -10,6 +10,8 @@ namespace ILANET.Parser
 
         public static Program Parse(string ilaCode)
         {
+            //quick fix to avoid crashes because my code sucks lmao
+            ilaCode += "     ";
             var returnProg = new Program();
             ilaCode = new string(ilaCode.Where(c => c != '\r').ToArray());
             returnProg.Declarations = new List<IDeclaration>();
@@ -103,13 +105,23 @@ namespace ILANET.Parser
                         dispatcher.Add(index, returnProg);
                         {
                             int opened = 1;
+                            bool inComms = false;
+                            bool multilineComms = false;
                             while (opened > 0)
                             {
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
+                                    inComms = true;
+                                if (ilaCode[index] == '\n' && !multilineComms)
+                                    inComms = false;
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "/*" && !inComms)
+                                    inComms = multilineComms = true;
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "*/" && multilineComms)
+                                    inComms = multilineComms = false;
                                 if (ilaCode.Length == index)
                                     throw new ILAException("Caractère attendu : '}' ");
-                                if (ilaCode[index] == '{')
+                                if (ilaCode[index] == '{' && !inComms)
                                     opened++;
-                                if (ilaCode[index] == '}')
+                                if (ilaCode[index] == '}' && !inComms)
                                     opened--;
                                 index++;
                             }
@@ -140,13 +152,23 @@ namespace ILANET.Parser
                         index++;
                         {
                             int opened = 1;
+                            bool inComms = false;
+                            bool multilineComms = false;
                             while (opened > 0)
                             {
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
+                                    inComms = true;
+                                if (ilaCode[index] == '\n' && !multilineComms)
+                                    inComms = false;
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "/*" && !inComms)
+                                    inComms = multilineComms = true;
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "*/" && multilineComms)
+                                    inComms = multilineComms = false;
                                 if (ilaCode.Length == index)
                                     throw new ILAException("Caractère attendu : '}' ");
-                                if (ilaCode[index] == '{')
+                                if (ilaCode[index] == '{' && !inComms)
                                     opened++;
-                                if (ilaCode[index] == '}')
+                                if (ilaCode[index] == '}' && !inComms)
                                     opened--;
                                 index++;
                             }
@@ -177,13 +199,23 @@ namespace ILANET.Parser
                         index++;
                         {
                             int opened = 1;
+                            bool inComms = false;
+                            bool multilineComms = false;
                             while (opened > 0)
                             {
                                 if (ilaCode.Length == index)
                                     throw new ILAException("Caractère attendu : '}' ");
-                                if (ilaCode[index] == '{')
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
+                                    inComms = true;
+                                if (ilaCode[index] == '\n' && !multilineComms)
+                                    inComms = false;
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "/*" && !inComms)
+                                    inComms = multilineComms = true;
+                                if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "*/" && multilineComms)
+                                    inComms = multilineComms = false;
+                                if (ilaCode[index] == '{' && !inComms)
                                     opened++;
-                                if (ilaCode[index] == '}')
+                                if (ilaCode[index] == '}' && !inComms)
                                     opened--;
                                 index++;
                             }
@@ -574,7 +606,7 @@ namespace ILANET.Parser
                         index = disp.Key;
                         while (ilaCode[index] != '}')
                         {
-                            returnProg.Instructions.Add(ParseInstru(ilaCode, ref index));
+                            returnProg.Instructions.Add(ParseInstru(ilaCode, returnProg, returnProg, ref index));
                             SkipLine(ilaCode, ref index, true);
                         }
                     }
@@ -974,7 +1006,7 @@ namespace ILANET.Parser
                         fct.Instructions = new List<Instruction>();
                         while (ilaCode[index] != '}')
                         {
-                            fct.Instructions.Add(ParseInstru(ilaCode, ref index));
+                            fct.Instructions.Add(ParseInstru(ilaCode, returnProg, fct, ref index));
                             SkipLine(ilaCode, ref index, true);
                         }
                         index++;
@@ -1330,7 +1362,7 @@ namespace ILANET.Parser
                         module.Instructions = new List<Instruction>();
                         while (ilaCode[index] != '}')
                         {
-                            module.Instructions.Add(ParseInstru(ilaCode, ref index));
+                            module.Instructions.Add(ParseInstru(ilaCode, returnProg, module, ref index));
                             SkipLine(ilaCode, ref index, true);
                         }
                         index++;
