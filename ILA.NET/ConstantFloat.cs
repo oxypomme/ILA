@@ -29,7 +29,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            textWriter.Write(Value.ToString());
+            textWriter.Write(Value.ToString(new System.Globalization.CultureInfo("en")));
         }
 
         #endregion Public Properties
