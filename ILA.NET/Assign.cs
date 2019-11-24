@@ -16,6 +16,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
+            //x .generateIdent()
             Left.WritePython(textWriter);
             textWriter.Write(" = ");
             Right.WritePython(textWriter);

@@ -21,8 +21,7 @@ namespace ILANET
             foreach (var instruction in Instructions)
             {
                 // ident++
-                //x .generateIndent()
-                Condition.WritePython(textWriter);
+                instruction.WritePython(textWriter);
                 textWriter.Write("\n");
                 // ident--
             }

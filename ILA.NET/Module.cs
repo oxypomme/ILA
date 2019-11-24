@@ -54,7 +54,6 @@ namespace ILANET
             foreach (var instruction in Instructions)
             {
                 // ident++
-                //x .generateIdent()
                 instruction.WritePython(textWriter);
                 // ident--
             }

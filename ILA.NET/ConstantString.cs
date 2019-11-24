@@ -30,7 +30,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            textWriter.Write("\"" + Value.ToString() + "\"" +);
+            textWriter.Write("\"" + Value.ToString() + "\"");
         }
 
         #endregion Public Properties

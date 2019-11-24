@@ -42,7 +42,6 @@ namespace ILANET
 
             textWriter.Write("def " + Name + "() :\n");
             // ident++
-            //x .generateIdent()
             foreach (var instruction in Instructions)
             {
                 instruction.WritePython(textWriter);

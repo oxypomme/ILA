@@ -28,7 +28,6 @@ namespace ILANET
             foreach (var instruction in IfInstructions)
             {
                 // ident++
-                //x .generateIndent()
                 instruction.WritePython(textWriter);
                 textWriter.Write("\n");
                 // ident--
@@ -44,25 +43,26 @@ namespace ILANET
                 foreach (var instruction in elif.Item2)
                 {
                     // ident++
-                    //x .generateIndent()
                     instruction.WritePython(textWriter);
                     textWriter.Write("\n");
                     // ident--
                 }
             }
 
-            //x .generateIndent()
-            textWriter.Write("else (");
-            IfCondition.WritePython(textWriter);
-            textWriter.Write(") :\n");
-
-            foreach (var instruction in ElseInstructions)
+            if (ElseInstructions.Count > 0)
             {
-                // ident++
                 //x .generateIndent()
-                instruction.WritePython(textWriter);
-                textWriter.Write("\n");
-                // ident--
+                textWriter.Write("else (");
+                IfCondition.WritePython(textWriter);
+                textWriter.Write(") :\n");
+
+                foreach (var instruction in ElseInstructions)
+                {
+                    // ident++
+                    instruction.WritePython(textWriter);
+                    textWriter.Write("\n");
+                    // ident--
+                }
             }
         }
 

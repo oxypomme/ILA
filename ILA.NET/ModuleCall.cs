@@ -17,9 +17,10 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
+            //x .generateIdent()
             for (int i = 0; i < Args.Count; i++)
             {
-                if ((CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0 || (CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
+                if ((CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
                 {
                     if (i != 0)
                         textWriter.Write(", ");
@@ -34,6 +35,7 @@ namespace ILANET
             {
                 if (i != 0)
                     textWriter.Write(", ");
+
                 Args[i].WritePython(textWriter);
             }
 
