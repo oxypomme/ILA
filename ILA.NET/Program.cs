@@ -21,7 +21,7 @@ namespace ILANET
         public List<Instruction> Instructions { get; set; }
         public List<Module> Methods { get; set; }
         public string Name { get; set; }
-        string IExecutable.Name => throw new NotImplementedException();
+        string IExecutable.Name => Name;
 
         #endregion Public Properties
 

@@ -185,7 +185,11 @@ namespace ILANET.Parser
                                             var child = "";
                                             int j = n.Length + 1;
                                             while (IsLetterOrDigit(code[j]) || code[j] == '.')
-                                                child += code[j];
+                                            {
+                                                child += code[j++];
+                                                if (j == code.Length)
+                                                    break;
+                                            }
                                             foreach (var item in currentBlock.Declarations)
                                             {
                                                 if (item is VariableDeclaration vd && vd.CreatedVariable.Type is StructType)
@@ -194,6 +198,12 @@ namespace ILANET.Parser
                                                         return new StructCall() { Constant = false, Name = child, Struct = vd.CreatedVariable };
                                                 }
                                             }
+                                            if (currentBlock is Module m)
+                                                foreach (var par in m.Parameters)
+                                                {
+                                                    if (par.ImportedVariable.Name == n)
+                                                        return new StructCall() { Constant = false, Name = child, Struct = par.ImportedVariable };
+                                                }
                                             throw new ILAException("Erreur : variable '" + n + "' introuvable dans cette portée");
                                         }
                                         else
@@ -204,7 +214,13 @@ namespace ILANET.Parser
                                                 if (decl is VariableDeclaration vd && vd.CreatedVariable.Name == n)
                                                     return vd.CreatedVariable;
                                             }
-                                            throw new ILAException("Aucune variable nommée '" + n + "' trouvéee");
+                                            if (currentBlock is Module m)
+                                                foreach (var par in m.Parameters)
+                                                {
+                                                    if (par.ImportedVariable.Name == n)
+                                                        return par.ImportedVariable;
+                                                }
+                                            throw new ILAException("Aucune variable nommée '" + n + "' trouvée");
                                         }
                                     }
                                     else
@@ -400,11 +416,11 @@ namespace ILANET.Parser
             p.CodeInside = p.CodeInside.Replace("!=", "☻");
             p.CodeInside = p.CodeInside.Replace("<=", "♥");
             p.CodeInside = p.CodeInside.Replace(">=", "♦");
-            p.CodeInside = p.CodeInside.Replace("mod", "♣");
-            p.CodeInside = p.CodeInside.Replace("div", "♠");
-            p.CodeInside = p.CodeInside.Replace("et", "•");
-            p.CodeInside = p.CodeInside.Replace("ou", "◘");
-            p.CodeInside = p.CodeInside.Replace("non", "○");
+            p.CodeInside = p.CodeInside.Replace(" mod ", "♣");
+            p.CodeInside = p.CodeInside.Replace(" div ", "♠");
+            p.CodeInside = p.CodeInside.Replace(" et ", "•");
+            p.CodeInside = p.CodeInside.Replace(" ou ", "◘");
+            p.CodeInside = p.CodeInside.Replace(" non ", "○");
             {
                 //unary '-' detection
                 bool lastCharIsOperator = true;

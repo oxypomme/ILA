@@ -1023,6 +1023,7 @@ namespace ILANET.Parser
                             parametersStr += ilaCode[index++];
                         {
                             var singleParamsStr = parametersStr.Split(',');
+                            module.Parameters = new List<Parameter>();
                             foreach (var item in singleParamsStr)
                             {
                                 var parameter = new Parameter();
@@ -1111,7 +1112,6 @@ namespace ILANET.Parser
                                     Name = n,
                                     Type = type
                                 };
-                                module.Parameters = new List<Parameter>();
                                 module.Parameters.Add(parameter);
                             }
                         }
@@ -1369,10 +1369,12 @@ namespace ILANET.Parser
                     }
                 }
             }
-            catch (ExecutionEngineException) { }
+            catch (FormatException)
+            {
+            }
             /*catch (ILAException e)
             {
-                throw new ILAException(e.Message + " \\ ligne : " + CountRow(ilaCode, index));
+                throw new ILAException(e.Message + " \\ ligne : " + CountRow(ilaCode, index), e);
             }
             catch (Exception e)
             {
