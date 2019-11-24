@@ -9,10 +9,24 @@ namespace ILANET
     {
         #region Public Properties
 
-        public IValue Condition { get; set; }
-        public List<Instruction> Instructions { get; set; }
         public string Comment { get; set; }
         string Instruction.Comment => Comment;
+        public IValue Condition { get; set; }
+        public List<Instruction> Instructions { get; set; }
+
+        public void WriteILA(TextWriter textWriter)
+        {
+            Program.GenerateIndent(textWriter);
+            textWriter.WriteLine("repeter");
+            Program.ilaIndent++;
+            foreach (var item in Instructions)
+                item.WriteILA(textWriter);
+            Program.ilaIndent--;
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("jusqua ");
+            Condition.WriteILA(textWriter);
+            textWriter.WriteLine();
+        }
 
         public void WritePython(TextWriter textWriter)
         {
