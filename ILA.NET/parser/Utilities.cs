@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ILANET
+namespace ILANET.Parser
 {
-    public partial class Program
+    public partial class Parser
     {
         internal static string CatchString(string str, ref int index)
         {

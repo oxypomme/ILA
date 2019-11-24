@@ -1,5 +1,6 @@
 ﻿using System;
 using ILANET;
+using ILANET.Parser;
 
 namespace Executer
 {
@@ -9,8 +10,7 @@ namespace Executer
 
         private static void Main(string[] args)
         {
-            /*var prg = new ILANET.Program();
-            prg.Parse(
+            var prg = Parser.Parse(
 @"
 en:type enumeration(VALUE1,VALUE2)
 tab:type tableau[1..2, VALUE1 .. VALUE2 ]:entier
@@ -26,9 +26,9 @@ var_local:entier
 {
 }"
 );
-            Console.WriteLine(prg.Declarations.Count);*/
-            ILANET.Program.ParseValue(
-@"7*(4+5)/(hk*test(7+6))");
+            Console.WriteLine(prg.Declarations.Count);
+            /*ILANET.Program.ParseValue(
+@"7*(4+5)/(hk*test(7+6))");*/
         }
 
         #endregion Private Methods

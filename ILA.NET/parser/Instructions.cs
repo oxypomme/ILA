@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ILANET
+namespace ILANET.Parser
 {
-    public partial class Program
+    public partial class Parser
     {
         internal static Instruction ParseInstru(string code, ref int index)
         {

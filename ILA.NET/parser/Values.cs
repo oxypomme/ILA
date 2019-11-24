@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ILANET
+namespace ILANET.Parser
 {
-    public partial class Program
+    public partial class Parser
     {
         public static IValue ParseValue(string code, bool constLock = false)
         {
             IValue res;
             var decomposed = Parenthesis.Generate(code);
+
             res = null;
             return res;
         }

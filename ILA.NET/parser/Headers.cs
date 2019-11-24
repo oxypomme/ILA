@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ILANET
+namespace ILANET.Parser
 {
-    public partial class Program
+    public partial class Parser
     {
         #region Public Methods
 
-        public void Parse(string ilaCode)
+        public static Program Parse(string ilaCode)
         {
+            var returnProg = new Program();
             ilaCode = new string(ilaCode.Where(c => c != '\r').ToArray());
-            Declarations = new List<IDeclaration>();
-            Instructions = new List<Instruction>();
-            FileComments = new List<Comment>();
-            Methods = new List<Module>();
-            Methods.Add(Print.Instance);
-            Methods.Add(Read.Instance);
+            returnProg.Declarations = new List<IDeclaration>();
+            returnProg.Instructions = new List<Instruction>();
+            returnProg.FileComments = new List<Comment>();
+            returnProg.Methods = new List<Module>();
+            returnProg.Methods.Add(Print.Instance);
+            returnProg.Methods.Add(Read.Instance);
             /*
              * The dispatcher will keep track of executables blocks to parse them at the end, once
              * all the variables, custom types and other executables header has been added.
              */
             var dispatcher = new Dictionary<int, IExecutable>();
-            AlgoComment = null;
-            Name = "";
+            returnProg.AlgoComment = null;
+            returnProg.Name = "";
             int index = 0;
             try
             {
@@ -43,7 +44,7 @@ namespace ILANET
                             index++;
                         }
                         if (lastComment != null)
-                            FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
+                            returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                         lastComment = comment;
                         multilineComm = false;
                     }
@@ -62,7 +63,7 @@ namespace ILANET
                         index += 2;
 
                         if (lastComment != null)
-                            FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
+                            returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                         lastComment = comment;
                         multilineComm = true;
                     }
@@ -71,13 +72,13 @@ namespace ILANET
                     {
                         index += 5;
                         if (lastComment != null)
-                            AlgoComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
+                            returnProg.AlgoComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
                         lastComment = null;
                         FastForward(ilaCode, ref index, true);
                         var algoName = CatchString(ilaCode, ref index);
                         if (algoName == "")
                             throw new ILAException("Nom d'algo invalide : ligne " + CountRow(ilaCode, index));
-                        Name = algoName;
+                        returnProg.Name = algoName;
                         FastForward(ilaCode, ref index, true);
                         if (ilaCode.Substring(index, 2) == "//")
                         {
@@ -88,10 +89,10 @@ namespace ILANET
                                 if (ilaCode.Length == index)
                                     break;
                             }
-                            InlineComment = inlineComm;
+                            returnProg.InlineComment = inlineComm;
                         }
                         else
-                            InlineComment = "";
+                            returnProg.InlineComment = "";
                         SkipLine(ilaCode, ref index, true);
                         if (index == ilaCode.Length)
                             throw new ILAException("Aucun corps d'expression : ligne " + CountRow(ilaCode, index));
@@ -99,7 +100,7 @@ namespace ILANET
                             throw new ILAException("caractère non attendu '" + ilaCode[index] + "'. Caractère attendu : {   ligne " + CountRow(ilaCode, index));
                         index++;
                         SkipLine(ilaCode, ref index, true);
-                        dispatcher.Add(index, this);
+                        dispatcher.Add(index, returnProg);
                         {
                             int opened = 1;
                             while (opened > 0)
@@ -119,7 +120,7 @@ namespace ILANET
                     {
                         index += 7;
                         var module = new Module();
-                        Methods.Add(module);
+                        returnProg.Methods.Add(module);
                         if (lastComment != null)
                             module.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
                         lastComment = null;
@@ -156,7 +157,7 @@ namespace ILANET
                     {
                         index += 9;
                         var fct = new Function();
-                        Methods.Add(fct);
+                        returnProg.Methods.Add(fct);
                         if (lastComment != null)
                             fct.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
                         lastComment = null;
@@ -264,7 +265,7 @@ namespace ILANET
                             }
                             else
                                 declaration.InlineComment = "";
-                            Declarations.Add(declaration);
+                            returnProg.Declarations.Add(declaration);
                         }
                         else
                         {
@@ -276,7 +277,7 @@ namespace ILANET
                                         var variable = new Variable();
                                         var declaration = new VariableDeclaration();
                                         decl = declaration;
-                                        Declarations.Add(decl);
+                                        returnProg.Declarations.Add(decl);
                                         declaration.CreatedVariable = variable;
                                         variable.Type = GenericType.Int;
                                         variable.Name = name;
@@ -288,7 +289,7 @@ namespace ILANET
                                         var variable = new Variable();
                                         var declaration = new VariableDeclaration();
                                         decl = declaration;
-                                        Declarations.Add(decl);
+                                        returnProg.Declarations.Add(decl);
                                         declaration.CreatedVariable = variable;
                                         variable.Type = GenericType.Float;
                                         variable.Name = name;
@@ -300,7 +301,7 @@ namespace ILANET
                                         var variable = new Variable();
                                         var declaration = new VariableDeclaration();
                                         decl = declaration;
-                                        Declarations.Add(decl);
+                                        returnProg.Declarations.Add(decl);
                                         declaration.CreatedVariable = variable;
                                         variable.Type = GenericType.Char;
                                         variable.Name = name;
@@ -312,7 +313,7 @@ namespace ILANET
                                         var variable = new Variable();
                                         var declaration = new VariableDeclaration();
                                         decl = declaration;
-                                        Declarations.Add(decl);
+                                        returnProg.Declarations.Add(decl);
                                         declaration.CreatedVariable = variable;
                                         variable.Type = GenericType.String;
                                         variable.Name = name;
@@ -324,7 +325,7 @@ namespace ILANET
                                         var variable = new Variable();
                                         var declaration = new VariableDeclaration();
                                         decl = declaration;
-                                        Declarations.Add(decl);
+                                        returnProg.Declarations.Add(decl);
                                         declaration.CreatedVariable = variable;
                                         variable.Type = GenericType.Bool;
                                         variable.Name = name;
@@ -335,7 +336,7 @@ namespace ILANET
                                     {
                                         var declaration = new TypeDeclaration();
                                         decl = declaration;
-                                        Declarations.Add(decl);
+                                        returnProg.Declarations.Add(decl);
                                         FastForward(ilaCode, ref index, true);
                                         var customType = CatchString(ilaCode, ref index);
                                         switch (customType)
@@ -385,7 +386,7 @@ namespace ILANET
                                                                 break;
 
                                                             default:
-                                                                foreach (var item in Declarations)
+                                                                foreach (var item in returnProg.Declarations)
                                                                 {
                                                                     if (item is TypeDeclaration td)
                                                                         if (td.CreatedType.Name == memberTypeStr)
@@ -474,7 +475,7 @@ namespace ILANET
                                                             break;
 
                                                         default:
-                                                            foreach (var item in Declarations)
+                                                            foreach (var item in returnProg.Declarations)
                                                             {
                                                                 if (item is TypeDeclaration td)
                                                                     if (td.CreatedType.Name == caseTypeStr)
@@ -524,10 +525,10 @@ namespace ILANET
                                         var variable = new Variable();
                                         var declaration = new VariableDeclaration();
                                         decl = declaration;
-                                        Declarations.Add(decl);
+                                        returnProg.Declarations.Add(decl);
                                         declaration.CreatedVariable = variable;
                                         variable.Type = null;
-                                        foreach (var item in Declarations)
+                                        foreach (var item in returnProg.Declarations)
                                         {
                                             if (item is TypeDeclaration td)
                                                 if (td.CreatedType.Name == varType)
@@ -563,7 +564,7 @@ namespace ILANET
                     SkipLine(ilaCode, ref index);
                 }
                 if (lastComment != null)
-                    FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
+                    returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                 lastComment = null;
                 //parsing inside the executables
                 foreach (var disp in dispatcher)
@@ -573,7 +574,7 @@ namespace ILANET
                         index = disp.Key;
                         while (ilaCode[index] != '}')
                         {
-                            Instructions.Add(ParseInstru(ilaCode, ref index));
+                            returnProg.Instructions.Add(ParseInstru(ilaCode, ref index));
                             SkipLine(ilaCode, ref index, true);
                         }
                     }
@@ -637,7 +638,7 @@ namespace ILANET
                                     if (!IsLetterOrDigit(item2))
                                         throw new ILAException("Erreur : Le nom de type \"" + t + "\" est incorrect : ligne " + CountRow(ilaCode, index));
                                 VarType type = null;
-                                foreach (var item3 in Declarations)
+                                foreach (var item3 in returnProg.Declarations)
                                 {
                                     if (item3 is TypeDeclaration td)
                                         if (td.CreatedType.Name == t)
@@ -690,7 +691,7 @@ namespace ILANET
                         FastForward(ilaCode, ref index, true);
                         var strReturnType = CatchString(ilaCode, ref index);
                         VarType returnType = null;
-                        foreach (var item3 in Declarations)
+                        foreach (var item3 in returnProg.Declarations)
                         {
                             if (item3 is TypeDeclaration td)
                                 if (td.CreatedType.Name == strReturnType)
@@ -756,7 +757,7 @@ namespace ILANET
                                     index++;
                                 }
                                 if (lastComment != null)
-                                    FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
+                                    returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                                 lastComment = comment;
                                 multilineComm = false;
                             }
@@ -775,7 +776,7 @@ namespace ILANET
                                 index += 2;
 
                                 if (lastComment != null)
-                                    FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
+                                    returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                                 lastComment = comment;
                                 multilineComm = true;
                             }
@@ -976,7 +977,7 @@ namespace ILANET
                                                                         break;
 
                                                                     default:
-                                                                        foreach (var item in Declarations)
+                                                                        foreach (var item in returnProg.Declarations)
                                                                         {
                                                                             if (item is TypeDeclaration td)
                                                                                 if (td.CreatedType.Name == memberTypeStr)
@@ -1065,7 +1066,7 @@ namespace ILANET
                                                                     break;
 
                                                                 default:
-                                                                    foreach (var item in Declarations)
+                                                                    foreach (var item in returnProg.Declarations)
                                                                     {
                                                                         if (item is TypeDeclaration td)
                                                                             if (td.CreatedType.Name == caseTypeStr)
@@ -1118,7 +1119,7 @@ namespace ILANET
                                                 fct.Declarations.Add(decl);
                                                 declaration.CreatedVariable = variable;
                                                 variable.Type = null;
-                                                foreach (var item in Declarations)
+                                                foreach (var item in returnProg.Declarations)
                                                 {
                                                     if (item is TypeDeclaration td)
                                                         if (td.CreatedType.Name == varType)
@@ -1221,7 +1222,7 @@ namespace ILANET
                                     if (!IsLetterOrDigit(item2))
                                         throw new ILAException("Erreur : Le nom de type \"" + t + "\" est incorrect : ligne " + CountRow(ilaCode, index));
                                 VarType type = null;
-                                foreach (var item3 in Declarations)
+                                foreach (var item3 in returnProg.Declarations)
                                 {
                                     if (item3 is TypeDeclaration td)
                                         if (td.CreatedType.Name == t)
@@ -1297,7 +1298,7 @@ namespace ILANET
                                     index++;
                                 }
                                 if (lastComment != null)
-                                    FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
+                                    returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                                 lastComment = comment;
                                 multilineComm = false;
                             }
@@ -1316,7 +1317,7 @@ namespace ILANET
                                 index += 2;
 
                                 if (lastComment != null)
-                                    FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
+                                    returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                                 lastComment = comment;
                                 multilineComm = true;
                             }
@@ -1517,7 +1518,7 @@ namespace ILANET
                                                                         break;
 
                                                                     default:
-                                                                        foreach (var item in Declarations)
+                                                                        foreach (var item in returnProg.Declarations)
                                                                         {
                                                                             if (item is TypeDeclaration td)
                                                                                 if (td.CreatedType.Name == memberTypeStr)
@@ -1606,7 +1607,7 @@ namespace ILANET
                                                                     break;
 
                                                                 default:
-                                                                    foreach (var item in Declarations)
+                                                                    foreach (var item in returnProg.Declarations)
                                                                     {
                                                                         if (item is TypeDeclaration td)
                                                                             if (td.CreatedType.Name == caseTypeStr)
@@ -1659,7 +1660,7 @@ namespace ILANET
                                                 module.Declarations.Add(decl);
                                                 declaration.CreatedVariable = variable;
                                                 variable.Type = null;
-                                                foreach (var item in Declarations)
+                                                foreach (var item in returnProg.Declarations)
                                                 {
                                                     if (item is TypeDeclaration td)
                                                         if (td.CreatedType.Name == varType)
@@ -1715,6 +1716,7 @@ namespace ILANET
             {
                 throw new ILAException("Internal error", e);
             }*/
+            return returnProg;
         }
 
         #endregion Public Methods
