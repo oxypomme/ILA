@@ -188,6 +188,67 @@ namespace ILANET.Parser
                     }
                 }
             }
+            else if (code.Substring(index, 5) == "pour ")
+            {
+                var instru = new For();
+                index += 5;
+                string variable = "";
+                while (code.Substring(index, 2) != "<-")
+                    variable += code[index++];
+                {
+                    var indexer = ParseValue(variable, mainProg, currentBlock);
+                    if (!(indexer is Variable))
+                        throw new ILAException("Erreur : l'idexeur doit être une variable");
+                    instru.Index = indexer as Variable;
+                }
+                index += 2;
+                string startValue = "";
+                while (code.Substring(index, 3) != " a ")
+                    startValue += code[index++];
+                instru.Start = ParseValue(startValue, mainProg, currentBlock);
+                index += 3;
+                string endValue = "";
+                while (code.Substring(index, 5) != " pas " &&
+                    code.Substring(index, 6) != " faire")
+                    endValue += code[index++];
+                instru.End = ParseValue(endValue, mainProg, currentBlock);
+                if (code.Substring(index, 5) == " pas ")
+                {
+                    index += 5;
+                    string stepValue = "";
+                    while (code.Substring(index, 6) != " faire")
+                        stepValue += code[index++];
+                    instru.Step = ParseValue(stepValue, mainProg, currentBlock);
+                }
+                else
+                    instru.Step = new ConstantInt() { Value = 1 };
+                index += 6;
+                FastForward(code, ref index);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.Comment = "";
+                    while (code[index] != '\n')
+                        instru.Comment += code[index++];
+                }
+                SkipLine(code, ref index);
+                instru.Instructions = new List<Instruction>();
+                while (code.Substring(index, 5) != "fpour")
+                {
+                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                    SkipLine(code, ref index);
+                }
+                index += 5;
+                FastForward(code, ref index);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.EndComment = "";
+                    while (code[index] != '\n')
+                        instru.EndComment += code[index++];
+                }
+                return instru;
+            }
             return null;
         }
     }
