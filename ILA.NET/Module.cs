@@ -25,7 +25,31 @@ namespace ILANET
 
         public virtual void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            // Def the module
+            textWriter.Write("def ");
+            textWriter.Write(Name);
+            textWriter.Write(" (");
+            for (int i = 0; i < Parameters.Count; i++)
+            {
+                Parameters[i].WritePython(textWriter);
+                if (i < Parameters.Count - 1)
+                    textWriter.Write(", ");
+            }
+            textWriter.Write("):\n");
+
+            // write the instructions
+            foreach (var instruction in Instructions)
+            {
+                // ident++
+                //x .generateIdent()
+                instruction.WritePython(textWriter);
+                // ident--
+            }
+
+            // return out vars
+            // ident++
+            //x .generateIdent()
+            // ident--
         }
 
         #endregion Internal Properties

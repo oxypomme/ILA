@@ -24,7 +24,6 @@ namespace ILANET
                     textWriter.Write(", ");
                 Args[i].WritePython(textWriter);
             }
-
             textWriter.Write(")");
         }
 
