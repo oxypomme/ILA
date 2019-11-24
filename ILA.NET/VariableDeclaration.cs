@@ -14,10 +14,9 @@ namespace ILANET
         #endregion Public Properties
 
         public Comment AboveComment { get; set; }
+        Comment IDeclaration.AboveComment { get => AboveComment; set => AboveComment = value; }
+        string IDeclaration.Comment { get => InlineComment; set => InlineComment = value; }
         public string InlineComment { get; set; }
-        string IDeclaration.Comment => InlineComment;
-
-        Comment IDeclaration.AboveComment => AboveComment;
 
         public void WritePython(TextWriter textWriter)
         {
