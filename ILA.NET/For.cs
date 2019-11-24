@@ -27,11 +27,11 @@ namespace ILANET
             Index.WritePython(textWriter);
             textWriter.Write(" = ");
             Start.WritePython(textWriter);
+            textWriter.Write("\n");
 
             // While condition
             //x .generateIndent()
-            textWriter.Write("\n" +
-                "while (");
+            textWriter.Write("while (");
             Index.WritePython(textWriter);
             textWriter.Write(" != ");
             Step.WritePython(textWriter);
@@ -46,6 +46,12 @@ namespace ILANET
                 textWriter.Write("\n");
                 // ident--
             }
+            // ident++
+            //x .generateIndent()
+            Index.WritePython(textWriter);
+            textWriter.Write("+=");
+            Step.WritePython(textWriter);
+            // ident--
         }
     }
 }
