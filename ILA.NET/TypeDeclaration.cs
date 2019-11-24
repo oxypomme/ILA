@@ -13,21 +13,14 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Internal Properties
-        public string InlineComment { get; set; }
-
-
-        #endregion Internal Properties
-
         public Comment AboveComment { get; set; }
-        string IDeclaration.Comment => InlineComment;
-
         Comment IDeclaration.AboveComment => AboveComment;
+        string IDeclaration.Comment => InlineComment;
+        public string InlineComment { get; set; }
 
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
         }
-
     }
 }
