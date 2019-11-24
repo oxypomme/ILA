@@ -212,10 +212,9 @@ namespace ILANET.Parser
                                         //constant
                                         if (char.IsDigit(code.First()))
                                         {
-                                            if (code.Contains('.') || code.Contains(','))
+                                            if (code.Contains('.'))
                                             {
                                                 //float
-                                                code.Replace(',', '.');
                                                 try
                                                 {
                                                     return new ConstantFloat() { Value = float.Parse(code, new CultureInfo("en")) };

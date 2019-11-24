@@ -59,10 +59,13 @@ namespace ILANET.Parser
                     while (code[index] != '\n')
                         instru.Comment += code[index++];
                 }
+                else
+                    instru.Comment = null;
                 SkipLine(code, ref index);
                 instru.IfInstructions = new List<Instruction>();
                 instru.Elif = new List<Tuple<IValue, List<Instruction>>>();
                 instru.ElifComments = new List<string>();
+                instru.EndComment = null;
                 while (true)
                 {
                     if (code.Substring(index, 3) == "fsi")
@@ -231,6 +234,8 @@ namespace ILANET.Parser
                     while (code[index] != '\n')
                         instru.Comment += code[index++];
                 }
+                else
+                    instru.Comment = null;
                 SkipLine(code, ref index);
                 instru.Instructions = new List<Instruction>();
                 while (code.Substring(index, 5) != "fpour")
@@ -247,7 +252,257 @@ namespace ILANET.Parser
                     while (code[index] != '\n')
                         instru.EndComment += code[index++];
                 }
+                else
+                    instru.EndComment = null;
                 return instru;
+            }
+            else if (code.Substring(index, 8) == "tantque ")
+            {
+                index += 8;
+                var instru = new While();
+                instru.Instructions = new List<Instruction>();
+                var condition = "";
+                while (code.Substring(index, 6) != " faire")
+                    condition += code[index++];
+                instru.Condition = ParseValue(condition, mainProg, currentBlock);
+                index += 6;
+                FastForward(code, ref index);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.Comment = "";
+                    while (code[index] != '\n')
+                        instru.Comment += code[index++];
+                }
+                else
+                    instru.Comment = null;
+                SkipLine(code, ref index);
+                while (code.Substring(index, 8) != "ftantque" &&
+                        code.Substring(index, 3) != "ftq")
+                {
+                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                    SkipLine(code, ref index);
+                }
+                if (code.Substring(index, 8) == "ftantque")
+                    index += 8;
+                else
+                    index += 3;
+                FastForward(code, ref index);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.EndComment = "";
+                    while (code[index] != '\n')
+                        instru.EndComment += code[index++];
+                }
+                else
+                    instru.EndComment = null;
+                return instru;
+            }
+            else if (code.Substring(index, 7) == "repeter")
+            {
+                index += 7;
+                var instru = new DoWhile();
+                instru.Instructions = new List<Instruction>();
+                FastForward(code, ref index);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.Comment = "";
+                    while (code[index] != '\n')
+                        instru.Comment += code[index++];
+                }
+                else
+                    instru.Comment = null;
+                SkipLine(code, ref index);
+                while (code.Substring(index, 7) != "jusqua ")
+                {
+                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                    SkipLine(code, ref index);
+                }
+                index += 7;
+                var condition = "";
+                while (code.Substring(index, 2) != "//" &&
+                        code[index] != '\n')
+                    condition += code[index++];
+                instru.Condition = ParseValue(condition, mainProg, currentBlock);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.EndComment = "";
+                    while (code[index] != '\n')
+                        instru.EndComment += code[index++];
+                }
+                else
+                    instru.EndComment = null;
+                return instru;
+            }
+            else if (code.Substring(index, currentBlock.Name.Length) == currentBlock.Name)
+            {
+                var instru = new Return();
+                var oldIndex = index;
+                index += currentBlock.Name.Length;
+                FastForward(code, ref index);
+                if (code.Substring(index, 2) != "<-")
+                {
+                    if (code[index] == '(')
+                    {
+                        index++;
+                        var param = "";
+                        var opened = 0;
+                        while (code[index] != ')' || opened > 0)
+                        {
+                            if (code[index] == '(')
+                                opened++;
+                            if (code[index] == ')')
+                                opened--;
+                            param += code[index++];
+                        }
+                        index++;
+                        var args = new List<string>();
+                        opened = 0;
+                        var currArg = "";
+                        foreach (var item in param)
+                        {
+                            if (item == '[' || item == '(')
+                                opened++;
+                            if (item == ']' || item == ')')
+                                opened--;
+                            if (item == ',' && opened == 0)
+                            {
+                                args.Add(currArg);
+                                currArg = "";
+                            }
+                        }
+                        args.Add(currArg);
+                        var instru2 = new ModuleCall();
+                        instru2.CalledModule = currentBlock as Module;
+                        instru2.Args = new List<IValue>();
+                        foreach (var item in args)
+                            instru2.Args.Add(ParseValue(item, mainProg, currentBlock));
+                        FastForward(code, ref index);
+                        if (code.Substring(index, 2) == "//")
+                        {
+                            index += 2;
+                            instru2.Comment = "";
+                            while (code[index] != '\n')
+                                instru2.Comment += code[index++];
+                        }
+                        else
+                            instru2.Comment = null;
+                        return instru2;
+                    }
+                    else
+                        throw new ILAException("Erreur : operateur attendu : '<-'");
+                }
+                if (!(currentBlock is Function))
+                    throw new ILAException("Erreur : impossible de créer une retour en dehors d'une fonction");
+                index += 2;
+                FastForward(code, ref index);
+                var value = "";
+                while (code.Substring(index, 2) != "//" &&
+                        code[index] != '\n')
+                    value += code[index++];
+                instru.Type = ParseValue(value, mainProg, currentBlock);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.Comment = "";
+                    while (code[index] != '\n')
+                        instru.Comment += code[index++];
+                }
+                else
+                    instru.Comment = null;
+                return instru;
+            }
+            else
+            {
+                var content = "";
+                while (true)
+                {
+                    if (code.Substring(index, 2) == "<-")
+                    {
+                        var v = ParseValue(content, mainProg, currentBlock);
+                        if (!(v is Variable))
+                            throw new ILAException("Seules les variables peuvent être assignées");
+                        var instru = new Assign();
+                        instru.Left = v as Variable;
+                        index += 2;
+                        FastForward(code, ref index);
+                        var value = "";
+                        while (code.Substring(index, 2) != "//" &&
+                                code[index] != '\n')
+                            value += code[index++];
+                        instru.Right = ParseValue(value, mainProg, currentBlock);
+                        if (code.Substring(index, 2) == "//")
+                        {
+                            index += 2;
+                            instru.Comment = "";
+                            while (code[index] != '\n')
+                                instru.Comment += code[index++];
+                        }
+                        else
+                            instru.Comment = null;
+                        return instru;
+                    }
+                    if (code[index] == '(')
+                    {
+                        index++;
+                        var param = "";
+                        var opened = 0;
+                        while (code[index] != ')' || opened > 0)
+                        {
+                            if (code[index] == '(')
+                                opened++;
+                            if (code[index] == ')')
+                                opened--;
+                            param += code[index++];
+                        }
+                        index++;
+                        var args = new List<string>();
+                        opened = 0;
+                        var currArg = "";
+                        foreach (var item in param)
+                        {
+                            if (item == '[' || item == '(')
+                                opened++;
+                            if (item == ']' || item == ')')
+                                opened--;
+                            if (item == ',' && opened == 0)
+                            {
+                                args.Add(currArg);
+                                currArg = "";
+                            }
+                        }
+                        args.Add(currArg);
+                        var instru = new ModuleCall();
+                        instru.CalledModule = null;
+                        foreach (var item in mainProg.Methods)
+                        {
+                            if (item.Name == content.Trim())
+                                instru.CalledModule = item;
+                        }
+                        if (instru.CalledModule == null)
+                            throw new ILAException("Erreur : aucun module nommé '" + content.Trim() + "' trouvé");
+                        instru.Args = new List<IValue>();
+                        foreach (var item in args)
+                            instru.Args.Add(ParseValue(item, mainProg, currentBlock));
+                        FastForward(code, ref index);
+                        if (code.Substring(index, 2) == "//")
+                        {
+                            index += 2;
+                            instru.Comment = "";
+                            while (code[index] != '\n')
+                                instru.Comment += code[index++];
+                        }
+                        else
+                            instru.Comment = null;
+                        return instru;
+                    }
+                    content += code[index++];
+                    if (index < code.Length && code[index] == '\n')
+                        throw new ILAException("Erreur de synthaxe");
+                }
             }
             return null;
         }
