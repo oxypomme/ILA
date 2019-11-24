@@ -27,6 +27,11 @@ namespace ILANET
         VarType IValue.Type => Type;
         public float Value { get; set; }
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Value.ToString(new System.Globalization.CultureInfo("en")));
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

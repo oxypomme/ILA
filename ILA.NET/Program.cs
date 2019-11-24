@@ -9,6 +9,7 @@ namespace ILANET
     {
         #region Public Properties
 
+        internal static int ilaIndent;
         Comment IExecutable.AboveComment => AlgoComment;
         public Comment AlgoComment { get; set; }
         string IExecutable.Comment => InlineComment;
@@ -24,6 +25,11 @@ namespace ILANET
 
         #region Public Methods
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            ilaIndent = 0;
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             /*
@@ -31,6 +37,12 @@ namespace ILANET
              * qui ne doivent pas être définies
              */
             throw new NotImplementedException();
+        }
+
+        internal static void GenerateIndent(TextWriter textWriter, int spaces = 4)
+        {
+            for (int i = 0; i < ilaIndent * spaces; i++)
+                textWriter.Write(' ');
         }
 
         #endregion Public Methods

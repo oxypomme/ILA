@@ -27,6 +27,11 @@ namespace ILANET
         VarType IValue.Type => Type;
         public bool Value { get; set; }
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Value ? "vrai" : "faux");
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
