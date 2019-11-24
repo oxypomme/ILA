@@ -63,9 +63,9 @@ namespace ILANET
             // ident++
             //x .generateIdent()
             textWriter.Write("return ");
-            foreach (var parameter in Parameters)
+            for (int i = 0; i < Parameters.Count; i++)
             {
-                for (int i = 0; i < Parameters.Count; i++)
+                if ((Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
                 {
                     if (i != 0)
                         textWriter.Write(", ");
