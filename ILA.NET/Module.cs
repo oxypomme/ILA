@@ -31,9 +31,9 @@ namespace ILANET
             textWriter.Write(" (");
             for (int i = 0; i < Parameters.Count; i++)
             {
-                Parameters[i].WritePython(textWriter);
-                if (i < Parameters.Count - 1)
+                if (i != 0)
                     textWriter.Write(", ");
+                Parameters[i].WritePython(textWriter);
             }
             textWriter.Write("):\n");
 
@@ -42,7 +42,7 @@ namespace ILANET
             {
                 // ident++
                 //x .generateIdent()
-                if (parameter.Mode == Parameter.Flags.OUTPUT || parameter.Mode == Parameter.Flags.IO)
+                if ((parameter.Mode & Parameter.Flags.OUTPUT) != 0 || (parameter.Mode & Parameter.Flags.IO) != 0)
                 {
                     parameter.WritePython(textWriter);
                     textWriter.Write(" = 0\n");
@@ -67,9 +67,9 @@ namespace ILANET
             {
                 for (int i = 0; i < Parameters.Count; i++)
                 {
-                    Parameters[i].WritePython(textWriter);
-                    if (i < Parameters.Count - 1)
+                    if (i != 0)
                         textWriter.Write(", ");
+                    Parameters[i].WritePython(textWriter);
                 }
             }
             // ident--

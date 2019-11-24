@@ -19,16 +19,17 @@ namespace ILANET
         {
             for (int i = 0; i < Args.Count; i++)
             {
-                //if (Args[i].Mode == Parameter.Flags.OUTPUT || Args[i].Mode == Parameter.Flags.IO)
-                //{
-                Args[i].WritePython(textWriter);
-                if (i < Args.Count - 1)
-                    textWriter.Write(", ");
-                //}
+                if ((CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0 || (CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
+                {
+                    if (i != 0)
+                        textWriter.Write(", ");
+                    Args[i].WritePython(textWriter);
+                }
             }
 
+            textWriter.Write(" = ");
             CalledModule.WritePython(textWriter);
-            textWriter.Write(" (");
+            textWriter.Write("(");
             for (int i = 0; i < Args.Count; i++)
             {
                 if (i != 0)
