@@ -17,6 +17,7 @@ namespace ILANET
             //x .generateIdent()
             textWriter.Write("return ");
             Value.WritePython(textWriter);
+            textWriter.Write("\n");
         }
     }
 }

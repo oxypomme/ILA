@@ -43,7 +43,6 @@ namespace ILANET
                     {
                         for (int j = 0; j < i; j++)
                             textWriter.Write("[" + indexList[i - j] + "]");
-                        textWriter.Write(")\n");
                     }
                     textWriter.Write(".append(");
                     if (i < table.DimensionsSize.Count)

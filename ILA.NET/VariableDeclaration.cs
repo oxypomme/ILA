@@ -27,6 +27,7 @@ namespace ILANET
                 CreatedVariable.Type.WritePython(textWriter);
             else
                 textWriter.Write(0);
+            textWriter.Write("\n");
         }
     }
 }
