@@ -21,6 +21,9 @@ namespace ILANET
         /// </summary>
         public string Comment { get; }
 
+        /// <summary>
+        /// The declarations of the block
+        /// </summary>
         public IDeclaration[] Declarations { get; }
 
         /// <summary>
@@ -28,6 +31,9 @@ namespace ILANET
         /// </summary>
         public Instruction[] Instructions { get; }
 
+        /// <summary>
+        /// The name of the block
+        /// </summary>
         public string Name { get; }
 
         #endregion Public Properties

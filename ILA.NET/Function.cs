@@ -17,6 +17,10 @@ namespace ILANET
         /// </summary>
         public VarType ReturnType { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WriteILA(TextWriter textWriter)
         {
             AboveComment?.WriteILA(textWriter);
@@ -50,6 +54,10 @@ namespace ILANET
             textWriter.WriteLine('}');
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         {
             base.WritePython(textWriter);

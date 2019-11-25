@@ -24,9 +24,15 @@ namespace ILANET
         /// </summary>
         public List<Tuple<IValue, List<Instruction>>> Elif { get; set; }
 
+        /// <summary>
+        /// The comments after the different Elif
+        /// </summary>
         public List<string> ElifComments { get; set; }
+
+        /// <summary>
+        /// The comment after the else tag
+        /// </summary>
         public string ElseComment { get; set; }
-        public IValue ElseCondition { get; set; }
 
         /// <summary>
         /// Else block of instructions
@@ -34,16 +40,24 @@ namespace ILANET
         public List<Instruction> ElseInstructions { get; set; }
 
         /// <summary>
+        /// The commend after the end tag
+        /// </summary>
+        public string EndComment { get; set; }
+
+        /// <summary>
         /// Condition of the main block
         /// </summary>
         public IValue IfCondition { get; set; }
-        public string EndComment { get; set; }
 
         /// <summary>
         /// Main block of instructions
         /// </summary>
         public List<Instruction> IfInstructions { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             Program.GenerateIndent(textWriter);

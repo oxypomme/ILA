@@ -22,6 +22,10 @@ namespace ILANET
         /// </summary>
         public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => ((StructType)Struct.Type).Members[Name] = value; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WriteILA(TextWriter textWriter)
         {
             Struct.WriteILA(textWriter);

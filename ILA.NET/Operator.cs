@@ -108,10 +108,14 @@ namespace ILANET
         public IValue Left { get; set; }
 
         /// <summary>
+        /// The type of operator this object is
+        /// </summary>
+        public Tag OperatorType { get; set; }
+
+        /// <summary>
         /// Right operand of the operation
         /// </summary>
         public IValue Right { get; set; }
-        public Tag OperatorType { get; set; }
 
         #endregion Public Properties
 
@@ -123,6 +127,10 @@ namespace ILANET
 
         internal VarType Type { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             textWriter.Write('(');
@@ -198,6 +206,10 @@ namespace ILANET
             textWriter.Write(')');
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

@@ -9,6 +9,10 @@ namespace ILANET
     /// </summary>
     public interface IBaseObject
     {
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(System.IO.TextWriter textWriter);
 
         /// <summary>

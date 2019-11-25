@@ -37,11 +37,19 @@ namespace ILANET
         /// </summary>
         public int Value { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             textWriter.Write(Value.ToString(new System.Globalization.CultureInfo("en")));
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

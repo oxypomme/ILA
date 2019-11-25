@@ -24,6 +24,10 @@ namespace ILANET
         /// </summary>
         public bool MultiLine { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             Program.GenerateIndent(textWriter);

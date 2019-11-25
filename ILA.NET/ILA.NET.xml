@@ -24,6 +24,12 @@
             The right operand, the value to assign to
             </summary>
         </member>
+        <member name="M:ILANET.Assign.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="M:ILANET.Assign.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
@@ -95,6 +101,18 @@
             <summary>
             Value of the float
             </summary>
+        </member>
+        <member name="M:ILANET.ConstantFloat.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.ConstantFloat.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.ConstantInt">
             <summary>
@@ -391,6 +409,11 @@
             The comment above its declaration
             </summary>
         </member>
+        <member name="P:ILANET.Module.Declarations">
+            <summary>
+            The variable declarations of this module
+            </summary>
+        </member>
         <member name="P:ILANET.Module.InlineComment">
             <summary>
             Integrated comment
@@ -405,6 +428,17 @@
             <summary>
             The parameters required to execute
             </summary>
+        </member>
+        <member name="P:ILANET.Module.Instructions">
+            <summary>
+            The instructions of the module
+            </summary>
+        </member>
+        <member name="M:ILANET.Module.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.Module.WritePython(System.IO.TextWriter)">
             <summary>
@@ -567,6 +601,13 @@
             The way the variable is imported. INPUT by default
             </summary>
         </member>
+        <member name="M:ILANET.Parser.Parser.Parse(System.String)">
+            <summary>
+            Parse the ila code and returns the structure of the code
+            </summary>
+            <param name="ilaCode">code to parse</param>
+            <returns>structure of the code</returns>
+        </member>
         <member name="T:ILANET.Print">
             <summary>
             The print() method that write in the console
@@ -576,6 +617,18 @@
             <summary>
             The only instance of the method
             </summary>
+        </member>
+        <member name="M:ILANET.Print.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Print.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.Program">
             <summary>
@@ -627,6 +680,18 @@
             The only instance of the method
             </summary>
         </member>
+        <member name="M:ILANET.Read.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Read.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.Return">
             <summary>
             The return instruction. Only usable in a function, it stops the function and returns a value.
@@ -637,10 +702,21 @@
             Integrated comment
             </summary>
         </member>
+        <member name="P:ILANET.Return.Function">
+            <summary>
+            The function from which this instruction is called
+            </summary>
+        </member>
         <member name="P:ILANET.Return.Value">
             <summary>
             Value to return
             </summary>
+        </member>
+        <member name="M:ILANET.Return.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.Return.WritePython(System.IO.TextWriter)">
             <summary>
@@ -850,10 +926,21 @@
             The condition of the loop
             </summary>
         </member>
+        <member name="P:ILANET.While.EndComment">
+            <summary>
+            The comment on the end tag
+            </summary>
+        </member>
         <member name="P:ILANET.While.Instructions">
             <summary>
             The block of instructions
             </summary>
+        </member>
+        <member name="M:ILANET.While.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.While.WritePython(System.IO.TextWriter)">
             <summary>

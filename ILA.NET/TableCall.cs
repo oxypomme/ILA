@@ -17,6 +17,9 @@ namespace ILANET
         /// </summary>
         public List<IValue> DimensionsIndex { get; set; }
 
+        /// <summary>
+        /// Returns nothing
+        /// </summary>
         public override string Name { get => ""; set { } }
 
         /// <summary>
@@ -29,6 +32,10 @@ namespace ILANET
         /// </summary>
         public override VarType Type { get => ((TableType)Table.Type).InternalType; set => ((TableType)Table.Type).InternalType = value; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WriteILA(TextWriter textWriter)
         {
             Table.WriteILA(textWriter);
@@ -42,6 +49,10 @@ namespace ILANET
             textWriter.Write(']');
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         {
             base.WritePython(textWriter);

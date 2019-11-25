@@ -17,11 +17,19 @@ namespace ILANET
         /// </summary>
         public virtual string Name { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public virtual void WriteILA(TextWriter textWriter)
         {
             textWriter.Write(Name);
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public abstract void WritePython(TextWriter textWriter);
 
         #endregion Public Properties

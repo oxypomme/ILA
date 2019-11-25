@@ -37,6 +37,10 @@ namespace ILANET
         /// </summary>
         public string Value { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             textWriter.Write('"');
@@ -44,6 +48,10 @@ namespace ILANET
             textWriter.Write('"');
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

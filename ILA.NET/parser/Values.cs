@@ -5,8 +5,19 @@ using System.Linq;
 
 namespace ILANET.Parser
 {
-    public partial class Parser
+    /// <summary>
+    /// The parser has all the methods to generate the structure from ILA code
+    /// </summary>
+    public static partial class Parser
     {
+        /// <summary>
+        /// parse a string and returns the corresponding IValue
+        /// </summary>
+        /// <param name="code">string to parse</param>
+        /// <param name="mainProg">Program where this value is</param>
+        /// <param name="currentBlock">IExecutable where this value is</param>
+        /// <param name="constLock">True if it throw an Exception if the value isn't constant</param>
+        /// <returns>The corresponding IValue</returns>
         public static IValue ParseValue(string code, Program mainProg, IExecutable currentBlock, bool constLock = false)
         {
             var decomposed = Parenthesis.Generate(code);

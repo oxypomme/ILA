@@ -65,12 +65,14 @@ namespace ILANET
 
         #endregion Public Enums
 
-
-
         #region Private Properties
 
         private Flags Type { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WriteILA(TextWriter textWriter)
         {
             switch (Type)
@@ -97,6 +99,10 @@ namespace ILANET
             }
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

@@ -24,7 +24,11 @@ namespace ILANET
         /// </summary>
         public IValue End { get; set; }
 
+        /// <summary>
+        /// The comment after then end tag
+        /// </summary>
         public string EndComment { get; set; }
+
         /// <summary>
         /// Variable to change
         /// </summary>
@@ -45,6 +49,10 @@ namespace ILANET
         /// </summary>
         public IValue Step { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             Program.GenerateIndent(textWriter);

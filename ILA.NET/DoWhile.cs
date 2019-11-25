@@ -24,6 +24,9 @@ namespace ILANET
         /// </summary>
         public IValue Condition { get; set; }
 
+        /// <summary>
+        /// Comment after the while(), on the same line
+        /// </summary>
         public string EndComment { get; set; }
 
         /// <summary>
@@ -31,6 +34,10 @@ namespace ILANET
         /// </summary>
         public List<Instruction> Instructions { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             Program.GenerateIndent(textWriter);
