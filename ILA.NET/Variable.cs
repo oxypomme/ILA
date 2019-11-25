@@ -22,7 +22,7 @@ namespace ILANET
 
         public virtual void WriteILA(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            textWriter.Write(Name);
         }
 
         public virtual void WritePython(TextWriter textWriter)
