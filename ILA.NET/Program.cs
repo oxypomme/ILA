@@ -9,7 +9,8 @@ namespace ILANET
     {
         #region Public Properties
 
-        internal static int Indent;
+        internal static int ilaIndent;
+        internal static int IndentMultiplier = 4;
         Comment IExecutable.AboveComment => AlgoComment;
         public Comment AlgoComment { get; set; }
         string IExecutable.Comment => InlineComment;
@@ -28,30 +29,47 @@ namespace ILANET
 
         #region Public Methods
 
-        public void WritePython(TextWriter textWriter)
+        public void WriteILA(TextWriter textWriter)
         {
-            Indent = 0;
-
-            foreach (var declaration in Declarations)
+            ilaIndent = 0;
+            foreach (var item in FileComments)
+                item.WriteILA(textWriter);
+            foreach (var item in Declarations)
+                item.WriteILA(textWriter);
+            foreach (var item in Methods)
+                item.WriteILA(textWriter);
+            AlgoComment?.WriteILA(textWriter);
+            GenerateIndent(textWriter);
+            textWriter.Write("algo ");
+            textWriter.Write(Name);
+            if (InlineComment != null && InlineComment.Length > 0)
             {
-                declaration.WritePython(textWriter);
+                textWriter.Write(" //");
+                textWriter.Write(InlineComment);
             }
-
-            foreach (var module in Methods)
-            {
-                if (!(module is Read || module is Print))
-                    module.WritePython(textWriter);
-            }
-
-            foreach (var instruction in Instructions)
-            {
-                instruction.WritePython(textWriter);
-            }
+            textWriter.WriteLine();
+            GenerateIndent(textWriter);
+            textWriter.WriteLine('{');
+            ilaIndent++;
+            foreach (var item in Instructions)
+                item.WriteILA(textWriter);
+            ilaIndent--;
+            GenerateIndent(textWriter);
+            textWriter.WriteLine('}');
         }
 
-        internal static void GenerateIndent(TextWriter textWriter, int spaces = 4)
+        public void WritePython(TextWriter textWriter)
         {
-            for (int i = 0; i < Indent * spaces; i++)
+            /*
+             * attention aux Methods, elles contiennent les instances de Print et Read
+             * qui ne doivent pas être définies
+             */
+            throw new NotImplementedException();
+        }
+
+        internal static void GenerateIndent(TextWriter textWriter)
+        {
+            for (int i = 0; i < ilaIndent * IndentMultiplier; i++)
                 textWriter.Write(' ');
         }
 

@@ -15,43 +15,49 @@ namespace ILANET
         public string EndComment { get; set; }
         public Variable Index { get; set; }
         public List<Instruction> Instructions { get; set; }
-
         public IValue Start { get; set; }
         public IValue Step { get; set; }
 
-        #endregion Public Properties
+        public void WriteILA(TextWriter textWriter)
+        {
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("pour ");
+            Index.WriteILA(textWriter);
+            textWriter.Write(" <- ");
+            Start.WriteILA(textWriter);
+            textWriter.Write(" a ");
+            End.WriteILA(textWriter);
+            if (!(Step is ConstantInt ci && ci.Value == 1))
+            {
+                textWriter.Write(" pas ");
+                Step.WriteILA(textWriter);
+            }
+            textWriter.Write(" faire");
+            if (Comment != null && Comment.Length > 0)
+            {
+                textWriter.Write(" //");
+                textWriter.Write(Comment);
+            }
+            textWriter.WriteLine();
+            Program.ilaIndent++;
+            foreach (var item in Instructions)
+                item.WriteILA(textWriter);
+            Program.ilaIndent--;
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("fpour");
+            if (EndComment != null && EndComment.Length > 0)
+            {
+                textWriter.Write(" //");
+                textWriter.Write(EndComment);
+            }
+            textWriter.WriteLine();
+        }
 
         public void WritePython(TextWriter textWriter)
         {
-            // Index initialiser
-            Program.GenerateIndent(textWriter);
-            Index.WritePython(textWriter);
-            textWriter.Write(" = ");
-            Start.WritePython(textWriter);
-            textWriter.Write("\n");
-
-            // While condition
-            Program.GenerateIndent(textWriter);
-            textWriter.Write("while (");
-            Index.WritePython(textWriter);
-            textWriter.Write(" != ");
-            End.WritePython(textWriter);
-            textWriter.Write(") :\n");
-
-            // While content
-            foreach (Instruction instruction in Instructions)
-            {
-                Program.Indent++;
-                instruction.WritePython(textWriter);
-                textWriter.Write("\n");
-                Program.Indent--;
-            }
-            Program.Indent++;
-            Program.GenerateIndent(textWriter);
-            Index.WritePython(textWriter);
-            textWriter.Write("+=");
-            Step.WritePython(textWriter);
-            Program.Indent--;
+            throw new NotImplementedException();
         }
+
+        #endregion Public Properties
     }
 }

@@ -18,6 +18,11 @@ namespace ILANET
 
         public virtual VarType Type { get; set; }
 
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
+
         public virtual void WritePython(TextWriter textWriter)
         {
             textWriter.Write(Name.ToString());

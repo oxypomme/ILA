@@ -11,6 +11,11 @@ namespace ILANET
 
         public List<string> Values { get; set; }
 
+        public override void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
+
         public override void WritePython(TextWriter textWriter)
         {
             textWriter.Write(Name);
