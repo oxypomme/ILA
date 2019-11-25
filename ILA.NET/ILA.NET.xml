@@ -51,6 +51,12 @@
             True if the comment is multiline (using /* */)
             </summary>
         </member>
+        <member name="M:ILANET.Comment.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="M:ILANET.Comment.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
@@ -72,6 +78,18 @@
             Value of the bool
             </summary>
         </member>
+        <member name="M:ILANET.ConstantBool.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.ConstantBool.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.ConstantChar">
             <summary>
             A hard coded char
@@ -86,6 +104,18 @@
             <summary>
             Value of the char
             </summary>
+        </member>
+        <member name="M:ILANET.ConstantChar.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.ConstantChar.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.ConstantFloat">
             <summary>
@@ -129,6 +159,18 @@
             Value of the int
             </summary>
         </member>
+        <member name="M:ILANET.ConstantInt.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.ConstantInt.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.ConstantString">
             <summary>
             A hard coded string value
@@ -143,6 +185,18 @@
             <summary>
             Value of the string
             </summary>
+        </member>
+        <member name="M:ILANET.ConstantString.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.ConstantString.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.DoWhile">
             <summary>
@@ -159,10 +213,21 @@
             Condition in the while()
             </summary>
         </member>
+        <member name="P:ILANET.DoWhile.EndComment">
+            <summary>
+            Comment after the while(), on the same line
+            </summary>
+        </member>
         <member name="P:ILANET.DoWhile.Instructions">
             <summary>
             Block of instructions
             </summary>
+        </member>
+        <member name="M:ILANET.DoWhile.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.DoWhile.WritePython(System.IO.TextWriter)">
             <summary>
@@ -185,6 +250,18 @@
             the index corresponding to the value
             </summary>
         </member>
+        <member name="M:ILANET.EnumCall.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.EnumCall.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.EnumType">
             <summary>
             An enumeration type
@@ -194,6 +271,18 @@
             <summary>
             The available values of the enum
             </summary>
+        </member>
+        <member name="M:ILANET.EnumType.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.EnumType.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.IExecutable">
             <summary>
@@ -210,9 +299,19 @@
             Integrated comment
             </summary>
         </member>
+        <member name="P:ILANET.IExecutable.Declarations">
+            <summary>
+            The declarations of the block
+            </summary>
+        </member>
         <member name="P:ILANET.IExecutable.Instructions">
             <summary>
             Block of instructions
+            </summary>
+        </member>
+        <member name="P:ILANET.IExecutable.Name">
+            <summary>
+            The name of the block
             </summary>
         </member>
         <member name="T:ILANET.For">
@@ -228,6 +327,11 @@
         <member name="P:ILANET.For.End">
             <summary>
             Ending value of the index
+            </summary>
+        </member>
+        <member name="P:ILANET.For.EndComment">
+            <summary>
+            The comment after then end tag
             </summary>
         </member>
         <member name="P:ILANET.For.Index">
@@ -250,6 +354,12 @@
             Step to increase the index each loop
             </summary>
         </member>
+        <member name="M:ILANET.For.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="M:ILANET.For.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
@@ -266,6 +376,18 @@
             Type of the returned value. null if it is any type.
             </summary>
         </member>
+        <member name="M:ILANET.Function.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Function.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.FunctionCall">
             <summary>
             An instruction that calls a function
@@ -280,6 +402,18 @@
             <summary>
             The called function
             </summary>
+        </member>
+        <member name="M:ILANET.FunctionCall.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.FunctionCall.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.GenericType">
             <summary>
@@ -316,10 +450,28 @@
             The name of the type.
             </summary>
         </member>
+        <member name="M:ILANET.GenericType.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.GenericType.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.IBaseObject">
             <summary>
             Base interface for all elements
             </summary>
+        </member>
+        <member name="M:ILANET.IBaseObject.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.IBaseObject.WritePython(System.IO.TextWriter)">
             <summary>
@@ -358,9 +510,24 @@
             Else if condition and block of instructions
             </summary>
         </member>
+        <member name="P:ILANET.If.ElifComments">
+            <summary>
+            The comments after the different Elif
+            </summary>
+        </member>
+        <member name="P:ILANET.If.ElseComment">
+            <summary>
+            The comment after the else tag
+            </summary>
+        </member>
         <member name="P:ILANET.If.ElseInstructions">
             <summary>
             Else block of instructions
+            </summary>
+        </member>
+        <member name="P:ILANET.If.EndComment">
+            <summary>
+            The commend after the end tag
             </summary>
         </member>
         <member name="P:ILANET.If.IfCondition">
@@ -372,6 +539,12 @@
             <summary>
             Main block of instructions
             </summary>
+        </member>
+        <member name="M:ILANET.If.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.If.WritePython(System.IO.TextWriter)">
             <summary>
@@ -465,6 +638,18 @@
             <summary>
             Integrated comment
             </summary>
+        </member>
+        <member name="M:ILANET.ModuleCall.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.ModuleCall.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.Operator">
             <summary>
@@ -561,10 +746,27 @@
             Left operand of the operation
             </summary>
         </member>
+        <member name="P:ILANET.Operator.OperatorType">
+            <summary>
+            The type of operator this object is
+            </summary>
+        </member>
         <member name="P:ILANET.Operator.Right">
             <summary>
             Right operand of the operation
             </summary>
+        </member>
+        <member name="M:ILANET.Operator.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Operator.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.Parameter">
             <summary>
@@ -601,12 +803,51 @@
             The way the variable is imported. INPUT by default
             </summary>
         </member>
+        <member name="M:ILANET.Parameter.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Parameter.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="T:ILANET.Parser.Parser">
+            <summary>
+            The parser has all the methods to generate the structure from ILA code
+            </summary>
+        </member>
         <member name="M:ILANET.Parser.Parser.Parse(System.String)">
             <summary>
             Parse the ila code and returns the structure of the code
             </summary>
             <param name="ilaCode">code to parse</param>
             <returns>structure of the code</returns>
+        </member>
+        <member name="T:ILANET.Parser.Parser.ILAException">
+            <summary>
+            This is the type of exception thrown by this assembly
+            </summary>
+        </member>
+        <member name="M:ILANET.Parser.Parser.ILAException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="mess">Message of the Exception</param>
+            <param name="inner">Inner Exception</param>
+        </member>
+        <member name="M:ILANET.Parser.Parser.ParseValue(System.String,ILANET.Program,ILANET.IExecutable,System.Boolean)">
+            <summary>
+            parse a string and returns the corresponding IValue
+            </summary>
+            <param name="code">string to parse</param>
+            <param name="mainProg">Program where this value is</param>
+            <param name="currentBlock">IExecutable where this value is</param>
+            <param name="constLock">True if it throw an Exception if the value isn't constant</param>
+            <returns>The corresponding IValue</returns>
         </member>
         <member name="T:ILANET.Print">
             <summary>
@@ -669,6 +910,18 @@
             <summary>
             The name of the algorithm
             </summary>
+        </member>
+        <member name="M:ILANET.Program.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Program.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.Read">
             <summary>
@@ -739,6 +992,12 @@
             Type of the subvariable
             </summary>
         </member>
+        <member name="M:ILANET.StructCall.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="M:ILANET.StructCall.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
@@ -771,6 +1030,11 @@
             Index of the element
             </summary>
         </member>
+        <member name="P:ILANET.TableCall.Name">
+            <summary>
+            Returns nothing
+            </summary>
+        </member>
         <member name="P:ILANET.TableCall.Table">
             <summary>
             Table to call from
@@ -780,6 +1044,18 @@
             <summary>
             Type of the element
             </summary>
+        </member>
+        <member name="M:ILANET.TableCall.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.TableCall.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.Range">
             <summary>
@@ -802,6 +1078,12 @@
             </summary>
             <param name="min">minimum value</param>
             <param name="max">maximum value</param>
+        </member>
+        <member name="M:ILANET.Range.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.Range.WritePython(System.IO.TextWriter)">
             <summary>
@@ -850,6 +1132,18 @@
             Integrated comment
             </summary>
         </member>
+        <member name="M:ILANET.TypeDeclaration.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.TypeDeclaration.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.Variable">
             <summary>
             A basic variable
@@ -875,6 +1169,18 @@
             The type of the variable
             </summary>
         </member>
+        <member name="M:ILANET.Variable.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Variable.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.VariableDeclaration">
             <summary>
             A declaration of a variable
@@ -895,6 +1201,12 @@
             Integrated comment
             </summary>
         </member>
+        <member name="M:ILANET.VariableDeclaration.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="M:ILANET.VariableDeclaration.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
@@ -910,6 +1222,18 @@
             <summary>
             The name of the type
             </summary>
+        </member>
+        <member name="M:ILANET.VarType.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.VarType.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="T:ILANET.While">
             <summary>

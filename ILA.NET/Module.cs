@@ -21,7 +21,7 @@ namespace ILANET
         /// <summary>
         /// The variable declarations of this module
         /// </summary>
-        public List<IDeclaration> Declarations { get; set; }
+        public List<VariableDeclaration> Declarations { get; set; }
 
         /// <summary>
         /// Integrated comment
