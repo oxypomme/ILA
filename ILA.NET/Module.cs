@@ -25,6 +25,11 @@ namespace ILANET
         string IExecutable.Comment => InlineComment;
         internal List<Instruction> Instructions { get; set; }
 
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

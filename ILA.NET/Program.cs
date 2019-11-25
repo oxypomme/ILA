@@ -10,6 +10,7 @@ namespace ILANET
         #region Public Properties
 
         internal static int ilaIndent;
+        internal static int IndentMultiplier = 4;
         Comment IExecutable.AboveComment => AlgoComment;
         public Comment AlgoComment { get; set; }
         string IExecutable.Comment => InlineComment;
@@ -42,9 +43,9 @@ namespace ILANET
             throw new NotImplementedException();
         }
 
-        internal static void GenerateIndent(TextWriter textWriter, int spaces = 4)
+        internal static void GenerateIndent(TextWriter textWriter)
         {
-            for (int i = 0; i < ilaIndent * spaces; i++)
+            for (int i = 0; i < ilaIndent * IndentMultiplier; i++)
                 textWriter.Write(' ');
         }
 
