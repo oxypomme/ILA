@@ -64,8 +64,7 @@ namespace ILANET
                 {
                     // ident++
                     //x .generateIdent()
-                    textWriter.Write(member.Key + " = ");
-                    member.Value.WritePython(textWriter);
+                    textWriter.Write(member.Key + " = 0 ");
                     textWriter.Write("\n");
                     // ident--
                 }
