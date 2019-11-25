@@ -48,6 +48,10 @@ namespace ILANET
 
                 textWriter.Write(")");
             }
+            else
+            {
+                CalledModule.WritePython(textWriter);
+            }
         }
 
         #endregion Public Properties

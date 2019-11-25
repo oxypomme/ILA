@@ -39,7 +39,8 @@ namespace ILANET
 
             foreach (var module in Methods)
             {
-                module.WritePython(textWriter);
+                if (!(module is Read || module is Print))
+                    module.WritePython(textWriter);
             }
 
             textWriter.Write("def " + Name + "() :\n");
