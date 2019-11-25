@@ -49,7 +49,6 @@ namespace ILANET
             Program.Indent++;
             Program.GenerateIndent(textWriter);
             Index.WritePython(textWriter);
-            // TODO : avec un pas négatif !
             textWriter.Write("+=");
             Step.WritePython(textWriter);
             Program.Indent--;

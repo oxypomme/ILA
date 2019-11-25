@@ -29,7 +29,6 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //TODO: Tester si la culture varie
             textWriter.Write(Value.ToString());
         }
 
