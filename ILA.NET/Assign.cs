@@ -20,6 +20,7 @@ namespace ILANET
             Left.WritePython(textWriter);
             textWriter.Write(" = ");
             Right.WritePython(textWriter);
+            textWriter.Write("\n");
         }
 
         #endregion Public Properties
