@@ -217,15 +217,13 @@ namespace ILANET.Parser
                 instru.Start = ParseValue(startValue, mainProg, currentBlock);
                 index += 3;
                 string endValue = "";
-                while ((code.Substring(index, 5) != " pas " || code.Substring(index, 5) != " pas(") &&
+                while (code.Substring(index, 5) != " pas " && code.Substring(index, 5) != " pas(" &&
                     code.Substring(index, 6) != " faire")
                     endValue += code[index++];
-                if (code.Substring(index, 5) != " pas(")
-                    index--;
                 instru.End = ParseValue(endValue, mainProg, currentBlock);
-                if (code.Substring(index, 5) == " pas ")
+                if (code.Substring(index, 4) == " pas")
                 {
-                    index += 5;
+                    index += 4;
                     string stepValue = "";
                     while (code.Substring(index, 6) != " faire")
                         stepValue += code[index++];

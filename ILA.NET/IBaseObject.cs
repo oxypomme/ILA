@@ -6,8 +6,6 @@ namespace ILANET
 {
     public interface IBaseObject
     {
-        #region Protected Internal Properties
-
         public void WriteILA(System.IO.TextWriter textWriter);
 
         public void WritePython(System.IO.TextWriter textWriter);

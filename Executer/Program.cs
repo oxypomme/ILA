@@ -71,11 +71,11 @@ algo Carre
     variableStruct.variable2 <- ""une belle structure""
     resultat <-fnc_carre(nombre)
     modu_resultat(resultat, message, bou)
-    si (message = ""yay"") alors
+    si(message = ""yay"") alors
         pour i <-1 a 5 faire
             ecrire(message)
         fpour
-        pour i <-5 a 1 pas(-1) faire
+        pour i <-5 a 1 pas( - 1) faire
             ecrire(message)
         fpour
     fsi
