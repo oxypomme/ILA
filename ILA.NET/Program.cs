@@ -9,6 +9,7 @@ namespace ILANET
     {
         #region Public Properties
 
+        internal static int Indent;
         Comment IExecutable.AboveComment => AlgoComment;
         public Comment AlgoComment { get; set; }
         string IExecutable.Comment => InlineComment;
@@ -29,6 +30,8 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
+            Indent = 0;
+
             foreach (var declaration in Declarations)
             {
                 declaration.WritePython(textWriter);
@@ -40,13 +43,19 @@ namespace ILANET
             }
 
             textWriter.Write("def " + Name + "() :\n");
-            // ident++
+            Indent++;
             foreach (var instruction in Instructions)
             {
                 instruction.WritePython(textWriter);
             }
-            // ident--
+            Indent--;
             textWriter.Write(Name + "()");
+        }
+
+        internal static void GenerateIndent(TextWriter textWriter, int spaces = 4)
+        {
+            for (int i = 0; i < Indent * spaces; i++)
+                textWriter.Write(' ');
         }
 
         #endregion Public Methods

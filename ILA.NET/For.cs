@@ -41,17 +41,17 @@ namespace ILANET
             // While content
             foreach (Instruction instruction in Instructions)
             {
-                // ident++
+                Program.Indent++;
                 instruction.WritePython(textWriter);
                 textWriter.Write("\n");
-                // ident--
+                Program.Indent--;
             }
-            // ident++
+            Program.Indent++;
             //x .generateIndent()
             Index.WritePython(textWriter);
             textWriter.Write("+=");
             Step.WritePython(textWriter);
-            // ident--
+            Program.Indent--;
         }
     }
 }

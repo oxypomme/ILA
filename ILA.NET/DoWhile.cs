@@ -21,17 +21,17 @@ namespace ILANET
             textWriter.Write("while True :\n");
             foreach (var instruction in Instructions)
             {
-                // ident++
+                Program.Indent++;
                 instruction.WritePython(textWriter);
                 textWriter.Write("\n");
-                // ident--
+                Program.Indent--;
             }
-            // ident++
+            Program.Indent++;
             //x .generateIndent()
             textWriter.Write("if not (");
             Condition.WritePython(textWriter);
             textWriter.Write(") :\n");
-            // ident++
+            Program.Indent++;
             //x .generateIndent()
             textWriter.Write("break \n");
             // ident-=2

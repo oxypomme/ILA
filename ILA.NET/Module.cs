@@ -39,27 +39,27 @@ namespace ILANET
             // write the input-output / output params
             foreach (var parameter in Parameters)
             {
-                // ident++
-                //x .generateIdent()
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
                 if ((parameter.Mode & Parameter.Flags.OUTPUT) != 0)
                 {
                     parameter.WritePython(textWriter);
                     textWriter.Write(" = 0\n");
                 }
-                // ident--
+                Program.Indent--;
             }
 
             // write the instructions
             foreach (var instruction in Instructions)
             {
-                // ident++
+                Program.Indent++;
                 instruction.WritePython(textWriter);
-                // ident--
+                Program.Indent--;
             }
 
             // return out vars
-            // ident++
-            //x .generateIdent()
+            Program.Indent++;
+            Program.GenerateIndent(textWriter);
             textWriter.Write("return ");
             for (int i = 0; i < Parameters.Count; i++)
             {
@@ -71,7 +71,7 @@ namespace ILANET
                         Parameters[i].WritePython(textWriter);
                     }
             }
-            // ident--
+            Program.Indent--;
         }
     }
 }

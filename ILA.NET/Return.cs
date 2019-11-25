@@ -14,7 +14,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //x .generateIdent()
+            Program.GenerateIndent(textWriter);
             textWriter.Write("return ");
             Value.WritePython(textWriter);
             textWriter.Write("\n");

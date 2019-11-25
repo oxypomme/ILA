@@ -19,7 +19,7 @@ namespace ILANET
         {
             if (!(CalledModule is Read || CalledModule is Print))
             {
-                //x .generateIdent()
+                Program.GenerateIndent(textWriter);
                 for (int i = 0; i < Args.Count; i++)
                 {
                     if ((CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)

@@ -23,21 +23,21 @@ namespace ILANET
             {
                 var indexList = new List<string>();
 
-                // var baseIdent = ident
-                //x .generateIdent()
+                var baseIdent = Program.Indent;
+                Program.GenerateIndent(textWriter);
                 table.WritePython(textWriter);
                 textWriter.Write(" = []\n");
 
-                //x .generateIdent()
+                Program.GenerateIndent(textWriter);
                 for (int i = 0; i < table.DimensionsSize.Count; i++)
                 {
-                    //x .generateIdent()
+                    Program.GenerateIndent(textWriter);
                     indexList.Add("index" + i);
                     textWriter.Write("for " + indexList[i] + " in range(");
                     table.DimensionsSize[i].WritePython(textWriter);
                     textWriter.Write("):\n");
-                    // ident++
-                    //x .generateIdent()
+                    Program.Indent++;
+                    Program.GenerateIndent(textWriter);
                     table.WritePython(textWriter);
                     if (i < table.DimensionsSize.Count && i > 0)
                     {
@@ -51,22 +51,22 @@ namespace ILANET
                         textWriter.Write(0);
                     textWriter.Write(")\n");
                 }
-                // ident = baseIdent
+                Program.Indent = baseIdent;
             }
             else if (CreatedType is StructType struc)
             {
-                //x .generateIdent()
+                Program.GenerateIndent(textWriter);
                 textWriter.Write("class ");
                 struc.WritePython(textWriter);
                 textWriter.Write(" :\n");
 
                 foreach (var member in struc.Members)
                 {
-                    // ident++
-                    //x .generateIdent()
+                    Program.Indent++;
+                    Program.GenerateIndent(textWriter);
                     textWriter.Write(member.Key + " = 0 ");
                     textWriter.Write("\n");
-                    // ident--
+                    Program.Indent--;
                 }
             }
         }

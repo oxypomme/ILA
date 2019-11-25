@@ -32,10 +32,10 @@ namespace ILANET
 
             foreach (var instruction in IfInstructions)
             {
-                // ident++
+                Program.Indent++;
                 instruction.WritePython(textWriter);
                 textWriter.Write("\n");
-                // ident--
+                Program.Indent--;
             }
 
             foreach (var elif in Elif)
@@ -47,10 +47,10 @@ namespace ILANET
 
                 foreach (var instruction in elif.Item2)
                 {
-                    // ident++
+                    Program.Indent++;
                     instruction.WritePython(textWriter);
                     textWriter.Write("\n");
-                    // ident--
+                    Program.Indent--;
                 }
             }
 
@@ -63,10 +63,10 @@ namespace ILANET
 
                 foreach (var instruction in ElseInstructions)
                 {
-                    // ident++
+                    Program.Indent++;
                     instruction.WritePython(textWriter);
                     textWriter.Write("\n");
-                    // ident--
+                    Program.Indent--;
                 }
             }
         }
