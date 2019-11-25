@@ -17,32 +17,35 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //x .generateIdent()
-            for (int i = 0; i < Args.Count; i++)
+            if (!(CalledModule is Read || CalledModule is Print))
             {
-                if ((CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
+                //x .generateIdent()
+                for (int i = 0; i < Args.Count; i++)
                 {
-                    if (i != 0)
-                        textWriter.Write(", ");
-                    Args[i].WritePython(textWriter);
+                    if ((CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
+                    {
+                        if (i != 0)
+                            textWriter.Write(", ");
+                        Args[i].WritePython(textWriter);
+                    }
                 }
-            }
 
-            textWriter.Write(" = ");
-            CalledModule.WritePython(textWriter);
-            textWriter.Write("(");
-            for (int i = 0; i < Args.Count; i++)
-            {
-                if (Args[i] != null)
+                textWriter.Write(" = ");
+                CalledModule.WritePython(textWriter);
+                textWriter.Write("(");
+                for (int i = 0; i < Args.Count; i++)
                 {
-                    if (i != 0)
-                        textWriter.Write(", ");
+                    if (Args[i] != null)
+                    {
+                        if (i != 0)
+                            textWriter.Write(", ");
 
-                    Args[i].WritePython(textWriter);
+                        Args[i].WritePython(textWriter);
+                    }
                 }
-            }
 
-            textWriter.Write(")");
+                textWriter.Write(")");
+            }
         }
 
         #endregion Public Properties
