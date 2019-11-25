@@ -20,7 +20,7 @@ namespace ILANET
 
         public virtual VarType Type { get; set; }
 
-        public void WriteILA(TextWriter textWriter)
+        public virtual void WriteILA(TextWriter textWriter)
         {
             throw new NotImplementedException();
         }

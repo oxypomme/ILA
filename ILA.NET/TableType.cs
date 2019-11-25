@@ -19,6 +19,13 @@ namespace ILANET
             Max = max;
         }
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            Min.WriteILA(textWriter);
+            textWriter.Write("..");
+            Max.WriteILA(textWriter);
+        }
+
         #endregion Public Fields
 
         #region Public Constructors

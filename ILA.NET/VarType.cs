@@ -11,7 +11,10 @@ namespace ILANET
 
         public virtual string Name { get; set; }
 
-        public abstract void WriteILA(TextWriter textWriter);
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
 
         public abstract void WritePython(TextWriter textWriter);
 

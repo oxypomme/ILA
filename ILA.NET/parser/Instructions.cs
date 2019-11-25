@@ -397,6 +397,7 @@ namespace ILANET.Parser
                 }
                 if (!(currentBlock is Function))
                     throw new ILAException("Erreur : impossible de créer une retour en dehors d'une fonction");
+                instru.Function = currentBlock as Function;
                 index += 2;
                 FastForward(code, ref index);
                 var value = "";

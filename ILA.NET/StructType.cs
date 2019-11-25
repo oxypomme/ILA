@@ -17,10 +17,5 @@ namespace ILANET
         }
 
         #endregion Public Properties
-
-        #region Protected Properties
-
-
-        #endregion Protected Properties
     }
 }
