@@ -34,8 +34,7 @@ namespace ILANET
                 }
 
                 textWriter.Write(" = ");
-                CalledModule.WritePython(textWriter);
-                textWriter.Write("(");
+                textWriter.Write(CalledModule.Name + "(");
                 for (int i = 0; i < Args.Count; i++)
                 {
                     if (Args[i] != null)
