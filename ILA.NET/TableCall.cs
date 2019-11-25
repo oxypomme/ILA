@@ -36,6 +36,7 @@ namespace ILANET
                 if (i > 0)
                     textWriter.Write("][");
                 DimensionsIndex[i].WritePython(textWriter);
+                textWriter.Write("-1");
             }
             textWriter.Write(']');
         }

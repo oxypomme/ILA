@@ -124,7 +124,7 @@ namespace ILANET
                     if (i < table.DimensionsSize.Count && i > 0)
                     {
                         for (int j = 0; j < i; j++)
-                            textWriter.Write("[" + indexList[i - j] + "]");
+                            textWriter.Write("[" + indexList[i - j - 1] + "-1]");
                     }
                     textWriter.Write(".append(");
                     if (i < table.DimensionsSize.Count)

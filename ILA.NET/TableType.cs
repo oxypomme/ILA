@@ -32,9 +32,9 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            Max.WritePython(textWriter);
-            textWriter.Write(",");
             Min.WritePython(textWriter);
+            textWriter.Write(",");
+            Max.WritePython(textWriter);
         }
 
         #endregion Public Constructors
