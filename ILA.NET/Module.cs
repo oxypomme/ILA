@@ -18,12 +18,12 @@ namespace ILANET
 
         Comment IExecutable.AboveComment => AboveComment;
 
+        public List<IDeclaration> Declarations { get; set; }
+
         /// <summary>
         /// Integrated comment
         /// </summary>
         public string InlineComment { get; set; }
-        public List<IDeclaration> Declarations { get; set; }
-        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
 
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
 
@@ -40,6 +40,7 @@ namespace ILANET
         #endregion Public Properties
 
         string IExecutable.Comment => InlineComment;
+        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
         public List<Instruction> Instructions { get; set; }
 
         public virtual void WriteILA(TextWriter textWriter)

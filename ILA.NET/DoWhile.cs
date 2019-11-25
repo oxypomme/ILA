@@ -18,8 +18,17 @@ namespace ILANET
         public string Comment { get; set; }
 
         string Instruction.Comment => Comment;
+
+        /// <summary>
+        /// Condition in the while()
+        /// </summary>
         public IValue Condition { get; set; }
+
         public string EndComment { get; set; }
+
+        /// <summary>
+        /// Block of instructions
+        /// </summary>
         public List<Instruction> Instructions { get; set; }
 
         public void WriteILA(TextWriter textWriter)
@@ -46,16 +55,6 @@ namespace ILANET
             }
             textWriter.WriteLine();
         }
-
-        /// <summary>
-        /// Condition in the while()
-        /// </summary>
-        public IValue Condition { get; set; }
-
-        /// <summary>
-        /// Block of instructions
-        /// </summary>
-        public List<Instruction> Instructions { get; set; }
 
         /// <summary>
         /// Generate python code to run this element.

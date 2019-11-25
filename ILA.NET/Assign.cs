@@ -18,7 +18,15 @@ namespace ILANET
         public string Comment { get; set; }
 
         string Instruction.Comment => Comment;
+
+        /// <summary>
+        /// Left operand, the variable
+        /// </summary>
         public Variable Left { get; set; }
+
+        /// <summary>
+        /// The right operand, the value to assign to
+        /// </summary>
         public IValue Right { get; set; }
 
         public void WriteILA(TextWriter textWriter)
@@ -34,16 +42,6 @@ namespace ILANET
             }
             textWriter.WriteLine();
         }
-
-        /// <summary>
-        /// Left operand, the variable
-        /// </summary>
-        public Variable Left { get; set; }
-
-        /// <summary>
-        /// The right operand, the value to assign to
-        /// </summary>
-        public IValue Right { get; set; }
 
         /// <summary>
         /// Generate python code to run this element.

@@ -28,11 +28,12 @@ namespace ILANET
         /// </summary>
         public List<IDeclaration> Declarations { get; set; }
 
+        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
+
         /// <summary>
         /// The comments at the beggining of the file
         /// </summary>
         public List<Comment> FileComments { get; set; }
-        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
 
         /// <summary>
         /// The integrated comment
@@ -55,6 +56,7 @@ namespace ILANET
         /// The name of the algorithm
         /// </summary>
         public string Name { get; set; }
+
         string IExecutable.Name => Name;
 
         #endregion Public Properties

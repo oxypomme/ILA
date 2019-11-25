@@ -18,6 +18,10 @@ namespace ILANET
         /// The description of the comment
         /// </summary>
         public string Message { get; set; }
+
+        /// <summary>
+        /// True if the comment is multiline (using /* */)
+        /// </summary>
         public bool MultiLine { get; set; }
 
         public void WriteILA(TextWriter textWriter)
@@ -32,11 +36,6 @@ namespace ILANET
                 textWriter.Write("*/");
             textWriter.WriteLine();
         }
-
-        /// <summary>
-        /// True if the comment is multiline (using /* */)
-        /// </summary>
-        public bool MultiLine { get; set; }
 
         /// <summary>
         /// Generate python code to run this element.

@@ -13,11 +13,11 @@ namespace ILANET
         /// <summary>
         /// The comment block above this declaration
         /// </summary>
-        public Comment AboveComment { get; }
+        public Comment AboveComment { get; set; }
 
         /// <summary>
         /// The integrated comment
         /// </summary>
-        public string Comment { get; }
+        public string Comment { get; set; }
     }
 }

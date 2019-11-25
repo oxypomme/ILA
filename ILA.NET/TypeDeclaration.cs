@@ -10,30 +10,24 @@ namespace ILANET
     /// </summary>
     public class TypeDeclaration : IDeclaration
     {
-        #region Public Properties
+        /// <summary>
+        /// Comment block above this declaration
+        /// </summary>
+        public Comment AboveComment { get; set; }
+
+        Comment IDeclaration.AboveComment { get => AboveComment; set => AboveComment = value; }
+
+        string IDeclaration.Comment { get => InlineComment; set => InlineComment = value; }
 
         /// <summary>
         /// The custom type declared
         /// </summary>
         public VarType CreatedType { get; set; }
 
-        #endregion Public Properties
-
-        #region Internal Properties
-
         /// <summary>
         /// Integrated comment
         /// </summary>
         public string InlineComment { get; set; }
-
-        #endregion Internal Properties
-
-        /// <summary>
-        /// Comment block above this declaration
-        /// </summary>
-        public Comment AboveComment { get; set; }
-        Comment IDeclaration.AboveComment { get => AboveComment; set => AboveComment = value; }
-        string IDeclaration.Comment { get => InlineComment; set => InlineComment = value; }
 
         public void WriteILA(TextWriter textWriter)
         {

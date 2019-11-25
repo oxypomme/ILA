@@ -31,13 +31,10 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Internal Properties
-
         /// <summary>
         /// The type of the variable
         /// </summary>
         public virtual VarType Type { get; set; }
-
 
         public virtual void WriteILA(TextWriter textWriter)
         {

@@ -15,13 +15,14 @@ namespace ILANET
         /// <summary>
         /// Index of the element
         /// </summary>
-        public List<int> DimensionsIndex { get; set; }
+        public List<IValue> DimensionsIndex { get; set; }
+
+        public override string Name { get => ""; set { } }
 
         /// <summary>
         /// Table to call from
         /// </summary>
         public Variable Table { get; set; }
-        public override string Name { get => ""; set { } }
 
         /// <summary>
         /// Type of the element

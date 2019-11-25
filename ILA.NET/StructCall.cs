@@ -16,6 +16,10 @@ namespace ILANET
         /// Structure to call from
         /// </summary>
         public Variable Struct { get; set; }
+
+        /// <summary>
+        /// Type of the subvariable
+        /// </summary>
         public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => ((StructType)Struct.Type).Members[Name] = value; }
 
         public override void WriteILA(TextWriter textWriter)
@@ -24,11 +28,6 @@ namespace ILANET
             textWriter.Write('.');
             textWriter.Write(Name);
         }
-
-        /// <summary>
-        /// Type of the subvariable
-        /// </summary>
-        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => ((StructType)Struct.Type).Members[Name] = value; }
 
         /// <summary>
         /// Generate python code to run this element.
