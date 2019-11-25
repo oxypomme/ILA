@@ -47,7 +47,7 @@ namespace ILANET
                 Program.GenerateIndent(textWriter);
                 for (int i = 0; i < Args.Count; i++)
                 {
-                    if (CalledModule.Parameters[i]  != null && (CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
+                    if (CalledModule.Parameters.Count > 0 && (CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
                     {
                         if (Args[i] != null)
                         {
