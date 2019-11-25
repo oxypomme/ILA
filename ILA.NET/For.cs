@@ -24,14 +24,17 @@ namespace ILANET
         public void WritePython(TextWriter textWriter)
         {
             // Index initialiser
-            //x .generateIndent()
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("if True :\n");
+            Program.Indent++;
+            Program.GenerateIndent(textWriter);
             Index.WritePython(textWriter);
             textWriter.Write(" = ");
             Start.WritePython(textWriter);
             textWriter.Write("\n");
 
             // While condition
-            //x .generateIndent()
+            Program.GenerateIndent(textWriter);
             textWriter.Write("while (");
             Index.WritePython(textWriter);
             textWriter.Write(" != ");
@@ -47,11 +50,12 @@ namespace ILANET
                 Program.Indent--;
             }
             Program.Indent++;
-            //x .generateIndent()
+            Program.GenerateIndent(textWriter);
             Index.WritePython(textWriter);
+            // TODO : avec un pas négatif !
             textWriter.Write("+=");
             Step.WritePython(textWriter);
-            Program.Indent--;
+            Program.Indent -= 2;
         }
     }
 }
