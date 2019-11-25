@@ -413,7 +413,7 @@ namespace ILANET.Parser
                 while (code.Substring(index, 2) != "//" &&
                         code[index] != '\n')
                     value += code[index++];
-                instru.Type = ParseValue(value, mainProg, currentBlock);
+                instru.Value = ParseValue(value, mainProg, currentBlock);
                 if (code.Substring(index, 2) == "//")
                 {
                     index += 2;
