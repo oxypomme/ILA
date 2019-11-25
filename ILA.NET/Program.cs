@@ -32,6 +32,30 @@ namespace ILANET
         public void WriteILA(TextWriter textWriter)
         {
             ilaIndent = 0;
+            foreach (var item in FileComments)
+                item.WriteILA(textWriter);
+            foreach (var item in Declarations)
+                item.WriteILA(textWriter);
+            foreach (var item in Methods)
+                item.WriteILA(textWriter);
+            AlgoComment?.WriteILA(textWriter);
+            GenerateIndent(textWriter);
+            textWriter.Write("algo ");
+            textWriter.Write(Name);
+            if (InlineComment != null && InlineComment.Length > 0)
+            {
+                textWriter.Write(" //");
+                textWriter.Write(InlineComment);
+            }
+            textWriter.WriteLine();
+            GenerateIndent(textWriter);
+            textWriter.Write('{');
+            ilaIndent++;
+            foreach (var item in Instructions)
+                item.WriteILA(textWriter);
+            ilaIndent--;
+            GenerateIndent(textWriter);
+            textWriter.WriteLine('}');
         }
 
         public void WritePython(TextWriter textWriter)

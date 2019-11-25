@@ -23,6 +23,21 @@ namespace ILANET
         public Variable ImportedVariable { get; set; }
         public Flags Mode { get; set; }
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            if (Mode != Flags.INPUT)
+            {
+                if ((Mode & Flags.INPUT) != 0)
+                    textWriter.Write('e');
+                if ((Mode & Flags.OUTPUT) != 0)
+                    textWriter.Write('s');
+                textWriter.Write("::");
+            }
+            ImportedVariable.WriteILA(textWriter);
+            textWriter.Write(':');
+            ImportedVariable.Type.WriteILA(textWriter);
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
