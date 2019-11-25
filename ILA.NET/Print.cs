@@ -28,7 +28,18 @@ namespace ILANET
         public override void WritePython(TextWriter textWriter)
         {
             //TODO: tester si correctement fait en python
-            base.WritePython(textWriter);
+            //x .generateIdent()
+            textWriter.Write("print(");
+            foreach (var parameter in Parameters)
+            {
+                for (int i = 0; i < Parameters.Count; i++)
+                {
+                    if (i != 0)
+                        textWriter.Write(", ");
+                    parameter.WritePython(textWriter);
+                }
+            }
+            textWriter.Write(")\n");
         }
     }
 }
