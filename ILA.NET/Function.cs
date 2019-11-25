@@ -13,6 +13,7 @@ namespace ILANET
 
         public override void WriteILA(TextWriter textWriter)
         {
+            AboveComment?.WriteILA(textWriter);
             Program.GenerateIndent(textWriter);
             textWriter.Write("fonction ");
             textWriter.Write(Name);
