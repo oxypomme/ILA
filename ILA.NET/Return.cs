@@ -7,6 +7,7 @@ namespace ILANET
 {
     public class Return : Instruction
     {
+        public IValue Value { get; set; }
         public string Comment { get; set; }
         string Instruction.Comment => Comment;
         public Function Function { get; set; }
@@ -28,7 +29,10 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("return ");
+            Value.WritePython(textWriter);
+            textWriter.Write("\n");
         }
     }
 }

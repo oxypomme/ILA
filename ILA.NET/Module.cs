@@ -46,10 +46,10 @@ namespace ILANET
                 item.WriteILA(textWriter);
             Program.GenerateIndent(textWriter);
             textWriter.WriteLine('{');
-            Program.ilaIndent++;
+            Program.Indent++;
             foreach (var item in Instructions)
                 item.WriteILA(textWriter);
-            Program.ilaIndent--;
+            Program.Indent--;
             Program.GenerateIndent(textWriter);
             textWriter.WriteLine('}');
         }

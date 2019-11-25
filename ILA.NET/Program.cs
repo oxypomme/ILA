@@ -9,7 +9,7 @@ namespace ILANET
     {
         #region Public Properties
 
-        internal static int ilaIndent;
+        internal static int Indent;
         internal static int IndentMultiplier = 4;
         Comment IExecutable.AboveComment => AlgoComment;
         public Comment AlgoComment { get; set; }
@@ -31,7 +31,7 @@ namespace ILANET
 
         public void WriteILA(TextWriter textWriter)
         {
-            ilaIndent = 0;
+            Indent = 0;
             foreach (var item in FileComments)
                 item.WriteILA(textWriter);
             foreach (var item in Declarations)
@@ -50,26 +50,38 @@ namespace ILANET
             textWriter.WriteLine();
             GenerateIndent(textWriter);
             textWriter.WriteLine('{');
-            ilaIndent++;
+            Indent++;
             foreach (var item in Instructions)
                 item.WriteILA(textWriter);
-            ilaIndent--;
+            Indent--;
             GenerateIndent(textWriter);
             textWriter.WriteLine('}');
         }
 
         public void WritePython(TextWriter textWriter)
         {
-            /*
-             * attention aux Methods, elles contiennent les instances de Print et Read
-             * qui ne doivent pas être définies
-             */
-            throw new NotImplementedException();
+            Indent = 0;
+
+            foreach (var declaration in Declarations)
+            {
+                declaration.WritePython(textWriter);
+            }
+
+            foreach (var module in Methods)
+            {
+                if (!(module is Read || module is Print))
+                    module.WritePython(textWriter);
+            }
+
+            foreach (var instruction in Instructions)
+            {
+                instruction.WritePython(textWriter);
+            }
         }
 
-        internal static void GenerateIndent(TextWriter textWriter)
+        internal static void GenerateIndent(TextWriter textWriter, int spaces = 4)
         {
-            for (int i = 0; i < ilaIndent * IndentMultiplier; i++)
+            for (int i = 0; i < Indent * spaces; i++)
                 textWriter.Write(' ');
         }
 

@@ -26,11 +26,11 @@ namespace ILANET
                 textWriter.Write(" //");
                 textWriter.Write(Comment);
             }
-            Program.ilaIndent++;
+            Program.Indent++;
             textWriter.WriteLine();
             foreach (var item in Instructions)
                 item.WriteILA(textWriter);
-            Program.ilaIndent--;
+            Program.Indent--;
             Program.GenerateIndent(textWriter);
             textWriter.Write("ftantque");
             if (EndComment != null && EndComment.Length > 0)

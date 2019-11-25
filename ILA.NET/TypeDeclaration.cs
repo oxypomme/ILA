@@ -44,7 +44,7 @@ namespace ILANET
             else if (CreatedType is StructType s)
             {
                 textWriter.WriteLine("structure(");
-                Program.ilaIndent++;
+                Program.Indent++;
                 int i = 1;
                 foreach (var item in s.Members)
                 {
@@ -57,7 +57,7 @@ namespace ILANET
                     textWriter.WriteLine();
                     i++;
                 }
-                Program.ilaIndent--;
+                Program.Indent--;
                 Program.GenerateIndent(textWriter);
                 textWriter.Write(')');
             }
@@ -77,7 +77,7 @@ namespace ILANET
                 else
                 {
                     textWriter.WriteLine("enumeration(");
-                    Program.ilaIndent++;
+                    Program.Indent++;
                     for (int i = 0; i < e.Values.Count; i++)
                     {
                         Program.GenerateIndent(textWriter);
@@ -86,7 +86,7 @@ namespace ILANET
                             textWriter.Write(',');
                         textWriter.WriteLine();
                     }
-                    Program.ilaIndent--;
+                    Program.Indent--;
                     Program.GenerateIndent(textWriter);
                     textWriter.Write(')');
                 }
@@ -101,7 +101,56 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            if (CreatedType is TableType table)
+            {
+                var indexList = new List<string>();
+
+                var baseIdent = Program.Indent;
+                Program.GenerateIndent(textWriter);
+                table.WritePython(textWriter);
+                textWriter.Write(" = []\n");
+
+                Program.GenerateIndent(textWriter);
+                for (int i = 0; i < table.DimensionsSize.Count; i++)
+                {
+                    Program.GenerateIndent(textWriter);
+                    indexList.Add("index" + i);
+                    textWriter.Write("for " + indexList[i] + " in range(");
+                    table.DimensionsSize[i].WritePython(textWriter);
+                    textWriter.Write("):\n");
+                    Program.Indent++;
+                    Program.GenerateIndent(textWriter);
+                    table.WritePython(textWriter);
+                    if (i < table.DimensionsSize.Count && i > 0)
+                    {
+                        for (int j = 0; j < i; j++)
+                            textWriter.Write("[" + indexList[i - j] + "]");
+                    }
+                    textWriter.Write(".append(");
+                    if (i < table.DimensionsSize.Count)
+                        textWriter.Write("[]");
+                    else
+                        textWriter.Write(0);
+                    textWriter.Write(")\n");
+                }
+                Program.Indent = baseIdent;
+            }
+            else if (CreatedType is StructType struc)
+            {
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("class ");
+                struc.WritePython(textWriter);
+                textWriter.Write(" :\n");
+
+                foreach (var member in struc.Members)
+                {
+                    Program.Indent++;
+                    Program.GenerateIndent(textWriter);
+                    textWriter.Write(member.Key + " = 0 ");
+                    textWriter.Write("\n");
+                    Program.Indent--;
+                }
+            }
         }
     }
 }

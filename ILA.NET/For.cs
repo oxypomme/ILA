@@ -39,10 +39,10 @@ namespace ILANET
                 textWriter.Write(Comment);
             }
             textWriter.WriteLine();
-            Program.ilaIndent++;
+            Program.Indent++;
             foreach (var item in Instructions)
                 item.WriteILA(textWriter);
-            Program.ilaIndent--;
+            Program.Indent--;
             Program.GenerateIndent(textWriter);
             textWriter.Write("fpour");
             if (EndComment != null && EndComment.Length > 0)
@@ -55,7 +55,35 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            // Index initialiser
+            Program.GenerateIndent(textWriter);
+            Index.WritePython(textWriter);
+            textWriter.Write(" = ");
+            Start.WritePython(textWriter);
+            textWriter.Write("\n");
+
+            // While condition
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("while (");
+            Index.WritePython(textWriter);
+            textWriter.Write(" != ");
+            End.WritePython(textWriter);
+            textWriter.Write(") :\n");
+
+            // While content
+            foreach (Instruction instruction in Instructions)
+            {
+                Program.Indent++;
+                instruction.WritePython(textWriter);
+                textWriter.Write("\n");
+                Program.Indent--;
+            }
+            Program.Indent++;
+            Program.GenerateIndent(textWriter);
+            Index.WritePython(textWriter);
+            textWriter.Write("+=");
+            Step.WritePython(textWriter);
+            Program.Indent--;
         }
 
         #endregion Public Properties

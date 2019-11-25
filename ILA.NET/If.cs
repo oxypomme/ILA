@@ -35,10 +35,10 @@ namespace ILANET
                 textWriter.Write(Comment);
             }
             textWriter.WriteLine();
-            Program.ilaIndent++;
+            Program.Indent++;
             foreach (var item in IfInstructions)
                 item.WriteILA(textWriter);
-            Program.ilaIndent--;
+            Program.Indent--;
             for (int i = 0; i < Elif.Count; i++)
             {
                 var item = Elif[i];
@@ -52,10 +52,10 @@ namespace ILANET
                     textWriter.Write(ElifComments[i]);
                 }
                 textWriter.WriteLine();
-                Program.ilaIndent++;
+                Program.Indent++;
                 foreach (var item2 in item.Item2)
                     item2.WriteILA(textWriter);
-                Program.ilaIndent--;
+                Program.Indent--;
             }
             if (ElseInstructions != null && ElseInstructions.Count > 0)
             {
@@ -67,10 +67,10 @@ namespace ILANET
                     textWriter.Write(ElseComment);
                 }
                 textWriter.WriteLine();
-                Program.ilaIndent++;
+                Program.Indent++;
                 foreach (var item in ElseInstructions)
                     item.WriteILA(textWriter);
-                Program.ilaIndent--;
+                Program.Indent--;
             }
             Program.GenerateIndent(textWriter);
             textWriter.Write("fsi");

@@ -40,8 +40,6 @@ namespace ILANET
 
         #endregion Public Enums
 
-
-
         #region Private Properties
 
         private Flags Type { get; set; }
@@ -73,9 +71,7 @@ namespace ILANET
         }
 
         public override void WritePython(TextWriter textWriter)
-        {
-            throw new NotImplementedException();
-        }
+        { }
 
         #endregion Private Properties
     }

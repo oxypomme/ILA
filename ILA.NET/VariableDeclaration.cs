@@ -43,7 +43,15 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            CreatedVariable.WritePython(textWriter);
+            textWriter.Write(" = ");
+            if (CreatedVariable.Constant)
+                CreatedVariable.ConstantValue.WritePython(textWriter);
+            else if (!(CreatedVariable.Type is GenericType))
+                CreatedVariable.Type.WritePython(textWriter);
+            else
+                textWriter.Write(0);
+            textWriter.Write("\n");
         }
     }
 }
