@@ -43,14 +43,10 @@ namespace ILANET
                     module.WritePython(textWriter);
             }
 
-            textWriter.Write("def " + Name + "() :\n");
-            Indent++;
             foreach (var instruction in Instructions)
             {
                 instruction.WritePython(textWriter);
             }
-            Indent--;
-            textWriter.Write(Name + "()");
         }
 
         internal static void GenerateIndent(TextWriter textWriter, int spaces = 4)
