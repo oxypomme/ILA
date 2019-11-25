@@ -17,7 +17,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            if (!(CalledModule is Read || CalledModule is Print))
+            //if (!(CalledModule is Read || CalledModule is Print))
             {
                 int outParameters = 0;
 
@@ -52,7 +52,7 @@ namespace ILANET
 
                 textWriter.Write(")\n");
             }
-            else
+            //else
             {
                 CalledModule.WritePython(textWriter);
             }
