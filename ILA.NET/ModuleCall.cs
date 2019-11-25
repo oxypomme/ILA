@@ -19,6 +19,8 @@ namespace ILANET
         {
             if (!(CalledModule is Read || CalledModule is Print))
             {
+                int outParameters = 0;
+
                 Program.GenerateIndent(textWriter);
                 for (int i = 0; i < Args.Count; i++)
                 {
@@ -26,6 +28,7 @@ namespace ILANET
                     {
                         if (Args[i] != null)
                         {
+                            outParameters++;
                             if (i != 0)
                                 textWriter.Write(", ");
                             Args[i].WritePython(textWriter);
@@ -33,7 +36,8 @@ namespace ILANET
                     }
                 }
 
-                textWriter.Write(" = ");
+                if (outParameters != 0)
+                    textWriter.Write(" = ");
                 textWriter.Write(CalledModule.Name + "(");
                 for (int i = 0; i < Args.Count; i++)
                 {
@@ -46,7 +50,7 @@ namespace ILANET
                     }
                 }
 
-                textWriter.Write(")");
+                textWriter.Write(")\n");
             }
             else
             {
