@@ -24,9 +24,12 @@ namespace ILANET
                 {
                     if ((CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
                     {
-                        if (i != 0)
-                            textWriter.Write(", ");
-                        Args[i].WritePython(textWriter);
+                        if (Args[i] != null)
+                        {
+                            if (i != 0)
+                                textWriter.Write(", ");
+                            Args[i].WritePython(textWriter);
+                        }
                     }
                 }
 
