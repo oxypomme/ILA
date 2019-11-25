@@ -25,7 +25,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //x .generateIndent()
+            Program.GenerateIndent(textWriter);
             textWriter.Write("if (");
             IfCondition.WritePython(textWriter);
             textWriter.Write(") :\n");
@@ -40,7 +40,7 @@ namespace ILANET
 
             foreach (var elif in Elif)
             {
-                //x .generateIndent()
+                Program.GenerateIndent(textWriter);
                 textWriter.Write("elif");
                 IfCondition.WritePython(textWriter);
                 textWriter.Write(") :\n");
@@ -56,7 +56,7 @@ namespace ILANET
 
             if (ElseInstructions != null && ElseInstructions.Count > 0)
             {
-                //x .generateIndent()
+                Program.GenerateIndent(textWriter);
                 textWriter.Write("else (");
                 IfCondition.WritePython(textWriter);
                 textWriter.Write(") :\n");
