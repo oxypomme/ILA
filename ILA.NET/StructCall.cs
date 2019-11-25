@@ -21,7 +21,9 @@ namespace ILANET
 
         public override void WritePython(TextWriter textWriter)
         {
-            base.WritePython(textWriter);
+            Struct.WritePython(textWriter);
+            textWriter.Write('.');
+            textWriter.Write(Name);
         }
 
         #endregion Public Properties

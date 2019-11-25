@@ -52,6 +52,7 @@ fonction fnc_carre(nombre:entier):entier
 module modu_resultat(resultat:entier, es::message:chaine, s::bou:booleen)
 variable_locale:chaine
 {
+    variable_locale <- ""henlo""
     ecrire(resultat)
     message <- variable_locale
     bou <- faux
@@ -89,8 +90,8 @@ algo Carre
     ftantque //ftq
 }
 ");
-            using (var file = new StreamWriter("out.ila"))
-                prg.WriteILA(file);
+            //using (var file = new StreamWriter("out.ila"))
+            //    prg.WriteILA(file);
 
             using (var file = new StreamWriter("python_generated.py"))
                 prg.WritePython(file);

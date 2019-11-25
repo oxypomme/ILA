@@ -40,7 +40,6 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //if (!(CalledModule is Read || CalledModule is Print))
             {
                 int outParameters = 0;
 
@@ -51,9 +50,9 @@ namespace ILANET
                     {
                         if (Args[i] != null)
                         {
-                            outParameters++;
-                            if (i != 0)
+                            if (outParameters != 0)
                                 textWriter.Write(", ");
+                            outParameters++;
                             Args[i].WritePython(textWriter);
                         }
                     }
@@ -74,10 +73,6 @@ namespace ILANET
                 }
 
                 textWriter.Write(")\n");
-            }
-            //else
-            {
-                CalledModule.WritePython(textWriter);
             }
         }
 

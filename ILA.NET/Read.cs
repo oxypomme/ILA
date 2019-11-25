@@ -22,7 +22,6 @@ namespace ILANET
 
         public override void WritePython(TextWriter textWriter)
         {
-            //TODO: tester si correctement fait en python
             //Program.GenerateIndent(textWriter);
             //foreach (var parameter in Parameters)
             //{
