@@ -12,33 +12,13 @@ namespace ILANET
         internal Read()
         {
             Name = "lire";
-            Parameters = new List<Parameter>()
-            {
-             new Parameter()
-             {
-                 ImportedVariable = new Variable()
-                 {
-                         Constant = false,
-                       Name = "read",
-                      Type = null
-                 }
-             }
-            };
+            Parameters = new List<Parameter>();
+            Instructions = null;
         }
 
         public override void WritePython(TextWriter textWriter)
         {
-            //TODO: tester si correctement fait en python
-            //Program.GenerateIndent(textWriter);
-            //foreach (var parameter in Parameters)
-            //{
-            //    for (int i = 0; i < Parameters.Count; i++)
-            //    {
-            //        parameter.WritePython(textWriter);
-            //        textWriter.Write(" = input()\n");
-            //    }
-            //}
-            Name = "input";
+            base.WritePython(textWriter);
         }
     }
 }
