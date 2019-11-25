@@ -32,6 +32,7 @@ namespace ILANET
                 textWriter.Write(" pas ");
                 Step.WriteILA(textWriter);
             }
+            textWriter.Write(" faire");
             if (Comment != null && Comment.Length > 0)
             {
                 textWriter.Write(" //");
@@ -49,6 +50,7 @@ namespace ILANET
                 textWriter.Write(" //");
                 textWriter.Write(EndComment);
             }
+            textWriter.WriteLine();
         }
 
         public void WritePython(TextWriter textWriter)

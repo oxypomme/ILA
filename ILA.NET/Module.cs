@@ -36,7 +36,7 @@ namespace ILANET
             {
                 if (i > 0)
                     textWriter.Write(", ");
-                Parameters[i].WritePython(textWriter);
+                Parameters[i].WriteILA(textWriter);
             }
             textWriter.Write(')');
             if (InlineComment != null && InlineComment.Length > 0)
@@ -45,6 +45,8 @@ namespace ILANET
                 textWriter.Write(InlineComment);
             }
             textWriter.WriteLine();
+            foreach (var item in Declarations)
+                item.WriteILA(textWriter);
             Program.GenerateIndent(textWriter);
             textWriter.WriteLine('{');
             Program.ilaIndent++;

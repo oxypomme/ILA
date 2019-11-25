@@ -17,7 +17,7 @@ namespace ILANET
             Program.GenerateIndent(textWriter);
             textWriter.Write(Function.Name);
             textWriter.Write(" <- ");
-            textWriter.Write(Type);
+            Type.WriteILA(textWriter);
             if (Comment != null && Comment.Length > 0)
             {
                 textWriter.Write(" //");

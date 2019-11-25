@@ -65,7 +65,7 @@ namespace ILANET.Parser
                 }
                 else if (p.TabName != null)
                 {
-                    if (!constLock)
+                    if (constLock)
                         throw new ILAException("Erreur impossible de donner une valeur non constante");
                     var call = new TableCall();
                     call.Table = null;

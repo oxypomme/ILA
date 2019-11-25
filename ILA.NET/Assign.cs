@@ -16,21 +16,21 @@ namespace ILANET
 
         public void WriteILA(TextWriter textWriter)
         {
-            throw new NotImplementedException();
-        }
-
-        public void WritePython(TextWriter textWriter)
-        {
             Program.GenerateIndent(textWriter);
-            Left.WritePython(textWriter);
+            Left.WriteILA(textWriter);
             textWriter.Write(" <- ");
-            Right.WritePython(textWriter);
+            Right.WriteILA(textWriter);
             if (Comment != null && Comment.Length > 0)
             {
                 textWriter.Write(" //");
                 textWriter.Write(Comment);
             }
             textWriter.WriteLine();
+        }
+
+        public void WritePython(TextWriter textWriter)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion Public Properties

@@ -21,6 +21,8 @@ namespace ILANET
             else
                 textWriter.Write("//");
             textWriter.Write(Message);
+            if (MultiLine)
+                textWriter.Write("*/");
             textWriter.WriteLine();
         }
 

@@ -49,7 +49,7 @@ namespace ILANET
             }
             textWriter.WriteLine();
             GenerateIndent(textWriter);
-            textWriter.Write('{');
+            textWriter.WriteLine('{');
             ilaIndent++;
             foreach (var item in Instructions)
                 item.WriteILA(textWriter);

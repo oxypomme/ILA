@@ -29,8 +29,11 @@ namespace ILANET.Parser
                 index += 2;
                 return comm;
             }
-            else if (code.Substring(index, 3) == "si ")
+            else if (code.Substring(index, 3) == "si " ||
+                code.Substring(index, 3) == "si(")
             {
+                if (code.Substring(index, 3) == "si(")
+                    index--;
                 var instru = new If();
                 index += 3;
                 var condition = "";
@@ -191,8 +194,11 @@ namespace ILANET.Parser
                     }
                 }
             }
-            else if (code.Substring(index, 5) == "pour ")
+            else if (code.Substring(index, 5) == "pour " ||
+                code.Substring(index, 5) == "pour(")
             {
+                if (code.Substring(index, 5) == "pour(")
+                    index--;
                 var instru = new For();
                 index += 5;
                 string variable = "";
@@ -211,9 +217,11 @@ namespace ILANET.Parser
                 instru.Start = ParseValue(startValue, mainProg, currentBlock);
                 index += 3;
                 string endValue = "";
-                while (code.Substring(index, 5) != " pas " &&
+                while ((code.Substring(index, 5) != " pas " || code.Substring(index, 5) != " pas(") &&
                     code.Substring(index, 6) != " faire")
                     endValue += code[index++];
+                if (code.Substring(index, 5) != " pas(")
+                    index--;
                 instru.End = ParseValue(endValue, mainProg, currentBlock);
                 if (code.Substring(index, 5) == " pas ")
                 {
@@ -256,8 +264,11 @@ namespace ILANET.Parser
                     instru.EndComment = null;
                 return instru;
             }
-            else if (code.Substring(index, 8) == "tantque ")
+            else if (code.Substring(index, 8) == "tantque " ||
+                code.Substring(index, 8) == "tantque(")
             {
+                if (code.Substring(index, 8) == "tantque(")
+                    index--;
                 index += 8;
                 var instru = new While();
                 instru.Instructions = new List<Instruction>();
@@ -474,6 +485,8 @@ namespace ILANET.Parser
                                 args.Add(currArg);
                                 currArg = "";
                             }
+                            else
+                                currArg += item;
                         }
                         args.Add(currArg);
                         var instru = new ModuleCall();

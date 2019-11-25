@@ -54,7 +54,7 @@ namespace ILANET
                     item2.WriteILA(textWriter);
                 Program.ilaIndent--;
             }
-            if (ElseInstructions.Count > 0)
+            if (ElseInstructions != null && ElseInstructions.Count > 0)
             {
                 Program.GenerateIndent(textWriter);
                 textWriter.Write("sinon ");

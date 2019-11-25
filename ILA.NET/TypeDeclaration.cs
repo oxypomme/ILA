@@ -28,7 +28,7 @@ namespace ILANET
             AboveComment?.WriteILA(textWriter);
             Program.GenerateIndent(textWriter);
             CreatedType.WriteILA(textWriter);
-            textWriter.Write("type ");
+            textWriter.Write(":type ");
             if (CreatedType is TableType t)
             {
                 textWriter.Write("tableau[");
@@ -63,7 +63,7 @@ namespace ILANET
             }
             else if (CreatedType is EnumType e)
             {
-                if (e.Values.Count > 3)
+                if (e.Values.Count <= 3)
                 {
                     textWriter.Write("enumeration(");
                     for (int i = 0; i < e.Values.Count; i++)
