@@ -431,7 +431,6 @@ namespace ILANET.Parser
                     {
                         if (item == '-')
                         {
-                            Console.WriteLine(p.CodeInside);
                             if (lastCharIsOperator)
                                 copy += '◙';
                             else

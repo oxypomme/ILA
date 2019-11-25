@@ -502,7 +502,6 @@ namespace ILANET.Parser
                     content += code[index++];
                     if (index < code.Length && code[index] == '\n')
                     {
-                        Console.WriteLine(content);
                         throw new ILAException("Erreur de synthaxe");
                     }
                 }
