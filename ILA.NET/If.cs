@@ -54,7 +54,7 @@ namespace ILANET
                 }
             }
 
-            if (ElseInstructions.Count > 0)
+            if (ElseInstructions != null && ElseInstructions.Count > 0)
             {
                 //x .generateIndent()
                 textWriter.Write("else (");
