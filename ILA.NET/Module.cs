@@ -39,14 +39,14 @@ namespace ILANET
             // write the input-output / output params
             foreach (var parameter in Parameters)
             {
-                Program.Indent++;
-                Program.GenerateIndent(textWriter);
                 if ((parameter.Mode & Parameter.Flags.OUTPUT) != 0)
                 {
+                    Program.Indent++;
+                    Program.GenerateIndent(textWriter);
                     parameter.WritePython(textWriter);
                     textWriter.Write(" = 0\n");
+                    Program.Indent--;
                 }
-                Program.Indent--;
             }
 
             // write the instructions
