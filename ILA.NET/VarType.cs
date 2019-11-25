@@ -7,10 +7,6 @@ namespace ILANET
 {
     public abstract class VarType : IBaseObject
     {
-        #region Protected Properties
-
-        #endregion Protected Properties
-
         #region Public Properties
 
         public virtual string Name { get; set; }

@@ -16,15 +16,11 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Internal Properties
-
         public virtual VarType Type { get; set; }
 
         public virtual void WritePython(TextWriter textWriter)
         {
             textWriter.Write(Name.ToString());
         }
-
-        #endregion Internal Properties
     }
 }
