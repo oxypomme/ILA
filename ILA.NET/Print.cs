@@ -13,15 +13,6 @@ namespace ILANET
         {
             Name = "ecrire";
             Parameters = new List<Parameter>();
-            Parameters.Add(new Parameter()
-            {
-                ImportedVariable = new Variable()
-                {
-                    Constant = false,
-                    Name = "printed",
-                    Type = null
-                }
-            });
             Instructions = null;
         }
 

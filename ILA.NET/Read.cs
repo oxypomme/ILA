@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ILANET
 {
-    public sealed class Read : Function
+    public sealed class Read : Module
     {
         public static readonly Read Instance = new Read();
 
@@ -13,7 +13,6 @@ namespace ILANET
         {
             Name = "lire";
             Parameters = new List<Parameter>();
-            ReturnType = null;
             Instructions = null;
         }
 
