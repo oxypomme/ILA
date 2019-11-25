@@ -1,17 +1,3 @@
-﻿using System;
-using ILANET;
-using ILANET.Parser;
-
-namespace Executer
-{
-    internal class Program
-    {
-        #region Private Methods
-
-        private static void Main(string[] args)
-        {
-            var prg = Parser.Parse(
-@"
 // Ceci est un commentaire (slt du coup) Ce fichier est là pour tester et donne un exemple fonctionnel
 
 //ici on déclare les variables de l'algo
@@ -92,12 +78,3 @@ variable_locale: chaine
 }
 
 //opérateurs : + - * / mod div et ou non <- < <= > >= = !=
-");
-            Console.WriteLine(prg.Declarations.Count);
-            using (System.IO.StreamWriter writer = new System.IO.StreamWriter("python_generated.py"))
-                prg.WritePython(writer);
-        }
-
-        #endregion Private Methods
-    }
-}
