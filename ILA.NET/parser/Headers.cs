@@ -1286,17 +1286,14 @@ namespace ILANET.Parser
                     }
                 }
             }
-            catch (FormatException)
-            {
-            }
-            /*catch (ILAException e)
+            catch (ILAException e)
             {
                 throw new ILAException(e.Message + " \\ ligne : " + CountRow(ilaCode, index), e);
             }
             catch (Exception e)
             {
                 throw new ILAException("Internal error \\ ligne : " + CountRow(ilaCode, index), e);
-            }*/
+            }
             return returnProg;
         }
 
