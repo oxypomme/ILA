@@ -57,7 +57,7 @@ tab: t_tab
         pour i <-1 a 5 faire
              ecrire(message)
          fpour
-        pour i <-5 a 1 pas 1 faire
+        pour i <-5 a 1 pas -1 faire
              ecrire(message)
          fpour
     fsi
