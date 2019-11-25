@@ -10,6 +10,8 @@ namespace ILANET
 
         public Comment AboveComment { get; set; }
         Comment IExecutable.AboveComment => AboveComment;
+        public List<IDeclaration> Declarations { get; set; }
+        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
         public string InlineComment { get; set; }
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
         public string Name { get; set; }
