@@ -35,7 +35,7 @@ namespace ILANET
             textWriter.Write("while (");
             Index.WritePython(textWriter);
             textWriter.Write(" != ");
-            Step.WritePython(textWriter);
+            End.WritePython(textWriter);
             textWriter.Write(") :\n");
 
             // While content
