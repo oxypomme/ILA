@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ILANET
 {
@@ -20,10 +19,8 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Internal Properties
-
         string IExecutable.Comment => InlineComment;
-        internal List<Instruction> Instructions { get; set; }
+        public List<Instruction> Instructions { get; set; }
 
         public virtual void WriteILA(TextWriter textWriter)
         {
@@ -61,7 +58,5 @@ namespace ILANET
         {
             throw new NotImplementedException();
         }
-
-        #endregion Internal Properties
     }
 }

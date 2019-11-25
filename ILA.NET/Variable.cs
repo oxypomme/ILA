@@ -16,8 +16,6 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Internal Properties
-
         public virtual VarType Type { get; set; }
 
         public virtual void WriteILA(TextWriter textWriter)
@@ -29,7 +27,5 @@ namespace ILANET
         {
             throw new NotImplementedException();
         }
-
-        #endregion Internal Properties
     }
 }
