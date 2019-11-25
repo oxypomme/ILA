@@ -63,12 +63,13 @@ namespace ILANET
             textWriter.Write("return ");
             for (int i = 0; i < Parameters.Count; i++)
             {
-                if ((Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
-                {
-                    if (i != 0)
-                        textWriter.Write(", ");
-                    Parameters[i].WritePython(textWriter);
-                }
+                if (Parameters[i] != null)
+                    if ((Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
+                    {
+                        if (i != 0)
+                            textWriter.Write(", ");
+                        Parameters[i].WritePython(textWriter);
+                    }
             }
             // ident--
         }
