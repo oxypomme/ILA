@@ -18,6 +18,20 @@ namespace ILANET
         /// The description of the comment
         /// </summary>
         public string Message { get; set; }
+        public bool MultiLine { get; set; }
+
+        public void WriteILA(TextWriter textWriter)
+        {
+            Program.GenerateIndent(textWriter);
+            if (MultiLine)
+                textWriter.Write("/*");
+            else
+                textWriter.Write("//");
+            textWriter.Write(Message);
+            if (MultiLine)
+                textWriter.Write("*/");
+            textWriter.WriteLine();
+        }
 
         /// <summary>
         /// True if the comment is multiline (using /* */)

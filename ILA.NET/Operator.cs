@@ -111,6 +111,7 @@ namespace ILANET
         /// Right operand of the operation
         /// </summary>
         public IValue Right { get; set; }
+        public Tag OperatorType { get; set; }
 
         #endregion Public Properties
 
@@ -122,10 +123,81 @@ namespace ILANET
 
         internal VarType Type { get; set; }
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write('(');
+            if (Left != null)
+                Left.WriteILA(textWriter);
+            switch (OperatorType)
+            {
+                case Tag.ADD:
+                    textWriter.Write(" + ");
+                    break;
+
+                case Tag.MINUS:
+                    textWriter.Write("-");
+                    break;
+
+                case Tag.SUB:
+                    textWriter.Write(" - ");
+                    break;
+
+                case Tag.DIV:
+                    textWriter.Write(" / ");
+                    break;
+
+                case Tag.MULT:
+                    textWriter.Write(" * ");
+                    break;
+
+                case Tag.INT_DIV:
+                    textWriter.Write(" div ");
+                    break;
+
+                case Tag.MOD:
+                    textWriter.Write(" mod ");
+                    break;
+
+                case Tag.AND:
+                    textWriter.Write(" et ");
+                    break;
+
+                case Tag.OR:
+                    textWriter.Write(" ou ");
+                    break;
+
+                case Tag.NOT:
+                    textWriter.Write("non ");
+                    break;
+
+                case Tag.EQUAL:
+                    textWriter.Write(" = ");
+                    break;
+
+                case Tag.DIFFRENT:
+                    textWriter.Write(" != ");
+                    break;
+
+                case Tag.BIGGER:
+                    textWriter.Write(" > ");
+                    break;
+
+                case Tag.BIGGER_EQUAL:
+                    textWriter.Write(" >= ");
+                    break;
+
+                case Tag.SMALLER:
+                    textWriter.Write(" < ");
+                    break;
+
+                case Tag.SMALLER_EQUAL:
+                    textWriter.Write(" <= ");
+                    break;
+            }
+            Right.WriteILA(textWriter);
+            textWriter.Write(')');
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

@@ -19,22 +19,13 @@ namespace ILANET
         {
             Name = "ecrire";
             Parameters = new List<Parameter>();
-            Parameters.Add(new Parameter()
-            {
-                ImportedVariable = new Variable()
-                {
-                    Constant = false,
-                    Name = "printed",
-                    Type = null
-                }
-            });
             Instructions = null;
         }
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public override void WriteILA(TextWriter textWriter)
+        {
+        }
+
         public override void WritePython(TextWriter textWriter)
         {
             base.WritePython(textWriter);

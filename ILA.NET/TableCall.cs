@@ -21,16 +21,26 @@ namespace ILANET
         /// Table to call from
         /// </summary>
         public Variable Table { get; set; }
+        public override string Name { get => ""; set { } }
 
         /// <summary>
         /// Type of the element
         /// </summary>
         public override VarType Type { get => ((TableType)Table.Type).InternalType; set => ((TableType)Table.Type).InternalType = value; }
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public override void WriteILA(TextWriter textWriter)
+        {
+            Table.WriteILA(textWriter);
+            textWriter.Write('[');
+            for (int i = 0; i < DimensionsIndex.Count; i++)
+            {
+                if (i > 0)
+                    textWriter.Write(", ");
+                DimensionsIndex[i].WriteILA(textWriter);
+            }
+            textWriter.Write(']');
+        }
+
         public override void WritePython(TextWriter textWriter)
         {
             base.WritePython(textWriter);

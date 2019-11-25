@@ -24,10 +24,19 @@ namespace ILANET
 
         VarType IValue.Type => CalledFunction.ReturnType;
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(CalledFunction.Name);
+            textWriter.Write('(');
+            for (int i = 0; i < Args.Count; i++)
+            {
+                if (i > 0)
+                    textWriter.Write(", ");
+                Args[i].WriteILA(textWriter);
+            }
+            textWriter.Write(')');
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

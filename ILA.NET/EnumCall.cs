@@ -24,10 +24,11 @@ namespace ILANET
 
         VarType IValue.Type => Enum;
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Enum.Values[Index]);
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

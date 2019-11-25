@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ILANET
 {
@@ -23,6 +22,8 @@ namespace ILANET
         /// Integrated comment
         /// </summary>
         public string InlineComment { get; set; }
+        public List<IDeclaration> Declarations { get; set; }
+        IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
 
         Instruction[] IExecutable.Instructions => Instructions.ToArray();
 
@@ -38,10 +39,40 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Internal Properties
-
         string IExecutable.Comment => InlineComment;
-        internal List<Instruction> Instructions { get; set; }
+        public List<Instruction> Instructions { get; set; }
+
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            AboveComment?.WriteILA(textWriter);
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("module ");
+            textWriter.Write(Name);
+            textWriter.Write('(');
+            for (int i = 0; i < Parameters.Count; i++)
+            {
+                if (i > 0)
+                    textWriter.Write(", ");
+                Parameters[i].WriteILA(textWriter);
+            }
+            textWriter.Write(')');
+            if (InlineComment != null && InlineComment.Length > 0)
+            {
+                textWriter.Write(" //");
+                textWriter.Write(InlineComment);
+            }
+            textWriter.WriteLine();
+            foreach (var item in Declarations)
+                item.WriteILA(textWriter);
+            Program.GenerateIndent(textWriter);
+            textWriter.WriteLine('{');
+            Program.ilaIndent++;
+            foreach (var item in Instructions)
+                item.WriteILA(textWriter);
+            Program.ilaIndent--;
+            Program.GenerateIndent(textWriter);
+            textWriter.WriteLine('}');
+        }
 
         /// <summary>
         /// Generate python code to run this element.
@@ -51,7 +82,5 @@ namespace ILANET
         {
             throw new NotImplementedException();
         }
-
-        #endregion Internal Properties
     }
 }

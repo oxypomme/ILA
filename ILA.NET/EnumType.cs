@@ -17,10 +17,11 @@ namespace ILANET
         /// </summary>
         public List<string> Values { get; set; }
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public override void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
+
         public override void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

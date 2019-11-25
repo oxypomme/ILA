@@ -8,7 +8,7 @@ namespace ILANET
     /// <summary>
     /// The read() method, that is the input of the console
     /// </summary>
-    public sealed class Read : Function
+    public sealed class Read : Module
     {
         /// <summary>
         /// The only instance of the method
@@ -19,14 +19,13 @@ namespace ILANET
         {
             Name = "lire";
             Parameters = new List<Parameter>();
-            ReturnType = null;
             Instructions = null;
         }
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public override void WriteILA(TextWriter textWriter)
+        {
+        }
+
         public override void WritePython(TextWriter textWriter)
         {
             base.WritePython(textWriter);

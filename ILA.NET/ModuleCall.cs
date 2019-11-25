@@ -29,10 +29,29 @@ namespace ILANET
 
         string Instruction.Comment => Comment;
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public void WriteILA(TextWriter textWriter)
+        {
+            Program.GenerateIndent(textWriter);
+            textWriter.Write(CalledModule.Name);
+            textWriter.Write('(');
+            for (int i = 0; i < Args.Count; i++)
+            {
+                if (Args[i] != null)
+                {
+                    if (i > 0)
+                        textWriter.Write(", ");
+                    Args[i].WriteILA(textWriter);
+                }
+            }
+            textWriter.Write(')');
+            if (Comment != null && Comment.Length > 0)
+            {
+                textWriter.Write(" //");
+                textWriter.Write(Comment);
+            }
+            textWriter.WriteLine();
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

@@ -25,6 +25,7 @@ namespace ILANET
         /// Block of instructions
         /// </summary>
         public Instruction[] Instructions { get; }
+        public string Name { get; }
 
         #endregion Public Properties
     }

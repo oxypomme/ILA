@@ -38,15 +38,15 @@ namespace ILANET
         /// </summary>
         public virtual VarType Type { get; set; }
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
+
         public virtual void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
         }
-
-        #endregion Internal Properties
     }
 }

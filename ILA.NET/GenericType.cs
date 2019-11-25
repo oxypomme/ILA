@@ -71,10 +71,32 @@ namespace ILANET
 
         private Flags Type { get; set; }
 
-        /// <summary>
-        /// Generate python code to run this element.
-        /// </summary>
-        /// <param name="textWriter">TextWriter to write in.</param>
+        public override void WriteILA(TextWriter textWriter)
+        {
+            switch (Type)
+            {
+                case Flags.BOOL:
+                    textWriter.Write("booleen");
+                    break;
+
+                case Flags.INT:
+                    textWriter.Write("entier");
+                    break;
+
+                case Flags.FLOAT:
+                    textWriter.Write("reel");
+                    break;
+
+                case Flags.CHAR:
+                    textWriter.Write("caractere");
+                    break;
+
+                case Flags.STRING:
+                    textWriter.Write("chaine");
+                    break;
+            }
+        }
+
         public override void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();
