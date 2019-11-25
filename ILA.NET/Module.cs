@@ -58,20 +58,22 @@ namespace ILANET
             }
 
             // return out vars
-            Program.Indent++;
-            Program.GenerateIndent(textWriter);
-            textWriter.Write("return ");
-            for (int i = 0; i < Parameters.Count; i++)
+            if (!(Instructions[Instructions.Count - 1] is Return))
             {
-                if (Parameters[i] != null)
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("return ");
+                for (int i = 0; i < Parameters.Count; i++)
+                {
                     if ((Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
                     {
-                        if (i != 0)
-                            textWriter.Write(", ");
                         Parameters[i].WritePython(textWriter);
+                        if (i < Parameters.Count)
+                            textWriter.Write(", ");
                     }
+                }
+                Program.Indent--;
             }
-            Program.Indent--;
         }
     }
 }
