@@ -431,6 +431,7 @@ namespace ILANET.Parser
                     {
                         if (item == '-')
                         {
+                            Console.WriteLine(p.CodeInside);
                             if (lastCharIsOperator)
                                 copy += '◙';
                             else
@@ -443,6 +444,7 @@ namespace ILANET.Parser
                     else
                         copy += item;
                 }
+                p.CodeInside = copy;
             }
             if (p.FunctionName == null)
             {
