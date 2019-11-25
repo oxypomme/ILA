@@ -133,9 +133,12 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
-            textWriter.Write('(');
+            Console.WriteLine(OperatorType);
             if (Left != null)
+            {
+                textWriter.Write('(');
                 Left.WriteILA(textWriter);
+            }
             switch (OperatorType)
             {
                 case Tag.ADD:
@@ -203,7 +206,8 @@ namespace ILANET
                     break;
             }
             Right.WriteILA(textWriter);
-            textWriter.Write(')');
+            if (Left != null)
+                textWriter.Write(')');
         }
 
         /// <summary>

@@ -454,6 +454,7 @@ namespace ILANET.Parser
                     else
                         copy += item;
                 }
+                p.CodeInside = copy;
             }
             if (p.FunctionName == null)
             {
