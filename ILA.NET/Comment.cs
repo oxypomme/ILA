@@ -9,11 +9,22 @@ namespace ILANET
     {
         #region Public Properties
 
-
+        string Instruction.Comment => Message;
+        public string Message { get; set; }
         public bool MultiLine { get; set; }
 
-        public string Message { get; set; }
-        string Instruction.Comment => Message;
+        public void WriteILA(TextWriter textWriter)
+        {
+            Program.GenerateIndent(textWriter);
+            if (MultiLine)
+                textWriter.Write("/*");
+            else
+                textWriter.Write("//");
+            textWriter.Write(Message);
+            if (MultiLine)
+                textWriter.Write("*/");
+            textWriter.WriteLine();
+        }
 
         public void WritePython(TextWriter textWriter)
         {

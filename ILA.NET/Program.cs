@@ -9,6 +9,8 @@ namespace ILANET
     {
         #region Public Properties
 
+        internal static int ilaIndent;
+        internal static int IndentMultiplier = 4;
         Comment IExecutable.AboveComment => AlgoComment;
         public Comment AlgoComment { get; set; }
         string IExecutable.Comment => InlineComment;
@@ -27,6 +29,35 @@ namespace ILANET
 
         #region Public Methods
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            ilaIndent = 0;
+            foreach (var item in FileComments)
+                item.WriteILA(textWriter);
+            foreach (var item in Declarations)
+                item.WriteILA(textWriter);
+            foreach (var item in Methods)
+                item.WriteILA(textWriter);
+            AlgoComment?.WriteILA(textWriter);
+            GenerateIndent(textWriter);
+            textWriter.Write("algo ");
+            textWriter.Write(Name);
+            if (InlineComment != null && InlineComment.Length > 0)
+            {
+                textWriter.Write(" //");
+                textWriter.Write(InlineComment);
+            }
+            textWriter.WriteLine();
+            GenerateIndent(textWriter);
+            textWriter.WriteLine('{');
+            ilaIndent++;
+            foreach (var item in Instructions)
+                item.WriteILA(textWriter);
+            ilaIndent--;
+            GenerateIndent(textWriter);
+            textWriter.WriteLine('}');
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             /*
@@ -34,6 +65,12 @@ namespace ILANET
              * qui ne doivent pas être définies
              */
             throw new NotImplementedException();
+        }
+
+        internal static void GenerateIndent(TextWriter textWriter)
+        {
+            for (int i = 0; i < ilaIndent * IndentMultiplier; i++)
+                textWriter.Write(' ');
         }
 
         #endregion Public Methods

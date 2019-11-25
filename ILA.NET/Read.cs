@@ -16,6 +16,10 @@ namespace ILANET
             Instructions = null;
         }
 
+        public override void WriteILA(TextWriter textWriter)
+        {
+        }
+
         public override void WritePython(TextWriter textWriter)
         {
             base.WritePython(textWriter);

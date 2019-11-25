@@ -28,6 +28,13 @@ namespace ILANET
 
         public string Value { get; set; }
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write('"');
+            textWriter.Write(Value);
+            textWriter.Write('"');
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

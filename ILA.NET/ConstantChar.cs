@@ -27,6 +27,13 @@ namespace ILANET
         VarType IValue.Type { get => Type; }
         public char Value { get; set; }
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write('\'');
+            textWriter.Write(Value);
+            textWriter.Write('\'');
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

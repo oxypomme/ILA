@@ -13,6 +13,11 @@ namespace ILANET
         public int Index { get; set; }
         VarType IValue.Type => Enum;
 
+        public void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Enum.Values[Index]);
+        }
+
         public void WritePython(TextWriter textWriter)
         {
             throw new NotImplementedException();

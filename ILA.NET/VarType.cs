@@ -11,6 +11,11 @@ namespace ILANET
 
         public virtual string Name { get; set; }
 
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
+
         public abstract void WritePython(TextWriter textWriter);
 
         #endregion Public Properties

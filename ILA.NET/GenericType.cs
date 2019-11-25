@@ -18,9 +18,12 @@ namespace ILANET
         #endregion Public Fields
 
         #region Private Constructors
+
         internal string name;
-        public override string Name { get => name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
+
         private GenericType(Flags type) => Type = type;
+
+        public override string Name { get => name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
 
         #endregion Private Constructors
 
@@ -37,13 +40,37 @@ namespace ILANET
 
         #endregion Public Enums
 
-        #region Protected Properties
 
-        #endregion Protected Properties
 
         #region Private Properties
 
         private Flags Type { get; set; }
+
+        public override void WriteILA(TextWriter textWriter)
+        {
+            switch (Type)
+            {
+                case Flags.BOOL:
+                    textWriter.Write("booleen");
+                    break;
+
+                case Flags.INT:
+                    textWriter.Write("entier");
+                    break;
+
+                case Flags.FLOAT:
+                    textWriter.Write("reel");
+                    break;
+
+                case Flags.CHAR:
+                    textWriter.Write("caractere");
+                    break;
+
+                case Flags.STRING:
+                    textWriter.Write("chaine");
+                    break;
+            }
+        }
 
         public override void WritePython(TextWriter textWriter)
         {
