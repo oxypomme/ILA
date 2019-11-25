@@ -72,6 +72,7 @@ namespace ILANET
                             textWriter.Write(", ");
                     }
                 }
+                textWriter.Write("\n");
                 Program.Indent--;
             }
         }
