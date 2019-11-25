@@ -17,7 +17,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            //x .generateIndent()
+            Program.GenerateIndent(textWriter);
             textWriter.Write("while True :\n");
             foreach (var instruction in Instructions)
             {
@@ -27,14 +27,14 @@ namespace ILANET
                 Program.Indent--;
             }
             Program.Indent++;
-            //x .generateIndent()
+            Program.GenerateIndent(textWriter);
             textWriter.Write("if not (");
             Condition.WritePython(textWriter);
             textWriter.Write(") :\n");
             Program.Indent++;
-            //x .generateIndent()
+            Program.GenerateIndent(textWriter);
             textWriter.Write("break \n");
-            // ident-=2
+            Program.Indent -= 2;
         }
 
         #endregion Public Properties
