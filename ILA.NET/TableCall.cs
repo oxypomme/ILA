@@ -29,7 +29,15 @@ namespace ILANET
 
         public override void WritePython(TextWriter textWriter)
         {
-            base.WritePython(textWriter);
+            Table.WritePython(textWriter);
+            textWriter.Write('[');
+            for (int i = 0; i < DimensionsIndex.Count; i++)
+            {
+                if (i > 0)
+                    textWriter.Write("][");
+                DimensionsIndex[i].WritePython(textWriter);
+            }
+            textWriter.Write(']');
         }
 
         #endregion Public Properties

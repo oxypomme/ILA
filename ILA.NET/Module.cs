@@ -100,7 +100,7 @@ namespace ILANET
                     if ((Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0)
                     {
                         Parameters[i].WritePython(textWriter);
-                        if (i < Parameters.Count)
+                        if (i < Parameters.Count - 1)
                             textWriter.Write(", ");
                     }
                 }
