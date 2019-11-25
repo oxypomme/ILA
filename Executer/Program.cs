@@ -91,6 +91,9 @@ algo Carre
 ");
             using (var file = new StreamWriter("out.ila"))
                 prg.WriteILA(file);
+
+            using (var file = new StreamWriter("python_generated.py"))
+                prg.WritePython(file);
         }
 
         #endregion Private Methods
