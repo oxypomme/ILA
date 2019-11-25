@@ -22,10 +22,18 @@ namespace ILANET
             Instructions = null;
         }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WriteILA(TextWriter textWriter)
         {
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         {
             base.WritePython(textWriter);

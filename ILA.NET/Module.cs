@@ -18,6 +18,9 @@ namespace ILANET
 
         Comment IExecutable.AboveComment => AboveComment;
 
+        /// <summary>
+        /// The variable declarations of this module
+        /// </summary>
         public List<IDeclaration> Declarations { get; set; }
 
         /// <summary>
@@ -41,8 +44,16 @@ namespace ILANET
 
         string IExecutable.Comment => InlineComment;
         IDeclaration[] IExecutable.Declarations => Declarations.ToArray();
+
+        /// <summary>
+        /// The instructions of the module
+        /// </summary>
         public List<Instruction> Instructions { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public virtual void WriteILA(TextWriter textWriter)
         {
             AboveComment?.WriteILA(textWriter);

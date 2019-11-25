@@ -8,6 +8,11 @@ namespace ILANET.Parser
     {
         #region Public Methods
 
+        /// <summary>
+        /// Parse the ila code and returns the structure of the code
+        /// </summary>
+        /// <param name="ilaCode">code to parse</param>
+        /// <returns>structure of the code</returns>
         public static Program Parse(string ilaCode)
         {
             //quick fix to avoid crashes because my code sucks lmao

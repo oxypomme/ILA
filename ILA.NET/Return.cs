@@ -14,16 +14,29 @@ namespace ILANET
         /// Integrated comment
         /// </summary>
         public string Comment { get; set; }
-        string Instruction.Comment => Comment;
-        public Function Function { get; set; }
-        public IValue Type { get; set; }
 
+        string Instruction.Comment => Comment;
+
+        /// <summary>
+        /// The function from which this instruction is called
+        /// </summary>
+        public Function Function { get; set; }
+
+        /// <summary>
+        /// Value to return
+        /// </summary>
+        public IValue Value { get; set; }
+
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             Program.GenerateIndent(textWriter);
             textWriter.Write(Function.Name);
             textWriter.Write(" <- ");
-            Type.WriteILA(textWriter);
+            Value.WriteILA(textWriter);
             if (Comment != null && Comment.Length > 0)
             {
                 textWriter.Write(" //");
@@ -31,11 +44,6 @@ namespace ILANET
             }
             textWriter.WriteLine();
         }
-
-        /// <summary>
-        /// Value to return
-        /// </summary>
-        public IValue Value { get; set; }
 
         /// <summary>
         /// Generate python code to run this element.
