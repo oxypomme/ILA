@@ -639,12 +639,11 @@ namespace ILANET.Parser
                                         switch (item2)
                                         {
                                             case 'e':
-                                                parameter.Mode |= Parameter.Flags.INPUT;
+                                                parameter.Mode = Parameter.Flags.INPUT;
                                                 break;
 
                                             case 's':
-                                                parameter.Mode |= Parameter.Flags.OUTPUT;
-                                                break;
+                                                throw new ILAException("Impossible de déclarer une fonction avec des arguments de sortie");
 
                                             default:
                                                 throw new ILAException("Mode de paramètre '" + item2 + "' inconnu ");
