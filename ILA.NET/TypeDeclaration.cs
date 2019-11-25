@@ -30,7 +30,7 @@ namespace ILANET
                 textWriter.Write(" = []\n");
 
                 //x .generateIdent()
-                for (int i = 0; i <= table.DimensionsSize.Count; i++)
+                for (int i = 0; i < table.DimensionsSize.Count; i++)
                 {
                     //x .generateIdent()
                     indexList.Add("index" + i);
