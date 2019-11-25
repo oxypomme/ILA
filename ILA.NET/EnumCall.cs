@@ -20,7 +20,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            textWriter.Write(Index);
+            textWriter.Write(Enum.Values[Index]);
         }
 
         #endregion Public Properties
