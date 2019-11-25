@@ -16,8 +16,7 @@ namespace ILANET
 
         public void WritePython(TextWriter textWriter)
         {
-            CalledFunction.WritePython(textWriter);
-            textWriter.Write(" (");
+            textWriter.Write(CalledFunction.Name + "(");
             for (int i = 0; i < Args.Count; i++)
             {
                 if (i != 0)
