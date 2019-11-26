@@ -155,9 +155,7 @@ namespace ILANET
             if (ElseInstructions != null && ElseInstructions.Count > 0)
             {
                 Program.GenerateIndent(textWriter);
-                textWriter.Write("else (");
-                IfCondition.WritePython(textWriter);
-                textWriter.Write(") :\n");
+                textWriter.Write("else:\n");
 
                 foreach (var instruction in ElseInstructions)
                 {

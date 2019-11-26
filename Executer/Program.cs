@@ -35,7 +35,10 @@ namespace Executer
 
                         case "-ila": //debug only
                             if (lastModifIsRun)
-                                throw new Exception("Can't run in ILA");
+                            {
+                                Console.WriteLine("Error : Can't run a file with an engine that is not supported");
+                                return;
+                            }
                             else
                                 build = ILA;
                             break;
@@ -54,7 +57,10 @@ namespace Executer
                             if (!lastModifIsRun)
                                 buildPath = arg;
                             else
-                                throw new Exception("Unknown parameter '" + arg + "'");
+                            {
+                                Console.WriteLine("Error : Unknown parameter '" + arg + "'");
+                                return;
+                            }
                             break;
                     }
                     index++;
@@ -62,31 +68,42 @@ namespace Executer
                 if (run == NOTHING && build == NOTHING)
                     run = PYTHON;
                 if (build != NOTHING && buildPath == null)
-                    throw new Exception("No path specified for the build");
-                switch (build)
+                    Console.WriteLine("Error : No path specified");
+                try
                 {
-                    case PYTHON:
-                        using (var stream = new StreamReader(file))
-                        using (var output = new StreamWriter(buildPath))
-                            Parser.Parse(stream.ReadToEnd()).WritePython(output);
-                        break;
+                    switch (build)
+                    {
+                        case PYTHON:
+                            using (var stream = new StreamReader(file))
+                            using (var output = new StreamWriter(buildPath))
+                                Parser.Parse(stream.ReadToEnd()).WritePython(output);
+                            break;
 
-                    case ILA:
-                        using (var stream = new StreamReader(file))
-                        using (var output = new StreamWriter(buildPath))
-                            Parser.Parse(stream.ReadToEnd()).WriteILA(output);
-                        break;
+                        case ILA:
+                            using (var stream = new StreamReader(file))
+                            using (var output = new StreamWriter(buildPath))
+                                Parser.Parse(stream.ReadToEnd()).WriteILA(output);
+                            break;
+                    }
+                    switch (run)
+                    {
+                        case PYTHON:
+                            {
+                                var engine = IronPython.Hosting.Python.CreateEngine();
+                                using (var stream = new StreamReader(file))
+                                {
+                                    var pythonCode = new StringWriter();
+                                    Parser.Parse(stream.ReadToEnd()).WritePython(pythonCode);
+                                    var source = engine.CreateScriptSourceFromString(pythonCode.ToString());
+                                    source.Execute();
+                                }
+                            }
+                            break;
+                    }
                 }
-                switch (run)
+                catch (Parser.ILAException e)
                 {
-                    case PYTHON:
-                        using (var stream = new StreamReader(file))
-                        {
-                            var pythonCode = new StringWriter();
-                            Parser.Parse(stream.ReadToEnd()).WritePython(pythonCode);
-                            //run that thing
-                        }
-                        break;
+                    Console.WriteLine(e.Message);
                 }
             }
             else
