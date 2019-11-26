@@ -151,6 +151,17 @@ namespace ILANET
                     Program.Indent--;
                 }
             }
+            else if (CreatedType is EnumType Enum)
+            {
+                Program.GenerateIndent(textWriter);
+                Enum.WritePython(textWriter);
+                textWriter.Write(" = [");
+                for (int i = 0; i < Enum.Values.Count; i++)
+                {
+                    textWriter.Write("\"" + Enum.Values[i] + "\"" + (i < (Enum.Values.Count - 1) ? ", " : ""));
+                }
+                textWriter.Write("]\n");
+            }
         }
     }
 }
