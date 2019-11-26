@@ -431,7 +431,25 @@ namespace ILANET.Parser
             p.CodeInside = p.CodeInside.Replace(" div ", "♠");
             p.CodeInside = p.CodeInside.Replace(" et ", "•");
             p.CodeInside = p.CodeInside.Replace(" ou ", "◘");
-            p.CodeInside = p.CodeInside.Replace(" non ", "○");
+            {
+                //unary "non" detection
+                string copy = "";
+                var lastChar = false;
+                for (int i = 0; i < p.CodeInside.Length - 4; i++)
+                {
+                    var item = p.CodeInside[i];
+                    if (p.CodeInside.Substring(i, 3) == "non" && !lastChar && !IsLetter(p.CodeInside[i + 3]))
+                    {
+                        copy += '○';
+                        i += 3;
+                    }
+                    else
+                        copy += item;
+                    lastChar = IsLetter(item);
+                }
+                copy += p.CodeInside.Substring(Max(0, p.CodeInside.Length - 4));
+                p.CodeInside = copy;
+            }
             {
                 //unary '-' detection
                 bool lastCharIsOperator = true;
