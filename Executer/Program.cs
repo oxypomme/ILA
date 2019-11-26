@@ -21,16 +21,16 @@ algo main
 }
 fonction test_bool(var:booleen) : booleen
 {
-    si var = vrai alors
+    si var = parse(""true"") alors
         test_bool<- non test_bool(non var)
     sinon
         test_bool<- var = parse(""true"")
     fsi
-   }
+}
 fonction parse(str:chaine) : booleen
 {
-    si(str = ""true"") = vrai alors
-        parse<- parse(""faux"")
+    si (str = ""true"") != faux alors
+        parse<- non parse(""faux"")
     sinon
         parse<- faux = vrai
     fsi
