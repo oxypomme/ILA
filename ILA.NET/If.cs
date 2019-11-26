@@ -70,10 +70,10 @@ namespace ILANET
                 textWriter.Write(Comment);
             }
             textWriter.WriteLine();
-            Program.ilaIndent++;
+            Program.Indent++;
             foreach (var item in IfInstructions)
                 item.WriteILA(textWriter);
-            Program.ilaIndent--;
+            Program.Indent--;
             for (int i = 0; i < Elif.Count; i++)
             {
                 var item = Elif[i];
@@ -87,10 +87,10 @@ namespace ILANET
                     textWriter.Write(ElifComments[i]);
                 }
                 textWriter.WriteLine();
-                Program.ilaIndent++;
+                Program.Indent++;
                 foreach (var item2 in item.Item2)
                     item2.WriteILA(textWriter);
-                Program.ilaIndent--;
+                Program.Indent--;
             }
             if (ElseInstructions != null && ElseInstructions.Count > 0)
             {
@@ -102,10 +102,10 @@ namespace ILANET
                     textWriter.Write(ElseComment);
                 }
                 textWriter.WriteLine();
-                Program.ilaIndent++;
+                Program.Indent++;
                 foreach (var item in ElseInstructions)
                     item.WriteILA(textWriter);
-                Program.ilaIndent--;
+                Program.Indent--;
             }
             Program.GenerateIndent(textWriter);
             textWriter.Write("fsi");
@@ -123,7 +123,50 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("if (");
+            IfCondition.WritePython(textWriter);
+            textWriter.Write(") :\n");
+
+            foreach (var instruction in IfInstructions)
+            {
+                Program.Indent++;
+                instruction.WritePython(textWriter);
+                textWriter.Write("\n");
+                Program.Indent--;
+            }
+
+            foreach (var elif in Elif)
+            {
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("elif");
+                IfCondition.WritePython(textWriter);
+                textWriter.Write(") :\n");
+
+                foreach (var instruction in elif.Item2)
+                {
+                    Program.Indent++;
+                    instruction.WritePython(textWriter);
+                    textWriter.Write("\n");
+                    Program.Indent--;
+                }
+            }
+
+            if (ElseInstructions != null && ElseInstructions.Count > 0)
+            {
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("else (");
+                IfCondition.WritePython(textWriter);
+                textWriter.Write(") :\n");
+
+                foreach (var instruction in ElseInstructions)
+                {
+                    Program.Indent++;
+                    instruction.WritePython(textWriter);
+                    textWriter.Write("\n");
+                    Program.Indent--;
+                }
+            }
         }
 
         #endregion Public Properties

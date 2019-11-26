@@ -51,7 +51,10 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("return ");
+            Value.WritePython(textWriter);
+            textWriter.Write("\n");
         }
     }
 }
