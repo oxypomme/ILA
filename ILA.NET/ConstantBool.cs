@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ILANET
 {
+    /// <summary>
+    /// A hard coded bool value
+    /// </summary>
     public class ConstantBool : IValue
     {
         #region Internal Fields
@@ -15,6 +18,9 @@ namespace ILANET
 
         #region Public Constructors
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ConstantBool()
         {
             Type = GenericType.Bool;
@@ -25,13 +31,25 @@ namespace ILANET
         #region Public Properties
 
         VarType IValue.Type => Type;
+
+        /// <summary>
+        /// Value of the bool
+        /// </summary>
         public bool Value { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             textWriter.Write(Value ? "vrai" : "faux");
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
             textWriter.Write(Value.ToString());

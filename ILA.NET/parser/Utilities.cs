@@ -60,10 +60,18 @@ namespace ILANET.Parser
                 throw new ILAException("Erreur : programme non terminé");
         }
 
+        /// <summary>
+        /// This is the type of exception thrown by this assembly
+        /// </summary>
         public class ILAException : Exception
         {
             #region Public Constructors
 
+            /// <summary>
+            /// Constructor
+            /// </summary>
+            /// <param name="mess">Message of the Exception</param>
+            /// <param name="inner">Inner Exception</param>
             public ILAException(string mess = "", Exception inner = null) : base(mess, inner)
             {
             }

@@ -5,8 +5,19 @@ using System.Linq;
 
 namespace ILANET.Parser
 {
-    public partial class Parser
+    /// <summary>
+    /// The parser has all the methods to generate the structure from ILA code
+    /// </summary>
+    public static partial class Parser
     {
+        /// <summary>
+        /// parse a string and returns the corresponding IValue
+        /// </summary>
+        /// <param name="code">string to parse</param>
+        /// <param name="mainProg">Program where this value is</param>
+        /// <param name="currentBlock">IExecutable where this value is</param>
+        /// <param name="constLock">True if it throw an Exception if the value isn't constant</param>
+        /// <returns>The corresponding IValue</returns>
         public static IValue ParseValue(string code, Program mainProg, IExecutable currentBlock, bool constLock = false)
         {
             var decomposed = Parenthesis.Generate(code);
@@ -177,36 +188,20 @@ namespace ILANET.Parser
                                             }
                                         }
                                         //variable
-                                        if (constLock)
-                                            throw new ILAException("Erreur impossible de donner une valeur non constante");
-                                        if (n.Length < code.Length && code[n.Length] == '.')
+                                        index = -1;
                                         {
-                                            //struct call
-                                            var child = "";
-                                            int j = n.Length + 1;
-                                            while (IsLetterOrDigit(code[j]) || code[j] == '.')
+                                            int opened = 0;
+                                            for (int j = 0; j < code.Length; j++)
                                             {
-                                                child += code[j++];
-                                                if (j == code.Length)
-                                                    break;
+                                                if ((code[j] == '[' || code[j] == '.') && opened == 0)
+                                                    index = j;
+                                                if (code[j] == '[')
+                                                    opened++;
+                                                if (code[j] == ']')
+                                                    opened--;
                                             }
-                                            foreach (var item in currentBlock.Declarations)
-                                            {
-                                                if (item is VariableDeclaration vd && vd.CreatedVariable.Type is StructType)
-                                                {
-                                                    if (vd.CreatedVariable.Name == n)
-                                                        return new StructCall() { Constant = false, Name = child, Struct = vd.CreatedVariable };
-                                                }
-                                            }
-                                            if (currentBlock is Module m)
-                                                foreach (var par in m.Parameters)
-                                                {
-                                                    if (par.ImportedVariable.Name == n)
-                                                        return new StructCall() { Constant = false, Name = child, Struct = par.ImportedVariable };
-                                                }
-                                            throw new ILAException("Erreur : variable '" + n + "' introuvable dans cette portée");
                                         }
-                                        else
+                                        if (index == -1)
                                         {
                                             //simple variable
                                             foreach (var decl in currentBlock.Declarations)
@@ -221,6 +216,58 @@ namespace ILANET.Parser
                                                         return par.ImportedVariable;
                                                 }
                                             throw new ILAException("Aucune variable nommée '" + n + "' trouvée");
+                                        }
+                                        else if (code[index] == '.')
+                                        {
+                                            //struct call
+                                            if (constLock)
+                                                throw new ILAException("Erreur impossible de donner une valeur non constante");
+                                            var left = code.Substring(0, index);
+                                            var right = code.Substring(index + 1);
+                                            var leftVar = ParseValue(left, mainProg, currentBlock, constLock) as Variable;
+                                            return new StructCall()
+                                            {
+                                                Constant = false,
+                                                Name = right,
+                                                Struct = leftVar
+                                            };
+                                            throw new ILAException("Erreur : variable '" + n + "' introuvable dans cette portée");
+                                        }
+                                        else
+                                        {
+                                            //table call
+                                            if (constLock)
+                                                throw new ILAException("Erreur impossible de donner une valeur non constante");
+                                            var left = code.Substring(0, index);
+                                            var right = code.Substring(index + 1);
+                                            var leftVar = ParseValue(left, mainProg, currentBlock, constLock) as Variable;
+                                            var opened = 0;
+                                            var args = new List<string>();
+                                            var currentArg = "";
+                                            int j = 0;
+                                            while (right[j] != ']' || opened > 0)
+                                            {
+                                                if (right[j] == '[')
+                                                    opened++;
+                                                if (right[j] == ']')
+                                                    opened--;
+                                                if (opened == 0 && right[j] == ',')
+                                                {
+                                                    args.Add(currentArg);
+                                                    currentArg = "";
+                                                }
+                                                else
+                                                    currentArg += right[j];
+                                                j++;
+                                            }
+                                            args.Add(currentArg);
+                                            return new TableCall()
+                                            {
+                                                Constant = false,
+                                                Table = leftVar,
+                                                DimensionsIndex = args.Select(a => ParseValue(a, mainProg, currentBlock, constLock)).ToList()
+                                            };
+                                            throw new ILAException("Erreur : variable '" + n + "' introuvable dans cette portée");
                                         }
                                     }
                                     else
@@ -420,7 +467,25 @@ namespace ILANET.Parser
             p.CodeInside = p.CodeInside.Replace(" div ", "♠");
             p.CodeInside = p.CodeInside.Replace(" et ", "•");
             p.CodeInside = p.CodeInside.Replace(" ou ", "◘");
-            p.CodeInside = p.CodeInside.Replace(" non ", "○");
+            {
+                //unary "non" detection
+                string copy = "";
+                var lastChar = false;
+                for (int i = 0; i < p.CodeInside.Length - 4; i++)
+                {
+                    var item = p.CodeInside[i];
+                    if (p.CodeInside.Substring(i, 3) == "non" && !lastChar && !IsLetter(p.CodeInside[i + 3]))
+                    {
+                        copy += '○';
+                        i += 3;
+                    }
+                    else
+                        copy += item;
+                    lastChar = IsLetter(item);
+                }
+                copy += p.CodeInside.Substring(Max(0, p.CodeInside.Length - 4));
+                p.CodeInside = copy;
+            }
             {
                 //unary '-' detection
                 bool lastCharIsOperator = true;
@@ -532,54 +597,6 @@ namespace ILANET.Parser
                             res.RecursiveParenthesis.Add(parenthesis);
                             res.CodeInside += " ?" + nb.ToString("0000") + " ";
                         }
-                    }
-                    else if (code[index] == '[')
-                    {
-                        var parenthesis = new Parenthesis();
-                        parenthesis.CodeInside = "";
-                        parenthesis.FunctionName = null;
-                        parenthesis.TabIndexes = new List<Parenthesis>();
-                        {
-                            int i = index - 1;
-                            parenthesis.TabName = "";
-                            while (i >= 0 && IsLetterOrDigit(code[i]))
-                                parenthesis.TabName = code[i--] + parenthesis.TabName;
-                            res.CodeInside = res.CodeInside.Substring(0, res.CodeInside.Length - parenthesis.TabName.Length);
-                            string tableIndex = "";
-                            index++;
-                            int opened = 0;
-                            while (code[index] != ']' || opened > 0)
-                            {
-                                if (code[index] == '[')
-                                    opened++;
-                                else if (code[index] == ']')
-                                    opened--;
-                                tableIndex += code[index++];
-                            }
-                            var args = new List<string>();
-                            opened = 0;
-                            var currExpr = "";
-                            foreach (var item in tableIndex)
-                            {
-                                if (item == '[' || item == '(')
-                                    opened++;
-                                else if (item == ']' || item == ')')
-                                    opened--;
-                                if (opened == 0 && item == ',')
-                                {
-                                    args.Add(currExpr);
-                                    currExpr = "";
-                                }
-                                else
-                                    currExpr += item;
-                            }
-                            args.Add(currExpr);
-                            foreach (var item in args)
-                                parenthesis.TabIndexes.Add(Generate(item));
-                        }
-                        int nb = res.RecursiveParenthesis.Count;
-                        res.RecursiveParenthesis.Add(parenthesis);
-                        res.CodeInside += " ?" + nb.ToString("0000") + " ";
                     }
                     else
                         res.CodeInside += code[index];

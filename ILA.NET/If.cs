@@ -5,24 +5,59 @@ using System.Text;
 
 namespace ILANET
 {
-    internal class If : Instruction
+    /// <summary>
+    /// A conditionnal block of instructions
+    /// </summary>
+    public class If : Instruction
     {
         #region Public Properties
 
+        /// <summary>
+        /// Integrated comment
+        /// </summary>
         public string Comment { get; set; }
 
         string Instruction.Comment => Comment;
 
-        //List<...> => Liste de else, IValue => Condition, List<Instruction> => Bloc
+        /// <summary>
+        /// Else if condition and block of instructions
+        /// </summary>
         public List<Tuple<IValue, List<Instruction>>> Elif { get; set; }
 
+        /// <summary>
+        /// The comments after the different Elif
+        /// </summary>
         public List<string> ElifComments { get; set; }
+
+        /// <summary>
+        /// The comment after the else tag
+        /// </summary>
         public string ElseComment { get; set; }
+
+        /// <summary>
+        /// Else block of instructions
+        /// </summary>
         public List<Instruction> ElseInstructions { get; set; }
+
+        /// <summary>
+        /// The commend after the end tag
+        /// </summary>
         public string EndComment { get; set; }
+
+        /// <summary>
+        /// Condition of the main block
+        /// </summary>
         public IValue IfCondition { get; set; }
+
+        /// <summary>
+        /// Main block of instructions
+        /// </summary>
         public List<Instruction> IfInstructions { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             Program.GenerateIndent(textWriter);
@@ -35,10 +70,10 @@ namespace ILANET
                 textWriter.Write(Comment);
             }
             textWriter.WriteLine();
-            Program.Indent++;
+            Program.ilaIndent++;
             foreach (var item in IfInstructions)
                 item.WriteILA(textWriter);
-            Program.Indent--;
+            Program.ilaIndent--;
             for (int i = 0; i < Elif.Count; i++)
             {
                 var item = Elif[i];
@@ -52,10 +87,10 @@ namespace ILANET
                     textWriter.Write(ElifComments[i]);
                 }
                 textWriter.WriteLine();
-                Program.Indent++;
+                Program.ilaIndent++;
                 foreach (var item2 in item.Item2)
                     item2.WriteILA(textWriter);
-                Program.Indent--;
+                Program.ilaIndent--;
             }
             if (ElseInstructions != null && ElseInstructions.Count > 0)
             {
@@ -67,10 +102,10 @@ namespace ILANET
                     textWriter.Write(ElseComment);
                 }
                 textWriter.WriteLine();
-                Program.Indent++;
+                Program.ilaIndent++;
                 foreach (var item in ElseInstructions)
                     item.WriteILA(textWriter);
-                Program.Indent--;
+                Program.ilaIndent--;
             }
             Program.GenerateIndent(textWriter);
             textWriter.Write("fsi");
@@ -82,52 +117,13 @@ namespace ILANET
             textWriter.WriteLine();
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
-            Program.GenerateIndent(textWriter);
-            textWriter.Write("if (");
-            IfCondition.WritePython(textWriter);
-            textWriter.Write(") :\n");
-
-            foreach (var instruction in IfInstructions)
-            {
-                Program.Indent++;
-                instruction.WritePython(textWriter);
-                textWriter.Write("\n");
-                Program.Indent--;
-            }
-
-            foreach (var elif in Elif)
-            {
-                Program.GenerateIndent(textWriter);
-                textWriter.Write("elif");
-                IfCondition.WritePython(textWriter);
-                textWriter.Write(") :\n");
-
-                foreach (var instruction in elif.Item2)
-                {
-                    Program.Indent++;
-                    instruction.WritePython(textWriter);
-                    textWriter.Write("\n");
-                    Program.Indent--;
-                }
-            }
-
-            if (ElseInstructions != null && ElseInstructions.Count > 0)
-            {
-                Program.GenerateIndent(textWriter);
-                textWriter.Write("else (");
-                IfCondition.WritePython(textWriter);
-                textWriter.Write(") :\n");
-
-                foreach (var instruction in ElseInstructions)
-                {
-                    Program.Indent++;
-                    instruction.WritePython(textWriter);
-                    textWriter.Write("\n");
-                    Program.Indent--;
-                }
-            }
+            throw new NotImplementedException();
         }
 
         #endregion Public Properties

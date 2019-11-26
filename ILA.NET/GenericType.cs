@@ -5,14 +5,36 @@ using System.Text;
 
 namespace ILANET
 {
+    /// <summary>
+    /// Generic types are the native one, bool char float int string
+    /// </summary>
     public sealed class GenericType : VarType
     {
         #region Public Fields
 
+        /// <summary>
+        /// The bool type
+        /// </summary>
         public static readonly GenericType Bool = new GenericType(Flags.BOOL) { name = "bool" };
+
+        /// <summary>
+        /// The char type
+        /// </summary>
         public static readonly GenericType Char = new GenericType(Flags.CHAR) { name = "char" };
+
+        /// <summary>
+        /// The float type
+        /// </summary>
         public static readonly GenericType Float = new GenericType(Flags.FLOAT) { name = "float" };
+
+        /// <summary>
+        /// The int type
+        /// </summary>
         public static readonly GenericType Int = new GenericType(Flags.INT) { name = "int" };
+
+        /// <summary>
+        /// The string type
+        /// </summary>
         public static readonly GenericType String = new GenericType(Flags.STRING) { name = "string" };
 
         #endregion Public Fields
@@ -23,13 +45,16 @@ namespace ILANET
 
         private GenericType(Flags type) => Type = type;
 
+        /// <summary>
+        /// The name of the type.
+        /// </summary>
         public override string Name { get => name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
 
         #endregion Private Constructors
 
         #region Public Enums
 
-        public enum Flags
+        private enum Flags
         {
             INT,
             FLOAT,
@@ -44,6 +69,10 @@ namespace ILANET
 
         private Flags Type { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WriteILA(TextWriter textWriter)
         {
             switch (Type)
@@ -70,6 +99,10 @@ namespace ILANET
             }
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         { }
 

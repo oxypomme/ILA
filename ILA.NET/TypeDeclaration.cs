@@ -5,24 +5,34 @@ using System.Text;
 
 namespace ILANET
 {
+    /// <summary>
+    /// A declaration of a custom type
+    /// </summary>
     public class TypeDeclaration : IDeclaration
     {
-        #region Public Properties
-
-        public VarType CreatedType { get; set; }
-
-        #endregion Public Properties
-
-        #region Internal Properties
-
-        public string InlineComment { get; set; }
-
-        #endregion Internal Properties
-
+        /// <summary>
+        /// Comment block above this declaration
+        /// </summary>
         public Comment AboveComment { get; set; }
+
         Comment IDeclaration.AboveComment { get => AboveComment; set => AboveComment = value; }
+
         string IDeclaration.Comment { get => InlineComment; set => InlineComment = value; }
 
+        /// <summary>
+        /// The custom type declared
+        /// </summary>
+        public VarType CreatedType { get; set; }
+
+        /// <summary>
+        /// Integrated comment
+        /// </summary>
+        public string InlineComment { get; set; }
+
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             AboveComment?.WriteILA(textWriter);
@@ -99,6 +109,10 @@ namespace ILANET
             textWriter.WriteLine();
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
             if (CreatedType is TableType table)

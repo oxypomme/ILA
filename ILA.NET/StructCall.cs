@@ -5,13 +5,32 @@ using System.Text;
 
 namespace ILANET
 {
+    /// <summary>
+    /// An instruction that calls a subvariable of a struct
+    /// </summary>
     public class StructCall : Variable
     {
         #region Public Properties
 
-        public Variable Struct { get; set; }
-        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => ((StructType)Struct.Type).Members[Name] = value; }
+        /// <summary>
+        /// Name of the member
+        /// </summary>
+        public override string Name { get => base.Name; set => base.Name = value; }
 
+        /// <summary>
+        /// Structure to call from
+        /// </summary>
+        public Variable Struct { get; set; }
+
+        /// <summary>
+        /// Type of the subvariable. read only.
+        /// </summary>
+        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => throw new Parser.Parser.ILAException("Name is not supported on a table call"); }
+
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WriteILA(TextWriter textWriter)
         {
             Struct.WriteILA(textWriter);
@@ -19,6 +38,10 @@ namespace ILANET
             textWriter.Write(Name);
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         {
             Struct.WritePython(textWriter);

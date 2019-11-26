@@ -5,19 +5,38 @@ using System.Text;
 
 namespace ILANET
 {
+    /// <summary>
+    /// A declaration of a variable
+    /// </summary>
     public class VariableDeclaration : IDeclaration
     {
         #region Public Properties
 
+        /// <summary>
+        /// The variable to declare
+        /// </summary>
         public Variable CreatedVariable { get; set; }
 
         #endregion Public Properties
 
+        /// <summary>
+        /// The comment block above this declaration
+        /// </summary>
         public Comment AboveComment { get; set; }
+
         Comment IDeclaration.AboveComment { get => AboveComment; set => AboveComment = value; }
+
         string IDeclaration.Comment { get => InlineComment; set => InlineComment = value; }
+
+        /// <summary>
+        /// Integrated comment
+        /// </summary>
         public string InlineComment { get; set; }
 
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
             AboveComment?.WriteILA(textWriter);
@@ -41,6 +60,10 @@ namespace ILANET
             textWriter.WriteLine();
         }
 
+        /// <summary>
+        /// Generate python code to run this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
             CreatedVariable.WritePython(textWriter);

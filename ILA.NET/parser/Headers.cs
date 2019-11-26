@@ -8,6 +8,11 @@ namespace ILANET.Parser
     {
         #region Public Methods
 
+        /// <summary>
+        /// Parse the ila code and returns the structure of the code
+        /// </summary>
+        /// <param name="ilaCode">code to parse</param>
+        /// <returns>structure of the code</returns>
         public static Program Parse(string ilaCode)
         {
             //quick fix to avoid crashes because my code sucks lmao
@@ -612,7 +617,7 @@ namespace ILANET.Parser
                     }
                     else if (disp.Value is Function fct)
                     {
-                        fct.Declarations = new List<IDeclaration>();
+                        fct.Declarations = new List<VariableDeclaration>();
                         index = disp.Key;
                         if (ilaCode[index] != '(')
                             throw new ILAException("caractère non attendu '" + ilaCode[index] + "'. Caractère attendu : (   ");
@@ -891,94 +896,50 @@ namespace ILANET.Parser
                                 }
                                 else
                                 {
-                                    IDeclaration decl;
+                                    var declaration = new VariableDeclaration();
+                                    var variable = new Variable();
+                                    declaration.CreatedVariable = variable;
+                                    variable.Name = name;
                                     switch (varType)
                                     {
                                         case "entier":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                fct.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Int;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Int;
                                             break;
 
                                         case "reel":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                fct.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Float;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Float;
                                             break;
 
                                         case "caractere":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                fct.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Char;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Char;
                                             break;
 
                                         case "chaine":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                fct.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.String;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.String;
                                             break;
 
                                         case "booleen":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                fct.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Bool;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Bool;
                                             break;
 
                                         case "type":
                                             throw new ILAException("Erreur : impossible de créer un type dans une fonction");
 
                                         default:
+                                            variable.Type = null;
+                                            foreach (var item in returnProg.Declarations)
                                             {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                fct.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = null;
-                                                foreach (var item in returnProg.Declarations)
-                                                {
-                                                    if (item is TypeDeclaration td)
-                                                        if (td.CreatedType.Name == varType)
-                                                            variable.Type = td.CreatedType;
-                                                }
-                                                if (variable.Type == null)
-                                                    throw new ILAException("Erreur : type '" + varType + "' inconnu ");
-                                                variable.Name = name;
+                                                if (item is TypeDeclaration td)
+                                                    if (td.CreatedType.Name == varType)
+                                                        variable.Type = td.CreatedType;
                                             }
+                                            if (variable.Type == null)
+                                                throw new ILAException("Erreur : type '" + varType + "' inconnu ");
                                             break;
                                     }
+                                    fct.Declarations.Add(declaration);
                                     if (lastComment != null)
-                                        decl.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
+                                        declaration.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
                                     lastComment = null;
                                     FastForward(ilaCode, ref index);
                                     if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
@@ -992,10 +953,10 @@ namespace ILANET.Parser
                                             if (index == ilaCode.Length)
                                                 break;
                                         }
-                                        decl.Comment = comm;
+                                        declaration.InlineComment = comm;
                                     }
                                     else
-                                        decl.Comment = "";
+                                        declaration.InlineComment = "";
                                 }
                             }
                             SkipLine(ilaCode, ref index, true);
@@ -1012,7 +973,7 @@ namespace ILANET.Parser
                     }
                     else if (disp.Value is Module module)
                     {
-                        module.Declarations = new List<IDeclaration>();
+                        module.Declarations = new List<VariableDeclaration>();
                         index = disp.Key;
                         if (ilaCode[index] != '(')
                             throw new ILAException("caractère non attendu '" + ilaCode[index] + "'. Caractère attendu : (   ");
@@ -1247,94 +1208,50 @@ namespace ILANET.Parser
                                 }
                                 else
                                 {
-                                    IDeclaration decl;
+                                    var declaration = new VariableDeclaration();
+                                    var variable = new Variable();
+                                    declaration.CreatedVariable = variable;
+                                    variable.Name = name;
                                     switch (varType)
                                     {
                                         case "entier":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                module.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Int;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Int;
                                             break;
 
                                         case "reel":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                module.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Float;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Float;
                                             break;
 
                                         case "caractere":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                module.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Char;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Char;
                                             break;
 
                                         case "chaine":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                module.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.String;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.String;
                                             break;
 
                                         case "booleen":
-                                            {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                module.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = GenericType.Bool;
-                                                variable.Name = name;
-                                            }
+                                            variable.Type = GenericType.Bool;
                                             break;
 
                                         case "type":
                                             throw new ILAException("Erreur : impossible de créer un type dans une fonction");
 
                                         default:
+                                            variable.Type = null;
+                                            foreach (var item in returnProg.Declarations)
                                             {
-                                                var variable = new Variable();
-                                                var declaration = new VariableDeclaration();
-                                                decl = declaration;
-                                                module.Declarations.Add(decl);
-                                                declaration.CreatedVariable = variable;
-                                                variable.Type = null;
-                                                foreach (var item in returnProg.Declarations)
-                                                {
-                                                    if (item is TypeDeclaration td)
-                                                        if (td.CreatedType.Name == varType)
-                                                            variable.Type = td.CreatedType;
-                                                }
-                                                if (variable.Type == null)
-                                                    throw new ILAException("Erreur : type '" + varType + "' inconnu ");
-                                                variable.Name = name;
+                                                if (item is TypeDeclaration td)
+                                                    if (td.CreatedType.Name == varType)
+                                                        variable.Type = td.CreatedType;
                                             }
+                                            if (variable.Type == null)
+                                                throw new ILAException("Erreur : type '" + varType + "' inconnu ");
                                             break;
                                     }
+                                    module.Declarations.Add(declaration);
                                     if (lastComment != null)
-                                        decl.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
+                                        declaration.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
                                     lastComment = null;
                                     FastForward(ilaCode, ref index);
                                     if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
@@ -1348,10 +1265,10 @@ namespace ILANET.Parser
                                             if (index == ilaCode.Length)
                                                 break;
                                         }
-                                        decl.Comment = comm;
+                                        declaration.InlineComment = comm;
                                     }
                                     else
-                                        decl.Comment = "";
+                                        declaration.InlineComment = "";
                                 }
                             }
                             SkipLine(ilaCode, ref index, true);
@@ -1368,17 +1285,19 @@ namespace ILANET.Parser
                     }
                 }
             }
-            catch (FormatException)
-            {
-            }
-            /*catch (ILAException e)
+#if DEBUG
+            catch (FieldAccessException)//dummy exception to never catch anything, and throwing everything to the debugger
+            { }
+#else
+            catch (ILAException e)
             {
                 throw new ILAException(e.Message + " \\ ligne : " + CountRow(ilaCode, index), e);
             }
             catch (Exception e)
             {
                 throw new ILAException("Internal error \\ ligne : " + CountRow(ilaCode, index), e);
-            }*/
+            }
+#endif
             return returnProg;
         }
 
