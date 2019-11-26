@@ -92,8 +92,19 @@ namespace ILANET
                 Program.GenerateIndent(textWriter);
                 for (int i = 0; i < Args.Count; i++)
                 {
-                    Args[i].WritePython(textWriter);
-                    textWriter.Write(" = input()\n");
+                    if (!(Args[i].Type == GenericType.String))
+                    {
+                        Args[i].WritePython(textWriter);
+                        textWriter.Write(" = ");
+                        textWriter.Write(Args[i].Type.Name + "(");
+                        textWriter.Write("input()");
+                        textWriter.Write(")\n");
+                    }
+                    else
+                    {
+                        Args[i].WritePython(textWriter);
+                        textWriter.Write(" = input()\n");
+                    }
                 }
             }
         }
