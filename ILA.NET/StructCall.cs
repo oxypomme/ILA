@@ -13,14 +13,19 @@ namespace ILANET
         #region Public Properties
 
         /// <summary>
+        /// Name of the member
+        /// </summary>
+        public override string Name { get => base.Name; set => base.Name = value; }
+
+        /// <summary>
         /// Structure to call from
         /// </summary>
         public Variable Struct { get; set; }
 
         /// <summary>
-        /// Type of the subvariable
+        /// Type of the subvariable. read only.
         /// </summary>
-        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => ((StructType)Struct.Type).Members[Name] = value; }
+        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => throw new Parser.Parser.ILAException("Name is not supported on a table call"); }
 
         /// <summary>
         /// Generate ila code to for this element.

@@ -18,9 +18,17 @@ namespace ILANET
         public List<IValue> DimensionsIndex { get; set; }
 
         /// <summary>
-        /// Returns nothing
+        /// Not supported on a table call
         /// </summary>
-        public override string Name { get => ""; set { } }
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.Bindable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public override string Name
+        {
+            get => throw new Parser.Parser.ILAException("Name is not supported on a table call");
+            set => throw new Parser.Parser.ILAException("Name is not supported on a table call");
+        }
 
         /// <summary>
         /// Table to call from
@@ -28,9 +36,9 @@ namespace ILANET
         public Variable Table { get; set; }
 
         /// <summary>
-        /// Type of the element
+        /// Type of the element. read only
         /// </summary>
-        public override VarType Type { get => ((TableType)Table.Type).InternalType; set => ((TableType)Table.Type).InternalType = value; }
+        public override VarType Type { get => ((TableType)Table.Type).InternalType; set => throw new Parser.Parser.ILAException("Name is not supported on a table call"); }
 
         /// <summary>
         /// Generate ila code to for this element.

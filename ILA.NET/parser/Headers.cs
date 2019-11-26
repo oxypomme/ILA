@@ -1286,6 +1286,10 @@ namespace ILANET.Parser
                     }
                 }
             }
+#if DEBUG
+            catch (FieldAccessException)//dummy exception to never catch anything, and throwing everything to the debugger
+            { }
+#else
             catch (ILAException e)
             {
                 throw new ILAException(e.Message + " \\ ligne : " + CountRow(ilaCode, index), e);
@@ -1294,6 +1298,7 @@ namespace ILANET.Parser
             {
                 throw new ILAException("Internal error \\ ligne : " + CountRow(ilaCode, index), e);
             }
+#endif
             return returnProg;
         }
 
