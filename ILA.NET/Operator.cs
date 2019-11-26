@@ -133,7 +133,6 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
-            Console.WriteLine(OperatorType);
             if (Left != null)
             {
                 textWriter.Write('(');
