@@ -66,6 +66,12 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
+            if (CreatedVariable.Constant)
+            {
+                textWriter.Write("global ");
+                CreatedVariable.WritePython(textWriter);
+                textWriter.Write("\n");
+            }
             CreatedVariable.WritePython(textWriter);
             textWriter.Write(" = ");
             if (CreatedVariable.Constant)
