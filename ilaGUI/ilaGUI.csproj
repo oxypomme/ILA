@@ -15,4 +15,15 @@
     <OutputPath>..\bin\Debug\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Reference Include="ILA.NET">
+      <HintPath>..\bin\Debug\netcoreapp3.0\ILA.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Reference Include="ILA.NET">
+      <HintPath>..\bin\Debug\netcoreapp3.0\ILA.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
