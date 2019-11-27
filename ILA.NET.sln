@@ -5,9 +5,15 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILA.NET", "ILA.NET\ILA.NET.csproj", "{9B195084-439D-404E-AD20-842B9EA6F20B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Executer", "Executer\Executer.csproj", "{9455ADD8-4D17-420F-84D8-7200CFF6E757}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Executer", "Executer\Executer.csproj", "{9455ADD8-4D17-420F-84D8-7200CFF6E757}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9B195084-439D-404E-AD20-842B9EA6F20B} = {9B195084-439D-404E-AD20-842B9EA6F20B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ilaGUI", "ilaGUI\ilaGUI.csproj", "{7D23184F-9A95-48B1-A7C6-74A215177FB0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9B195084-439D-404E-AD20-842B9EA6F20B} = {9B195084-439D-404E-AD20-842B9EA6F20B}
+		{9455ADD8-4D17-420F-84D8-7200CFF6E757} = {9455ADD8-4D17-420F-84D8-7200CFF6E757}
 	EndProjectSection
 EndProject
 Global
@@ -24,6 +30,10 @@ Global
 		{9455ADD8-4D17-420F-84D8-7200CFF6E757}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9455ADD8-4D17-420F-84D8-7200CFF6E757}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9455ADD8-4D17-420F-84D8-7200CFF6E757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D23184F-9A95-48B1-A7C6-74A215177FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D23184F-9A95-48B1-A7C6-74A215177FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D23184F-9A95-48B1-A7C6-74A215177FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D23184F-9A95-48B1-A7C6-74A215177FB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

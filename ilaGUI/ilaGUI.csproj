@@ -1,18 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RootNamespace>ILANET</RootNamespace>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>F:\programmation\C#\ILA.NET\doc\ILA.NET.xml</DocumentationFile>
     <OutputPath>..\bin\Release\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\bin\Debug\</OutputPath>
-    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
 </Project>

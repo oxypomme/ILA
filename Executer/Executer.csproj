@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>F:\programmation\C#\ILA.NET\Executer\Executer.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
+    <OutputPath>..\bin\Release\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\Debug\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
