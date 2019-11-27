@@ -437,6 +437,8 @@ namespace ILANET.Parser
                             throw new ILAException("Seules les variables peuvent être assignées");
                         var instru = new Assign();
                         instru.Left = v as Variable;
+                        if (instru.Left.Constant)
+                            throw new ILAException("Erreur : impossible de changer la valeur d'une constante");
                         index += 2;
                         FastForward(code, ref index);
                         var value = "";
