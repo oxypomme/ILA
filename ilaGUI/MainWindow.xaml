@@ -7,5 +7,24 @@
         mc:Ignorable="d"
         Title="ILA" Height="700" Width="1200">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" MinWidth="100" MaxWidth="350" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="5" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="150" MinHeight="100" MaxHeight="250" />
+            </Grid.RowDefinitions>
+            <GridSplitter Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="5" />
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="250" MinWidth="150" MaxWidth="350" />
+                </Grid.ColumnDefinitions>
+                <GridSplitter Grid.Column="0" VerticalAlignment="Stretch" Width="5" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
