@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IronPython" Version="2.7.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ILA.NET\ILA.NET.csproj" />
   </ItemGroup>
 
