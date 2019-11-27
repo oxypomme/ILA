@@ -26,17 +26,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <None Remove="icons\BuildSolutionAnimation_16x.gif" />
+    <None Remove="icons\BuildSolution_16x.png" />
+    <None Remove="icons\NewFile_16x.png" />
+    <None Remove="icons\OpenFile_16x.png" />
+    <None Remove="icons\Run_16x.png" />
+    <None Remove="icons\save_16x.png" />
+    <None Remove="icons\StatusHelp_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\BuildSolutionAnimation_16x.gif" />
+    <Resource Include="icons\BuildSolution_16x.png" />
+    <Resource Include="icons\NewFile_16x.png" />
+    <Resource Include="icons\OpenFile_16x.png" />
+    <Resource Include="icons\Run_16x.png" />
+    <Resource Include="icons\save_16x.png" />
+    <Resource Include="icons\StatusHelp_16x.png" />
   </ItemGroup>
 
 </Project>
