@@ -44,6 +44,11 @@
                         <ImageBrush ImageSource="/icons/StatusHelp_16x.png" />
                     </Button.Background>
                 </Button>
+                <Button x:Name="settingsBtn" Content="Button" Width="16" Height="16" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/icons/Settings_16x.png" />
+                    </Button.Background>
+                </Button>
 
                 <ToolBar.Resources>
                     <Style x:Key="ToolBarMainPanelBorderStyle" TargetType="{x:Type Border}">

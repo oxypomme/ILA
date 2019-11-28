@@ -28,6 +28,7 @@
   <ItemGroup>
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\BuildSolution_16x.png" />
+    <None Remove="icons\Field_16x.png" />
     <None Remove="icons\NewFile_16x.png" />
     <None Remove="icons\OpenFile_16x.png" />
     <None Remove="icons\Property_16x.png" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <Resource Include="icons\BuildSolutionAnimation_16x.gif" />
     <Resource Include="icons\BuildSolution_16x.png" />
+    <Resource Include="icons\Field_16x.png" />
     <Resource Include="icons\NewFile_16x.png" />
     <Resource Include="icons\OpenFile_16x.png" />
     <Resource Include="icons\Property_16x.png" />
