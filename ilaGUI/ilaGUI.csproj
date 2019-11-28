@@ -32,7 +32,6 @@
   <ItemGroup>
     <Page Remove="icons\BuildSolution_16x.xaml" />
     <Page Remove="icons\Cube_16x.xaml" />
-    <Page Remove="icons\FieldAdded_16x.xaml" />
     <Page Remove="icons\Field_16x.xaml" />
     <Page Remove="icons\NewFile_16x.xaml" />
     <Page Remove="icons\OpenFile_16x.xaml" />
@@ -48,7 +47,6 @@
   <ItemGroup>
     <None Include="icons\BuildSolution_16x.xaml" />
     <None Include="icons\Cube_16x.xaml" />
-    <None Include="icons\FieldAdded_16x.xaml" />
     <None Include="icons\Field_16x.xaml" />
     <None Include="icons\NewFile_16x.xaml" />
     <None Include="icons\OpenFile_16x.xaml" />
