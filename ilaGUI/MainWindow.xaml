@@ -12,63 +12,64 @@
             <ColumnDefinition Width="150" MinWidth="100" MaxWidth="350" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid>
-            <ToolBar HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Background="#FF403E41" Foreground="{x:Null}">
-                <Button x:Name="newBtn" Content="Button" HorizontalAlignment="Left" Width="16" Height="16" Foreground="{x:Null}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/icons/NewFile_16x.png" />
-                    </Button.Background>
-                </Button>
-                <Button x:Name="openBtn" Width="16" Height="16" Foreground="{x:Null}" BorderBrush="{x:Null}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/icons/OpenFile_16x.png" Stretch="Fill" TileMode="None" />
-                    </Button.Background>
-                </Button>
-                <Button x:Name="saveBtn" Content="Button" Width="16" Height="16" Foreground="{x:Null}" BorderBrush="{x:Null}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/icons/save_16x.png" />
-                    </Button.Background>
-                </Button>
-            </ToolBar>
-        </Grid>
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="12" Background="#FF403E41" />
-        <Grid Grid.Column="1">
+        <ToolBar VerticalAlignment="Top" Background="#FF403E41" Foreground="{x:Null}" Grid.ColumnSpan="2">
+            <Button x:Name="newBtn" Content="Button" HorizontalAlignment="Left" Width="16" Height="16" Foreground="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/icons/NewFile_16x.png" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="openBtn" Width="16" Height="16" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/icons/OpenFile_16x.png" Stretch="Fill" TileMode="None" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="saveBtn" Content="Button" Width="16" Height="16" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/icons/save_16x.png" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="runBtn" Content="Button" Width="16" Height="16" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/icons/Run_16x.png" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="buildBtn" Content="Button" Width="16" Height="16" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/icons/BuildSolution_16x.png" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="wikiBtn" Content="Button" Width="16" Height="16" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/icons/StatusHelp_16x.png" />
+                </Button.Background>
+            </Button>
+        </ToolBar>
+        <Grid x:Name="arboGrid" Margin="0,21,0,0" />
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="12" Background="#FF403E41" Margin="0,21,0,0" />
+        <Grid Grid.Column="1" Margin="0,21,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="150" MinHeight="100" MaxHeight="250" />
             </Grid.RowDefinitions>
             <Grid>
-                <Grid Margin="10,0,262,0">
-                    <ToolBar HorizontalAlignment="Center" VerticalAlignment="Top" Width="778" Background="#FF403E41" Foreground="{x:Null}">
-                        <Button x:Name="runBtn" Content="Button" Width="16" Height="16" BorderBrush="{x:Null}" Foreground="{x:Null}">
-                            <Button.Background>
-                                <ImageBrush ImageSource="/icons/Run_16x.png" />
-                            </Button.Background>
-                        </Button>
-                        <Button x:Name="buildBtn" Content="Button" Width="16" Height="16" Foreground="{x:Null}" BorderBrush="{x:Null}">
-                            <Button.Background>
-                                <ImageBrush ImageSource="/icons/BuildSolution_16x.png" />
-                            </Button.Background>
-                        </Button>
-                    </ToolBar>
-                </Grid>
+                <Grid x:Name="codeGrid" Margin="10,0,262,0" />
                 <GridSplitter Grid.Column="0" Width="12" Background="#FF403E41" HorizontalAlignment="Left" Margin="788,0,0,0" />
-                <Grid Margin="800,0,0,0">
-                    <ToolBar HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Background="#FF403E41" Foreground="{x:Null}">
-                        <Button x:Name="wikiBtn" Content="Button" Width="16" Height="16" BorderBrush="{x:Null}" Foreground="{x:Null}">
-                            <Button.Background>
-                                <ImageBrush ImageSource="/icons/StatusHelp_16x.png" />
-                            </Button.Background>
-                        </Button>
-                    </ToolBar>
-                </Grid>
+                <Grid x:Name="lexiqGrid" Margin="800,0,0,0" />
             </Grid>
             <GridSplitter Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="12" Background="#FF403E41" />
-            <Grid Grid.Row="0" Margin="10,534,0,0" Grid.RowSpan="2">
+            <Grid x:Name="consoleGrid" Grid.Row="0" Margin="12,513,0,0" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="250" MinWidth="150" MaxWidth="350" />
                 </Grid.ColumnDefinitions>
+                <TabControl Grid.ColumnSpan="2" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <TabItem Header="TabItem" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <Grid />
+                    </TabItem>
+                    <TabItem Header="TabItem" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <Grid />
+                    </TabItem>
+                </TabControl>
             </Grid>
         </Grid>
     </Grid>
