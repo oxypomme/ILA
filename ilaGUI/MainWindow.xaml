@@ -136,7 +136,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="250" MinWidth="150" MaxWidth="350" />
                 </Grid.ColumnDefinitions>
-                <GridSplitter Grid.Column="0" Background="#FF403E41" Width="12" HorizontalAlignment="Left" Margin="788,0,0,0" />
+                <GridSplitter Grid.Column="0" Background="#FF403E41" VerticalAlignment="Stretch" Width="12" />
             </Grid>
         </Grid>
     </Grid>
