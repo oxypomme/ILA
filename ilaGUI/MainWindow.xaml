@@ -70,6 +70,7 @@
                         <Grid />
                     </TabItem>
                 </TabControl>
+                <ToolBar Margin="110,0,0,126" Grid.ColumnSpan="2" Background="{x:Null}" />
             </Grid>
         </Grid>
     </Grid>
