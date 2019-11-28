@@ -30,9 +30,12 @@
     <None Remove="icons\BuildSolution_16x.png" />
     <None Remove="icons\NewFile_16x.png" />
     <None Remove="icons\OpenFile_16x.png" />
+    <None Remove="icons\Property_16x.png" />
     <None Remove="icons\Run_16x.png" />
     <None Remove="icons\save_16x.png" />
+    <None Remove="icons\Settings_16x.png" />
     <None Remove="icons\StatusHelp_16x.png" />
+    <None Remove="icons\UserFunction_16x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -42,9 +45,12 @@
     <Resource Include="icons\BuildSolution_16x.png" />
     <Resource Include="icons\NewFile_16x.png" />
     <Resource Include="icons\OpenFile_16x.png" />
+    <Resource Include="icons\Property_16x.png" />
     <Resource Include="icons\Run_16x.png" />
     <Resource Include="icons\save_16x.png" />
+    <Resource Include="icons\Settings_16x.png" />
     <Resource Include="icons\StatusHelp_16x.png" />
+    <Resource Include="icons\UserFunction_16x.png" />
   </ItemGroup>
 
 </Project>
