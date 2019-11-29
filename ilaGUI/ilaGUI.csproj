@@ -28,6 +28,7 @@
   <ItemGroup>
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\Cube_16x.svg" />
+    <None Remove="icons\png\AddVariable_16x.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Remove="icons\BuildSolution_16x.xaml" />
@@ -55,6 +56,9 @@
     <None Include="icons\Settings_16x.xaml" />
     <None Include="icons\StatusHelp_16x.xaml" />
     <None Include="icons\UserFunction_16x.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\png\AddVariable_16x.png" />
   </ItemGroup>
 
 </Project>
