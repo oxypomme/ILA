@@ -148,7 +148,75 @@
                 <ColumnDefinition Width="150" MinWidth="100" MaxWidth="300" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Name="TreeGrid" />
+            <Grid Grid.Column="0" Name="TreeGrid">
+                <WrapPanel x:Name="TreeToolbar" Margin="1,1,0,0" VerticalAlignment="Top">
+                    <Label Content="Label" Width="40.2" Foreground="#FFE6E6E6" />
+                    <Button x:Name="newModBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20">
+                        <Rectangle Width="16" Height="16">
+                            <Rectangle.Fill>
+                                <DrawingBrush>
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M15,5.52L15,13C15,13.97,14.299,15,13,15L7,15C6.031,15,5,14.299,5,13L5,9 3,9 3,8.121 2.379,8.742 0.257,6.621 0.878,6 0,6 0,3 0.878,3 0.257,2.379 2.379,0.257 3,0.877999999999999 3,0 6,0 6,0.877999999999999 6.621,0.257 8.742,2.379 8.121,3 9,3 12.069,3z" />
+                                            <GeometryDrawing Brush="#FF424242" Geometry="F1M14,6.1362L14,13.0002C14,13.0002,13.965,14.0002,12.965,14.0002L6.965,14.0002C6.965,14.0002,6,14.0002,6,13.0002L6,8.1442 6.598,8.7422 7,8.3402 7,13.0002 13,13.0002 13,9.0002 13,8.0002 13,7.0002 11,7.0002 11,5.0002 9,5.0002 9,4.0002 11.625,4.0002z" />
+                                            <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M13,7L13,13 7,13 7,8.363 8.742,6.621 8.121,6 9,6 9,5 11,5 11,7z" />
+                                            <GeometryDrawing Brush="#FFC27D1A" Geometry="F1M5,5L4,5 4,4 5,4z M8,4L5.707,4 7.328,2.379 6.621,1.671 5,3.292 5,1 4,1 4,3.292 2.379,1.671 1.671,2.379 3.292,4 1,4 1,5 3.292,5 1.671,6.621 2.379,7.328 4,5.707 4,8 5,8 5,5.707 6.621,7.328 7.328,6.621 5.707,5 8,5z" />
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                    <Button x:Name="newFncBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20">
+                        <Rectangle Height="16" Width="16">
+                            <Rectangle.Fill>
+                                <DrawingBrush>
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M16,9L16,10.196 13.677,16 2,16C2,16 1.14,15.979 0.57,15.435 0.227,15.103 0,14.617 0,14L0,5C0,3.697,1.005,3,2,3L4.486,3 3.607,2.121 5.729,0 10.246,4.518 9.999,4.765 10.116,5 13,5C13.97,5,15,5.701,15,7L15,9z" />
+                                            <GeometryDrawing Brush="#FFDCB67A" Geometry="F1M14,10.0313L14,7.0313C14,6.0313,12.764,6.0313,13,6.0313L9.5,6.0313 9.244,5.5193 8.578,6.1863 9,7.0313 13,7.0313 13,10.0313 4,10.0313 2,15.0313 13,15.0313 15,10.0313z M2,15.0153L1.997,15.0153C1.94,15.0153,1,15.0013,1,14.0313L1,8.9593C1.286,9.2523,1.626,9.4873,2,9.6663z" />
+                                            <GeometryDrawing Brush="#FF00529C" Geometry="F1M8.832,4.5176L5.728,7.6216 5.021,6.9136 6.918,5.0176 3.5,5.0176C2.673,5.0176 2,5.6906 2,6.5176 2,7.3446 2.673,8.0176 3.5,8.0176L3.5,9.0176C2.122,9.0176 1,7.8966 1,6.5176 1,5.1396 2.122,4.0176 3.5,4.0176L6.918,4.0176 5.021,2.1216 5.728,1.4136z" />
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                    <Button x:Name="newTypeTreeBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20">
+                        <Rectangle Width="16" Height="16">
+                            <Rectangle.Fill>
+                                <DrawingBrush>
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M16,2L16,16 2.586,16 0,13.414 0,2C0,0.897,0.897,0,2,0L14,0C15.103,0,16,0.897,16,2" />
+                                            <GeometryDrawing Brush="#FFEFEFF0" Geometry="F1M4,10L4,15 6,15 6,12 8,12 8,15 12,15 12,10z M13,7L3,7 3,3 13,3z" />
+                                            <GeometryDrawing Brush="#FF00529C" Geometry="F1M13,3L3,3 3,7 13,7z M15,2L15,15 12,15 12,10 4,10 4,15 3,15 1,13 1,2C1,1.448,1.448,1,2,1L14,1C14.553,1,15,1.448,15,2 M6,12L8,12 8,15 6,15z" />
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                    <Button x:Name="newVarTreeBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20">
+                        <Rectangle Width="16" Height="16">
+                            <Rectangle.Fill>
+                                <DrawingBrush>
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M2.9997,-0.000199999999999534L2.9997,15.9998 13.6677,7.9998z" />
+                                            <GeometryDrawing Brush="#FF388934" Geometry="F1M4,2L4,14 12,8z" />
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                </WrapPanel>
+            </Grid>
             <Border HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Grid.Column="0" BorderThickness="1" BorderBrush="White" Margin="-1,0,-1,-1" />
             <GridSplitter Grid.Column="0" VerticalAlignment="Stretch" Width="5" />
             <Grid Grid.Column="1">
