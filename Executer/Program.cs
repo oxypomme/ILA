@@ -103,7 +103,7 @@ namespace Executer
                 }
                 catch (Parser.ILAException e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e);
                 }
             }
             else

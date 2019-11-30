@@ -25,6 +25,9 @@ namespace ILANET.Parser
             returnProg.Methods = new List<Module>();
             returnProg.Methods.Add(Print.Instance);
             returnProg.Methods.Add(Read.Instance);
+            returnProg.Methods.Add(Next.Instance);
+            returnProg.Methods.Add(Prev.Instance);
+            returnProg.Methods.Add(Length.Instance);
             /*
              * The dispatcher will keep track of executables blocks to parse them at the end, once
              * all the variables, custom types and other executables header has been added.

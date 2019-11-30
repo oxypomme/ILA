@@ -26,6 +26,11 @@ namespace ILANET
         public List<Instruction> Default { get; set; }
 
         /// <summary>
+        /// Integrated comment at the end
+        /// </summary>
+        public string EndComment { get; set; }
+
+        /// <summary>
         /// Comment after the default
         /// </summary>
         public IValue Value { get; set; }
@@ -36,7 +41,6 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
-            throw new NotImplementedException();
         }
 
         /// <summary>

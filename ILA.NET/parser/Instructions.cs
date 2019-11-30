@@ -346,10 +346,131 @@ namespace ILANET.Parser
                     instru.EndComment = null;
                 return instru;
             }
+            else if (code.Substring(index, 4) == "cas " ||
+                code.Substring(index, 4) == "cas(")
+            {
+                if (code.Substring(index, 4) == "cas(")
+                    index--;
+                index += 4;
+                var instru = new Switch();
+                instru.Default = new List<Instruction>();
+                instru.Cases = new List<Tuple<List<IValue>, List<Instruction>>>();
+                {
+                    var value = "";
+                    while (code.Substring(index, 6) != " parmi")
+                        value += code[index++];
+                    instru.Value = ParseValue(value, mainProg, currentBlock);
+                }
+                index += 6;
+                FastForward(code, ref index);
+                if (code.Substring(index, 2) == "//")
+                {
+                    index += 2;
+                    instru.Comment = "";
+                    while (code[index] != '\n')
+                        instru.Comment += code[index++];
+                }
+                else
+                    instru.EndComment = null;
+                SkipLine(code, ref index);
+                {
+                    var currValues = new List<IValue>();
+                    var currInstrus = new List<Instruction>();
+                    while (true)
+                    {
+                        var subIndex = 0;
+                        var line = "";
+                        while (code[index] != '\n')
+                            line += code[index++];
+                        if (line.Substring(0, 4) == "fcas")
+                        {
+                            if (currValues.Count > 0)
+                                instru.Cases.Add(new Tuple<List<IValue>, List<Instruction>>(currValues, currInstrus));
+                            index += 4;
+                            FastForward(code, ref index);
+                            if (code.Substring(index, 2) == "//")
+                            {
+                                index += 2;
+                                instru.EndComment = "";
+                                while (code[index] != '\n')
+                                    instru.EndComment += code[index++];
+                            }
+                            else
+                                instru.EndComment = null;
+                            break;
+                        }
+                        if (!line.Contains(':'))
+                            currInstrus.Add(ParseInstru(line + "\n       ", mainProg, currentBlock, ref subIndex));
+                        else if (line.Substring(0, 7) == "defaut " ||
+                                line.Substring(0, 7) == "defaut:")
+                        {
+                            subIndex = 0;
+                            if (line.Substring(0, 7) == "defaut ")
+                            {
+                                subIndex += 7;
+                                FastForward(line, ref subIndex);
+                                if (line[subIndex] != ':')
+                                    throw new ILAException("Erreur, caractère attendu ':'");
+                            }
+                            index -= line.Length - line.IndexOf(':') - 1;
+                            if (currValues.Count > 0)
+                                instru.Cases.Add(new Tuple<List<IValue>, List<Instruction>>(currValues, currInstrus));
+                            SkipLine(code, ref index);
+                            while (code.Substring(index, 4) != "fcas")
+                            {
+                                instru.Default.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                                SkipLine(code, ref index);
+                            }
+                            index += 4;
+                            FastForward(code, ref index);
+                            if (code.Substring(index, 2) == "//")
+                            {
+                                index += 2;
+                                instru.EndComment = "";
+                                while (code[index] != '\n')
+                                    instru.EndComment += code[index++];
+                            }
+                            else
+                                instru.EndComment = null;
+                            break;
+                        }
+                        else
+                        {
+                            index -= line.Length - line.IndexOf(':') - 1;
+                            var valuesStr = line.Substring(0, line.IndexOf(':'));
+                            var values = new List<string>();
+                            int opened = 0;
+                            var currValue = "";
+                            foreach (var item in valuesStr)
+                            {
+                                if (item == '[' || item == '(')
+                                    opened++;
+                                if (item == ']' || item == ')')
+                                    opened--;
+                                if (opened == 0 && item == ',')
+                                {
+                                    values.Add(currValue);
+                                    currValue = "";
+                                }
+                                else
+                                    currValue += item;
+                            }
+                            values.Add(currValue);
+                            if (currValues.Count > 0)
+                                instru.Cases.Add(new Tuple<List<IValue>, List<Instruction>>(currValues, currInstrus));
+                            currValues = new List<IValue>();
+                            currInstrus = new List<Instruction>();
+                            foreach (var item in values)
+                                currValues.Add(ParseValue(item, mainProg, currentBlock));
+                        }
+                        SkipLine(code, ref index);
+                    }
+                }
+                return instru;
+            }
             else if (code.Substring(index, currentBlock.Name.Length) == currentBlock.Name)
             {
                 var instru = new Return();
-                var oldIndex = index;
                 index += currentBlock.Name.Length;
                 FastForward(code, ref index);
                 if (code.Substring(index, 2) != "<-")
