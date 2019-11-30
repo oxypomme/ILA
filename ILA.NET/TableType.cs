@@ -72,12 +72,12 @@ namespace ILANET
         /// <summary>
         /// The size of each dimension
         /// </summary>
-        public List<Range> DimensionsSize { get; set; }
+        public virtual List<Range> DimensionsSize { get; set; }
 
         /// <summary>
         /// The type of the elements
         /// </summary>
-        public VarType InternalType { get; set; }
+        public virtual VarType InternalType { get; set; }
 
         /// <summary>
         /// Generate python code to run this element.

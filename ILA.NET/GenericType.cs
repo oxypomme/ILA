@@ -15,27 +15,27 @@ namespace ILANET
         /// <summary>
         /// The bool type
         /// </summary>
-        public static readonly GenericType Bool = new GenericType(Flags.BOOL) { name = "bool" };
+        public static readonly VarType Bool = new GenericType(Flags.BOOL) { name = "bool" };
 
         /// <summary>
         /// The char type
         /// </summary>
-        public static readonly GenericType Char = new GenericType(Flags.CHAR) { name = "char" };
+        public static readonly VarType Char = new GenericType(Flags.CHAR) { name = "char" };
 
         /// <summary>
         /// The float type
         /// </summary>
-        public static readonly GenericType Float = new GenericType(Flags.FLOAT) { name = "float" };
+        public static readonly VarType Float = new GenericType(Flags.FLOAT) { name = "float" };
 
         /// <summary>
         /// The int type
         /// </summary>
-        public static readonly GenericType Int = new GenericType(Flags.INT) { name = "int" };
+        public static readonly VarType Int = new GenericType(Flags.INT) { name = "int" };
 
         /// <summary>
         /// The string type
         /// </summary>
-        public static readonly GenericType String = new GenericType(Flags.STRING) { name = "string" };
+        public static readonly VarType String = new StringType();
 
         #endregion Public Fields
 
@@ -59,7 +59,6 @@ namespace ILANET
             INT,
             FLOAT,
             CHAR,
-            STRING,
             BOOL
         }
 
@@ -92,10 +91,6 @@ namespace ILANET
                 case Flags.CHAR:
                     textWriter.Write("caractere");
                     break;
-
-                case Flags.STRING:
-                    textWriter.Write("chaine");
-                    break;
             }
         }
 
@@ -107,5 +102,31 @@ namespace ILANET
         { }
 
         #endregion Private Properties
+    }
+
+    internal sealed class StringType : TableType
+    {
+        internal StringType()
+        {
+            base.DimensionsSize = new List<Range>()
+            {
+                new Range(new ConstantInt(){ Value = 1}, null)
+            };
+            base.Name = "string";
+        }
+
+        public override List<Range> DimensionsSize { get => base.DimensionsSize; set => throw new InvalidOperationException("Unable to change the dimension of a string."); }
+        public override VarType InternalType { get => GenericType.Char; set => throw new InvalidOperationException("Unable to change the internal type of a string."); }
+        public override string Name { get => base.Name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
+
+        public override void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write("chaine");
+        }
+
+        public override void WritePython(TextWriter textWriter)
+        {
+            base.WritePython(textWriter);
+        }
     }
 }
