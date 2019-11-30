@@ -10,6 +10,21 @@ namespace ILANET.Parser
     /// </summary>
     public static partial class Parser
     {
+        /// <summary>
+        /// Parse a string and returns a value
+        /// </summary>
+        /// <param name="code">The ILA coded string</param>
+        /// <param name="mainProg">The algo from where the value comes</param>
+        /// <param name="currentBlock">the scope from where the value comes</param>
+        /// <param name="constLock">true if the value has to be constant (false by default)</param>
+        /// <returns>parsed value</returns>
+        public static IValue ParseValue(string code, Program mainProg, IExecutable currentBlock, bool constLock = false)
+        {
+            var decomposed = Parenthesis.Generate(code);
+            var res = ParseParenthesis(decomposed, mainProg, currentBlock, constLock);
+            return res;
+        }
+
         internal static T Max<T>(params T[] elements) where T : IComparable<T>
         {
             T max = elements.First();
@@ -503,13 +518,6 @@ namespace ILANET.Parser
             {
                 return ParseOperand(p.CodeInside, mainProg, currentBlock, p, constLock);
             }
-        }
-
-        internal static IValue ParseValue(string code, Program mainProg, IExecutable currentBlock, bool constLock = false)
-        {
-            var decomposed = Parenthesis.Generate(code);
-            var res = ParseParenthesis(decomposed, mainProg, currentBlock, constLock);
-            return res;
         }
 
         internal class Parenthesis
