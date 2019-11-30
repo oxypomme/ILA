@@ -83,16 +83,23 @@ namespace ILANET
 
                 if (outParameters != 0)
                     textWriter.Write(" = ");
-                textWriter.Write(CalledModule.Name + "(");
-                for (int i = 0; i < Args.Count; i++)
+                if (!(CalledModule is Prev || CalledModule is Next))
                 {
-                    if (Args[i] != null)
+                    for (int i = 0; i < Args.Count; i++)
                     {
-                        if (i != 0)
-                            textWriter.Write(", ");
+                        if (Args[i] != null)
+                        {
+                            if (i != 0)
+                                textWriter.Write(", ");
 
-                        Args[i].WritePython(textWriter);
+                            Args[i].WritePython(textWriter);
+                        }
                     }
+                    textWriter.Write(CalledModule.Name + "(");
+                }
+                else
+                {
+                    throw new NotImplementedException();
                 }
 
                 textWriter.Write(")\n");
