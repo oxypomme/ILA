@@ -87,22 +87,7 @@ namespace ILANET
         {
             for (int i = 0; i < Cases.Count; i++)
             {
-                if (Default.Count > 0)
-                {
-                    Program.GenerateIndent(textWriter);
-                    if (i > 0)
-                        textWriter.Write("else:\n");
-                    else
-                        textWriter.Write("if True :\n");
-                    foreach (var instruction in Default)
-                    {
-                        Program.Indent++;
-                        instruction.WritePython(textWriter);
-                        textWriter.Write("\n");
-                        Program.Indent--;
-                    }
-                }
-                else if (i == 0)
+                if (i == 0)
                 {
                     Program.GenerateIndent(textWriter);
                     textWriter.Write("if (");
@@ -127,6 +112,21 @@ namespace ILANET
                 }
 
                 foreach (var instruction in Cases[i].Item2)
+                {
+                    Program.Indent++;
+                    instruction.WritePython(textWriter);
+                    textWriter.Write("\n");
+                    Program.Indent--;
+                }
+            }
+            if (Default.Count > 0)
+            {
+                Program.GenerateIndent(textWriter);
+                if (Cases.Count > 0)
+                    textWriter.Write("else:\n");
+                else
+                    textWriter.Write("if True :\n");
+                foreach (var instruction in Default)
                 {
                     Program.Indent++;
                     instruction.WritePython(textWriter);
