@@ -45,7 +45,48 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Cases.Count; i++)
+            {
+                if (i == 0)
+                {
+                    Program.GenerateIndent(textWriter);
+                    textWriter.Write("if (");
+                    Value.WritePython(textWriter);
+                    textWriter.Write("==");
+                    Cases[i].Item1[i].WritePython(textWriter);
+                    textWriter.Write(") :\n");
+                }
+                else
+                {
+                    Program.GenerateIndent(textWriter);
+                    textWriter.Write("elif (");
+                    Value.WritePython(textWriter);
+                    textWriter.Write("==");
+                    Cases[i].Item1[i].WritePython(textWriter);
+                    textWriter.Write(") :\n");
+                }
+
+                foreach (var instruction in Cases[i].Item2)
+                {
+                    Program.Indent++;
+                    instruction.WritePython(textWriter);
+                    textWriter.Write("\n");
+                    Program.Indent--;
+                }
+            }
+            // Generate the default case
+            if (Default.Count > 0)
+            {
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("else:\n");
+                foreach (var instruction in Default)
+                {
+                    Program.Indent++;
+                    instruction.WritePython(textWriter);
+                    textWriter.Write("\n");
+                    Program.Indent--;
+                }
+            }
         }
     }
 }
