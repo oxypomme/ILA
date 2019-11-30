@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>F:\programmation\C#\ILA.NET\doc\ILA.NET.xml</DocumentationFile>
+    <DocumentationFile>..\doc\ILA.NET.xml</DocumentationFile>
     <OutputPath>..\bin\Release\</OutputPath>
   </PropertyGroup>
 
