@@ -27,6 +27,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Remove="fonts\firacode\FiraCode-Bold.ttf" />
+    <None Remove="fonts\firacode\FiraCode-Light.ttf" />
+    <None Remove="fonts\firacode\FiraCode-Medium.ttf" />
+    <None Remove="fonts\firacode\FiraCode-Regular.ttf" />
+    <None Remove="fonts\firacode\FiraCode-Retina.ttf" />
+    <None Remove="fonts\roboto\Roboto-Black.ttf" />
+    <None Remove="fonts\roboto\Roboto-BlackItalic.ttf" />
+    <None Remove="fonts\roboto\Roboto-Bold.ttf" />
+    <None Remove="fonts\roboto\Roboto-BoldItalic.ttf" />
+    <None Remove="fonts\roboto\Roboto-Italic.ttf" />
+    <None Remove="fonts\roboto\Roboto-Light.ttf" />
+    <None Remove="fonts\roboto\Roboto-LightItalic.ttf" />
+    <None Remove="fonts\roboto\Roboto-Medium.ttf" />
+    <None Remove="fonts\roboto\Roboto-MediumItalic.ttf" />
+    <None Remove="fonts\roboto\Roboto-Regular.ttf" />
+    <None Remove="fonts\roboto\Roboto-Thin.ttf" />
+    <None Remove="fonts\roboto\Roboto-ThinItalic.ttf" />
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\Cube_16x.svg" />
     <None Remove="icons\png\add parameter.png" />
@@ -103,6 +120,23 @@
     <None Include="icons\UserFunction_16x.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="fonts\firacode\FiraCode-Bold.ttf" />
+    <Resource Include="fonts\firacode\FiraCode-Light.ttf" />
+    <Resource Include="fonts\firacode\FiraCode-Medium.ttf" />
+    <Resource Include="fonts\firacode\FiraCode-Regular.ttf" />
+    <Resource Include="fonts\firacode\FiraCode-Retina.ttf" />
+    <Resource Include="fonts\roboto\Roboto-Black.ttf" />
+    <Resource Include="fonts\roboto\Roboto-BlackItalic.ttf" />
+    <Resource Include="fonts\roboto\Roboto-Bold.ttf" />
+    <Resource Include="fonts\roboto\Roboto-BoldItalic.ttf" />
+    <Resource Include="fonts\roboto\Roboto-Italic.ttf" />
+    <Resource Include="fonts\roboto\Roboto-Light.ttf" />
+    <Resource Include="fonts\roboto\Roboto-LightItalic.ttf" />
+    <Resource Include="fonts\roboto\Roboto-Medium.ttf" />
+    <Resource Include="fonts\roboto\Roboto-MediumItalic.ttf" />
+    <Resource Include="fonts\roboto\Roboto-Regular.ttf" />
+    <Resource Include="fonts\roboto\Roboto-Thin.ttf" />
+    <Resource Include="fonts\roboto\Roboto-ThinItalic.ttf" />
     <Resource Include="icons\png\add parameter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
