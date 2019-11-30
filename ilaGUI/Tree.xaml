@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="ilaGUI.Tree"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ilaGUI"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="250">
+    <Grid>
+        <StackPanel>
+            <StackPanel x:Name="TreeToolbar" Margin="1,1,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <Button x:Name="newModBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un module">
+                    <Image Source="/icons/png/create module.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newFncBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer une fonction">
+                    <Image Source="/icons/png/create function.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newStructBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer une structure">
+                    <Image Source="/icons/png/create struct.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newEnumBtn" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer une énumération">
+                    <Image Source="/icons/png/create enum.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newTabBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un tableau">
+                    <Image Source="/icons/png/create table.png" Stretch="None" />
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="newIntBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer entier global">
+                    <Image Source="/icons/png/create int.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newFloatBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer flottant global">
+                    <Image Source="/icons/png/create float.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newCharBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer charactère global">
+                    <Image Source="/icons/png/create char.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newBoolBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer booleen global">
+                    <Image Source="/icons/png/create bool.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newStringBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer chaine de caractères globale">
+                    <Image Source="/icons/png/create string.png" Stretch="None" />
+                </Button>
+                <Button x:Name="newCustomBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer variable custom">
+                    <Image Stretch="None" Source="/icons/png/create cutom.png" />
+                </Button>
+            </StackPanel>
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,18 +14,13 @@ using System.Windows.Shapes;
 namespace ilaGUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour Tree.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Tree : UserControl
     {
-        public MainWindow()
+        public Tree()
         {
             InitializeComponent();
-            TreePannel = new Tree();
-            TreeGrid.Children.Add(TreePannel);
-            Background = App.DarkBackground;
         }
-
-        private Tree TreePannel { get; set; }
     }
 }

@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>logo\logo.ico</ApplicationIcon>
+    <StartupObject />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -28,7 +29,51 @@
   <ItemGroup>
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\Cube_16x.svg" />
+    <None Remove="icons\png\add parameter.png" />
     <None Remove="icons\png\AddVariable_16x.png" />
+    <None Remove="icons\png\assign.png" />
+    <None Remove="icons\png\back.png" />
+    <None Remove="icons\png\bool.png" />
+    <None Remove="icons\png\char.png" />
+    <None Remove="icons\png\comment.png" />
+    <None Remove="icons\png\create assign.png" />
+    <None Remove="icons\png\create bool.png" />
+    <None Remove="icons\png\create char.png" />
+    <None Remove="icons\png\create comment.png" />
+    <None Remove="icons\png\create cutom var.png" />
+    <None Remove="icons\png\create cutom.png" />
+    <None Remove="icons\png\create enum.png" />
+    <None Remove="icons\png\create float.png" />
+    <None Remove="icons\png\create function.png" />
+    <None Remove="icons\png\create if.png" />
+    <None Remove="icons\png\create int.png" />
+    <None Remove="icons\png\create loop.png" />
+    <None Remove="icons\png\create module.png" />
+    <None Remove="icons\png\create return.png" />
+    <None Remove="icons\png\create string var.png" />
+    <None Remove="icons\png\create string.png" />
+    <None Remove="icons\png\create struct.png" />
+    <None Remove="icons\png\create table.png" />
+    <None Remove="icons\png\enum.png" />
+    <None Remove="icons\png\error.png" />
+    <None Remove="icons\png\FieldAdded_16x.png" />
+    <None Remove="icons\png\FieldDeleted_16x.png" />
+    <None Remove="icons\png\float var.png" />
+    <None Remove="icons\png\for.png" />
+    <None Remove="icons\png\forward.png" />
+    <None Remove="icons\png\function.png" />
+    <None Remove="icons\png\if.png" />
+    <None Remove="icons\png\int var.png" />
+    <None Remove="icons\png\module.png" />
+    <None Remove="icons\png\new console window.png" />
+    <None Remove="icons\png\ok.png" />
+    <None Remove="icons\png\remove parameter.png" />
+    <None Remove="icons\png\return.png" />
+    <None Remove="icons\png\string.png" />
+    <None Remove="icons\png\struct.png" />
+    <None Remove="icons\png\table.png" />
+    <None Remove="icons\png\warning.png" />
+    <None Remove="icons\png\while.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Remove="icons\BuildSolution_16x.xaml" />
@@ -58,7 +103,122 @@
     <None Include="icons\UserFunction_16x.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\png\AddVariable_16x.png" />
+    <Resource Include="icons\png\add parameter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\assign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\bool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\char.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\comment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create assign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create bool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create char.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create comment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create cutom.png" />
+    <Resource Include="icons\png\create enum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create float.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create function.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create if.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create int.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create loop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create module.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create return.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create string.png" />
+    <Resource Include="icons\png\create struct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\create table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\enum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\error.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\float var.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\for.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\forward.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\function.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\if.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\int var.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\module.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\new console window.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\ok.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\remove parameter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\return.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\string.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\struct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\warning.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\while.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
