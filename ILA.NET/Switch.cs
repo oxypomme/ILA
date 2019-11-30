@@ -41,6 +41,42 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("cas ");
+            Value.WriteILA(textWriter);
+            textWriter.Write(" parmi");
+            if (Comment != null && Comment.Length > 0)
+                textWriter.Write(" //" + Comment);
+            textWriter.WriteLine();
+            foreach (var item in Cases)
+            {
+                Program.GenerateIndent(textWriter);
+                for (int i = 0; i < item.Item1.Count; i++)
+                {
+                    if (i > 0)
+                        textWriter.Write(", ");
+                    item.Item1[i].WriteILA(textWriter);
+                }
+                textWriter.Write(" :\n");
+                Program.Indent++;
+                for (int i = 0; i < item.Item2.Count; i++)
+                    item.Item2[i].WriteILA(textWriter);
+                Program.Indent--;
+            }
+            if (Default != null && Default.Count > 0)
+            {
+                Program.GenerateIndent(textWriter);
+                textWriter.WriteLine("defaut:");
+                Program.Indent++;
+                for (int i = 0; i < Default.Count; i++)
+                    Default[i].WriteILA(textWriter);
+                Program.Indent--;
+            }
+            Program.GenerateIndent(textWriter);
+            textWriter.Write("fcas");
+            if (EndComment != null && EndComment.Length > 0)
+                textWriter.Write(" //" + EndComment);
+            textWriter.WriteLine();
         }
 
         /// <summary>

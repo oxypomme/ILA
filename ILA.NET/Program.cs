@@ -121,9 +121,9 @@ namespace ILANET
             }
         }
 
-        internal static void GenerateIndent(TextWriter textWriter, int spaces = 4)
+        internal static void GenerateIndent(TextWriter textWriter)
         {
-            for (int i = 0; i < Indent * spaces; i++)
+            for (int i = 0; i < Indent * IndentMultiplier; i++)
                 textWriter.Write(' ');
         }
 
