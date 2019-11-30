@@ -9,6 +9,7 @@
     <Grid>
         <StackPanel>
             <StackPanel x:Name="TreeToolbar" Margin="1,1,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <Label Content="Arborescence" />
                 <Button x:Name="newModBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un module">
                     <Image Source="/icons/png/create module.png" Stretch="None" />
                 </Button>
@@ -32,16 +33,16 @@
                 <Button x:Name="newFloatBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer flottant global">
                     <Image Source="/icons/png/create float.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newCharBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer charactère global">
+                <Button x:Name="newCharBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer caractère global">
                     <Image Source="/icons/png/create char.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newBoolBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer booleen global">
+                <Button x:Name="newBoolBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer booléen global">
                     <Image Source="/icons/png/create bool.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newStringBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer chaine de caractères globale">
+                <Button x:Name="newStringBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer chaîne de caractères globale">
                     <Image Source="/icons/png/create string.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newCustomBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer variable custom">
+                <Button x:Name="newCustomBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer variable personnalisée">
                     <Image Stretch="None" Source="/icons/png/create cutom.png" />
                 </Button>
             </StackPanel>
