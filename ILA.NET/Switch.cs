@@ -87,13 +87,33 @@ namespace ILANET
         {
             for (int i = 0; i < Cases.Count; i++)
             {
-                if (i == 0)
+                if (Default.Count > 0)
+                {
+                    Program.GenerateIndent(textWriter);
+                    if (i > 0)
+                        textWriter.Write("else:\n");
+                    else
+                        textWriter.Write("if True :\n");
+                    foreach (var instruction in Default)
+                    {
+                        Program.Indent++;
+                        instruction.WritePython(textWriter);
+                        textWriter.Write("\n");
+                        Program.Indent--;
+                    }
+                }
+                else if (i == 0)
                 {
                     Program.GenerateIndent(textWriter);
                     textWriter.Write("if (");
-                    Value.WritePython(textWriter);
-                    textWriter.Write("==");
-                    Cases[i].Item1[i].WritePython(textWriter);
+                    for (int j = 0; i < Cases[i].Item1.Count; j++)
+                    {
+                        if (i != 0)
+                            textWriter.Write(" || ");
+                        Value.WritePython(textWriter);
+                        textWriter.Write("==");
+                        Cases[i].Item1[j].WritePython(textWriter);
+                    }
                     textWriter.Write(") :\n");
                 }
                 else
@@ -107,19 +127,6 @@ namespace ILANET
                 }
 
                 foreach (var instruction in Cases[i].Item2)
-                {
-                    Program.Indent++;
-                    instruction.WritePython(textWriter);
-                    textWriter.Write("\n");
-                    Program.Indent--;
-                }
-            }
-            // Generate the default case
-            if (Default.Count > 0)
-            {
-                Program.GenerateIndent(textWriter);
-                textWriter.Write("else:\n");
-                foreach (var instruction in Default)
                 {
                     Program.Indent++;
                     instruction.WritePython(textWriter);
