@@ -8,8 +8,8 @@
              d:DesignHeight="400" d:DesignWidth="250">
     <Grid>
         <StackPanel>
+            <Label Name="Title" Content="Arborescence" />
             <StackPanel x:Name="TreeToolbar" Margin="1,1,0,0" VerticalAlignment="Top" Orientation="Horizontal">
-                <Label Content="Arborescence" />
                 <Button x:Name="newModBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un module">
                     <Image Source="/icons/png/create module.png" Stretch="None" />
                 </Button>
