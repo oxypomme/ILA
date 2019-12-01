@@ -8,7 +8,7 @@ namespace ILANET
     /// <summary>
     /// Length function, returns
     /// </summary>
-    public class Next : Function
+    public class Next : Function, Native
     {
         /// <summary>
         /// The only instance of the function
