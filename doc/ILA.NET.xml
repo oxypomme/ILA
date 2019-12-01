@@ -673,6 +673,11 @@
             </summary>
             <param name="textWriter">TextWriter to write in.</param>
         </member>
+        <member name="T:ILANET.Native">
+            <summary>
+            Correspond to a native element that can't be changed.
+            </summary>
+        </member>
         <member name="T:ILANET.Next">
             <summary>
             Length function, returns
