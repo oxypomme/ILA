@@ -8,7 +8,7 @@ namespace ILANET
     /// <summary>
     /// Generic types are the native one, bool char float int string
     /// </summary>
-    public sealed class GenericType : VarType
+    public sealed class GenericType : VarType, Native
     {
         #region Public Fields
 

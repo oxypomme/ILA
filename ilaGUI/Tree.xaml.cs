@@ -21,6 +21,10 @@ namespace ilaGUI
         public Tree()
         {
             InitializeComponent();
+            Title.Foreground = App.DarkFontColor;
+            TreeList.Children.Add(new TreeElement(new ILANET.Program() { Name = "algo test" }));
+            TreeList.Children.Add(new TreeElement(new ILANET.Module() { Name = "module test" }));
+            TreeList.Children.Add(new TreeElement(new ILANET.Function() { Name = "function test" }));
         }
     }
 }

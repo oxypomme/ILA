@@ -8,7 +8,7 @@ namespace ILANET
     /// <summary>
     /// Length function, returns
     /// </summary>
-    public class Length : Function
+    public class Length : Function, Native
     {
         /// <summary>
         /// The only instance of the function

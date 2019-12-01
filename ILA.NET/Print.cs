@@ -8,7 +8,7 @@ namespace ILANET
     /// <summary>
     /// The print() method that write in the console
     /// </summary>
-    public sealed class Print : Module
+    public sealed class Print : Module, Native
     {
         /// <summary>
         /// The only instance of the method

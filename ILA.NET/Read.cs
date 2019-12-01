@@ -8,7 +8,7 @@ namespace ILANET
     /// <summary>
     /// The read() method, that is the input of the console
     /// </summary>
-    public sealed class Read : Module
+    public sealed class Read : Module, Native
     {
         /// <summary>
         /// The only instance of the method

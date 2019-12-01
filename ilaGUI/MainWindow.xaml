@@ -6,7 +6,7 @@
         xmlns:properties="clr-namespace:ilaGUI"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" Background="{DynamicResource background}">
+        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" Background="{DynamicResource background}" WindowState="Maximized" Icon="/logo/logo.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />

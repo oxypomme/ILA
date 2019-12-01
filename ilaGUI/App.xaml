@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:ilaGUI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="background" />
     </Application.Resources>
 </Application>
