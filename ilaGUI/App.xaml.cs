@@ -25,6 +25,7 @@ namespace ilaGUI
 
         public static BitmapImage GetBitmapImage(Stream stream)
         {
+            //https://stackoverflow.com/a/9564425
             var image = new BitmapImage();
             stream.Position = 0;
             image.BeginInit();
