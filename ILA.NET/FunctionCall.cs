@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ILANET
 {
@@ -47,14 +45,49 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
-            textWriter.Write(CalledFunction.Name + "(");
-            for (int i = 0; i < Args.Count; i++)
+            if (!(CalledFunction is Prev || CalledFunction is Next))
             {
-                if (i != 0)
-                    textWriter.Write(", ");
-                Args[i].WritePython(textWriter);
+                textWriter.Write(CalledFunction.Name + "(");
+                for (int i = 0; i < Args.Count; i++)
+                {
+                    if (i != 0)
+                        textWriter.Write(", ");
+                    Args[i].WritePython(textWriter);
+                }
+                textWriter.Write(")");
             }
-            textWriter.Write(")");
+            else
+            {
+                foreach (var parameter in Args)
+                {
+                    if (parameter is ConstantChar)
+                    {
+                        textWriter.Write("chr(ord(");
+                        parameter.WritePython(textWriter);
+                        textWriter.Write(")" + (CalledFunction is Prev ? "-" : "+") + "1)");
+                    }
+                    else if (parameter is ConstantBool)
+                    {
+                        if (CalledFunction is Prev)
+                            textWriter.Write("False");
+                        else if (CalledFunction is Next)
+                            textWriter.Write("True");
+                    }
+                    else if (parameter is EnumType)
+                    {
+                        //if (parameter.Index > 0 && CalledFunction is Prev)
+
+                        //    parameter.Index--;
+                        //if (parameter.Index < parameter.Values.Count - 1 && CalledFunction is Next)
+                        //    parameter.Index++;
+                    }
+                    else
+                    {
+                        parameter.WritePython(textWriter);
+                        textWriter.Write((CalledFunction is Prev ? "-" : "+") + "1");
+                    }
+                }
+            }
         }
 
         #endregion Public Properties

@@ -82,9 +82,8 @@ namespace ILANET
                 }
 
                 if (outParameters != 0)
-                    textWriter.Write(" = ");
-                if (!(CalledModule is Prev || CalledModule is Next))
                 {
+                    textWriter.Write(" = ");
                     for (int i = 0; i < Args.Count; i++)
                     {
                         if (Args[i] != null)
@@ -96,10 +95,6 @@ namespace ILANET
                         }
                     }
                     textWriter.Write(CalledModule.Name + "(");
-                }
-                else
-                {
-                    throw new NotImplementedException();
                 }
 
                 textWriter.Write(")\n");
