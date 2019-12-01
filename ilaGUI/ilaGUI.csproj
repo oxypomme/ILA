@@ -91,6 +91,16 @@
     <None Remove="icons\png\table.png" />
     <None Remove="icons\png\warning.png" />
     <None Remove="icons\png\while.png" />
+    <None Remove="logo\logo.ico" />
+    <None Remove="logo\logo.png" />
+    <None Remove="logo\small\logo16.png" />
+    <None Remove="logo\small\logo20.png" />
+    <None Remove="logo\small\logo24.png" />
+    <None Remove="logo\small\logo256.png" />
+    <None Remove="logo\small\logo32.png" />
+    <None Remove="logo\small\logo40.png" />
+    <None Remove="logo\small\logo48.png" />
+    <None Remove="logo\small\logo64.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Remove="icons\BuildSolution_16x.xaml" />
@@ -253,6 +263,16 @@
     <Resource Include="icons\png\while.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="logo\logo.ico" />
+    <Resource Include="logo\logo.png" />
+    <Resource Include="logo\small\logo16.png" />
+    <Resource Include="logo\small\logo20.png" />
+    <Resource Include="logo\small\logo24.png" />
+    <Resource Include="logo\small\logo256.png" />
+    <Resource Include="logo\small\logo32.png" />
+    <Resource Include="logo\small\logo40.png" />
+    <Resource Include="logo\small\logo48.png" />
+    <Resource Include="logo\small\logo64.png" />
   </ItemGroup>
 
 </Project>

@@ -21,6 +21,7 @@ namespace ilaGUI
         public Tree()
         {
             InitializeComponent();
+            Title.Foreground = App.DarkFontColor;
         }
     }
 }
