@@ -572,6 +572,28 @@
             Type of the value
             </summary>
         </member>
+        <member name="T:ILANET.Length">
+            <summary>
+            Length function, returns
+            </summary>
+        </member>
+        <member name="F:ILANET.Length.Instance">
+            <summary>
+            The only instance of the function
+            </summary>
+        </member>
+        <member name="M:ILANET.Length.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Length.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.Module">
             <summary>
             A module is a block of code that can be called from any executable
@@ -646,6 +668,28 @@
             <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.ModuleCall.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="T:ILANET.Next">
+            <summary>
+            Length function, returns
+            </summary>
+        </member>
+        <member name="F:ILANET.Next.Instance">
+            <summary>
+            The only instance of the function
+            </summary>
+        </member>
+        <member name="M:ILANET.Next.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Next.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
             </summary>
@@ -839,6 +883,38 @@
             <param name="mess">Message of the Exception</param>
             <param name="inner">Inner Exception</param>
         </member>
+        <member name="M:ILANET.Parser.Parser.ParseValue(System.String,ILANET.Program,ILANET.IExecutable,System.Boolean)">
+            <summary>
+            Parse a string and returns a value
+            </summary>
+            <param name="code">The ILA coded string</param>
+            <param name="mainProg">The algo from where the value comes</param>
+            <param name="currentBlock">the scope from where the value comes</param>
+            <param name="constLock">true if the value has to be constant (false by default)</param>
+            <returns>parsed value</returns>
+        </member>
+        <member name="T:ILANET.Prev">
+            <summary>
+            Length function, returns
+            </summary>
+        </member>
+        <member name="F:ILANET.Prev.Instance">
+            <summary>
+            The only instance of the function
+            </summary>
+        </member>
+        <member name="M:ILANET.Prev.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Prev.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="T:ILANET.Print">
             <summary>
             The print() method that write in the console
@@ -1010,6 +1086,48 @@
             </summary>
         </member>
         <member name="M:ILANET.StructType.WritePython(System.IO.TextWriter)">
+            <summary>
+            Generate python code to run this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="T:ILANET.Switch">
+            <summary>
+            A switch instruction
+            </summary>
+        </member>
+        <member name="P:ILANET.Switch.Cases">
+            <summary>
+            Each case : a list of value to be equal, a block of instructions, and an eventual comment
+            </summary>
+        </member>
+        <member name="P:ILANET.Switch.Comment">
+            <summary>
+            Integrated comment at start
+            </summary>
+        </member>
+        <member name="P:ILANET.Switch.Default">
+            <summary>
+            Default instructions
+            </summary>
+        </member>
+        <member name="P:ILANET.Switch.EndComment">
+            <summary>
+            Integrated comment at the end
+            </summary>
+        </member>
+        <member name="P:ILANET.Switch.Value">
+            <summary>
+            Comment after the default
+            </summary>
+        </member>
+        <member name="M:ILANET.Switch.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
+        <member name="M:ILANET.Switch.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
             </summary>

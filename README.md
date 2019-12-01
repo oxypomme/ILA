@@ -1,33 +1,47 @@
 # ILA
 > Short blurb about what your product does.
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/oxypomme/ILA?style=for-the-badge)
+![GitHub All Releases](https://img.shields.io/github/downloads/oxypomme/ILA/total?style=for-the-badge)
+<a href="https://forthebadge.com/"><img src="https://forthebadge.com/images/badges/made-with-c-sharp.svg" alt="forthebadge" height="28"/></a>
+
+![banner](ilaGUI/logo/social-banner.png)
+<!--![logo](ilaGUI/logo/icon.ico)-->
 
 One to two paragraph statement about your product and what it does.
-
-![](header.png)
 
 ## Installation
 
 OS X & Linux:
 
 ```sh
-npm install my-crazy-module --save
+TODO
 ```
 
 Windows:
 
 ```sh
-edit autoexec.bat
+TODO
 ```
 
-## Usage example
+## Exemple d'utilisation
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+Prenons le fichier `helloWorld.ila` suivant :
 
-_For more examples and usage, please refer to the [Wiki][wiki]._
+```
+algo Test()
+{
+    ecrire("Hello World")
+}
+```
+
+Pour l’exécuter il suffit de taper dans la commande :
+
+![example]()
+
+*(Un gif ici ça pourrait être fun)*
+
+_Pour plus d'exemples, référez vous au [Wiki](https://github.com/oxypomme/ILA/wiki)._
 
 ## Development setup
 
@@ -40,39 +54,21 @@ npm test
 
 ## Release History
 
-* 0.2.1
-    * CHANGE: Update docs (module code remains unchanged)
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
-* 0.1.0
-    * The first proper release
-    * CHANGE: Rename `foo()` to `bar()`
-* 0.0.1
-    * Work in progress
+* 1.0.0
+    * Je sais pas trop quoi mettre là j'avoue...
 
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+Tom SUBLET – [@OxyTom](https://twitter.com/OxyT0m8) – [oxypomme](https://github.com/oxypomme)
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+Nathan HANEN - [WildGoat07](https://github.com/WildGoat07)
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+Ce projet est sous la license MIT. Regardez [``LICENSE``](https://github.com/oxypomme/ILA/blob/master/LICENSE) pour plus d'informations.
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/oxypomme/ILA/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
-
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
