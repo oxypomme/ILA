@@ -76,7 +76,7 @@ namespace ILANET
             textWriter.Write(" = ");
             if (CreatedVariable.Constant)
                 CreatedVariable.ConstantValue.WritePython(textWriter);
-            else if (!(CreatedVariable.Type is GenericType))
+            else if (!(CreatedVariable.Type is GenericType || CreatedVariable.Type is StringType))
                 CreatedVariable.Type.WritePython(textWriter);
             else
                 textWriter.Write(0);
