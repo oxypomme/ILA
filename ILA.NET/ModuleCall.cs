@@ -84,6 +84,7 @@ namespace ILANET
                 if (outParameters != 0)
                 {
                     textWriter.Write(" = ");
+                    textWriter.Write(CalledModule.Name + "(");
                     for (int i = 0; i < Args.Count; i++)
                     {
                         if (Args[i] != null)
@@ -94,7 +95,6 @@ namespace ILANET
                             Args[i].WritePython(textWriter);
                         }
                     }
-                    textWriter.Write(CalledModule.Name + "(");
                 }
 
                 textWriter.Write(")\n");
