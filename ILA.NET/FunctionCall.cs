@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ILANET
 {
@@ -20,7 +21,16 @@ namespace ILANET
         /// </summary>
         public Function CalledFunction { get; set; }
 
-        VarType IValue.Type => CalledFunction.ReturnType;
+        public VarType Type
+        {
+            get
+            {
+                if (CalledFunction is Next || CalledFunction is Prev)
+                    return Args.First().Type;
+                else
+                    return CalledFunction.ReturnType;
+            }
+        }
 
         /// <summary>
         /// Generate ila code to for this element.
