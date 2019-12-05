@@ -39,7 +39,7 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WritePython(TextWriter textWriter)
         {
-            textWriter.Write(Enum.Name + "[" + Index + "]");
+            textWriter.Write(Index);
         }
 
         #endregion Public Properties

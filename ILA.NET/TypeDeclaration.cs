@@ -168,7 +168,7 @@ namespace ILANET
             else if (CreatedType is EnumType Enum)
             {
                 Program.GenerateIndent(textWriter);
-                Enum.WritePython(textWriter);
+                textWriter.Write(Enum.Name);
                 textWriter.Write(" = [");
                 for (int i = 0; i < Enum.Values.Count; i++)
                 {

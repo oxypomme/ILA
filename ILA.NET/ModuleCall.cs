@@ -107,7 +107,14 @@ namespace ILANET
                 {
                     if (i != 0)
                         textWriter.Write(", ");
-                    Args[i].WritePython(textWriter);
+                    if (Args[i].Type is EnumType)
+                    {
+                        textWriter.Write(Args[i].Type.Name + "[");
+                        Args[i].WritePython(textWriter);
+                        textWriter.Write("]");
+                    }
+                    else
+                        Args[i].WritePython(textWriter);
                 }
                 textWriter.Write(")\n");
             }

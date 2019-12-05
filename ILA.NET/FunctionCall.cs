@@ -75,10 +75,11 @@ namespace ILANET
                     }
                     else if (parameter is EnumType)
                     {
-                        //if (parameter.Index > 0 && CalledFunction is Prev)
-
+                        if (CalledFunction is Prev)
+                            parameter.WritePython(textWriter);
                         //    parameter.Index--;
-                        //if (parameter.Index < parameter.Values.Count - 1 && CalledFunction is Next)
+                        if (CalledFunction is Next)
+                            parameter.WritePython(textWriter);
                         //    parameter.Index++;
                     }
                     else

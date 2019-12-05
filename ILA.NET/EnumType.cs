@@ -32,7 +32,7 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public override void WritePython(TextWriter textWriter)
         {
-            textWriter.Write(Name);
+            textWriter.Write("0");
         }
 
         #endregion Public Properties
