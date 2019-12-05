@@ -21,7 +21,7 @@ namespace ILANET
         /// </summary>
         public Function CalledFunction { get; set; }
 
-        VarType IValue.Type
+        public VarType Type
         {
             get
             {
