@@ -13,7 +13,7 @@ namespace ILANET
         /// <summary>
         /// The only instance of the function
         /// </summary>
-        public static readonly Function Instance = new Length();
+        public static readonly Length Instance = new Length();
 
         internal Length()
         {
