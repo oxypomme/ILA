@@ -45,5 +45,15 @@ namespace ilaGUI
         }
 
         public IBaseObject Link { get; private set; }
+
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Background = new SolidColorBrush(Color.FromArgb(20, 255, 255, 255));
+        }
+
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+        }
     }
 }
