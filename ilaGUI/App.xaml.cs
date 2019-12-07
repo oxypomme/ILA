@@ -18,10 +18,16 @@ namespace ilaGUI
     {
         public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
         public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(230, 230, 230));
+        public static List<ILANET.Program> ILAcodes;
 
         public App()
         {
+            ILAcodes = new List<ILANET.Program>();
+            CurrentILAcode = new ILANET.Program();
+            ILAcodes.Add(CurrentILAcode);
         }
+
+        public static ILANET.Program CurrentILAcode { get; set; }
 
         public static BitmapImage GetBitmapImage(Stream stream)
         {
@@ -36,6 +42,16 @@ namespace ilaGUI
             image.EndInit();
             image.Freeze();
             return image;
+        }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            ILAcodes.Clear();
+            foreach (var item in e.Args)
+            {
+                using (var sr = new StreamReader(item))
+                    ILAcodes.Add(ILANET.Parser.Parser.Parse(sr.ReadToEnd()));
+            }
         }
     }
 }
