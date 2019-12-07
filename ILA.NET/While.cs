@@ -10,14 +10,23 @@ namespace ILANET
     /// </summary>
     public class While : Instruction
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public While()
+        {
+            Comment = "";
+            Condition = null;
+            EndComment = "";
+            Instructions = new List<Instruction>();
+        }
+
         #region Public Properties
 
         /// <summary>
         /// The integrated comment
         /// </summary>
         public string Comment { get; set; }
-
-        string Instruction.Comment => Comment;
 
         /// <summary>
         /// The condition of the loop

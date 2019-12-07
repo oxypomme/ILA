@@ -10,6 +10,15 @@ namespace ILANET
     /// </summary>
     public class EnumCall : IValue
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public EnumCall()
+        {
+            Enum = null;
+            Index = 0;
+        }
+
         #region Public Properties
 
         /// <summary>

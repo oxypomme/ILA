@@ -10,6 +10,16 @@ namespace ILANET
     /// </summary>
     public class ModuleCall : Instruction
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public ModuleCall()
+        {
+            Args = new List<IValue>();
+            CalledModule = null;
+            Comment = "";
+        }
+
         #region Public Properties
 
         /// <summary>

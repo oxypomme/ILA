@@ -24,6 +24,7 @@ namespace ILANET
         public ConstantFloat()
         {
             Type = GenericType.Float;
+            Value = 0;
         }
 
         #endregion Public Constructors

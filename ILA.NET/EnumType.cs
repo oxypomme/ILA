@@ -10,6 +10,14 @@ namespace ILANET
     /// </summary>
     public class EnumType : VarType
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public EnumType() : base()
+        {
+            Values = new List<string>();
+        }
+
         #region Public Properties
 
         /// <summary>

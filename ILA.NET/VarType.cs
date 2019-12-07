@@ -10,6 +10,14 @@ namespace ILANET
     /// </summary>
     public abstract class VarType : IBaseObject
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        protected VarType()
+        {
+            Name = "";
+        }
+
         #region Public Properties
 
         /// <summary>

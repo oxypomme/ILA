@@ -10,6 +10,14 @@ namespace ILANET
     /// </summary>
     public class StructType : VarType
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public StructType()
+        {
+            Members = new Dictionary<string, VarType>();
+        }
+
         #region Public Properties
 
         /// <summary>

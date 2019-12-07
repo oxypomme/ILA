@@ -10,6 +10,15 @@ namespace ILANET
     /// </summary>
     public class Comment : Instruction
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Comment()
+        {
+            Message = "";
+            MultiLine = false;
+        }
+
         #region Public Properties
 
         string Instruction.Comment => Message;

@@ -10,6 +10,15 @@ namespace ILANET
     /// </summary>
     public class TableCall : Variable
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public TableCall() : base()
+        {
+            DimensionsIndex = new List<IValue>();
+            Table = new Variable();
+        }
+
         #region Public Properties
 
         /// <summary>

@@ -10,6 +10,14 @@ namespace ILANET
     /// </summary>
     public class Function : Module
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Function() : base()
+        {
+            ReturnType = null;
+        }
+
         #region Public Properties
 
         /// <summary>

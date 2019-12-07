@@ -24,6 +24,7 @@ namespace ILANET
         public ConstantInt()
         {
             Type = GenericType.Int;
+            Value = 0;
         }
 
         #endregion Public Constructors

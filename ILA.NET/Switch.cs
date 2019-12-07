@@ -11,6 +11,18 @@ namespace ILANET
     public class Switch : Instruction
     {
         /// <summary>
+        /// Constructor
+        /// </summary>
+        public Switch()
+        {
+            Cases = new List<Tuple<List<IValue>, List<Instruction>>>();
+            Comment = "";
+            Default = new List<Instruction>();
+            EndComment = "";
+            Value = null;
+        }
+
+        /// <summary>
         /// Each case : a list of value to be equal, a block of instructions, and an eventual comment
         /// </summary>
         public List<Tuple<List<IValue>, List<Instruction>>> Cases { get; set; }

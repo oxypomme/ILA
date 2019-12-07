@@ -24,6 +24,7 @@ namespace ILANET
         public ConstantChar()
         {
             Type = GenericType.Char;
+            Value = (char)0;
         }
 
         #endregion Public Constructors

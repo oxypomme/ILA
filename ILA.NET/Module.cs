@@ -9,6 +9,19 @@ namespace ILANET
     /// </summary>
     public class Module : IExecutable
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Module()
+        {
+            AboveComment = null;
+            Declarations = new List<VariableDeclaration>();
+            InlineComment = "";
+            Name = "";
+            Parameters = new List<Parameter>();
+            Instructions = new List<Instruction>();
+        }
+
         #region Public Properties
 
         /// <summary>

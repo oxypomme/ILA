@@ -25,6 +25,15 @@ namespace ILANET
         /// <summary>
         /// Constructor
         /// </summary>
+        public Range()
+        {
+            Max = null;
+            Min = null;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         /// <param name="min">minimum value</param>
         /// <param name="max">maximum value</param>
         public Range(IValue min, IValue max)
@@ -67,6 +76,15 @@ namespace ILANET
     /// </summary>
     public class TableType : VarType
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public TableType()
+        {
+            DimensionsSize = new List<Range>();
+            InternalType = null;
+        }
+
         #region Public Properties
 
         /// <summary>

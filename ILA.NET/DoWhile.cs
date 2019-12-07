@@ -10,6 +10,17 @@ namespace ILANET
     /// </summary>
     public class DoWhile : Instruction
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public DoWhile()
+        {
+            Comment = "";
+            Condition = null;
+            EndComment = "";
+            Instructions = new List<Instruction>();
+        }
+
         #region Public Properties
 
         /// <summary>

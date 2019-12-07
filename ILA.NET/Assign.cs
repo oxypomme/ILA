@@ -10,6 +10,16 @@ namespace ILANET
     /// </summary>
     public class Assign : Instruction
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Assign()
+        {
+            Comment = "";
+            Left = null;
+            Right = null;
+        }
+
         #region Public Properties
 
         /// <summary>

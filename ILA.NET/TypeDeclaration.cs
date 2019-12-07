@@ -11,11 +11,19 @@ namespace ILANET
     public class TypeDeclaration : IDeclaration
     {
         /// <summary>
+        /// Constructor
+        /// </summary>
+        public TypeDeclaration()
+        {
+            AboveComment = null;
+            CreatedType = null;
+            InlineComment = "";
+        }
+
+        /// <summary>
         /// Comment block above this declaration
         /// </summary>
         public Comment AboveComment { get; set; }
-
-        Comment IDeclaration.AboveComment { get => AboveComment; set => AboveComment = value; }
 
         string IDeclaration.Comment { get => InlineComment; set => InlineComment = value; }
 

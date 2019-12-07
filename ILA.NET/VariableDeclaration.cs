@@ -10,6 +10,16 @@ namespace ILANET
     /// </summary>
     public class VariableDeclaration : IDeclaration
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public VariableDeclaration()
+        {
+            CreatedVariable = null;
+            AboveComment = null;
+            InlineComment = "";
+        }
+
         #region Public Properties
 
         /// <summary>
@@ -23,8 +33,6 @@ namespace ILANET
         /// The comment block above this declaration
         /// </summary>
         public Comment AboveComment { get; set; }
-
-        Comment IDeclaration.AboveComment { get => AboveComment; set => AboveComment = value; }
 
         string IDeclaration.Comment { get => InlineComment; set => InlineComment = value; }
 
