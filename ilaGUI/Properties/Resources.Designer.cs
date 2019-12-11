@@ -553,6 +553,16 @@ namespace ilaGUI.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
+        internal static byte[] remove {
+            get {
+                object obj = ResourceManager.GetObject("remove", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
         internal static byte[] remove_field {
             get {
                 object obj = ResourceManager.GetObject("remove_field", resourceCulture);

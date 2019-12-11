@@ -12,8 +12,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <Label Name="Title" Content="Arborescence" Height="30" />
-            <StackPanel x:Name="TreeToolbar" Margin="1,1,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+            <Label Name="Title" Content="Arborescence" Height="30" Margin="5,0,0,0" />
+            <StackPanel x:Name="TreeToolbar" Margin="5,1,0,0" VerticalAlignment="Top" Orientation="Horizontal">
                 <Button x:Name="newModBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un module">
                     <Image Source="/icons/png/create module.png" Stretch="None" />
                 </Button>
@@ -30,7 +30,7 @@
                     <Image Source="/icons/png/create table.png" Stretch="None" />
                 </Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                 <Button x:Name="newIntBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer entier global">
                     <Image Source="/icons/png/create int.png" Stretch="None" />
                 </Button>

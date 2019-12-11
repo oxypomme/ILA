@@ -71,6 +71,7 @@
     <None Remove="icons\png\ok.png" />
     <None Remove="icons\png\remove field.png" />
     <None Remove="icons\png\remove parameter.png" />
+    <None Remove="icons\png\remove.png" />
     <None Remove="icons\png\return.png" />
     <None Remove="icons\png\string.png" />
     <None Remove="icons\png\struct.png" />
@@ -222,6 +223,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\remove parameter.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\remove.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\return.png">

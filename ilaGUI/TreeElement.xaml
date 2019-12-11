@@ -5,11 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI"
              mc:Ignorable="d"
-             d:DesignHeight="20" d:DesignWidth="200" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave">
+             d:DesignHeight="20" d:DesignWidth="200">
     <Grid>
-        <Image x:Name="Icon" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Center" Margin="0,0,0,1" />
-        <Label Name="Title" Content="Label" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="20,-3,0,0" />
-        <Button x:Name="deleteButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+        <Image x:Name="Icon" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Center" Margin="5,0,0,1" />
+        <Label Name="Title" Content="Label" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="25,-3,0,0" Background="{x:Null}" Foreground="Black" />
+        <Button x:Name="globalButton" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" />
+        <Button x:Name="deleteButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,0,5,0" Width="20" Height="20">
+            <Image Name="deleteIcon" Stretch="None" Margin="0,0,0,1" Source="icons/png/remove.png" />
         </Button>
     </Grid>
 </UserControl>
