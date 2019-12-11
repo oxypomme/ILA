@@ -187,21 +187,6 @@
   <data name="error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\error.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="FiraCode_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\firacode\FiraCode-Bold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FiraCode_Light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\firacode\FiraCode-Light.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FiraCode_Medium" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\firacode\FiraCode-Medium.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FiraCode_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\firacode\FiraCode-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="FiraCode_Retina" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\firacode\FiraCode-Retina.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="float_var" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\float var.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -258,42 +243,6 @@
   </data>
   <data name="remove_parameter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\remove parameter.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-Black.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_BlackItalic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-BlackItalic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-Bold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_BoldItalic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-BoldItalic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-Italic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_Light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-Light.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_LightItalic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-LightItalic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_Medium" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-Medium.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_MediumItalic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-MediumItalic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_Thin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-Thin.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Roboto_ThinItalic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\roboto\Roboto-ThinItalic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\table.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -40,7 +40,6 @@ namespace ilaGUI
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.module));
                 Title.Content = mod.Name;
             }
-            InitializeComponent();
             Title.Foreground = App.DarkFontColor;
         }
 
