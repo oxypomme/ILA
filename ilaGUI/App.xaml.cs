@@ -25,8 +25,10 @@ namespace ilaGUI
             ILAcodes = new List<ILANET.Program>();
             CurrentILAcode = new ILANET.Program();
             ILAcodes.Add(CurrentILAcode);
+            CurrentExecutable = CurrentILAcode;
         }
 
+        public static ILANET.IExecutable CurrentExecutable { get; set; }
         public static ILANET.Program CurrentILAcode { get; set; }
 
         public static BitmapImage GetBitmapImage(Stream stream)
@@ -46,11 +48,16 @@ namespace ilaGUI
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            ILAcodes.Clear();
-            foreach (var item in e.Args)
+            if (e.Args.Length > 0)
             {
-                using (var sr = new StreamReader(item))
-                    ILAcodes.Add(ILANET.Parser.Parser.Parse(sr.ReadToEnd()));
+                ILAcodes.Clear();
+                foreach (var item in e.Args)
+                {
+                    using (var sr = new StreamReader(item))
+                        ILAcodes.Add(ILANET.Parser.Parser.Parse(sr.ReadToEnd()));
+                }
+                CurrentILAcode = ILAcodes.First();
+                CurrentExecutable = CurrentILAcode;
             }
         }
     }

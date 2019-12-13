@@ -26,6 +26,9 @@ namespace ilaGUI
             TreePannel = new Tree();
             TreeGrid.Children.Add(TreePannel);
             Background = App.DarkBackground;
+            algoList.Background = App.DarkBackground;
+            algoList.Items.Add(new TabItem() { Background = App.DarkBackground, Header = "test", Foreground = App.DarkFontColor });
+            algoList.Items.Add(new TabItem() { Background = App.DarkBackground, Header = "test2", Foreground = App.DarkFontColor });
         }
 
         private Tree TreePannel { get; set; }
