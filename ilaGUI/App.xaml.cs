@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -24,12 +25,15 @@ namespace ilaGUI
         {
             ILAcodes = new List<ILANET.Program>();
             CurrentILAcode = new ILANET.Program();
+            CurrentILAcode.Name = "main";
             ILAcodes.Add(CurrentILAcode);
             CurrentExecutable = CurrentILAcode;
         }
 
         public static ILANET.IExecutable CurrentExecutable { get; set; }
         public static ILANET.Program CurrentILAcode { get; set; }
+        public static TabControl Tabs { get; set; }
+        public static Tree Tree { get; set; }
 
         public static BitmapImage GetBitmapImage(Stream stream)
         {
@@ -44,6 +48,29 @@ namespace ilaGUI
             image.EndInit();
             image.Freeze();
             return image;
+        }
+
+        public static void UpdateEditor()
+        {
+        }
+
+        public static void UpdateLexic()
+        {
+        }
+
+        public static void UpdateTabs()
+        {
+            Tabs.Items.Clear();
+            foreach (var item in ILAcodes)
+                Tabs.Items.Add(new TabItem() { Header = item.Name });
+        }
+
+        public static void UpdateTree()
+        {
+            Tree.TreeList.Children.Clear();
+            Tree.TreeList.Children.Add(new TreeElement(CurrentILAcode));
+            foreach (var item in CurrentILAcode.Methods.Where(m => !(m is ILANET.Native)))
+                Tree.TreeList.Children.Add(new TreeElement(item));
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

@@ -144,7 +144,7 @@
                 </Rectangle>
             </Button>
         </StackPanel>
-        <TabControl x:Name="algoList" Grid.Row="1" />
+        <TabControl x:Name="algoList" Grid.Row="1" SelectionChanged="algoList_SelectionChanged" />
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" MinWidth="100" MaxWidth="300" />

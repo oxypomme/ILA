@@ -24,13 +24,24 @@ namespace ilaGUI
         {
             InitializeComponent();
             TreePannel = new Tree();
+            App.Tree = TreePannel;
+            App.Tabs = algoList;
             TreeGrid.Children.Add(TreePannel);
             Background = App.DarkBackground;
             algoList.Background = App.DarkBackground;
-            algoList.Items.Add(new TabItem() { Background = App.DarkBackground, Header = "test", Foreground = App.DarkFontColor });
-            algoList.Items.Add(new TabItem() { Background = App.DarkBackground, Header = "test2", Foreground = App.DarkFontColor });
+            App.UpdateTabs();
+            App.UpdateTree();
         }
 
         private Tree TreePannel { get; set; }
+
+        private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
+            App.CurrentExecutable = App.CurrentILAcode;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
+        }
     }
 }
