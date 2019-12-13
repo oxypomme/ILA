@@ -71,6 +71,16 @@ namespace ilaGUI
             Tree.TreeList.Children.Add(new TreeElement(CurrentILAcode));
             foreach (var item in CurrentILAcode.Methods.Where(m => !(m is ILANET.Native)))
                 Tree.TreeList.Children.Add(new TreeElement(item));
+            UpdateTreeColor();
+        }
+
+        public static void UpdateTreeColor()
+        {
+            foreach (TreeElement item in Tree.TreeList.Children)
+                if (item.Link == CurrentExecutable)
+                    item.Background = new SolidColorBrush(Color.FromArgb(128, 60, 100, 160));
+                else
+                    item.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

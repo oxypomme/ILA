@@ -46,11 +46,26 @@ namespace ilaGUI
 
         public IBaseObject Link { get; private set; }
 
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.CurrentILAcode.Methods.Remove(Link as ILANET.Module);
+            App.UpdateTree();
+            if (App.CurrentExecutable == Link)
+            {
+                App.CurrentExecutable = App.CurrentILAcode;
+
+                App.UpdateEditor();
+                App.UpdateLexic();
+                App.UpdateTreeColor();
+            }
+        }
+
         private void globalButton_Click(object sender, RoutedEventArgs e)
         {
             App.CurrentExecutable = Link as IExecutable;
             App.UpdateEditor();
             App.UpdateLexic();
+            App.UpdateTreeColor();
         }
     }
 }

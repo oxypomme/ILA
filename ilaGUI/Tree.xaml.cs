@@ -23,5 +23,15 @@ namespace ilaGUI
             InitializeComponent();
             Title.Foreground = App.DarkFontColor;
         }
+
+        private void newModBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var m = new ILANET.Module() { Name = "nouveau module" };
+            App.CurrentILAcode.Methods.Add(m);
+            App.CurrentExecutable = m;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
+        }
     }
 }

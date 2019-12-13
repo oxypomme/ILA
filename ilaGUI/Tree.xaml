@@ -14,7 +14,7 @@
         <StackPanel Grid.Row="0">
             <Label Name="Title" Content="Arborescence" Height="30" Margin="5,0,0,0" />
             <StackPanel x:Name="TreeToolbar" Margin="5,1,0,0" VerticalAlignment="Top" Orientation="Horizontal">
-                <Button x:Name="newModBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un module">
+                <Button x:Name="newModBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un module" Click="newModBtn_Click">
                     <Image Source="/icons/png/create module.png" Stretch="None" />
                 </Button>
                 <Button x:Name="newFncBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer une fonction">
