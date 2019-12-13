@@ -43,11 +43,31 @@ namespace ilaGUI
             }
             else if (linkedTo is VariableDeclaration vd)
             {
-                if (vd.CreatedVariable.Type is GenericType gt)
+                if (vd.CreatedVariable.Type is IGenericType gt)
                 {
+                    if (gt == GenericType.String)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._string));
+                    else if (gt == GenericType.Int)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var));
+                    else if (gt == GenericType.Char)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._char));
+                    else if (gt == GenericType.Bool)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._bool));
+                    else if (gt == GenericType.Float)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var));
                 }
                 else
-                    Title.Content = vd.CreatedVariable.Name;
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.custom_var));
+                Title.Content = vd.CreatedVariable.Name;
+            }
+            else if (linkedTo is TypeDeclaration td)
+            {
+                if (td.CreatedType is StructType)
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
+                else if (td.CreatedType is TableType)
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.table));
+                else if (td.CreatedType is EnumType)
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._enum));
             }
             Title.Foreground = App.DarkFontColor;
         }
