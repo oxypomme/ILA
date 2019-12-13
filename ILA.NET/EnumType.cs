@@ -21,6 +21,11 @@ namespace ILANET
         #region Public Properties
 
         /// <summary>
+        /// Name of the type
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// The available values of the enum
         /// </summary>
         public List<string> Values { get; set; }
@@ -29,7 +34,7 @@ namespace ILANET
         /// Generate ila code to for this element.
         /// </summary>
         /// <param name="textWriter">TextWriter to write in.</param>
-        public override void WriteILA(TextWriter textWriter)
+        public void WriteILA(TextWriter textWriter)
         {
             textWriter.Write(Name);
         }
@@ -38,7 +43,7 @@ namespace ILANET
         /// Generate python code to run this element.
         /// </summary>
         /// <param name="textWriter">TextWriter to write in.</param>
-        public override void WritePython(TextWriter textWriter)
+        public void WritePython(TextWriter textWriter)
         {
             textWriter.Write("0");
         }

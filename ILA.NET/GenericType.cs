@@ -8,34 +8,38 @@ namespace ILANET
     /// <summary>
     /// Generic types are the native one, bool char float int string
     /// </summary>
-    public sealed class GenericType : VarType, Native
+    public interface IGenericType : VarType, Native
+    {
+    }
+
+    public sealed class GenericType : IGenericType
     {
         #region Public Fields
 
         /// <summary>
         /// The bool type
         /// </summary>
-        public static readonly VarType Bool = new GenericType(Flags.BOOL) { name = "bool" };
+        public static readonly IGenericType Bool = new GenericType(Flags.BOOL) { name = "bool" };
 
         /// <summary>
         /// The char type
         /// </summary>
-        public static readonly VarType Char = new GenericType(Flags.CHAR) { name = "char" };
+        public static readonly IGenericType Char = new GenericType(Flags.CHAR) { name = "char" };
 
         /// <summary>
         /// The float type
         /// </summary>
-        public static readonly VarType Float = new GenericType(Flags.FLOAT) { name = "float" };
+        public static readonly IGenericType Float = new GenericType(Flags.FLOAT) { name = "float" };
 
         /// <summary>
         /// The int type
         /// </summary>
-        public static readonly VarType Int = new GenericType(Flags.INT) { name = "int" };
+        public static readonly IGenericType Int = new GenericType(Flags.INT) { name = "int" };
 
         /// <summary>
         /// The string type
         /// </summary>
-        public static readonly VarType String = new StringType();
+        public static readonly IGenericType String = new StringType();
 
         #endregion Public Fields
 
@@ -48,7 +52,7 @@ namespace ILANET
         /// <summary>
         /// The name of the type.
         /// </summary>
-        public override string Name { get => name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
+        public string Name { get => name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
 
         #endregion Private Constructors
 
@@ -72,7 +76,7 @@ namespace ILANET
         /// Generate ila code to for this element.
         /// </summary>
         /// <param name="textWriter">TextWriter to write in.</param>
-        public override void WriteILA(TextWriter textWriter)
+        public void WriteILA(TextWriter textWriter)
         {
             switch (Type)
             {
@@ -98,13 +102,13 @@ namespace ILANET
         /// Generate python code to run this element.
         /// </summary>
         /// <param name="textWriter">TextWriter to write in.</param>
-        public override void WritePython(TextWriter textWriter)
+        public void WritePython(TextWriter textWriter)
         { }
 
         #endregion Private Properties
     }
 
-    internal sealed class StringType : TableType, Native
+    internal sealed class StringType : TableType, IGenericType
     {
         internal StringType() : base()
         {
@@ -116,7 +120,7 @@ namespace ILANET
         }
 
         public override List<Range> DimensionsSize { get => base.DimensionsSize; set => throw new InvalidOperationException("Unable to change the dimension of a string."); }
-        public override VarType InternalType { get => GenericType.Char; set => throw new InvalidOperationException("Unable to change the internal type of a string."); }
+        public override VarType InternalType { get => GenericType.Char as GenericType; set => throw new InvalidOperationException("Unable to change the internal type of a string."); }
         public override string Name { get => base.Name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
 
         public override void WriteILA(TextWriter textWriter)

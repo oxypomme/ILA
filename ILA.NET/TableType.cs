@@ -98,10 +98,24 @@ namespace ILANET
         public virtual VarType InternalType { get; set; }
 
         /// <summary>
+        /// Name of the type
+        /// </summary>
+        public virtual string Name { get; set; }
+
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
+
+        /// <summary>
         /// Generate python code to run this element.
         /// </summary>
         /// <param name="textWriter">TextWriter to write in.</param>
-        public override void WritePython(TextWriter textWriter)
+        public virtual void WritePython(TextWriter textWriter)
         {
             textWriter.Write(Name);
         }
