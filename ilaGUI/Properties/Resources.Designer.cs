@@ -373,6 +373,16 @@ namespace ilaGUI.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
+        internal static byte[] custom_var {
+            get {
+                object obj = ResourceManager.GetObject("custom_var", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
         internal static byte[] error {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
