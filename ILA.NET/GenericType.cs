@@ -104,9 +104,9 @@ namespace ILANET
         #endregion Private Properties
     }
 
-    internal sealed class StringType : TableType
+    internal sealed class StringType : TableType, Native
     {
-        internal StringType()
+        internal StringType() : base()
         {
             base.DimensionsSize = new List<Range>()
             {
