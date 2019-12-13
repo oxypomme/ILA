@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ILANET;
 
 namespace ilaGUI
 {
@@ -19,21 +20,31 @@ namespace ilaGUI
     {
         public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
         public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(230, 230, 230));
-        public static List<ILANET.Program> ILAcodes;
+        public static List<Program> ILAcodes;
 
         public App()
         {
-            ILAcodes = new List<ILANET.Program>();
-            CurrentILAcode = new ILANET.Program();
+            ILAcodes = new List<Program>();
+            CurrentILAcode = new Program();
             CurrentILAcode.Name = "main";
             ILAcodes.Add(CurrentILAcode);
             CurrentExecutable = CurrentILAcode;
         }
 
-        public static ILANET.IExecutable CurrentExecutable { get; set; }
-        public static ILANET.Program CurrentILAcode { get; set; }
+        public static IExecutable CurrentExecutable { get; set; }
+        public static Program CurrentILAcode { get; set; }
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
+
+        public static VarType createType(int type) //0 = struct, 1 = table, 2 = enum
+        {
+            return null;
+        }
+
+        public static Variable createVar(int type) //0 = int, 1 = float, 2 = char, 3 = bool, 4 = string, 5 = custom
+        {
+            return null;
+        }
 
         public static BitmapImage GetBitmapImage(Stream stream)
         {
@@ -73,7 +84,7 @@ namespace ilaGUI
         {
             Tree.TreeList.Children.Clear();
             Tree.TreeList.Children.Add(new TreeElement(CurrentILAcode));
-            foreach (var item in CurrentILAcode.Methods.Where(m => !(m is ILANET.Native)))
+            foreach (var item in CurrentILAcode.Methods.Where(m => !(m is Native)))
                 Tree.TreeList.Children.Add(new TreeElement(item));
             UpdateTreeColor();
         }
