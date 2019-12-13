@@ -50,6 +50,10 @@ namespace ilaGUI
             return image;
         }
 
+        public static void ParseEntireProgram()
+        {
+        }
+
         public static void UpdateEditor()
         {
         }

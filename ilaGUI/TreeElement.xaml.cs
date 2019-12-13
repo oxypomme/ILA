@@ -41,6 +41,14 @@ namespace ilaGUI
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.module));
                 Title.Content = mod.Name;
             }
+            else if (linkedTo is VariableDeclaration vd)
+            {
+                if (vd.CreatedVariable.Type is GenericType gt)
+                {
+                }
+                else
+                    Title.Content = vd.CreatedVariable.Name;
+            }
             Title.Foreground = App.DarkFontColor;
         }
 
@@ -48,24 +56,41 @@ namespace ilaGUI
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            App.CurrentILAcode.Methods.Remove(Link as ILANET.Module);
-            App.UpdateTree();
-            if (App.CurrentExecutable == Link)
+            if (Link is ILANET.Module)
             {
-                App.CurrentExecutable = App.CurrentILAcode;
+                App.CurrentILAcode.Methods.Remove(Link as ILANET.Module);
+                App.UpdateTree();
+                if (App.CurrentExecutable == Link)
+                {
+                    App.CurrentExecutable = App.CurrentILAcode;
 
-                App.UpdateEditor();
+                    App.UpdateEditor();
+                    App.UpdateLexic();
+                    App.UpdateTreeColor();
+                }
+            }
+            else
+            {
+                App.CurrentILAcode.Declarations.Remove(Link as IDeclaration);
+                App.UpdateTree();
                 App.UpdateLexic();
-                App.UpdateTreeColor();
+                App.ParseEntireProgram();
             }
         }
 
         private void globalButton_Click(object sender, RoutedEventArgs e)
         {
-            App.CurrentExecutable = Link as IExecutable;
-            App.UpdateEditor();
-            App.UpdateLexic();
-            App.UpdateTreeColor();
+            if (Link is IExecutable exe)
+            {
+                App.CurrentExecutable = exe;
+                App.UpdateEditor();
+                App.UpdateLexic();
+                App.UpdateTreeColor();
+            }
+            else
+            {
+                //edit declaration
+            }
         }
     }
 }
