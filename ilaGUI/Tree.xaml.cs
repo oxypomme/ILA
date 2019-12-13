@@ -24,6 +24,16 @@ namespace ilaGUI
             Title.Foreground = App.DarkFontColor;
         }
 
+        private void newFncBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var f = new ILANET.Function() { Name = "nouvelle fonction" };
+            App.CurrentILAcode.Methods.Add(f);
+            App.CurrentExecutable = f;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
+        }
+
         private void newModBtn_Click(object sender, RoutedEventArgs e)
         {
             var m = new ILANET.Module() { Name = "nouveau module" };
