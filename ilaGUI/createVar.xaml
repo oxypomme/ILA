@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="créer nouvelle variable" Height="400" Width="300" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" ShowInTaskbar="False" KeyDown="Window_KeyDown">
+        Title="créer nouvelle variable" Height="420" Width="300" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" ShowInTaskbar="False" KeyDown="Window_KeyDown" Background="Black">
     <Grid>
         <StackPanel>
             <Label Content="Nom de la variable :" Margin="2" Foreground="White" />
-            <TextBox x:Name="varName" Margin="2" Background="{x:Null}" Foreground="White">
-                nom_variable
-            </TextBox>
+            <TextBox x:Name="varName" Margin="2" Background="{x:Null}" Foreground="White" />
+            <Label Name="typeLabel" Content="Type :" Margin="2" Foreground="White" />
             <ComboBox Name="varType" Margin="2" />
             <CheckBox x:Name="varConst" Content="constante" Margin="2" Foreground="White" Click="varConst_Click" />
             <TextBox x:Name="constValue" Margin="2" Background="{x:Null}" Foreground="White" />

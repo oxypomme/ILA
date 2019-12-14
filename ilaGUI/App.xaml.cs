@@ -37,12 +37,32 @@ namespace ilaGUI
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
 
-        public static void createFunction()
+        public static void createModule(bool isFct)
         {
-        }
-
-        public static void createModule()
-        {
+            if (isFct)
+            {
+                var func = new Function();
+                func.Name = "nouvelle_fonction";
+                func.ReturnType = GenericType.Bool;
+                do
+                {
+                    var dialog = new createModule(func);
+                    dialog.Owner = MainDialog;
+                    if (dialog.ShowDialog() == true)
+                    {
+                        func.Name = dialog.modName.Text;
+                        if (!isNameConventionnal(func.Name))
+                            MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else if (!isNameAvailable(func.Name))
+                            MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                        }
+                    }
+                    else
+                        break;
+                } while (!(isNameAvailable(func.Name) && isNameConventionnal(func.Name)));
+            }
         }
 
         public static VarType createType(int type) //0 = struct, 1 = table, 2 = enum
@@ -120,19 +140,14 @@ namespace ilaGUI
                             }
                             variable.ConstantValue = cstValule;
                         }
-                        if (type == 5)
+                        if (!(variable.Type is Native) && dialog.varType.SelectedIndex == -1)
                         {
-                            int i = 0;
-                            foreach (var item in CurrentILAcode.Declarations)
-                            {
-                                if (item is TypeDeclaration td)
-                                {
-                                    if (i == dialog.varType.SelectedIndex)
-                                        variable.Type = td.CreatedType;
-                                    i++;
-                                }
-                            }
+                            MessageBox.Show(MainDialog, "Aucun type choisi", "erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            variable.Name = "";
+                            continue;
                         }
+                        if (!(variable.Type is Native))
+                            variable.Type = (VarType)((ToStringOverrider)dialog.varType.SelectedItem).Content;
                         var comm = new Comment
                         {
                             Message = dialog.comments.Text,

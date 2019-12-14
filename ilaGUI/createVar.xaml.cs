@@ -45,30 +45,26 @@ namespace ilaGUI
                 varConst.IsChecked = false;
                 constValue.IsEnabled = false;
             }
-            if (v.CreatedVariable.Type == GenericType.Int)
             {
-                varType.SelectedIndex = varType.Items.Add("entier");
-                varType.IsEnabled = false;
+                var title = edit ? "Editer " : "Créer ";
+                if (v.CreatedVariable.Type == GenericType.Int)
+                    title += "un entier";
+                else if (v.CreatedVariable.Type == GenericType.Float)
+                    title += "un réel";
+                else if (v.CreatedVariable.Type == GenericType.Char)
+                    title += "un caractère";
+                else if (v.CreatedVariable.Type == GenericType.Bool)
+                    title += "un booléen";
+                else if (v.CreatedVariable.Type == GenericType.String)
+                    title += "une chaine";
+                else
+                    title += "une variable";
+                Title = title;
             }
-            else if (v.CreatedVariable.Type == GenericType.Float)
+            if (v.CreatedVariable.Type is Native)
             {
-                varType.SelectedIndex = varType.Items.Add("reel");
-                varType.IsEnabled = false;
-            }
-            else if (v.CreatedVariable.Type == GenericType.Char)
-            {
-                varType.SelectedIndex = varType.Items.Add("caractere");
-                varType.IsEnabled = false;
-            }
-            else if (v.CreatedVariable.Type == GenericType.Bool)
-            {
-                varType.SelectedIndex = varType.Items.Add("booleen");
-                varType.IsEnabled = false;
-            }
-            else if (v.CreatedVariable.Type == GenericType.String)
-            {
-                varType.SelectedIndex = varType.Items.Add("chaine");
-                varType.IsEnabled = false;
+                varType.Visibility = Visibility.Collapsed;
+                typeLabel.Visibility = Visibility.Collapsed;
             }
             else
             {

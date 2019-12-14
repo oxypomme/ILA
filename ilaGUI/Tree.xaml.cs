@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -58,12 +59,11 @@ namespace ilaGUI
 
         private void newFncBtn_Click(object sender, RoutedEventArgs e)
         {
-            var f = new ILANET.Function() { Name = "nouvelle fonction" };
-            App.CurrentILAcode.Methods.Add(f);
-            App.CurrentExecutable = f;
+            App.createModule(true);
             App.UpdateTree();
-            App.UpdateEditor();
             App.UpdateLexic();
+            App.UpdateEditor();
+            App.ParseEntireProgram();
         }
 
         private void newIntBtn_Click(object sender, RoutedEventArgs e)
@@ -76,12 +76,11 @@ namespace ilaGUI
 
         private void newModBtn_Click(object sender, RoutedEventArgs e)
         {
-            var m = new ILANET.Module() { Name = "nouveau module" };
-            App.CurrentILAcode.Methods.Add(m);
-            App.CurrentExecutable = m;
+            App.createModule(false);
             App.UpdateTree();
-            App.UpdateEditor();
             App.UpdateLexic();
+            App.UpdateEditor();
+            App.ParseEntireProgram();
         }
 
         private void newStringBtn_Click(object sender, RoutedEventArgs e)
