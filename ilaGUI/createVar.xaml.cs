@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace ilaGUI
 {
@@ -18,10 +19,29 @@ namespace ilaGUI
     /// </summary>
     public partial class createVar : Window
     {
-        public createVar(Variable v)
+        public createVar(Variable v, bool edit = false)
         {
             InitializeComponent();
+            if (edit)
+                validateBtn.Content = "Modifier";
+            varName.Text = v.Name;
             Background = App.DarkBackground;
+            if (v.Constant)
+            {
+                varConst.IsChecked = true;
+                string val = "";
+                using (var sw = new StringWriter())
+                {
+                    v.ConstantValue.WriteILA(sw);
+                    val = sw.ToString();
+                }
+                constValue.Text = val;
+            }
+            else
+            {
+                varConst.IsChecked = false;
+                constValue.IsEnabled = false;
+            }
             if (v.Type == GenericType.Int)
             {
                 varType.SelectedIndex = varType.Items.Add("entier");

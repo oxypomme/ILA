@@ -25,17 +25,17 @@ namespace ilaGUI
             InitializeComponent();
             App.MainDialog = this;
             TreePannel = new Tree();
+            App.Tree = TreePannel;
             TreeGrid.Children.Add(TreePannel);
             Background = App.DarkBackground;
+            App.Tabs = algoList;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
+            App.UpdateTabs();
         }
 
         private Tree TreePannel { get; set; }
-
-        private void newBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new NewFile();
-            window.Show();
-        }
 
         private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -44,6 +44,12 @@ namespace ilaGUI
             App.UpdateTree();
             App.UpdateEditor();
             App.UpdateLexic();
+        }
+
+        private void newBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new NewFile();
+            window.Show();
         }
     }
 }

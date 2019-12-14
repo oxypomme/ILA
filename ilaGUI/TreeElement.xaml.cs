@@ -29,17 +29,17 @@ namespace ilaGUI
             {
                 deleteIcon.Visibility = Visibility.Collapsed;
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.algo));
-                Title.Content = "algo";
+                Title.Text = "algo";
             }
             else if (linkedTo is Function fct)
             {
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.function));
-                Title.Content = fct.Name;
+                Title.Text = fct.Name;
             }
             else if (linkedTo is ILANET.Module mod)
             {
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.module));
-                Title.Content = mod.Name;
+                Title.Text = mod.Name;
             }
             else if (linkedTo is VariableDeclaration vd)
             {
@@ -58,7 +58,7 @@ namespace ilaGUI
                 }
                 else
                     Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.custom_var));
-                Title.Content = vd.CreatedVariable.Name;
+                Title.Text = vd.CreatedVariable.Name;
             }
             else if (linkedTo is TypeDeclaration td)
             {
@@ -76,7 +76,7 @@ namespace ilaGUI
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show(App.MainDialog, "Voulez-vous vraiment supprimer \"" + Title.Content + "\" ?", "supprimer", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            if (MessageBox.Show(App.MainDialog, "Voulez-vous vraiment supprimer \"" + Title.Text + "\" ?", "supprimer", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                 return;
             if (Link is ILANET.Module)
             {
@@ -113,6 +113,10 @@ namespace ilaGUI
             {
                 if (Link is VariableDeclaration vd)
                 {
+                    App.editVar(vd.CreatedVariable, App.CurrentILAcode);
+                    App.UpdateTree();
+                    App.UpdateEditor();
+                    App.UpdateLexic();
                 }
             }
         }

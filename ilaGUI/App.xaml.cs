@@ -143,6 +143,66 @@ namespace ilaGUI
             } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
         }
 
+        public static void editVar(Variable variable, IExecutable scope)
+        {
+            string oldName = variable.Name, newName;
+            bool oldCstState = variable.Constant;
+            do
+            {
+                var dialog = new createVar(variable, true);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    newName = dialog.varName.Text;
+                    variable.Name = "";
+                    variable.Constant = dialog.varConst.IsChecked.Value;
+                    if (!isNameConventionnal(newName))
+                        MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else if (!isNameAvailable(newName))
+                        MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                    {
+                        if (variable.Constant)
+                        {
+                            IValue cstValule;
+                            try
+                            {
+                                cstValule = ILANET.Parser.Parser.ParseValue(dialog.constValue.Text, CurrentILAcode, scope, true);
+                            }
+                            catch (Exception e)
+                            {
+                                MessageBox.Show(MainDialog, e.Message, "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                                variable.Name = "";
+                                continue;
+                            }
+                            variable.ConstantValue = cstValule;
+                        }
+                        if (!(variable.Type is Native))
+                        {
+                            int i = 0;
+                            foreach (var item in CurrentILAcode.Declarations)
+                            {
+                                if (item is TypeDeclaration td)
+                                {
+                                    if (i == dialog.varType.SelectedIndex)
+                                        variable.Type = td.CreatedType;
+                                    i++;
+                                }
+                            }
+                        }
+                        variable.Name = newName;
+                        return;
+                    }
+                }
+                else
+                {
+                    variable.Name = oldName;
+                    variable.Constant = oldCstState;
+                    break;
+                }
+            } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
+        }
+
         public static BitmapImage GetBitmapImage(Stream stream)
         {
             //https://stackoverflow.com/a/9564425
