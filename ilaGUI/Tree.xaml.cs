@@ -24,6 +24,38 @@ namespace ilaGUI
             Title.Foreground = App.DarkFontColor;
         }
 
+        private void newBoolBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(3, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
+        private void newCharBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(2, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
+        private void newCustomBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(5, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
+        private void newFloatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(1, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
         private void newFncBtn_Click(object sender, RoutedEventArgs e)
         {
             var f = new ILANET.Function() { Name = "nouvelle fonction" };
@@ -50,6 +82,14 @@ namespace ilaGUI
             App.UpdateTree();
             App.UpdateEditor();
             App.UpdateLexic();
+        }
+
+        private void newStringBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(4, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
         }
     }
 }

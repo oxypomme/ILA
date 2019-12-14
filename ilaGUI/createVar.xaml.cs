@@ -19,20 +19,23 @@ namespace ilaGUI
     /// </summary>
     public partial class createVar : Window
     {
-        public createVar(Variable v, bool edit = false)
+        public createVar(VariableDeclaration v, bool edit = false)
         {
             InitializeComponent();
             if (edit)
                 validateBtn.Content = "Modifier";
-            varName.Text = v.Name;
+            varName.Text = v.CreatedVariable.Name;
             Background = App.DarkBackground;
-            if (v.Constant)
+            if (v.AboveComment != null)
+                comments.Text = v.AboveComment.Message;
+            inlineComm.Text = v.InlineComment;
+            if (v.CreatedVariable.Constant)
             {
                 varConst.IsChecked = true;
                 string val = "";
                 using (var sw = new StringWriter())
                 {
-                    v.ConstantValue.WriteILA(sw);
+                    v.CreatedVariable.ConstantValue.WriteILA(sw);
                     val = sw.ToString();
                 }
                 constValue.Text = val;
@@ -42,27 +45,27 @@ namespace ilaGUI
                 varConst.IsChecked = false;
                 constValue.IsEnabled = false;
             }
-            if (v.Type == GenericType.Int)
+            if (v.CreatedVariable.Type == GenericType.Int)
             {
                 varType.SelectedIndex = varType.Items.Add("entier");
                 varType.IsEnabled = false;
             }
-            else if (v.Type == GenericType.Float)
+            else if (v.CreatedVariable.Type == GenericType.Float)
             {
                 varType.SelectedIndex = varType.Items.Add("reel");
                 varType.IsEnabled = false;
             }
-            else if (v.Type == GenericType.Char)
+            else if (v.CreatedVariable.Type == GenericType.Char)
             {
                 varType.SelectedIndex = varType.Items.Add("caractere");
                 varType.IsEnabled = false;
             }
-            else if (v.Type == GenericType.Bool)
+            else if (v.CreatedVariable.Type == GenericType.Bool)
             {
                 varType.SelectedIndex = varType.Items.Add("booleen");
                 varType.IsEnabled = false;
             }
-            else if (v.Type == GenericType.String)
+            else if (v.CreatedVariable.Type == GenericType.String)
             {
                 varType.SelectedIndex = varType.Items.Add("chaine");
                 varType.IsEnabled = false;
@@ -73,7 +76,7 @@ namespace ilaGUI
                 {
                     if (item is TypeDeclaration td)
                     {
-                        if (td.CreatedType == v.Type)
+                        if (td.CreatedType == v.CreatedVariable.Type)
                             varType.SelectedIndex = varType.Items.Add(new ToStringOverrider(td.CreatedType, () => td.CreatedType.Name));
                         else
                             varType.Items.Add(new ToStringOverrider(td.CreatedType, () => td.CreatedType.Name));
@@ -96,6 +99,12 @@ namespace ilaGUI
         private void varConst_Click(object sender, RoutedEventArgs e)
         {
             constValue.IsEnabled = varConst.IsChecked.Value;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                DialogResult = false;
         }
     }
 }

@@ -115,7 +115,7 @@ namespace ilaGUI
             {
                 if (Link is VariableDeclaration vd)
                 {
-                    App.editVar(vd.CreatedVariable, App.CurrentILAcode);
+                    App.editVar(vd, App.CurrentILAcode);
                     App.UpdateTree();
                     App.UpdateEditor();
                     App.UpdateLexic();

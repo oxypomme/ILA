@@ -52,7 +52,9 @@ namespace ilaGUI
 
         public static void createVar(int type, IExecutable scope) //0 = int, 1 = float, 2 = char, 3 = bool, 4 = string, 5 = custom
         {
+            var decl = new VariableDeclaration();
             var variable = new Variable();
+            decl.CreatedVariable = variable;
             variable.Name = "nouvelle_variable";
             switch (type)
             {
@@ -91,7 +93,7 @@ namespace ilaGUI
             }
             do
             {
-                var dialog = new createVar(variable);
+                var dialog = new createVar(decl);
                 dialog.Owner = MainDialog;
                 if (dialog.ShowDialog() == true)
                 {
@@ -131,10 +133,17 @@ namespace ilaGUI
                                 }
                             }
                         }
+                        var comm = new Comment
+                        {
+                            Message = dialog.comments.Text,
+                            MultiLine = dialog.comments.Text.Contains('\n')
+                        };
+                        decl.InlineComment = dialog.inlineComm.Text;
+                        decl.AboveComment = comm;
                         if (scope is Module m)
-                            m.Declarations.Add(new VariableDeclaration() { CreatedVariable = variable });
+                            m.Declarations.Add(decl);
                         else if (scope is Program p)
-                            p.Declarations.Add(new VariableDeclaration() { CreatedVariable = variable });
+                            p.Declarations.Add(decl);
                         return;
                     }
                 }
@@ -143,10 +152,10 @@ namespace ilaGUI
             } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
         }
 
-        public static void editVar(Variable variable, IExecutable scope)
+        public static void editVar(VariableDeclaration variable, IExecutable scope)
         {
-            string oldName = variable.Name, newName;
-            bool oldCstState = variable.Constant;
+            string oldName = variable.CreatedVariable.Name, newName;
+            bool oldCstState = variable.CreatedVariable.Constant;
             do
             {
                 var dialog = new createVar(variable, true);
@@ -154,15 +163,15 @@ namespace ilaGUI
                 if (dialog.ShowDialog() == true)
                 {
                     newName = dialog.varName.Text;
-                    variable.Name = "";
-                    variable.Constant = dialog.varConst.IsChecked.Value;
+                    variable.CreatedVariable.Name = "";
+                    variable.CreatedVariable.Constant = dialog.varConst.IsChecked.Value;
                     if (!isNameConventionnal(newName))
                         MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else if (!isNameAvailable(newName))
                         MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                     {
-                        if (variable.Constant)
+                        if (variable.CreatedVariable.Constant)
                         {
                             IValue cstValule;
                             try
@@ -172,12 +181,12 @@ namespace ilaGUI
                             catch (Exception e)
                             {
                                 MessageBox.Show(MainDialog, e.Message, "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                                variable.Name = "";
+                                variable.CreatedVariable.Name = "";
                                 continue;
                             }
-                            variable.ConstantValue = cstValule;
+                            variable.CreatedVariable.ConstantValue = cstValule;
                         }
-                        if (!(variable.Type is Native))
+                        if (!(variable.CreatedVariable.Type is Native))
                         {
                             int i = 0;
                             foreach (var item in CurrentILAcode.Declarations)
@@ -185,22 +194,29 @@ namespace ilaGUI
                                 if (item is TypeDeclaration td)
                                 {
                                     if (i == dialog.varType.SelectedIndex)
-                                        variable.Type = td.CreatedType;
+                                        variable.CreatedVariable.Type = td.CreatedType;
                                     i++;
                                 }
                             }
                         }
-                        variable.Name = newName;
+                        var comm = new Comment
+                        {
+                            Message = dialog.comments.Text,
+                            MultiLine = dialog.comments.Text.Contains('\n')
+                        };
+                        variable.AboveComment = comm;
+                        variable.InlineComment = dialog.inlineComm.Text;
+                        variable.CreatedVariable.Name = newName;
                         return;
                     }
                 }
                 else
                 {
-                    variable.Name = oldName;
-                    variable.Constant = oldCstState;
+                    variable.CreatedVariable.Name = oldName;
+                    variable.CreatedVariable.Constant = oldCstState;
                     break;
                 }
-            } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
+            } while (!(isNameAvailable(variable.CreatedVariable.Name) && isNameConventionnal(variable.CreatedVariable.Name)));
         }
 
         public static BitmapImage GetBitmapImage(Stream stream)
