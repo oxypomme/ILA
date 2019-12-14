@@ -31,6 +31,7 @@
     <None Remove="icons\Cube_16x.svg" />
     <None Remove="icons\png\add field.png" />
     <None Remove="icons\png\add parameter.png" />
+    <None Remove="icons\png\add.png" />
     <None Remove="icons\png\AddVariable_16x.png" />
     <None Remove="icons\png\algo.png" />
     <None Remove="icons\png\assign.png" />
@@ -121,6 +122,7 @@
     <Resource Include="icons\png\add parameter.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\add.png" />
     <Resource Include="icons\png\algo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
