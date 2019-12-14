@@ -5,13 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI"
              mc:Ignorable="d"
-             d:DesignHeight="20" d:DesignWidth="200">
+             Height="30" d:DesignWidth="200">
     <Grid>
         <Image x:Name="Icon" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Center" Margin="5,0,0,0" />
         <TextBlock Name="Title" Text="Label" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Margin="25,0,0,0" Background="{x:Null}" Foreground="Black" />
         <Button x:Name="globalButton" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="globalButton_Click" />
-        <Button x:Name="deleteButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,0,5,0" Width="20" Height="20" Click="deleteButton_Click">
-            <Image Name="deleteIcon" Stretch="None" Source="icons/png/remove.png" />
-        </Button>
+        <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" Margin="0,0,5,0">
+            <Button x:Name="deleteButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,5,0" Width="20" Height="20" Click="deleteButton_Click">
+                <Image Name="deleteIcon" Stretch="None" Source="icons/png/remove.png" />
+            </Button>
+            <Button x:Name="editButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,5,0" Width="20" Height="20">
+                <Image Name="editIcon" Stretch="None" Source="/icons/png/edit.png" />
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

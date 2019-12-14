@@ -27,7 +27,7 @@ namespace ilaGUI
             Link = linkedTo;
             if (linkedTo is Program pr)
             {
-                deleteIcon.Visibility = Visibility.Collapsed;
+                deleteButton.Visibility = Visibility.Collapsed;
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.algo));
                 Title.Text = "algo";
             }
@@ -43,6 +43,7 @@ namespace ilaGUI
             }
             else if (linkedTo is VariableDeclaration vd)
             {
+                editButton.Visibility = Visibility.Collapsed;
                 if (vd.CreatedVariable.Type is IGenericType gt)
                 {
                     if (gt == GenericType.String)
@@ -62,6 +63,7 @@ namespace ilaGUI
             }
             else if (linkedTo is TypeDeclaration td)
             {
+                editButton.Visibility = Visibility.Collapsed;
                 if (td.CreatedType is StructType)
                     Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
                 else if (td.CreatedType is TableType)
