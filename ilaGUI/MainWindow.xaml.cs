@@ -54,6 +54,7 @@ namespace ilaGUI
                 }
             }
 
+            // here we check if the sub-window has already created/showed to avoid the new window spam
             if (!showed)
             {
                 if (!created)
