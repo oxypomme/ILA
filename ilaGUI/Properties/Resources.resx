@@ -253,9 +253,6 @@
   <data name="remove_field" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\remove field.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="remove_parameter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\png\remove parameter.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\table.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

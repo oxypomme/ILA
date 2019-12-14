@@ -226,9 +226,6 @@
     <Resource Include="icons\png\remove field.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\png\remove parameter.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="icons\png\remove.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
