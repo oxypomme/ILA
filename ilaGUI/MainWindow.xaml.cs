@@ -25,16 +25,17 @@ namespace ilaGUI
             InitializeComponent();
             App.MainDialog = this;
             TreePannel = new Tree();
-            App.Tree = TreePannel;
-            App.Tabs = algoList;
             TreeGrid.Children.Add(TreePannel);
             Background = App.DarkBackground;
-            algoList.Background = App.DarkBackground;
-            App.UpdateTabs();
-            App.UpdateTree();
         }
 
         private Tree TreePannel { get; set; }
+
+        private void newBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new NewFile();
+            window.Show();
+        }
 
         private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

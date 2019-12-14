@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel x:Name="MainToolbar" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,0">
-            <Button x:Name="newBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20">
+            <Button x:Name="newBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="newBtn_Click">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
