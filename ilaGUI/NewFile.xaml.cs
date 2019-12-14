@@ -21,5 +21,14 @@ namespace ilaGUI
         {
             InitializeComponent();
         }
+
+        private void cancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+        }
     }
 }
