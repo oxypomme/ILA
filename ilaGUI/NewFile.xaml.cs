@@ -29,6 +29,7 @@ namespace ilaGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // this set some proprety in main window to be able to reopen the new_file window
         }
     }
 }
