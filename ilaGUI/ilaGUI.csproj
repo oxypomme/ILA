@@ -56,6 +56,7 @@
     <None Remove="icons\png\create string.png" />
     <None Remove="icons\png\create struct.png" />
     <None Remove="icons\png\create table.png" />
+    <None Remove="icons\png\edit.png" />
     <None Remove="icons\png\enum.png" />
     <None Remove="icons\png\error.png" />
     <None Remove="icons\png\FieldAdded_16x.png" />
@@ -186,6 +187,7 @@
     <Resource Include="icons\png\create table.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\edit.png" />
     <Resource Include="icons\png\enum.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
