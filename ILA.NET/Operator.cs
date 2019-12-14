@@ -10,6 +10,13 @@ namespace ILANET
     /// </summary>
     public class Operator : IValue
     {
+        public Operator()
+        {
+            Left = null;
+            Right = null;
+            OperatorType = 0;
+        }
+
         #region Public Enums
 
         /// <summary>
@@ -119,13 +126,7 @@ namespace ILANET
 
         #endregion Public Properties
 
-        #region Internal Properties
-
-        VarType IValue.Type => Type;
-
-        #endregion Internal Properties
-
-        internal VarType Type { get; set; }
+        public VarType Type { get; internal set; }
 
         /// <summary>
         /// Generate ila code to for this element.

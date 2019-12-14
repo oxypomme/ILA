@@ -10,6 +10,17 @@ namespace ILANET
     /// </summary>
     public class Variable : IValue
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Variable()
+        {
+            Constant = false;
+            ConstantValue = null;
+            Name = "";
+            Type = null;
+        }
+
         #region Public Properties
 
         /// <summary>
@@ -26,8 +37,6 @@ namespace ILANET
         /// The name of the variable
         /// </summary>
         public virtual string Name { get; set; }
-
-        VarType IValue.Type => Type;
 
         #endregion Public Properties
 

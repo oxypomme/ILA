@@ -24,6 +24,7 @@ namespace ILANET
         public ConstantBool()
         {
             Type = GenericType.Bool;
+            Value = false;
         }
 
         #endregion Public Constructors

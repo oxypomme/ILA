@@ -10,6 +10,21 @@ namespace ILANET
     /// </summary>
     public class If : Instruction
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public If()
+        {
+            Comment = "";
+            Elif = new List<Tuple<IValue, List<Instruction>>>();
+            ElifComments = new List<string>();
+            ElseComment = "";
+            ElseInstructions = new List<Instruction>();
+            EndComment = "";
+            IfCondition = null;
+            IfInstructions = new List<Instruction>();
+        }
+
         #region Public Properties
 
         /// <summary>

@@ -35,5 +35,14 @@ namespace ilaGUI
             var window = new NewFile();
             window.Show();
         }
+
+        private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
+            App.CurrentExecutable = App.CurrentILAcode;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
+        }
     }
 }

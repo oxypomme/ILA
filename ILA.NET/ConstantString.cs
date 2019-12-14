@@ -24,6 +24,7 @@ namespace ILANET
         public ConstantString()
         {
             Type = GenericType.String;
+            Value = "";
         }
 
         #endregion Public Constructors

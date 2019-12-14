@@ -9,6 +9,15 @@ namespace ILANET
     /// </summary>
     public class FunctionCall : IValue
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FunctionCall()
+        {
+            Args = new List<IValue>();
+            CalledFunction = null;
+        }
+
         #region Public Properties
 
         /// <summary>
@@ -87,8 +96,10 @@ namespace ILANET
                     {
                         if (CalledFunction is Prev)
                             parameter.WritePython(textWriter);
+                        // parameter.Index--;
                         if (CalledFunction is Next)
                             parameter.WritePython(textWriter);
+                        // parameter.Index++;
                     }
                     else
                     {

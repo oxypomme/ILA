@@ -10,6 +10,15 @@ namespace ILANET
     /// </summary>
     public class Parameter : IBaseObject
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Parameter()
+        {
+            ImportedVariable = null;
+            Mode = 0;
+        }
+
         #region Public Enums
 
         /// <summary>

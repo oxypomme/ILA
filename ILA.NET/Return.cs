@@ -11,6 +11,16 @@ namespace ILANET
     public class Return : Instruction
     {
         /// <summary>
+        /// Constructor
+        /// </summary>
+        public Return()
+        {
+            Comment = "";
+            Function = null;
+            Value = null;
+        }
+
+        /// <summary>
         /// Integrated comment
         /// </summary>
         public string Comment { get; set; }

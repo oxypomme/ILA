@@ -14,6 +14,21 @@ namespace ILANET
 
         internal static int Indent;
         internal static int IndentMultiplier = 4;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Program()
+        {
+            AlgoComment = null;
+            Declarations = new List<IDeclaration>();
+            FileComments = new List<Comment>();
+            InlineComment = "";
+            Instructions = new List<Instruction>();
+            Methods = new List<Module>();
+            Name = "";
+        }
+
         Comment IExecutable.AboveComment => AlgoComment;
 
         /// <summary>

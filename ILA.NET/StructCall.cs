@@ -10,6 +10,15 @@ namespace ILANET
     /// </summary>
     public class StructCall : Variable
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public StructCall() : base()
+        {
+            Name = "";
+            Struct = null;
+        }
+
         #region Public Properties
 
         /// <summary>

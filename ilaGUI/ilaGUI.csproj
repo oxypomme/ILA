@@ -27,23 +27,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Remove="fonts\firacode\FiraCode-Bold.ttf" />
-    <None Remove="fonts\firacode\FiraCode-Light.ttf" />
-    <None Remove="fonts\firacode\FiraCode-Medium.ttf" />
-    <None Remove="fonts\firacode\FiraCode-Regular.ttf" />
-    <None Remove="fonts\firacode\FiraCode-Retina.ttf" />
-    <None Remove="fonts\roboto\Roboto-Black.ttf" />
-    <None Remove="fonts\roboto\Roboto-BlackItalic.ttf" />
-    <None Remove="fonts\roboto\Roboto-Bold.ttf" />
-    <None Remove="fonts\roboto\Roboto-BoldItalic.ttf" />
-    <None Remove="fonts\roboto\Roboto-Italic.ttf" />
-    <None Remove="fonts\roboto\Roboto-Light.ttf" />
-    <None Remove="fonts\roboto\Roboto-LightItalic.ttf" />
-    <None Remove="fonts\roboto\Roboto-Medium.ttf" />
-    <None Remove="fonts\roboto\Roboto-MediumItalic.ttf" />
-    <None Remove="fonts\roboto\Roboto-Regular.ttf" />
-    <None Remove="fonts\roboto\Roboto-Thin.ttf" />
-    <None Remove="fonts\roboto\Roboto-ThinItalic.ttf" />
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\Cube_16x.svg" />
     <None Remove="icons\png\add field.png" />
@@ -88,6 +71,7 @@
     <None Remove="icons\png\ok.png" />
     <None Remove="icons\png\remove field.png" />
     <None Remove="icons\png\remove parameter.png" />
+    <None Remove="icons\png\remove.png" />
     <None Remove="icons\png\return.png" />
     <None Remove="icons\png\string.png" />
     <None Remove="icons\png\struct.png" />
@@ -130,57 +114,6 @@
     <None Include="icons\UserFunction_16x.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="fonts\firacode\FiraCode-Bold.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\firacode\FiraCode-Light.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\firacode\FiraCode-Medium.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\firacode\FiraCode-Regular.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\firacode\FiraCode-Retina.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-Black.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-BlackItalic.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-Bold.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-BoldItalic.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-Italic.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-Light.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-LightItalic.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-Medium.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-MediumItalic.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-Regular.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-Thin.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="fonts\roboto\Roboto-ThinItalic.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="icons\png\add field.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -290,6 +223,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\remove parameter.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\remove.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\return.png">

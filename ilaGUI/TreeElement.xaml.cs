@@ -27,8 +27,9 @@ namespace ilaGUI
             Link = linkedTo;
             if (linkedTo is Program pr)
             {
+                deleteIcon.Visibility = Visibility.Collapsed;
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.algo));
-                Title.Content = pr.Name;
+                Title.Content = "algo";
             }
             else if (linkedTo is Function fct)
             {
@@ -40,10 +41,76 @@ namespace ilaGUI
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.module));
                 Title.Content = mod.Name;
             }
-            InitializeComponent();
+            else if (linkedTo is VariableDeclaration vd)
+            {
+                if (vd.CreatedVariable.Type is IGenericType gt)
+                {
+                    if (gt == GenericType.String)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._string));
+                    else if (gt == GenericType.Int)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var));
+                    else if (gt == GenericType.Char)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._char));
+                    else if (gt == GenericType.Bool)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._bool));
+                    else if (gt == GenericType.Float)
+                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var));
+                }
+                else
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.custom_var));
+                Title.Content = vd.CreatedVariable.Name;
+            }
+            else if (linkedTo is TypeDeclaration td)
+            {
+                if (td.CreatedType is StructType)
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
+                else if (td.CreatedType is TableType)
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.table));
+                else if (td.CreatedType is EnumType)
+                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._enum));
+            }
             Title.Foreground = App.DarkFontColor;
         }
 
         public IBaseObject Link { get; private set; }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Link is ILANET.Module)
+            {
+                App.CurrentILAcode.Methods.Remove(Link as ILANET.Module);
+                App.UpdateTree();
+                if (App.CurrentExecutable == Link)
+                {
+                    App.CurrentExecutable = App.CurrentILAcode;
+
+                    App.UpdateEditor();
+                    App.UpdateLexic();
+                    App.UpdateTreeColor();
+                }
+            }
+            else
+            {
+                App.CurrentILAcode.Declarations.Remove(Link as IDeclaration);
+                App.UpdateTree();
+                App.UpdateLexic();
+                App.ParseEntireProgram();
+            }
+        }
+
+        private void globalButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Link is IExecutable exe)
+            {
+                App.CurrentExecutable = exe;
+                App.UpdateEditor();
+                App.UpdateLexic();
+                App.UpdateTreeColor();
+            }
+            else
+            {
+                //edit declaration
+            }
+        }
     }
 }

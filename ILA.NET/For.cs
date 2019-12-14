@@ -10,6 +10,20 @@ namespace ILANET
     /// </summary>
     public class For : Instruction
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public For()
+        {
+            Comment = "";
+            End = null;
+            EndComment = "";
+            Index = null;
+            Instructions = new List<Instruction>();
+            Start = null;
+            Step = null;
+        }
+
         #region Public Properties
 
         /// <summary>

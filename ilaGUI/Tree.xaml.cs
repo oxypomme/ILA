@@ -22,9 +22,26 @@ namespace ilaGUI
         {
             InitializeComponent();
             Title.Foreground = App.DarkFontColor;
-            TreeList.Children.Add(new TreeElement(new ILANET.Program() { Name = "algo test" }));
-            TreeList.Children.Add(new TreeElement(new ILANET.Module() { Name = "module test" }));
-            TreeList.Children.Add(new TreeElement(new ILANET.Function() { Name = "function test" }));
+        }
+
+        private void newFncBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var f = new ILANET.Function() { Name = "nouvelle fonction" };
+            App.CurrentILAcode.Methods.Add(f);
+            App.CurrentExecutable = f;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
+        }
+
+        private void newModBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var m = new ILANET.Module() { Name = "nouveau module" };
+            App.CurrentILAcode.Methods.Add(m);
+            App.CurrentExecutable = m;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
         }
     }
 }

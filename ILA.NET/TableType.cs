@@ -25,6 +25,15 @@ namespace ILANET
         /// <summary>
         /// Constructor
         /// </summary>
+        public Range()
+        {
+            Max = null;
+            Min = null;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         /// <param name="min">minimum value</param>
         /// <param name="max">maximum value</param>
         public Range(IValue min, IValue max)
@@ -67,6 +76,15 @@ namespace ILANET
     /// </summary>
     public class TableType : VarType
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public TableType()
+        {
+            DimensionsSize = new List<Range>();
+            InternalType = null;
+        }
+
         #region Public Properties
 
         /// <summary>
@@ -80,10 +98,24 @@ namespace ILANET
         public virtual VarType InternalType { get; set; }
 
         /// <summary>
+        /// Name of the type
+        /// </summary>
+        public virtual string Name { get; set; }
+
+        /// <summary>
+        /// Generate ila code to for this element.
+        /// </summary>
+        /// <param name="textWriter">TextWriter to write in.</param>
+        public virtual void WriteILA(TextWriter textWriter)
+        {
+            textWriter.Write(Name);
+        }
+
+        /// <summary>
         /// Generate python code to run this element.
         /// </summary>
         /// <param name="textWriter">TextWriter to write in.</param>
-        public override void WritePython(TextWriter textWriter)
+        public virtual void WritePython(TextWriter textWriter)
         {
             textWriter.Write(Name);
         }
