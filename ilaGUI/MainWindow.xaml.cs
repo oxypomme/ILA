@@ -29,5 +29,11 @@ namespace ilaGUI
         }
 
         private Tree TreePannel { get; set; }
+
+        private void newBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new NewFile();
+            window.Show();
+        }
     }
 }
