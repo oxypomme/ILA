@@ -90,7 +90,7 @@ namespace ILANET
         /// <summary>
         /// The size of each dimension
         /// </summary>
-        public virtual List<Range> DimensionsSize { get; set; }
+        public virtual IList<Range> DimensionsSize { get; set; }
 
         /// <summary>
         /// The type of the elements

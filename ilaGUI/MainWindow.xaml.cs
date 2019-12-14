@@ -25,6 +25,7 @@ namespace ilaGUI
         public MainWindow()
         {
             InitializeComponent();
+            App.MainDialog = this;
             TreePannel = new Tree();
             TreeGrid.Children.Add(TreePannel);
             Background = App.DarkBackground;

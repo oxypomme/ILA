@@ -110,17 +110,21 @@ namespace ILANET
 
     internal sealed class StringType : TableType, IGenericType
     {
-        internal StringType() : base()
+        private List<Range> dimensionsSize;
+        private bool init = false;
+
+        internal StringType()
         {
-            base.DimensionsSize = new List<Range>()
+            dimensionsSize = new List<Range>()
             {
                 new Range(new ConstantInt(){ Value = 1}, null)
             };
             base.Name = "string";
+            init = true;
         }
 
-        public override List<Range> DimensionsSize { get => base.DimensionsSize; set => throw new InvalidOperationException("Unable to change the dimension of a string."); }
-        public override VarType InternalType { get => GenericType.Char as GenericType; set => throw new InvalidOperationException("Unable to change the internal type of a string."); }
+        public override IList<Range> DimensionsSize { get => dimensionsSize; set { if (init) throw new InvalidOperationException("Unable to change the dimension of a string."); } }
+        public override VarType InternalType { get => GenericType.Char as GenericType; set { if (init) throw new InvalidOperationException("Unable to change the internal type of a string."); } }
         public override string Name { get => base.Name; set => throw new InvalidOperationException("Unable to change the name of a generic type."); }
 
         public override void WriteILA(TextWriter textWriter)
