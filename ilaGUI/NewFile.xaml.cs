@@ -34,11 +34,15 @@ namespace ilaGUI
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // somewhat useless vars
-                string nameFile = algonameTB.Text;
-                string filePath = dialog.SelectedPath;
+                App.CurrentILAcode.Name = algonameTB.Text;
+                App.ILAcodes.Add(App.CurrentILAcode);
+                App.CurrentExecutable = App.CurrentILAcode;
 
-                File.WriteAllText(Path.Combine(filePath, nameFile + ".ila"), "algo " + nameFile + "{\n\n}");
+                App.UpdateTree();
+                App.UpdateEditor();
+                App.UpdateLexic();
+
+                File.WriteAllText(Path.Combine(dialog.SelectedPath, algonameTB.Text + ".ila"), App.ILAcodes);
             }
             Close();
         }
