@@ -34,6 +34,14 @@ namespace ilaGUI
             App.UpdateLexic();
         }
 
+        private void newIntBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(0, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
         private void newModBtn_Click(object sender, RoutedEventArgs e)
         {
             var m = new ILANET.Module() { Name = "nouveau module" };

@@ -31,7 +31,7 @@
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                <Button x:Name="newIntBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer entier global">
+                <Button x:Name="newIntBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer entier global" Click="newIntBtn_Click">
                     <Image Source="/icons/png/create int.png" Stretch="None" />
                 </Button>
                 <Button x:Name="newFloatBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer flottant global">

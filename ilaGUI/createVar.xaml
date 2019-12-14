@@ -1,0 +1,24 @@
+﻿<Window x:Class="ilaGUI.createVar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ilaGUI"
+        mc:Ignorable="d"
+        Title="créer nouvelle variable" Height="250" Width="300" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" ShowInTaskbar="False">
+    <Grid>
+        <StackPanel>
+            <Label Content="Nom de la variable :" Margin="2" Foreground="White" />
+            <TextBox x:Name="varName" Margin="2" Background="{x:Null}" Foreground="White">
+                nom_variable
+            </TextBox>
+            <ComboBox Name="varType" Margin="2" />
+            <CheckBox x:Name="varConst" Content="constante" Margin="2" Foreground="White" Click="varConst_Click" />
+            <TextBox x:Name="constValue" Margin="2" Background="{x:Null}" Foreground="White" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Name="validateBtn" Content="Créer" Margin="5" Click="validateBtn_Click" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" Width="35" Height="20" />
+            <Button Name="cancelBtn" Content="Annuler" Margin="5" Click="cancelBtn_Click" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" Width="50" Height="20" />
+        </StackPanel>
+    </Grid>
+</Window>

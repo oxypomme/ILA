@@ -9,6 +9,11 @@
             The assign instruction sets a variable to a given value
             </summary>
         </member>
+        <member name="M:ILANET.Assign.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.Assign.Comment">
             <summary>
             Integrated comment
@@ -39,6 +44,11 @@
         <member name="T:ILANET.Comment">
             <summary>
             A comment block.
+            </summary>
+        </member>
+        <member name="M:ILANET.Comment.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.Comment.Message">
@@ -203,6 +213,11 @@
             A do { } while(); block
             </summary>
         </member>
+        <member name="M:ILANET.DoWhile.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.DoWhile.Comment">
             <summary>
             The integrated comment
@@ -240,6 +255,11 @@
             Instruction that calls an enum value
             </summary>
         </member>
+        <member name="M:ILANET.EnumCall.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.EnumCall.Enum">
             <summary>
             Type of the enum to call
@@ -265,6 +285,16 @@
         <member name="T:ILANET.EnumType">
             <summary>
             An enumeration type
+            </summary>
+        </member>
+        <member name="M:ILANET.EnumType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:ILANET.EnumType.Name">
+            <summary>
+            Name of the type
             </summary>
         </member>
         <member name="P:ILANET.EnumType.Values">
@@ -319,6 +349,11 @@
             For loop block
             </summary>
         </member>
+        <member name="M:ILANET.For.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.For.Comment">
             <summary>
             Integrated comment
@@ -371,6 +406,11 @@
             A function, a module that returns something
             </summary>
         </member>
+        <member name="M:ILANET.Function.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.Function.ReturnType">
             <summary>
             Type of the returned value. null if it is any type.
@@ -391,6 +431,11 @@
         <member name="T:ILANET.FunctionCall">
             <summary>
             An instruction that calls a function
+            </summary>
+        </member>
+        <member name="M:ILANET.FunctionCall.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.FunctionCall.Args">
@@ -415,7 +460,7 @@
             </summary>
             <param name="textWriter">TextWriter to write in.</param>
         </member>
-        <member name="T:ILANET.GenericType">
+        <member name="T:ILANET.IGenericType">
             <summary>
             Generic types are the native one, bool char float int string
             </summary>
@@ -498,6 +543,11 @@
         <member name="T:ILANET.If">
             <summary>
             A conditionnal block of instructions
+            </summary>
+        </member>
+        <member name="M:ILANET.If.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.If.Comment">
@@ -599,6 +649,11 @@
             A module is a block of code that can be called from any executable
             </summary>
         </member>
+        <member name="M:ILANET.Module.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.Module.AboveComment">
             <summary>
             The comment above its declaration
@@ -646,6 +701,11 @@
             An instruction that calls a module
             </summary>
         </member>
+        <member name="M:ILANET.ModuleCall.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.ModuleCall.Args">
             <summary>
             The arguments given to the module
@@ -675,7 +735,7 @@
         </member>
         <member name="T:ILANET.Native">
             <summary>
-            Correspond to a native element that can't be changed.
+            Corresponds to a native element that can't be changed.
             </summary>
         </member>
         <member name="T:ILANET.Next">
@@ -822,6 +882,11 @@
             Parameter of an executable block
             </summary>
         </member>
+        <member name="M:ILANET.Parameter.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="T:ILANET.Parameter.Flags">
             <summary>
             Available parameter mode
@@ -947,6 +1012,11 @@
             Class representing the entire file and the main algorithm
             </summary>
         </member>
+        <member name="M:ILANET.Program.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.Program.AlgoComment">
             <summary>
             The comment block above the algorithm declaration
@@ -1021,6 +1091,11 @@
             The return instruction. Only usable in a function, it stops the function and returns a value.
             </summary>
         </member>
+        <member name="M:ILANET.Return.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.Return.Comment">
             <summary>
             Integrated comment
@@ -1051,6 +1126,11 @@
         <member name="T:ILANET.StructCall">
             <summary>
             An instruction that calls a subvariable of a struct
+            </summary>
+        </member>
+        <member name="M:ILANET.StructCall.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.StructCall.Name">
@@ -1085,10 +1165,26 @@
             A custom struct type
             </summary>
         </member>
+        <member name="M:ILANET.StructType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.StructType.Members">
             <summary>
             The members of the structure
             </summary>
+        </member>
+        <member name="P:ILANET.StructType.Name">
+            <summary>
+            Name of the type
+            </summary>
+        </member>
+        <member name="M:ILANET.StructType.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
         </member>
         <member name="M:ILANET.StructType.WritePython(System.IO.TextWriter)">
             <summary>
@@ -1099,6 +1195,11 @@
         <member name="T:ILANET.Switch">
             <summary>
             A switch instruction
+            </summary>
+        </member>
+        <member name="M:ILANET.Switch.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.Switch.Cases">
@@ -1141,6 +1242,11 @@
         <member name="T:ILANET.TableCall">
             <summary>
             Intruction that calls an element of a table
+            </summary>
+        </member>
+        <member name="M:ILANET.TableCall.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.TableCall.DimensionsIndex">
@@ -1190,6 +1296,11 @@
             The maximum value
             </summary>
         </member>
+        <member name="M:ILANET.Range.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="M:ILANET.Range.#ctor(ILANET.IValue,ILANET.IValue)">
             <summary>
             Constructor
@@ -1214,6 +1325,11 @@
             A custom type represented by a table
             </summary>
         </member>
+        <member name="M:ILANET.TableType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.TableType.DimensionsSize">
             <summary>
             The size of each dimension
@@ -1224,6 +1340,17 @@
             The type of the elements
             </summary>
         </member>
+        <member name="P:ILANET.TableType.Name">
+            <summary>
+            Name of the type
+            </summary>
+        </member>
+        <member name="M:ILANET.TableType.WriteILA(System.IO.TextWriter)">
+            <summary>
+            Generate ila code to for this element.
+            </summary>
+            <param name="textWriter">TextWriter to write in.</param>
+        </member>
         <member name="M:ILANET.TableType.WritePython(System.IO.TextWriter)">
             <summary>
             Generate python code to run this element.
@@ -1233,6 +1360,11 @@
         <member name="T:ILANET.TypeDeclaration">
             <summary>
             A declaration of a custom type
+            </summary>
+        </member>
+        <member name="M:ILANET.TypeDeclaration.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.TypeDeclaration.AboveComment">
@@ -1265,6 +1397,11 @@
         <member name="T:ILANET.Variable">
             <summary>
             A basic variable
+            </summary>
+        </member>
+        <member name="M:ILANET.Variable.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.Variable.Constant">
@@ -1304,6 +1441,11 @@
             A declaration of a variable
             </summary>
         </member>
+        <member name="M:ILANET.VariableDeclaration.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
         <member name="P:ILANET.VariableDeclaration.CreatedVariable">
             <summary>
             The variable to declare
@@ -1341,21 +1483,14 @@
             The name of the type
             </summary>
         </member>
-        <member name="M:ILANET.VarType.WriteILA(System.IO.TextWriter)">
-            <summary>
-            Generate ila code to for this element.
-            </summary>
-            <param name="textWriter">TextWriter to write in.</param>
-        </member>
-        <member name="M:ILANET.VarType.WritePython(System.IO.TextWriter)">
-            <summary>
-            Generate python code to run this element.
-            </summary>
-            <param name="textWriter">TextWriter to write in.</param>
-        </member>
         <member name="T:ILANET.While">
             <summary>
             A while loop
+            </summary>
+        </member>
+        <member name="M:ILANET.While.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="P:ILANET.While.Comment">

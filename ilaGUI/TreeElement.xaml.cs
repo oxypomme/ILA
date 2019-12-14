@@ -76,6 +76,8 @@ namespace ilaGUI
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
+            if (MessageBox.Show(App.MainDialog, "Voulez-vous vraiment supprimer \"" + Title.Content + "\" ?", "supprimer", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                return;
             if (Link is ILANET.Module)
             {
                 App.CurrentILAcode.Methods.Remove(Link as ILANET.Module);
@@ -109,7 +111,9 @@ namespace ilaGUI
             }
             else
             {
-                //edit declaration
+                if (Link is VariableDeclaration vd)
+                {
+                }
             }
         }
     }
