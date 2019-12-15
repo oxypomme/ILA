@@ -7,9 +7,9 @@
              mc:Ignorable="d"
              d:DesignWidth="1050" d:DesignHeight="200">
     <Grid Margin="10,0,10,0">
-        <TextBlock Name="outputTB" TextWrapping="Wrap" />
+        <TextBlock Name="outputTB" TextWrapping="Wrap" Margin="0,0,0,25" />
         <Grid Height="20" VerticalAlignment="Bottom">
-            <TextBox x:Name="inputTB" Text="&gt; " KeyDown="inputTB_KeyDown" />
+            <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" />
         </Grid>
     </Grid>
 </UserControl>
