@@ -37,8 +37,6 @@ namespace ilaGUI
                 // asynchronously using an event handler.
                 CmdProcess.StartInfo.RedirectStandardOutput = true;
 
-                CmdOutput = new StringBuilder("");
-
                 // Set our event handler to asynchronously read the sort output.
                 CmdProcess.OutputDataReceived += CmdOutputHandler;
 
@@ -51,14 +49,19 @@ namespace ilaGUI
 
                 // Start the asynchronous read of the cmd output stream.
                 CmdProcess.BeginOutputReadLine();
-
-                outputTB.Text = CmdOutput.ToString();
             }
         }
 
-        private StreamWriter CmdInput { get; set; }
-        private StringBuilder CmdOutput { get; set; }
+        public static TextWriter StandardOutput { get; internal set; }
+        public StreamWriter CmdInput { get; private set; }
+        internal static List<Console> ActiveConsoles { get; set; }
         private Process CmdProcess { get; set; }
+
+        public void WriteInConsole(string message)
+        {
+            if (!string.IsNullOrEmpty(message))
+                CmdInput.WriteLine(message);
+        }
 
         private void CmdOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
         {
@@ -66,11 +69,10 @@ namespace ilaGUI
             if (!string.IsNullOrEmpty(outLine.Data))
             {
                 // Add the text to the collected output.
-                CmdOutput.Append(Environment.NewLine + $"{outLine.Data}");
                 Dispatcher.Invoke(() =>
                 {
-                    outputTB.Text = CmdOutput.ToString();
-                    consoleScroll.ScrollToVerticalOffset(consoleScroll.ScrollableHeight);
+                    outputTB.Text += Environment.NewLine + $"{outLine.Data}";
+                    consoleScroll.ScrollToVerticalOffset(9999999);
                 });
             }
         }
@@ -82,17 +84,10 @@ namespace ilaGUI
                 WriteInConsole(inputTB.Text);
                 if (inputTB.Text == "cls")
                 {
-                    CmdOutput = new StringBuilder("");
                     outputTB.Text = "";
                 }
                 inputTB.Text = "";
             }
-        }
-
-        public void WriteInConsole(string message)
-        {
-            if (!string.IsNullOrEmpty(message))
-                CmdInput.WriteLine(message);
         }
     }
 }

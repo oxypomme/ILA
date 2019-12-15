@@ -34,15 +34,8 @@ namespace ilaGUI
             Background = App.DarkBackground;
         }
 
-        private Tree TreePannel { get; set; }
         private Console Console { get; set; }
-
-        private void newBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new NewFileDialog();
-            dialog.Owner = Application.Current.MainWindow;
-            dialog.ShowDialog();
-        }
+        private Tree TreePannel { get; set; }
 
         private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -53,13 +46,19 @@ namespace ilaGUI
             App.UpdateLexic();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void newBtn_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new NewFileDialog();
+            dialog.Owner = Application.Current.MainWindow;
+            dialog.ShowDialog();
         }
 
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
-            Console.
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
         }
     }
 }
