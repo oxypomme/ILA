@@ -26,6 +26,11 @@ namespace ILANET
             InlineComment = "";
             Instructions = new List<Instruction>();
             Methods = new List<Module>();
+            Methods.Add(Print.Instance);
+            Methods.Add(Read.Instance);
+            Methods.Add(Next.Instance);
+            Methods.Add(Prev.Instance);
+            Methods.Add(Length.Instance);
             Name = "";
         }
 
