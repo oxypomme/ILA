@@ -26,12 +26,18 @@ namespace ilaGUI
             App.MainDialog = this;
 
             TreePannel = new Tree();
+            App.Tree = TreePannel;
             TreeGrid.Children.Add(TreePannel);
 
             Console = new Console();
             ConsoleGrid.Children.Add(Console);
 
             Background = App.DarkBackground;
+            App.Tabs = algoList;
+            App.UpdateTree();
+            App.UpdateEditor();
+            App.UpdateLexic();
+            App.UpdateTabs();
         }
 
         private Console Console { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,14 +25,45 @@ namespace ilaGUI
             Title.Foreground = App.DarkFontColor;
         }
 
+        private void newBoolBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(3, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
+        private void newCharBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(2, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
+        private void newCustomBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(5, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
+        private void newFloatBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(1, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
+        }
+
         private void newFncBtn_Click(object sender, RoutedEventArgs e)
         {
-            var f = new ILANET.Function() { Name = "nouvelle fonction" };
-            App.CurrentILAcode.Methods.Add(f);
-            App.CurrentExecutable = f;
+            App.createModule(true);
             App.UpdateTree();
-            App.UpdateEditor();
             App.UpdateLexic();
+            App.UpdateEditor();
+            App.ParseEntireProgram();
         }
 
         private void newIntBtn_Click(object sender, RoutedEventArgs e)
@@ -44,12 +76,19 @@ namespace ilaGUI
 
         private void newModBtn_Click(object sender, RoutedEventArgs e)
         {
-            var m = new ILANET.Module() { Name = "nouveau module" };
-            App.CurrentILAcode.Methods.Add(m);
-            App.CurrentExecutable = m;
+            App.createModule(false);
             App.UpdateTree();
-            App.UpdateEditor();
             App.UpdateLexic();
+            App.UpdateEditor();
+            App.ParseEntireProgram();
+        }
+
+        private void newStringBtn_Click(object sender, RoutedEventArgs e)
+        {
+            App.createVar(4, App.CurrentILAcode);
+            App.UpdateTree();
+            App.UpdateLexic();
+            App.ParseEntireProgram();
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace ilaGUI
 {
@@ -18,34 +19,52 @@ namespace ilaGUI
     /// </summary>
     public partial class createVar : Window
     {
-        public createVar(Variable v)
+        public createVar(VariableDeclaration v, bool edit = false)
         {
             InitializeComponent();
+            if (edit)
+                validateBtn.Content = "Modifier";
+            varName.Text = v.CreatedVariable.Name;
             Background = App.DarkBackground;
-            if (v.Type == GenericType.Int)
+            if (v.AboveComment != null)
+                comments.Text = v.AboveComment.Message;
+            inlineComm.Text = v.InlineComment;
+            if (v.CreatedVariable.Constant)
             {
-                varType.SelectedIndex = varType.Items.Add("entier");
-                varType.IsEnabled = false;
+                varConst.IsChecked = true;
+                string val = "";
+                using (var sw = new StringWriter())
+                {
+                    v.CreatedVariable.ConstantValue.WriteILA(sw);
+                    val = sw.ToString();
+                }
+                constValue.Text = val;
             }
-            else if (v.Type == GenericType.Float)
+            else
             {
-                varType.SelectedIndex = varType.Items.Add("reel");
-                varType.IsEnabled = false;
+                varConst.IsChecked = false;
+                constValue.IsEnabled = false;
             }
-            else if (v.Type == GenericType.Char)
             {
-                varType.SelectedIndex = varType.Items.Add("caractere");
-                varType.IsEnabled = false;
+                var title = edit ? "Editer " : "Créer ";
+                if (v.CreatedVariable.Type == GenericType.Int)
+                    title += "un entier";
+                else if (v.CreatedVariable.Type == GenericType.Float)
+                    title += "un réel";
+                else if (v.CreatedVariable.Type == GenericType.Char)
+                    title += "un caractère";
+                else if (v.CreatedVariable.Type == GenericType.Bool)
+                    title += "un booléen";
+                else if (v.CreatedVariable.Type == GenericType.String)
+                    title += "une chaine";
+                else
+                    title += "une variable";
+                Title = title;
             }
-            else if (v.Type == GenericType.Bool)
+            if (v.CreatedVariable.Type is Native)
             {
-                varType.SelectedIndex = varType.Items.Add("booleen");
-                varType.IsEnabled = false;
-            }
-            else if (v.Type == GenericType.String)
-            {
-                varType.SelectedIndex = varType.Items.Add("chaine");
-                varType.IsEnabled = false;
+                varType.Visibility = Visibility.Collapsed;
+                typeLabel.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -53,7 +72,7 @@ namespace ilaGUI
                 {
                     if (item is TypeDeclaration td)
                     {
-                        if (td.CreatedType == v.Type)
+                        if (td.CreatedType == v.CreatedVariable.Type)
                             varType.SelectedIndex = varType.Items.Add(new ToStringOverrider(td.CreatedType, () => td.CreatedType.Name));
                         else
                             varType.Items.Add(new ToStringOverrider(td.CreatedType, () => td.CreatedType.Name));
@@ -76,6 +95,12 @@ namespace ilaGUI
         private void varConst_Click(object sender, RoutedEventArgs e)
         {
             constValue.IsEnabled = varConst.IsChecked.Value;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                DialogResult = false;
         }
     }
 }

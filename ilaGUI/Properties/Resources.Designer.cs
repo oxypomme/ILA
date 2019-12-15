@@ -153,6 +153,16 @@ namespace ilaGUI.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
+        internal static byte[] add {
+            get {
+                object obj = ResourceManager.GetObject("add", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
         internal static byte[] add_field {
             get {
                 object obj = ResourceManager.GetObject("add_field", resourceCulture);
@@ -383,6 +393,16 @@ namespace ilaGUI.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
+        internal static byte[] edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
         internal static byte[] error {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
@@ -576,16 +596,6 @@ namespace ilaGUI.Properties {
         internal static byte[] remove_field {
             get {
                 object obj = ResourceManager.GetObject("remove_field", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Byte[].
-        /// </summary>
-        internal static byte[] remove_parameter {
-            get {
-                object obj = ResourceManager.GetObject("remove_parameter", resourceCulture);
                 return ((byte[])(obj));
             }
         }

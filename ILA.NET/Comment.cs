@@ -39,15 +39,18 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
-            Program.GenerateIndent(textWriter);
-            if (MultiLine)
-                textWriter.Write("/*");
-            else
-                textWriter.Write("//");
-            textWriter.Write(Message);
-            if (MultiLine)
-                textWriter.Write("*/");
-            textWriter.WriteLine();
+            if (Message.Length > 0)
+            {
+                Program.GenerateIndent(textWriter);
+                if (MultiLine)
+                    textWriter.Write("/*");
+                else
+                    textWriter.Write("//");
+                textWriter.Write(Message);
+                if (MultiLine)
+                    textWriter.Write("*/");
+                textWriter.WriteLine();
+            }
         }
 
         /// <summary>

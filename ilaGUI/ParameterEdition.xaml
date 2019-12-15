@@ -1,0 +1,23 @@
+﻿<Window x:Class="ilaGUI.ParameterEdition"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ilaGUI"
+        mc:Ignorable="d"
+        Title="Edition du paramètre" Height="250" Width="300" Background="Black" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+    <Grid>
+        <StackPanel>
+            <Label Content="Nom de la variable :" Foreground="White" />
+            <TextBox x:Name="varName" Foreground="White" Background="{x:Null}" />
+            <Label Content="Type de la variable :" Foreground="White" />
+            <ComboBox Name="varType" />
+            <CheckBox x:Name="varInput" Content="variable d'entrée" Foreground="White" />
+            <CheckBox x:Name="varOutput" Content="variable de sortie" Foreground="White" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Name="validateBtn" Content="Créer" Margin="5" Padding="5,2,5,2" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" Height="20" IsDefault="True" Click="validateBtn_Click" />
+            <Button Name="cancelBtn" Content="Annuler" Margin="5" Padding="5,2,5,2" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" Height="20" Click="cancelBtn_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

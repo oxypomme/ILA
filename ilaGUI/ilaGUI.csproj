@@ -28,10 +28,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Remove="cursors\drag.cur" />
+    <None Remove="cursors\grip.cur" />
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\Cube_16x.svg" />
     <None Remove="icons\png\add field.png" />
     <None Remove="icons\png\add parameter.png" />
+    <None Remove="icons\png\add.png" />
     <None Remove="icons\png\AddVariable_16x.png" />
     <None Remove="icons\png\algo.png" />
     <None Remove="icons\png\assign.png" />
@@ -57,6 +60,7 @@
     <None Remove="icons\png\create string.png" />
     <None Remove="icons\png\create struct.png" />
     <None Remove="icons\png\create table.png" />
+    <None Remove="icons\png\edit.png" />
     <None Remove="icons\png\enum.png" />
     <None Remove="icons\png\error.png" />
     <None Remove="icons\png\FieldAdded_16x.png" />
@@ -121,6 +125,7 @@
     <Resource Include="icons\png\add parameter.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\add.png" />
     <Resource Include="icons\png\algo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -187,6 +192,7 @@
     <Resource Include="icons\png\create table.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\edit.png" />
     <Resource Include="icons\png\enum.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -221,9 +227,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\remove field.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="icons\png\remove parameter.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\remove.png">

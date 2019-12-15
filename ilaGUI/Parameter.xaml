@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ilaGUI.Parameter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ilaGUI"
+             mc:Ignorable="d"
+              d:DesignWidth="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Separator Grid.Row="1" VerticalAlignment="Bottom" />
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="iconType" Stretch="None" />
+            <TextBlock  Margin="5,0,0,0" Name="prefixName" Foreground="White" />
+            <TextBlock  Name="dbPoints" Foreground="OrangeRed" Text="::" />
+            <TextBlock Grid.Row="0" x:Name="paramName" Foreground="White" Text="name" />
+            <TextBlock Grid.Row="0" Foreground="OrangeRed" Text=":" />
+            <TextBlock Grid.Row="0" x:Name="paramType" Foreground="LightBlue" Text="type" />
+        </StackPanel>
+        <Button Grid.RowSpan="2" x:Name="gripBtn" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" Cursor="SizeAll" />
+        <StackPanel Margin="0,0,5,0" Grid.Row="1" FlowDirection="RightToLeft" Orientation="Horizontal">
+            <Button x:Name="removeParam" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" ToolTip="Supprimer un paramètre" Click="removeParam_Click">
+                <Image Source="icons/png/remove.png" Stretch="None" />
+            </Button>
+            <Button Margin="5,0,0,0" x:Name="editParam" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" ToolTip="Editer un paramètre" Click="editParam_Click">
+                <Image Source="icons/png/edit.png" Stretch="None" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

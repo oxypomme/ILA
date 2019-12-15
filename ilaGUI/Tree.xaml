@@ -34,19 +34,19 @@
                 <Button x:Name="newIntBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer entier global" Click="newIntBtn_Click">
                     <Image Source="/icons/png/create int.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newFloatBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer flottant global">
+                <Button x:Name="newFloatBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer flottant global" Click="newFloatBtn_Click">
                     <Image Source="/icons/png/create float.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newCharBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer caractère global">
+                <Button x:Name="newCharBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer caractère global" Click="newCharBtn_Click">
                     <Image Source="/icons/png/create char.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newBoolBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer booléen global">
+                <Button x:Name="newBoolBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer booléen global" Click="newBoolBtn_Click">
                     <Image Source="/icons/png/create bool.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newStringBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer chaîne de caractères globale">
+                <Button x:Name="newStringBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer chaîne de caractères globale" Click="newStringBtn_Click">
                     <Image Source="/icons/png/create string.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newCustomBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer variable personnalisée">
+                <Button x:Name="newCustomBtn" Width="20" Height="20" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" ToolTip="Créer variable personnalisée" Click="newCustomBtn_Click">
                     <Image Stretch="None" Source="/icons/png/create cutom.png" />
                 </Button>
             </StackPanel>
