@@ -21,8 +21,6 @@ namespace ilaGUI
     {
         public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
         public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(230, 230, 230));
-        public static readonly Cursor DragCursor = new Cursor(new MemoryStream(ilaGUI.Properties.Resources.drag));
-        public static readonly Cursor GripCursor = new Cursor(new MemoryStream(ilaGUI.Properties.Resources.grip));
 
         public App()
         {

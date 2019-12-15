@@ -23,7 +23,6 @@ namespace ilaGUI
         public Parameter(ILANET.Parameter param)
         {
             InitializeComponent();
-            gripBtn.Cursor = App.GripCursor;
             paramName.Text = param.ImportedVariable.Name;
             if (param.Mode == ILANET.Parameter.Flags.OUTPUT)
                 prefixName.Text = "s";
@@ -73,10 +72,14 @@ namespace ilaGUI
             }
         }
 
-        protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
+        private void editParam_Click(object sender, RoutedEventArgs e)
         {
-            Mouse.SetCursor(App.DragCursor);
-            e.Handled = true;
+            App.editParameter(this);
+        }
+
+        private void removeParam_Click(object sender, RoutedEventArgs e)
+        {
+            ((StackPanel)Parent).Children.Remove(this);
         }
     }
 }
