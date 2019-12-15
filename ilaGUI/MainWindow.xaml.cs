@@ -56,5 +56,10 @@ namespace ilaGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
         }
+
+        private void runBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Console.
+        }
     }
 }
