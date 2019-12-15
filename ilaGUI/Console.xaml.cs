@@ -82,6 +82,7 @@ namespace ilaGUI
                     CmdOutput = new StringBuilder("");
                     outputTB.Text = "";
                 }
+                consoleScroll.ScrollToVerticalOffset(consoleScroll.ScrollableHeight);
             }
         }
 

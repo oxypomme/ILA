@@ -7,7 +7,9 @@
              mc:Ignorable="d"
              d:DesignWidth="1050" d:DesignHeight="200">
     <Grid Margin="10,0,10,0">
-        <TextBlock Name="outputTB" TextWrapping="Wrap" Margin="0,0,0,25" Foreground="White" FontFamily="Consolas" />
+        <ScrollViewer x:Name="consoleScroll" VerticalScrollBarVisibility="Auto" Margin="0,0,0,25">
+            <TextBox IsReadOnly="True" Name="outputTB" TextWrapping="Wrap" Foreground="White" FontFamily="Consolas" Background="{x:Null}" />
+        </ScrollViewer>
         <Grid Height="20" VerticalAlignment="Bottom" Margin="0,0,0,5">
             <Separator VerticalAlignment="Bottom" Margin="0" />
             <Separator VerticalAlignment="Top" Margin="0" />
