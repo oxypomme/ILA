@@ -168,6 +168,10 @@ namespace ilaGUI
             } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
         }
 
+        public static void editParameter(Parameter param)
+        {
+        }
+
         public static void editVar(VariableDeclaration variable, IExecutable scope)
         {
             string oldName = variable.CreatedVariable.Name, newName;

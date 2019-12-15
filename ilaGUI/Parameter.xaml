@@ -11,6 +11,7 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
+        <Separator Grid.Row="1" VerticalAlignment="Bottom" />
         <StackPanel Orientation="Horizontal">
             <Image x:Name="iconType" Stretch="None" />
             <TextBlock  Margin="5,0,0,0" Name="prefixName" Foreground="White" />
@@ -21,10 +22,12 @@
         </StackPanel>
         <Button Grid.RowSpan="2" x:Name="gripBtn" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" Cursor="SizeAll" />
         <StackPanel Margin="0,0,5,0" Grid.Row="1" FlowDirection="RightToLeft" Orientation="Horizontal">
-            <Button x:Name="removeParam" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" ToolTip="Supprimer un paramètre">
+            <Button x:Name="removeParam" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" ToolTip="Supprimer un paramètre" Click="removeParam_Click">
                 <Image Source="icons/png/remove.png" Stretch="None" />
             </Button>
+            <Button Margin="5,0,0,0" x:Name="editParam" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" ToolTip="Editer un paramètre" Click="editParam_Click">
+                <Image Source="icons/png/edit.png" Stretch="None" />
+            </Button>
         </StackPanel>
-        <Separator Grid.Row="1" VerticalAlignment="Bottom" />
     </Grid>
 </UserControl>
