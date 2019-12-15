@@ -40,9 +40,11 @@ namespace ilaGUI
 
         public static void createModule(bool isFct)
         {
+            Module created;
             if (isFct)
             {
                 var func = new Function();
+                created = func;
                 func.Name = "nouvelle_fonction";
                 func.ReturnType = GenericType.Bool;
                 do
@@ -58,12 +60,61 @@ namespace ilaGUI
                             MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
+                            func.ReturnType = ((ToStringOverrider)dialog.returnType.SelectedItem).Content as VarType;
+                            var comm = new Comment();
+                            comm.MultiLine = dialog.comments.Text.Contains('\n');
+                            comm.Message = dialog.comments.Text;
+                            func.AboveComment = comm;
+                            func.InlineComment = dialog.inlineComm.Text;
+                            func.Parameters.Clear();
+                            foreach (var item in dialog.paramList.Children)
+                                if (item is Parameter p)
+                                    func.Parameters.Add(p.Link as ILANET.Parameter);
+                            CurrentILAcode.Methods.Add(func);
                         }
                     }
                     else
                         break;
                 } while (!(isNameAvailable(func.Name) && isNameConventionnal(func.Name)));
             }
+            else
+            {
+                var mod = new Module();
+                created = mod;
+                mod.Name = "nouveau_module";
+                do
+                {
+                    var dialog = new createModule(mod);
+                    dialog.Owner = MainDialog;
+                    if (dialog.ShowDialog() == true)
+                    {
+                        mod.Name = dialog.modName.Text;
+                        if (!isNameConventionnal(mod.Name))
+                            MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else if (!isNameAvailable(mod.Name))
+                            MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            var comm = new Comment();
+                            comm.MultiLine = dialog.comments.Text.Contains('\n');
+                            comm.Message = dialog.comments.Text;
+                            mod.AboveComment = comm;
+                            mod.InlineComment = dialog.inlineComm.Text;
+                            mod.Parameters.Clear();
+                            foreach (var item in dialog.paramList.Children)
+                                if (item is Parameter p)
+                                    mod.Parameters.Add(p.Link as ILANET.Parameter);
+                            CurrentILAcode.Methods.Add(mod);
+                        }
+                    }
+                    else
+                        break;
+                } while (!(isNameAvailable(mod.Name) && isNameConventionnal(mod.Name)));
+            }
+            CurrentExecutable = created;
+            UpdateTree();
+            UpdateEditor();
+            UpdateLexic();
         }
 
         public static VarType createType(int type) //0 = struct, 1 = table, 2 = enum

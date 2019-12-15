@@ -10,7 +10,7 @@
         <StackPanel>
             <Label Content="Nom :" Margin="2" Foreground="White" />
             <TextBox x:Name="modName" Margin="2" Background="{x:Null}" Foreground="White" />
-            <Grid>
+            <Grid Name="fctOnly">
                 <Label Content="Type du retour :" Margin="2" Foreground="White" />
                 <ComboBox Name="returnType" Margin="100,2,2,2" />
             </Grid>

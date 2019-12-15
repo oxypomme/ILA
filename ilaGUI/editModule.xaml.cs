@@ -40,6 +40,7 @@ namespace ilaGUI
                 AddParamButton.Content = img;
             }
             Background = App.DarkBackground;
+            modName.Text = mod.Name;
             if (edit)
                 Title = "Editer ";
             else
@@ -68,7 +69,7 @@ namespace ilaGUI
                 }
             }
             else
-                returnType.Visibility = Visibility.Collapsed;
+                fctOnly.Visibility = Visibility.Collapsed;
             paramList.Children.Add(new Parameter(new ILANET.Parameter
             {
                 ImportedVariable = new Variable
@@ -90,6 +91,9 @@ namespace ilaGUI
             foreach (var item in mod.Parameters)
                 paramList.Children.Add(new Parameter(item));
             paramList.Children.Add(AddParamButton);
+            if (mod.AboveComment != null)
+                comments.Text = mod.AboveComment.Message;
+            inlineComm.Text = mod.InlineComment;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

@@ -18,11 +18,12 @@ namespace ilaGUI
     /// <summary>
     /// Logique d'interaction pour Parameter.xaml
     /// </summary>
-    public partial class Parameter : UserControl
+    public partial class Parameter : UserControl, Linked
     {
         public Parameter(ILANET.Parameter param)
         {
             InitializeComponent();
+            Link = param;
             paramName.Text = param.ImportedVariable.Name;
             if (param.Mode == ILANET.Parameter.Flags.OUTPUT)
                 prefixName.Text = "s";
@@ -71,6 +72,8 @@ namespace ilaGUI
                 paramType.Text = tt.Name;
             }
         }
+
+        public IBaseObject Link { get; set; }
 
         private void editParam_Click(object sender, RoutedEventArgs e)
         {
