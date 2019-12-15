@@ -33,8 +33,8 @@ namespace ilaGUI
                 // Set UseShellExecute to false for redirection.
                 CmdProcess.StartInfo.UseShellExecute = false;
 
-                // Redirect the standard output of the sort command.
-                // This stream is read asynchronously using an event handler.
+                // Redirect the standard output of the sort command. This stream is read
+                // asynchronously using an event handler.
                 CmdProcess.StartInfo.RedirectStandardOutput = true;
 
                 CmdOutput = new StringBuilder("");
@@ -42,7 +42,7 @@ namespace ilaGUI
                 // Set our event handler to asynchronously read the sort output.
                 CmdProcess.OutputDataReceived += CmdOutputHandler;
 
-                // Redirect standard input as well.  This stream is used synchronously.
+                // Redirect standard input as well. This stream is used synchronously.
                 CmdProcess.StartInfo.RedirectStandardInput = true;
                 CmdProcess.Start();
 
@@ -56,9 +56,9 @@ namespace ilaGUI
             }
         }
 
-        private Process CmdProcess { get; set; }
-        public StringBuilder CmdOutput { get; set; }
         public StreamWriter CmdInput { get; set; }
+        public StringBuilder CmdOutput { get; set; }
+        private Process CmdProcess { get; set; }
 
         private void CmdOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
         {
@@ -76,7 +76,7 @@ namespace ilaGUI
             {
                 if (!string.IsNullOrEmpty(inputTB.Text))
                     CmdInput.WriteLine(inputTB.Text);
-                inputTB.Text = "> ";
+                inputTB.Text = "";
             }
             outputTB.Text = CmdOutput.ToString(); // On update le TextBlock MAIS cela doit se faire dans ce thread ET AUCUN AUTRE (sinon crash)
         }

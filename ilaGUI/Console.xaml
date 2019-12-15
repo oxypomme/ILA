@@ -7,9 +7,12 @@
              mc:Ignorable="d"
              d:DesignWidth="1050" d:DesignHeight="200">
     <Grid Margin="10,0,10,0">
-        <TextBlock Name="outputTB" TextWrapping="Wrap" />
-        <Grid Height="20" VerticalAlignment="Bottom">
-            <TextBox x:Name="inputTB" Text="&gt; " KeyDown="inputTB_KeyDown" />
+        <TextBlock Name="outputTB" TextWrapping="Wrap" Foreground="White" FontFamily="Consolas" />
+        <Grid Height="20" VerticalAlignment="Bottom" Margin="0,0,0,5">
+            <Separator VerticalAlignment="Bottom" Margin="0" />
+            <Separator VerticalAlignment="Top" Margin="0" />
+            <TextBlock Text="&gt;" Foreground="White" FontFamily="Consolas" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" Background="{x:Null}" Foreground="White" Margin="15,0,0,0" FontFamily="Consolas" BorderBrush="{x:Null}" />
         </Grid>
     </Grid>
 </UserControl>
