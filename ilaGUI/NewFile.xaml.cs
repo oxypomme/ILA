@@ -34,6 +34,8 @@ namespace ilaGUI
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                App.WorkspacePath = dialog.SelectedPath;
+
                 App.CurrentILAcode.Name = algonameTB.Text;
                 App.ILAcodes.Add(App.CurrentILAcode);
                 App.CurrentExecutable = App.CurrentILAcode;
@@ -42,7 +44,7 @@ namespace ilaGUI
                 App.UpdateEditor();
                 App.UpdateLexic();
 
-                File.WriteAllText(Path.Combine(dialog.SelectedPath, algonameTB.Text + ".ila"), App.ILAcodes);
+                File.WriteAllText(Path.Combine(App.WorkspacePath, App.CurrentILAcode.Name + ".ila"), "");
             }
             Close();
         }

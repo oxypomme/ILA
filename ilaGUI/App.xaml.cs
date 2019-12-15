@@ -18,6 +18,7 @@ namespace ilaGUI
     /// </summary>
     public partial class App : Application
     {
+        public static string WorkspacePath = "";
         public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
         public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(230, 230, 230));
 
