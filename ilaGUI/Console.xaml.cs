@@ -77,15 +77,17 @@ namespace ilaGUI
 
         private void inputTB_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key is Key.Return)
+            switch (e.Key)
             {
-                WriteInConsole(inputTB.Text);
-                if (inputTB.Text == "cls")
-                {
-                    CmdOutput = new StringBuilder("");
-                    outputTB.Text = "";
-                }
-                inputTB.Text = "";
+                case Key.Return:
+                    WriteInConsole(inputTB.Text);
+                    if (inputTB.Text == "cls")
+                    {
+                        CmdOutput = new StringBuilder("");
+                        outputTB.Text = "";
+                    }
+                    inputTB.Text = "";
+                    break;
             }
         }
 
