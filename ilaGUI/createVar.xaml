@@ -20,8 +20,8 @@
             <TextBox x:Name="inlineComm" VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Name="validateBtn" Content="Créer" Margin="5" Padding="5,2,5,2" Click="validateBtn_Click" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" Height="20" IsDefault="True" />
-            <Button Name="cancelBtn" Content="Annuler" Margin="5" Padding="5,2,5,2" Click="cancelBtn_Click" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" Height="20" />
+            <Button Padding="10,5" Name="validateBtn" Content="Créer" Margin="5" Click="validateBtn_Click" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" IsDefault="True" Style="{DynamicResource validateBtnStyle}" />
+            <Button Padding="10,5" Name="cancelBtn" Content="Annuler" Margin="5" Click="cancelBtn_Click" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" Style="{DynamicResource cancelBtnStyle}" />
         </StackPanel>
     </Grid>
 </Window>

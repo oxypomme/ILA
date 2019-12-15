@@ -21,54 +21,38 @@ namespace ilaGUI
     /// </summary>
     public partial class Console : UserControl
     {
+        private static bool ConsolesUnlocked = false;
+
         public Console()
         {
             InitializeComponent();
             {
                 ActiveConsoles.Add(this);
-                // Credits to https://stackoverflow.com/a/3308697
-                CmdProcess = new Process();
-
-                CmdProcess.StartInfo.FileName = "cmd.exe";
-
-                // Set UseShellExecute to false for redirection.
-                CmdProcess.StartInfo.UseShellExecute = false;
-
-                // Redirect the standard output of the sort command. This stream is read
-                // asynchronously using an event handler.
-                CmdProcess.StartInfo.RedirectStandardOutput = true;
-
-                // Set our event handler to asynchronously read the sort output.
-                CmdProcess.OutputDataReceived += CmdOutputHandler;
-                CmdProcess.ErrorDataReceived += CmdOutputHandler;
-
-                // Redirect standard input as well. This stream is used synchronously.
-                CmdProcess.StartInfo.RedirectStandardInput = true;
-                CmdProcess.Start();
-
-                // Use a stream writer to synchronously write the sort input.
-                CmdInput = CmdProcess.StandardInput;
-
-                // Start the asynchronous read of the cmd output stream.
-                CmdProcess.BeginOutputReadLine();
+                inputTB.IsEnabled = ConsolesUnlocked;
             }
         }
 
-        public static TextWriter StandardOutput { get; internal set; }
+        public static TextWriter RuntimeInput { get; set; }
 
-        public TextWriter CmdInput { get; private set; }
+        public static TextWriter StandardOutput { get; set; }
 
         internal static List<Console> ActiveConsoles { get; set; }
 
-        private Process CmdProcess { get; set; }
-
-        public void WriteInConsole(string message)
+        public static void LockConsoles()
         {
-            if (!string.IsNullOrEmpty(message))
-                CmdInput.WriteLine(message);
+            ConsolesUnlocked = false;
+            foreach (var item in ActiveConsoles)
+                item.inputTB.IsEnabled = false;
         }
 
-        private void CmdOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
+        public static void UnlockConsoles()
+        {
+            ConsolesUnlocked = true;
+            foreach (var item in ActiveConsoles)
+                item.inputTB.IsEnabled = true;
+        }
+
+        internal void CmdOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
         {
             // Collect the sort command output.
             if (!string.IsNullOrEmpty(outLine.Data))
@@ -88,11 +72,8 @@ namespace ilaGUI
             switch (e.Key)
             {
                 case Key.Return:
-                    WriteInConsole(inputTB.Text);
-                    if (inputTB.Text == "cls")
-                    {
-                        outputTB.Text = "";
-                    }
+                    RuntimeInput.Write(inputTB.Text);
+                    StandardOutput.WriteLine(inputTB.Text);
                     inputTB.Text = "";
                     break;
             }
