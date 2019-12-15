@@ -20,15 +20,18 @@ namespace ilaGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<(bool isShowed, Window window)> subWindows = new List<(bool, Window)>(); // Désolé mais je sais pas utiliser les Tuples<>
-
         public MainWindow()
         {
             InitializeComponent();
             App.MainDialog = this;
+
             TreePannel = new Tree();
             App.Tree = TreePannel;
             TreeGrid.Children.Add(TreePannel);
+
+            Console = new Console();
+            ConsoleGrid.Children.Add(Console);
+
             Background = App.DarkBackground;
             App.Tabs = algoList;
             App.UpdateTree();
@@ -37,56 +40,32 @@ namespace ilaGUI
             App.UpdateTabs();
         }
 
+        private Console Console { get; set; }
         private Tree TreePannel { get; set; }
-
-        private void newBtn_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-             * created : is the new_file window is already set
-             * index : the index of the new_file window in the list
-             * showed : is the new_file window is showed
-            */
-            (bool created, int index, bool showed) = (false, -1, false);
-
-            for (int i = 0; i < subWindows.Count; i++)
-            {
-                // we check if the new_file window exist
-                if (subWindows[i].window is NewFile)
-                {
-                    created = true;
-                    index = i;
-                    showed = subWindows[i].isShowed;
-                    break; // only one sub-window of each type can exist, so we found it
-                }
-            }
-
-            // here we check if the sub-window has already created/showed to avoid the new window spam
-            if (!showed)
-            {
-                if (!created)
-                {
-                    index = subWindows.Count - 1;
-                    subWindows.Add((true, new NewFile()));
-                }
-                subWindows[index].window.Show();
-            }
-            else
-            {
-                subWindows[index].window.Focus();
-            }
-        }
 
         private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
-            App.CurrentExecutable = App.CurrentILAcode;
-            App.UpdateTree();
-            App.UpdateEditor();
-            App.UpdateLexic();
+            if (algoList.SelectedIndex != -1)
+            {
+                App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
+                App.CurrentExecutable = App.CurrentILAcode;
+                App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
+                App.UpdateTree();
+                App.UpdateEditor();
+                App.UpdateLexic();
+            }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void newBtn_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new NewFileDialog();
+            dialog.Owner = Application.Current.MainWindow;
+            dialog.ShowDialog();
+        }
+
+        private void runBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
         }
     }
 }

@@ -29,7 +29,7 @@ namespace ilaGUI
             {
                 deleteButton.Visibility = Visibility.Collapsed;
                 Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.algo));
-                Title.Text = "algo";
+                Title.Text = pr.Name;
             }
             else if (linkedTo is Function fct)
             {

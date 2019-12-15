@@ -24,6 +24,7 @@ namespace ilaGUI
         public ParameterEdition(Parameter param, ILANET.Module scope, bool edit = false)
         {
             InitializeComponent();
+            varName.Focus();
             if (edit)
                 validateBtn.Content = "Modifier";
             this.scope = scope;
@@ -49,6 +50,7 @@ namespace ilaGUI
             }
             varInput.IsChecked = (linked.Mode & ILANET.Parameter.Flags.INPUT) == ILANET.Parameter.Flags.INPUT;
             varOutput.IsChecked = (linked.Mode & ILANET.Parameter.Flags.OUTPUT) == ILANET.Parameter.Flags.OUTPUT;
+            varName.SelectAll();
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

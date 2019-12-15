@@ -22,6 +22,7 @@ namespace ilaGUI
         public createVar(VariableDeclaration v, bool edit = false)
         {
             InitializeComponent();
+            varName.Focus();
             if (edit)
                 validateBtn.Content = "Modifier";
             varName.Text = v.CreatedVariable.Name;
@@ -80,6 +81,7 @@ namespace ilaGUI
                 }
                 varConst.IsEnabled = false;
             }
+            varName.SelectAll();
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

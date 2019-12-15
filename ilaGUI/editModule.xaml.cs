@@ -29,6 +29,7 @@ namespace ilaGUI
         public createModule(Module mod, bool edit = false)
         {
             InitializeComponent();
+            modName.Focus();
             AddParamButton = new Button();
             AddParamButton.Height = 20;
             AddParamButton.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
@@ -90,6 +91,7 @@ namespace ilaGUI
             if (mod.AboveComment != null)
                 comments.Text = mod.AboveComment.Message;
             inlineComm.Text = mod.InlineComment;
+            modName.SelectAll();
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

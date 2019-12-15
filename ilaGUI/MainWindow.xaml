@@ -8,7 +8,7 @@
         xmlns:Emit="clr-namespace:System.Reflection.Emit;assembly=System.Reflection.Emit.ILGeneration"
         x:Class="ilaGUI.MainWindow"
         mc:Ignorable="d"
-        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico" Closing="Window_Closing">
+        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico" Background="Black">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
@@ -66,7 +66,7 @@
                 </Rectangle>
             </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            <Button x:Name="runBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20">
+            <Button x:Name="runBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20" Click="runBtn_Click">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -144,7 +144,7 @@
                 </Rectangle>
             </Button>
         </StackPanel>
-        <TabControl x:Name="algoList" Grid.Row="1" SelectionChanged="algoList_SelectionChanged" />
+        <TabControl x:Name="algoList" Grid.Row="1" SelectionChanged="algoList_SelectionChanged" Background="{x:Null}" BorderBrush="{x:Null}" />
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" MinWidth="100" MaxWidth="350" />

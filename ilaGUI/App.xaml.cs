@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,18 +26,25 @@ namespace ilaGUI
         public App()
         {
             ILAcodes = new List<Program>();
-            CurrentILAcode = new Program();
-            CurrentILAcode.Name = "main";
-            ILAcodes.Add(CurrentILAcode);
+            CurrentILAcode = null;
+            Workspaces = new List<string>();
+            Console.ActiveConsoles = new List<Console>();
+            Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8);
+#if RELEASE
+            System.Console.SetOut(Console.StandardOutput);
+            System.Console.SetError(Console.StandardOutput);
+#endif
             CurrentExecutable = CurrentILAcode;
         }
 
         public static IExecutable CurrentExecutable { get; set; }
         public static Program CurrentILAcode { get; set; }
+        public static string CurrentWorkspace { get; set; }
         public static List<Program> ILAcodes { get; set; }
         public static Window MainDialog { get; set; }
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
+        public static List<string> Workspaces { get; set; }
 
         public static void createModule(bool isFct)
         {
@@ -495,18 +503,24 @@ namespace ilaGUI
         {
             Tabs.Items.Clear();
             foreach (var item in ILAcodes)
-                Tabs.Items.Add(new TabItem() { Header = item.Name });
+                Tabs.Items.Add(new TabItem() { Header = item.Name, Foreground = DarkFontColor });
         }
 
         public static void UpdateTree()
         {
             Tree.TreeList.Children.Clear();
-            Tree.TreeList.Children.Add(new TreeElement(CurrentILAcode));
-            foreach (var item in CurrentILAcode.Methods.Where(m => !(m is Native)))
-                Tree.TreeList.Children.Add(new TreeElement(item));
-            foreach (var item in CurrentILAcode.Declarations.Where(d => !(d is Native)))
-                Tree.TreeList.Children.Add(new TreeElement(item));
-            UpdateTreeColor();
+            if (CurrentILAcode != null)
+            {
+                Tree.operations.IsEnabled = true;
+                Tree.TreeList.Children.Add(new TreeElement(CurrentILAcode));
+                foreach (var item in CurrentILAcode.Methods.Where(m => !(m is Native)))
+                    Tree.TreeList.Children.Add(new TreeElement(item));
+                foreach (var item in CurrentILAcode.Declarations.Where(d => !(d is Native)))
+                    Tree.TreeList.Children.Add(new TreeElement(item));
+                UpdateTreeColor();
+            }
+            else
+                Tree.operations.IsEnabled = false;
         }
 
         public static void UpdateTreeColor()

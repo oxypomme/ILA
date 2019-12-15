@@ -136,6 +136,9 @@
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\back.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="close_algo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\png\close algo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\png\comment.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="ilaGUI.Console"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ilaGUI"
+             mc:Ignorable="d"
+             d:DesignWidth="1050" d:DesignHeight="200">
+    <Grid Margin="10,0,10,0">
+        <ScrollViewer x:Name="consoleScroll" VerticalScrollBarVisibility="Auto" Margin="0,0,0,25">
+            <TextBox IsReadOnly="True" Name="outputTB" TextWrapping="Wrap" Foreground="White" FontFamily="Consolas" Background="{x:Null}" />
+        </ScrollViewer>
+        <Grid Height="20" VerticalAlignment="Bottom" Margin="0,0,0,5">
+            <Separator VerticalAlignment="Bottom" Margin="0" />
+            <Separator VerticalAlignment="Top" Margin="0" />
+            <TextBlock Text="&gt;" Foreground="White" FontFamily="Consolas" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" Background="{x:Null}" Foreground="White" Margin="15,0,0,0" FontFamily="Consolas" BorderBrush="{x:Null}" CaretBrush="White" />
+        </Grid>
+    </Grid>
+</UserControl>
