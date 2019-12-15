@@ -9,15 +9,15 @@
     <Grid>
         <StackPanel>
             <Label Content="Nom de la variable :" Margin="2" Foreground="White" />
-            <TextBox x:Name="varName" Margin="2" Background="{x:Null}" Foreground="White" />
+            <TextBox x:Name="varName" Margin="2" Background="{x:Null}" Foreground="White" CaretBrush="White" />
             <Label Name="typeLabel" Content="Type :" Margin="2" Foreground="White" />
             <ComboBox Name="varType" Margin="2" />
             <CheckBox x:Name="varConst" Content="constante" Margin="2" Foreground="White" Click="varConst_Click" />
-            <TextBox x:Name="constValue" Margin="2" Background="{x:Null}" Foreground="White" />
+            <TextBox x:Name="constValue" Margin="2" Background="{x:Null}" Foreground="White" CaretBrush="White" />
             <Label Content="Description :" Foreground="White" />
-            <TextBox x:Name="comments" VerticalScrollBarVisibility="Auto" Height="130" Background="{x:Null}" Foreground="White" AcceptsReturn="True" />
+            <TextBox x:Name="comments" VerticalScrollBarVisibility="Auto" Height="130" Background="{x:Null}" Foreground="White" AcceptsReturn="True" CaretBrush="White" />
             <Label Content="Commentaire :" Foreground="White" />
-            <TextBox x:Name="inlineComm" VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" />
+            <TextBox x:Name="inlineComm" VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" CaretBrush="White" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Padding="10,5" Name="validateBtn" Content="Créer" Margin="5" Click="validateBtn_Click" Background="{x:Null}" BorderBrush="#FFB9B9B9" Foreground="White" IsDefault="True" Style="{DynamicResource validateBtnStyle}" />

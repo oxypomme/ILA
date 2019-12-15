@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <Label Content="Nom de la variable :" Foreground="White" />
-            <TextBox x:Name="varName" Foreground="White" Background="{x:Null}" />
+            <TextBox x:Name="varName" Foreground="White" Background="{x:Null}" CaretBrush="White" />
             <Label Content="Type de la variable :" Foreground="White" />
             <ComboBox Name="varType" />
             <CheckBox x:Name="varInput" Content="variable d'entrée" Foreground="White" />

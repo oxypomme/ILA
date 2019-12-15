@@ -14,7 +14,7 @@
             <Separator VerticalAlignment="Bottom" Margin="0" />
             <Separator VerticalAlignment="Top" Margin="0" />
             <TextBlock Text="&gt;" Foreground="White" FontFamily="Consolas" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" Background="{x:Null}" Foreground="White" Margin="15,0,0,0" FontFamily="Consolas" BorderBrush="{x:Null}" />
+            <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" Background="{x:Null}" Foreground="White" Margin="15,0,0,0" FontFamily="Consolas" BorderBrush="{x:Null}" CaretBrush="White" />
         </Grid>
     </Grid>
 </UserControl>
