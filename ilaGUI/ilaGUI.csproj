@@ -41,6 +41,7 @@
     <None Remove="icons\png\back.png" />
     <None Remove="icons\png\bool.png" />
     <None Remove="icons\png\char.png" />
+    <None Remove="icons\png\close algo.png" />
     <None Remove="icons\png\comment.png" />
     <None Remove="icons\png\create assign.png" />
     <None Remove="icons\png\create bool.png" />
@@ -141,6 +142,7 @@
     <Resource Include="icons\png\char.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\close algo.png" />
     <Resource Include="icons\png\comment.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
