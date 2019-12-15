@@ -393,6 +393,16 @@ namespace ilaGUI.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
+        internal static byte[] drag {
+            get {
+                object obj = ResourceManager.GetObject("drag", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
         internal static byte[] edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
@@ -436,6 +446,16 @@ namespace ilaGUI.Properties {
         internal static byte[] function {
             get {
                 object obj = ResourceManager.GetObject("function", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
+        internal static byte[] grip {
+            get {
+                object obj = ResourceManager.GetObject("grip", resourceCulture);
                 return ((byte[])(obj));
             }
         }

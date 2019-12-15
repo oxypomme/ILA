@@ -27,6 +27,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Remove="cursors\drag.cur" />
+    <None Remove="cursors\grip.cur" />
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\Cube_16x.svg" />
     <None Remove="icons\png\add field.png" />
@@ -116,6 +118,8 @@
     <None Include="icons\UserFunction_16x.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="cursors\drag.cur" />
+    <Resource Include="cursors\grip.cur" />
     <Resource Include="icons\png\add field.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
