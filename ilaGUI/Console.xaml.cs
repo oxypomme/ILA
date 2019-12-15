@@ -77,6 +77,11 @@ namespace ilaGUI
                 if (!string.IsNullOrEmpty(inputTB.Text))
                     CmdInput.WriteLine(inputTB.Text);
                 inputTB.Text = "";
+                if (inputTB.Text == "cls")
+                {
+                    CmdOutput = new StringBuilder("");
+                    outputTB.Text = "";
+                }
             }
             outputTB.Text = CmdOutput.ToString(); // On update le TextBlock MAIS cela doit se faire dans ce thread ET AUCUN AUTRE (sinon crash)
         }
