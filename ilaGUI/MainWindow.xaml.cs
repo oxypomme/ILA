@@ -24,12 +24,18 @@ namespace ilaGUI
         {
             InitializeComponent();
             App.MainDialog = this;
+
             TreePannel = new Tree();
             TreeGrid.Children.Add(TreePannel);
+
+            Console = new Console();
+            ConsoleGrid.Children.Add(Console);
+
             Background = App.DarkBackground;
         }
 
         private Tree TreePannel { get; set; }
+        private Console Console { get; set; }
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
         {
