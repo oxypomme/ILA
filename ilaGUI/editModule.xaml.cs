@@ -39,10 +39,24 @@ namespace ilaGUI
                 img.Stretch = Stretch.None;
                 AddParamButton.Content = img;
             }
+            AddParamButton.Click += (object sender, RoutedEventArgs e) =>
+            {
+                var p = App.createParameter(mod);
+                if (p != null)
+                {
+                    paramList.Children.Add(p);
+                    mod.Parameters.Add(p.Link as ILANET.Parameter);
+                    paramList.Children.Remove(AddParamButton);
+                    paramList.Children.Add(AddParamButton);
+                }
+            };
             Background = App.DarkBackground;
             modName.Text = mod.Name;
             if (edit)
+            {
                 Title = "Editer ";
+                validateBtn.Content = "Modifier";
+            }
             else
                 Title = "Créer ";
             if (mod is Function)
@@ -70,26 +84,8 @@ namespace ilaGUI
             }
             else
                 fctOnly.Visibility = Visibility.Collapsed;
-            paramList.Children.Add(new Parameter(new ILANET.Parameter
-            {
-                ImportedVariable = new Variable
-                {
-                    Name = "test",
-                    Type = GenericType.String
-                },
-                Mode = ILANET.Parameter.Flags.IO
-            }));
-            paramList.Children.Add(new Parameter(new ILANET.Parameter
-            {
-                ImportedVariable = new Variable
-                {
-                    Name = "result",
-                    Type = GenericType.Bool
-                },
-                Mode = ILANET.Parameter.Flags.OUTPUT
-            }));
             foreach (var item in mod.Parameters)
-                paramList.Children.Add(new Parameter(item));
+                paramList.Children.Add(new Parameter(item, mod));
             paramList.Children.Add(AddParamButton);
             if (mod.AboveComment != null)
                 comments.Text = mod.AboveComment.Message;

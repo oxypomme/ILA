@@ -14,7 +14,7 @@
             <Button x:Name="deleteButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,5,0" Width="20" Height="20" Click="deleteButton_Click">
                 <Image Name="deleteIcon" Stretch="None" Source="icons/png/remove.png" />
             </Button>
-            <Button x:Name="editButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,5,0" Width="20" Height="20">
+            <Button x:Name="editButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,5,0" Width="20" Height="20" Click="editButton_Click">
                 <Image Name="editIcon" Stretch="None" Source="/icons/png/edit.png" />
             </Button>
         </StackPanel>

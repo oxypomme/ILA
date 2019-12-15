@@ -20,9 +20,12 @@ namespace ilaGUI
     /// </summary>
     public partial class Parameter : UserControl, Linked
     {
-        public Parameter(ILANET.Parameter param)
+        private Module scope;
+
+        public Parameter(ILANET.Parameter param, Module scope)
         {
             InitializeComponent();
+            this.scope = scope;
             Link = param;
             paramName.Text = param.ImportedVariable.Name;
             if (param.Mode == ILANET.Parameter.Flags.OUTPUT)
@@ -71,13 +74,18 @@ namespace ilaGUI
                 iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.table));
                 paramType.Text = tt.Name;
             }
+            else
+            {
+                iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.custom_var));
+                paramType.Text = param.ImportedVariable.Type.Name;
+            }
         }
 
         public IBaseObject Link { get; set; }
 
         private void editParam_Click(object sender, RoutedEventArgs e)
         {
-            App.editParameter(this);
+            App.editParameter(this, scope);
         }
 
         private void removeParam_Click(object sender, RoutedEventArgs e)

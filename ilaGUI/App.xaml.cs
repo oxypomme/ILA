@@ -41,6 +41,7 @@ namespace ilaGUI
         public static void createModule(bool isFct)
         {
             Module created;
+            bool create = false;
             if (isFct)
             {
                 var func = new Function();
@@ -60,6 +61,7 @@ namespace ilaGUI
                             MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
+                            create = true;
                             func.ReturnType = ((ToStringOverrider)dialog.returnType.SelectedItem).Content as VarType;
                             var comm = new Comment();
                             comm.MultiLine = dialog.comments.Text.Contains('\n');
@@ -70,7 +72,6 @@ namespace ilaGUI
                             foreach (var item in dialog.paramList.Children)
                                 if (item is Parameter p)
                                     func.Parameters.Add(p.Link as ILANET.Parameter);
-                            CurrentILAcode.Methods.Add(func);
                         }
                     }
                     else
@@ -95,6 +96,7 @@ namespace ilaGUI
                             MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
+                            create = true;
                             var comm = new Comment();
                             comm.MultiLine = dialog.comments.Text.Contains('\n');
                             comm.Message = dialog.comments.Text;
@@ -104,17 +106,35 @@ namespace ilaGUI
                             foreach (var item in dialog.paramList.Children)
                                 if (item is Parameter p)
                                     mod.Parameters.Add(p.Link as ILANET.Parameter);
-                            CurrentILAcode.Methods.Add(mod);
                         }
                     }
                     else
                         break;
                 } while (!(isNameAvailable(mod.Name) && isNameConventionnal(mod.Name)));
             }
-            CurrentExecutable = created;
-            UpdateTree();
-            UpdateEditor();
-            UpdateLexic();
+            if (create)
+            {
+                CurrentILAcode.Methods.Add(created);
+                CurrentExecutable = created;
+                UpdateTree();
+                UpdateEditor();
+                UpdateLexic();
+            }
+        }
+
+        public static Parameter createParameter(Module scope)
+        {
+            var param = new ILANET.Parameter
+            {
+                ImportedVariable = new Variable
+                {
+                    Name = "nouveau_parametre",
+                    Type = GenericType.Int
+                },
+                Mode = ILANET.Parameter.Flags.INPUT
+            };
+            var uiParam = new Parameter(param, scope);
+            return new ParameterEdition(uiParam, scope).ShowDialog() == true ? uiParam : null;
         }
 
         public static VarType createType(int type) //0 = struct, 1 = table, 2 = enum
@@ -219,9 +239,111 @@ namespace ilaGUI
             } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
         }
 
-        public static void editParameter(Parameter param)
+        public static void editAlgo(Program algo)
         {
         }
+
+        public static void editModule(Module m)
+        {
+            Module copy;
+            Function func;
+            string choosenName = m.Name;
+            if (m is Function f)
+            {
+                copy = new Function();
+                ((Function)copy).ReturnType = f.ReturnType;
+            }
+            else
+                copy = new Module();
+            copy.Name = m.Name.Clone() as string;
+            copy.AboveComment = m.AboveComment == null ? null :
+                new Comment
+                {
+                    MultiLine = m.AboveComment.MultiLine,
+                    Message = m.AboveComment.Message.Clone() as string
+                };
+            copy.InlineComment = m.InlineComment.Clone() as string;
+            foreach (var item in m.Parameters)
+            {
+                var param = new ILANET.Parameter();
+                var variable = new Variable();
+                param.ImportedVariable = variable;
+                param.Mode = item.Mode;
+                variable.Name = item.ImportedVariable.Name;
+                variable.Type = item.ImportedVariable.Type;
+                copy.Parameters.Add(param);
+            }
+            m.Name = "";
+            if (copy is Function fcopy)
+            {
+                func = m as Function;
+                do
+                {
+                    var dialog = new createModule(fcopy, true);
+                    dialog.Owner = MainDialog;
+                    if (dialog.ShowDialog() == true)
+                    {
+                        fcopy.Name = dialog.modName.Text;
+                        if (!isNameConventionnal(dialog.modName.Text))
+                            MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else if (!isNameAvailable(dialog.modName.Text))
+                            MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            choosenName = dialog.modName.Text;
+                            func.ReturnType = ((ToStringOverrider)dialog.returnType.SelectedItem).Content as VarType;
+                            var comm = new Comment();
+                            comm.MultiLine = dialog.comments.Text.Contains('\n');
+                            comm.Message = dialog.comments.Text;
+                            func.AboveComment = comm;
+                            func.InlineComment = dialog.inlineComm.Text;
+                            func.Parameters.Clear();
+                            foreach (var item in dialog.paramList.Children)
+                                if (item is Parameter p)
+                                    func.Parameters.Add(p.Link as ILANET.Parameter);
+                        }
+                    }
+                    else
+                        break;
+                } while (!(isNameAvailable(fcopy.Name) && isNameConventionnal(fcopy.Name)));
+            }
+            else
+            {
+                do
+                {
+                    var dialog = new createModule(copy, true);
+                    dialog.Owner = MainDialog;
+                    if (dialog.ShowDialog() == true)
+                    {
+                        copy.Name = dialog.modName.Text;
+                        if (!isNameConventionnal(dialog.modName.Text))
+                            MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else if (!isNameAvailable(dialog.modName.Text))
+                            MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            choosenName = dialog.modName.Text;
+                            var comm = new Comment();
+                            comm.MultiLine = dialog.comments.Text.Contains('\n');
+                            comm.Message = dialog.comments.Text;
+                            m.AboveComment = comm;
+                            m.InlineComment = dialog.inlineComm.Text;
+                            m.Parameters.Clear();
+                            foreach (var item in dialog.paramList.Children)
+                                if (item is Parameter p)
+                                    m.Parameters.Add(p.Link as ILANET.Parameter);
+                        }
+                    }
+                    else
+                        break;
+                } while (!(isNameAvailable(copy.Name) && isNameConventionnal(copy.Name)));
+            }
+            m.Name = choosenName;
+            UpdateTree();
+            UpdateEditor();
+        }
+
+        public static void editParameter(Parameter param, Module scope) => new ParameterEdition(param, scope, true).ShowDialog();
 
         public static void editVar(VariableDeclaration variable, IExecutable scope)
         {
@@ -307,15 +429,6 @@ namespace ilaGUI
 
         public static bool isNameAvailable(string name, IExecutable source, Program ilacode)
         {
-            foreach (var item in source.Declarations)
-            {
-                if (item is VariableDeclaration vd)
-                    if (vd.CreatedVariable.Name == name)
-                        return false;
-                if (item is TypeDeclaration td)
-                    if (td.CreatedType.Name == name)
-                        return false;
-            }
             foreach (var item in ilacode.Declarations)
             {
                 if (item is VariableDeclaration vd)
@@ -324,6 +437,28 @@ namespace ilaGUI
                 if (item is TypeDeclaration td)
                     if (td.CreatedType.Name == name)
                         return false;
+            }
+            foreach (var item in ilacode.Methods)
+            {
+                if (item.Name == name)
+                    return false;
+            }
+            if (source is Module m)
+            {
+                foreach (var item in m.Parameters)
+                {
+                    if (item.ImportedVariable.Name == name)
+                        return false;
+                }
+                foreach (var item in source.Declarations)
+                {
+                    if (item is VariableDeclaration vd)
+                        if (vd.CreatedVariable.Name == name)
+                            return false;
+                    if (item is TypeDeclaration td)
+                        if (td.CreatedType.Name == name)
+                            return false;
+                }
             }
             return true;
         }

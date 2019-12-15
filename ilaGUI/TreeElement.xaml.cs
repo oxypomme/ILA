@@ -102,6 +102,14 @@ namespace ilaGUI
             }
         }
 
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Link is ILANET.Module)
+                App.editModule((ILANET.Module)Link);
+            else if (Link is Program)
+                App.editAlgo(Link as Program);
+        }
+
         private void globalButton_Click(object sender, RoutedEventArgs e)
         {
             if (Link is IExecutable exe)
