@@ -30,8 +30,10 @@ namespace ilaGUI
             Workspaces = new List<string>();
             Console.ActiveConsoles = new List<Console>();
             Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8);
+#if RELEASE
             System.Console.SetOut(Console.StandardOutput);
             System.Console.SetError(Console.StandardOutput);
+#endif
             CurrentILAcode.Name = "main";
             ILAcodes.Add(CurrentILAcode);
             Workspaces.Add("");
@@ -505,7 +507,6 @@ namespace ilaGUI
             Tabs.Items.Clear();
             foreach (var item in ILAcodes)
                 Tabs.Items.Add(new TabItem() { Header = item.Name });
-            Tabs.SelectedIndex = ILAcodes.IndexOf(CurrentILAcode);
         }
 
         public static void UpdateTree()

@@ -45,12 +45,15 @@ namespace ilaGUI
 
         private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
-            App.CurrentExecutable = App.CurrentILAcode;
-            App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
-            App.UpdateTree();
-            App.UpdateEditor();
-            App.UpdateLexic();
+            if (algoList.SelectedIndex != -1)
+            {
+                App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
+                App.CurrentExecutable = App.CurrentILAcode;
+                App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
+                App.UpdateTree();
+                App.UpdateEditor();
+                App.UpdateLexic();
+            }
         }
 
         private void newBtn_Click(object sender, RoutedEventArgs e)

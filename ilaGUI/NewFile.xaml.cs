@@ -25,13 +25,10 @@ namespace ilaGUI
             var newAlgo = new ILANET.Program();
             newAlgo.Name = algonameTB.Text;
             App.ILAcodes.Add(newAlgo);
-            App.CurrentILAcode = newAlgo;
-            App.CurrentExecutable = App.CurrentILAcode;
+            App.Workspaces.Add("");
 
             App.UpdateTabs();
-            App.UpdateTree();
-            App.UpdateEditor();
-            App.UpdateLexic();
+            App.Tabs.SelectedIndex = App.ILAcodes.Count - 1;
 
             DialogResult = true;
         }
