@@ -118,8 +118,12 @@
     <None Include="icons\UserFunction_16x.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="cursors\drag.cur" />
-    <Resource Include="cursors\grip.cur" />
+    <Resource Include="cursors\drag.cur">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="cursors\grip.cur">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\add field.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

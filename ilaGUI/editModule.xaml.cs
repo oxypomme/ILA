@@ -18,10 +18,18 @@ namespace ilaGUI
     /// </summary>
     public partial class createModule : Window
     {
-        public createModule(Module mod)
+        public createModule(Module mod, bool edit = false)
         {
             InitializeComponent();
             Background = App.DarkBackground;
+            if (edit)
+                Title = "Editer ";
+            else
+                Title = "Créer ";
+            if (mod is Function)
+                Title += "une fonction";
+            else
+                Title += "un module";
             if (mod is Function f)
             {
                 returnType.Items.Add(new ToStringOverrider(GenericType.Int, () => "entier"));
@@ -43,6 +51,26 @@ namespace ilaGUI
             }
             else
                 returnType.Visibility = Visibility.Collapsed;
+            paramList.Children.Add(new Parameter(new ILANET.Parameter
+            {
+                ImportedVariable = new Variable
+                {
+                    Name = "test",
+                    Type = GenericType.String
+                },
+                Mode = ILANET.Parameter.Flags.IO
+            }));
+            paramList.Children.Add(new Parameter(new ILANET.Parameter
+            {
+                ImportedVariable = new Variable
+                {
+                    Name = "result",
+                    Type = GenericType.Bool
+                },
+                Mode = ILANET.Parameter.Flags.OUTPUT
+            }));
+            foreach (var item in mod.Parameters)
+                paramList.Children.Add(new Parameter(item));
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

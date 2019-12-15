@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="editModule" Height="550" Width="350" ResizeMode="NoResize" Background="Black" KeyDown="Window_KeyDown">
+        Title=" " Height="555" Width="350" ResizeMode="NoResize" Background="Black" KeyDown="Window_KeyDown">
     <Grid>
         <StackPanel>
             <Label Content="Nom :" Margin="2" Foreground="White" />
             <TextBox x:Name="modName" Margin="2" Background="{x:Null}" Foreground="White" />
-            <ComboBox Name="returnType" Margin="2" />
+            <Grid>
+                <Label Content="Type du retour :" Margin="2" Foreground="White" />
+                <ComboBox Name="returnType" Margin="100,2,2,2" />
+            </Grid>
             <Label Content="Paramètres :" Foreground="White" Margin="2" />
-            <ScrollViewer Height="150" Margin="2">
+            <ScrollViewer Height="150" Margin="2" VerticalScrollBarVisibility="Auto">
                 <StackPanel Name="paramList" />
             </ScrollViewer>
             <Label Content="Description :" Margin="2" Foreground="White" />
