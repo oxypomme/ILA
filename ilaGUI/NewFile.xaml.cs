@@ -14,6 +14,8 @@ namespace ilaGUI
         {
             InitializeComponent();
             Background = App.DarkBackground;
+            algonameTB.Focus();
+            algonameTB.SelectAll();
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
@@ -23,6 +25,11 @@ namespace ilaGUI
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!App.isNameConventionnal(algonameTB.Text))
+            {
+                System.Windows.MessageBox.Show(this, "Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             var newAlgo = new ILANET.Program();
             newAlgo.Name = algonameTB.Text;
             App.ILAcodes.Add(newAlgo);
@@ -37,6 +44,12 @@ namespace ilaGUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // this set some proprety in main window to be able to reopen the new_file window
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Escape)
+                DialogResult = false;
         }
     }
 }
