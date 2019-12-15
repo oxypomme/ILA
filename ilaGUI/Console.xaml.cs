@@ -40,6 +40,7 @@ namespace ilaGUI
 
                 // Set our event handler to asynchronously read the sort output.
                 CmdProcess.OutputDataReceived += CmdOutputHandler;
+                CmdProcess.ErrorDataReceived += CmdOutputHandler;
 
                 // Redirect standard input as well. This stream is used synchronously.
                 CmdProcess.StartInfo.RedirectStandardInput = true;

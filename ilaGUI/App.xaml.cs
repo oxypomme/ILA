@@ -29,6 +29,8 @@ namespace ilaGUI
             Workspaces = new List<string>();
             Console.ActiveConsoles = new List<Console>();
             Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8);
+            System.Console.SetOut(Console.StandardOutput);
+            System.Console.SetError(Console.StandardOutput);
             CurrentILAcode.Name = "main";
             ILAcodes.Add(CurrentILAcode);
             Workspaces.Add("");
