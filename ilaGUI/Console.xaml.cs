@@ -67,7 +67,11 @@ namespace ilaGUI
             {
                 // Add the text to the collected output.
                 CmdOutput.Append(Environment.NewLine + $"{outLine.Data}");
-                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => outputTB.Text = CmdOutput.ToString()));
+                Dispatcher.Invoke(() =>
+                {
+                    outputTB.Text = CmdOutput.ToString();
+                    consoleScroll.ScrollToVerticalOffset(consoleScroll.ScrollableHeight);
+                });
             }
         }
 
@@ -76,13 +80,12 @@ namespace ilaGUI
             if (e.Key is Key.Return)
             {
                 WriteInConsole(inputTB.Text);
-                inputTB.Text = "";
                 if (inputTB.Text == "cls")
                 {
                     CmdOutput = new StringBuilder("");
                     outputTB.Text = "";
                 }
-                consoleScroll.ScrollToVerticalOffset(consoleScroll.ScrollableHeight);
+                inputTB.Text = "";
             }
         }
 
