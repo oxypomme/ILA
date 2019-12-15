@@ -1,5 +1,5 @@
 # ILA
-> Short blurb about what your product does.
+> Permet d'écrire un code en ila (langage algo français simpliste) et l'éxecute
 
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/oxypomme/ILA?style=for-the-badge)
 ![GitHub All Releases](https://img.shields.io/github/downloads/oxypomme/ILA/total?style=for-the-badge)
@@ -10,26 +10,13 @@
 
 One to two paragraph statement about your product and what it does.
 
-## Installation
-
-OS X & Linux:
-
-```sh
-TODO
-```
-
-Windows:
-
-```sh
-TODO
-```
 
 ## Exemple d'utilisation
 
 Prenons le fichier `helloWorld.ila` suivant :
 
 ```
-algo Test()
+algo Test
 {
     ecrire("Hello World")
 }
@@ -43,19 +30,16 @@ Pour l’exécuter il suffit de taper dans la commande :
 
 _Pour plus d'exemples, référez vous au [Wiki](https://github.com/oxypomme/ILA/wiki)._
 
-## Development setup
+## Setup du développement
 
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-make install
-npm test
+Pour générer du code ILA ou le charger, ILA.NET est la bibliothèque qu'il faut utiliser. Simplement écrire ce code permet de charger le programme ila :
+```csharp
+    var ilaProgram = ILANET.Parser.Parser.Parse(fileContent);
 ```
 
-## Release History
+## Historique des Release
 
-* 1.0.0
-    * Je sais pas trop quoi mettre là j'avoue...
+Aucune Release pour l'instant, projet en développement.
 
 ## Meta
 
