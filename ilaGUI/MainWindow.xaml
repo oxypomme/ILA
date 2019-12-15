@@ -8,7 +8,7 @@
         xmlns:Emit="clr-namespace:System.Reflection.Emit;assembly=System.Reflection.Emit.ILGeneration"
         x:Class="ilaGUI.MainWindow"
         mc:Ignorable="d"
-        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico" Closing="Window_Closing">
+        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />

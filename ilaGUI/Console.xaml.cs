@@ -25,6 +25,7 @@ namespace ilaGUI
         {
             InitializeComponent();
             {
+                ActiveConsoles.Add(this);
                 // Credits to https://stackoverflow.com/a/3308697
                 CmdProcess = new Process();
 
@@ -53,8 +54,11 @@ namespace ilaGUI
         }
 
         public static TextWriter StandardOutput { get; internal set; }
-        public StreamWriter CmdInput { get; private set; }
+
+        public TextWriter CmdInput { get; private set; }
+
         internal static List<Console> ActiveConsoles { get; set; }
+
         private Process CmdProcess { get; set; }
 
         public void WriteInConsole(string message)
@@ -71,7 +75,8 @@ namespace ilaGUI
                 // Add the text to the collected output.
                 Dispatcher.Invoke(() =>
                 {
-                    outputTB.Text += Environment.NewLine + $"{outLine.Data}";
+                    StandardOutput.Write(Environment.NewLine + $"{outLine.Data}");
+                    StandardOutput.Flush();
                     consoleScroll.ScrollToVerticalOffset(9999999);
                 });
             }
@@ -87,6 +92,45 @@ namespace ilaGUI
                     outputTB.Text = "";
                 }
                 inputTB.Text = "";
+            }
+        }
+
+        public class ConsoleStream : Stream
+        {
+            public override bool CanRead => false;
+
+            public override bool CanSeek => false;
+
+            public override bool CanWrite => true;
+
+            public override long Length => throw new NotSupportedException();
+
+            public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
+
+            public override void Flush()
+            {
+            }
+
+            public override int Read(byte[] buffer, int offset, int count)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override long Seek(long offset, SeekOrigin origin)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override void SetLength(long value)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+                var content = Encoding.UTF8.GetString(buffer, offset, count);
+                foreach (var item in ActiveConsoles)
+                    item.outputTB.Text += content;
             }
         }
     }

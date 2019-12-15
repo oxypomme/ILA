@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,11 +27,12 @@ namespace ilaGUI
             ILAcodes = new List<Program>();
             CurrentILAcode = new Program();
             Workspaces = new List<string>();
+            Console.ActiveConsoles = new List<Console>();
+            Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8);
             CurrentILAcode.Name = "main";
             ILAcodes.Add(CurrentILAcode);
             Workspaces.Add("");
             CurrentExecutable = CurrentILAcode;
-            Console.ActiveConsoles = new List<Console>();
         }
 
         public static IExecutable CurrentExecutable { get; set; }
