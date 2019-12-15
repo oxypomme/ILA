@@ -223,6 +223,7 @@ namespace ilaGUI
             Tabs.Items.Clear();
             foreach (var item in ILAcodes)
                 Tabs.Items.Add(new TabItem() { Header = item.Name });
+            Tabs.SelectedIndex = ILAcodes.IndexOf(CurrentILAcode);
         }
 
         public static void UpdateTree()
