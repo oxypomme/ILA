@@ -506,7 +506,7 @@ namespace ilaGUI
         {
             Tabs.Items.Clear();
             foreach (var item in ILAcodes)
-                Tabs.Items.Add(new TabItem() { Header = item.Name });
+                Tabs.Items.Add(new TabItem() { Header = item.Name, Foreground = DarkFontColor });
         }
 
         public static void UpdateTree()
