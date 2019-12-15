@@ -59,7 +59,7 @@ namespace ilaGUI
 
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
-            Console.
+            Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
         }
     }
 }
