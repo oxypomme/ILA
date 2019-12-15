@@ -26,7 +26,7 @@ namespace ilaGUI
         public App()
         {
             ILAcodes = new List<Program>();
-            CurrentILAcode = new Program();
+            CurrentILAcode = null;
             Workspaces = new List<string>();
             Console.ActiveConsoles = new List<Console>();
             Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8);
@@ -34,9 +34,6 @@ namespace ilaGUI
             System.Console.SetOut(Console.StandardOutput);
             System.Console.SetError(Console.StandardOutput);
 #endif
-            CurrentILAcode.Name = "main";
-            ILAcodes.Add(CurrentILAcode);
-            Workspaces.Add("");
             CurrentExecutable = CurrentILAcode;
         }
 
@@ -512,12 +509,18 @@ namespace ilaGUI
         public static void UpdateTree()
         {
             Tree.TreeList.Children.Clear();
-            Tree.TreeList.Children.Add(new TreeElement(CurrentILAcode));
-            foreach (var item in CurrentILAcode.Methods.Where(m => !(m is Native)))
-                Tree.TreeList.Children.Add(new TreeElement(item));
-            foreach (var item in CurrentILAcode.Declarations.Where(d => !(d is Native)))
-                Tree.TreeList.Children.Add(new TreeElement(item));
-            UpdateTreeColor();
+            if (CurrentILAcode != null)
+            {
+                Tree.operations.IsEnabled = true;
+                Tree.TreeList.Children.Add(new TreeElement(CurrentILAcode));
+                foreach (var item in CurrentILAcode.Methods.Where(m => !(m is Native)))
+                    Tree.TreeList.Children.Add(new TreeElement(item));
+                foreach (var item in CurrentILAcode.Declarations.Where(d => !(d is Native)))
+                    Tree.TreeList.Children.Add(new TreeElement(item));
+                UpdateTreeColor();
+            }
+            else
+                Tree.operations.IsEnabled = false;
         }
 
         public static void UpdateTreeColor()

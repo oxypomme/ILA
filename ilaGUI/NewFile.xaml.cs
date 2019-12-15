@@ -13,6 +13,7 @@ namespace ilaGUI
         public NewFileDialog()
         {
             InitializeComponent();
+            Background = App.DarkBackground;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

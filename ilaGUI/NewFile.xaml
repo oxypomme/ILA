@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="Nouvel Algo" ResizeMode="NoResize" Background="#FF222222" Icon="logo/logo.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight">
+        Title="Nouvel Algo" ResizeMode="NoResize" Background="Black" Icon="logo/logo.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight">
     <Grid>
         <Label Content="Nom de l'algo :" Margin="10,10,0,0" Foreground="White" Background="{x:Null}" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" />
         <TextBox Name="algonameTB" Margin="109,15,10,0" Text="Algo1" TextWrapping="Wrap" HorizontalAlignment="Left" Width="97" Height="18" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" />

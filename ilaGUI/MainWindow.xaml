@@ -8,7 +8,7 @@
         xmlns:Emit="clr-namespace:System.Reflection.Emit;assembly=System.Reflection.Emit.ILGeneration"
         x:Class="ilaGUI.MainWindow"
         mc:Ignorable="d"
-        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico">
+        Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico" Background="Black">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
@@ -144,7 +144,7 @@
                 </Rectangle>
             </Button>
         </StackPanel>
-        <TabControl x:Name="algoList" Grid.Row="1" SelectionChanged="algoList_SelectionChanged" />
+        <TabControl x:Name="algoList" Grid.Row="1" SelectionChanged="algoList_SelectionChanged" Background="{x:Null}" BorderBrush="{x:Null}" />
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" MinWidth="100" MaxWidth="350" />
