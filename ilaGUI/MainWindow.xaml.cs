@@ -55,10 +55,7 @@ namespace ilaGUI
 
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
+            Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
         }
     }
 }
