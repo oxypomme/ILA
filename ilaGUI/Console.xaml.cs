@@ -56,8 +56,8 @@ namespace ilaGUI
             }
         }
 
-        public StreamWriter CmdInput { get; set; }
-        public StringBuilder CmdOutput { get; set; }
+        private StreamWriter CmdInput { get; set; }
+        private StringBuilder CmdOutput { get; set; }
         private Process CmdProcess { get; set; }
 
         private void CmdOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
@@ -79,8 +79,7 @@ namespace ilaGUI
         {
             if (e.Key is Key.Return)
             {
-                if (!string.IsNullOrEmpty(inputTB.Text))
-                    CmdInput.WriteLine(inputTB.Text);
+                WriteInConsole(inputTB.Text);
                 if (inputTB.Text == "cls")
                 {
                     CmdOutput = new StringBuilder("");
@@ -88,6 +87,12 @@ namespace ilaGUI
                 }
                 inputTB.Text = "";
             }
+        }
+
+        public void WriteInConsole(string message)
+        {
+            if (!string.IsNullOrEmpty(message))
+                CmdInput.WriteLine(message);
         }
     }
 }
