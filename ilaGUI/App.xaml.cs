@@ -18,7 +18,6 @@ namespace ilaGUI
     /// </summary>
     public partial class App : Application
     {
-        public static string WorkspacePath = "";
         public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
         public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(230, 230, 230));
 
@@ -26,17 +25,22 @@ namespace ilaGUI
         {
             ILAcodes = new List<Program>();
             CurrentILAcode = new Program();
+            Workspaces = new List<string>();
             CurrentILAcode.Name = "main";
             ILAcodes.Add(CurrentILAcode);
+            Workspaces.Add("");
             CurrentExecutable = CurrentILAcode;
+            Console.ActiveConsoles = new List<Console>();
         }
 
         public static IExecutable CurrentExecutable { get; set; }
         public static Program CurrentILAcode { get; set; }
+        public static string CurrentWorkspace { get; set; }
         public static List<Program> ILAcodes { get; set; }
         public static Window MainDialog { get; set; }
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
+        public static List<string> Workspaces { get; set; }
 
         public static void createFunction()
         {
