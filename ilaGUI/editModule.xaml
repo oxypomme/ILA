@@ -15,9 +15,14 @@
                 <ComboBox Name="returnType" Margin="100,2,2,2" />
             </Grid>
             <Label Content="Paramètres :" Foreground="White" Margin="2" />
-            <ScrollViewer Height="150" Margin="2" VerticalScrollBarVisibility="Auto">
-                <StackPanel Name="paramList" />
-            </ScrollViewer>
+            <Grid>
+                <Separator VerticalAlignment="Top" />
+                <Separator VerticalAlignment="Bottom" />
+                <ScrollViewer Height="150" Margin="2" VerticalScrollBarVisibility="Auto" BorderBrush="Red">
+                    <!--https://social.msdn.microsoft.com/Forums/vstudio/en-US/d32bb0af-b14f-4e88-ad36-098d11cd375c/dragdrop-elements-within-a-stack-panel?forum=wpf-->
+                    <StackPanel Name="paramList" AllowDrop="True" PreviewMouseLeftButtonDown="paramList_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="paramList_PreviewMouseLeftButtonUp" PreviewMouseMove="paramList_PreviewMouseMove" DragEnter="paramList_DragEnter" Drop="paramList_Drop" />
+                </ScrollViewer>
+            </Grid>
             <Label Content="Description :" Margin="2" Foreground="White" />
             <TextBox x:Name="comments" Margin="2" VerticalScrollBarVisibility="Auto" Height="130" Background="{x:Null}" Foreground="White" AcceptsReturn="True" />
             <Label Content="Commentaire :" Margin="2" Foreground="White" />

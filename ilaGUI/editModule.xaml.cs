@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace ilaGUI
 {
@@ -18,9 +19,26 @@ namespace ilaGUI
     /// </summary>
     public partial class createModule : Window
     {
+        private UIElement _dummyDragSource = new UIElement();
+        private bool _isDown;
+        private bool _isDragging;
+        private UIElement _realDragSource;
+        private Point _startPoint;
+        private Button AddParamButton;
+
         public createModule(Module mod, bool edit = false)
         {
             InitializeComponent();
+            AddParamButton = new Button();
+            AddParamButton.Height = 20;
+            AddParamButton.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+            AddParamButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+            {
+                var img = new Image();
+                img.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.add));
+                img.Stretch = Stretch.None;
+                AddParamButton.Content = img;
+            }
             Background = App.DarkBackground;
             if (edit)
                 Title = "Editer ";
@@ -71,11 +89,83 @@ namespace ilaGUI
             }));
             foreach (var item in mod.Parameters)
                 paramList.Children.Add(new Parameter(item));
+            paramList.Children.Add(AddParamButton);
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void paramList_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("UIElement"))
+            {
+                e.Effects = DragDropEffects.Move;
+            }
+        }
+
+        private void paramList_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("UIElement"))
+            {
+                UIElement droptarget = e.Source as UIElement;
+                int droptargetIndex = -1, i = 0;
+                foreach (UIElement element in paramList.Children)
+                {
+                    if (element.Equals(droptarget))
+                    {
+                        droptargetIndex = i;
+                        break;
+                    }
+                    i++;
+                }
+                if (droptargetIndex != -1)
+                {
+                    paramList.Children.Remove(_realDragSource);
+                    paramList.Children.Insert(droptargetIndex, _realDragSource);
+                    paramList.Children.Remove(AddParamButton);
+                    paramList.Children.Add(AddParamButton);
+                }
+
+                _isDown = false;
+                _isDragging = false;
+                _realDragSource.ReleaseMouseCapture();
+            }
+        }
+
+        private void paramList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Source == paramList)
+            {
+            }
+            else
+            {
+                _isDown = true;
+                _startPoint = e.GetPosition(paramList);
+            }
+        }
+
+        private void paramList_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _isDown = false;
+            _isDragging = false;
+            _realDragSource?.ReleaseMouseCapture();
+        }
+
+        private void paramList_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isDown && e.Source is Parameter)
+            {
+                if ((_isDragging == false) && ((Math.Abs(e.GetPosition(paramList).X - _startPoint.X) > SystemParameters.MinimumHorizontalDragDistance) ||
+                    (Math.Abs(e.GetPosition(paramList).Y - _startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)))
+                {
+                    _isDragging = true;
+                    _realDragSource = e.Source as UIElement;
+                    _realDragSource.CaptureMouse();
+                    DragDrop.DoDragDrop(_dummyDragSource, new DataObject("UIElement", e.Source, true), DragDropEffects.Move);
+                }
+            }
         }
 
         private void validateBtn_Click(object sender, RoutedEventArgs e)

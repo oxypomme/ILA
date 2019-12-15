@@ -72,5 +72,11 @@ namespace ilaGUI
                 paramType.Text = tt.Name;
             }
         }
+
+        protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
+        {
+            Mouse.SetCursor(App.DragCursor);
+            e.Handled = true;
+        }
     }
 }
