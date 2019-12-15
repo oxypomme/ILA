@@ -41,6 +41,7 @@ namespace ilaGUI
         {
             App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
             App.CurrentExecutable = App.CurrentILAcode;
+            App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
             App.UpdateTree();
             App.UpdateEditor();
             App.UpdateLexic();
