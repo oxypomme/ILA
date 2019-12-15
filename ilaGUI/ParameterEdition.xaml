@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="Edition du paramètre" Height="250" Width="300" Background="Black" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Edition du paramètre" Height="250" Width="300" Background="Black" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" KeyDown="Window_KeyDown">
     <Grid>
         <StackPanel>
             <Label Content="Nom de la variable :" Foreground="White" />

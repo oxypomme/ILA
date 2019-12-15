@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="Nouvel Algo" ResizeMode="NoResize" Background="Black" Icon="logo/logo.ico" WindowStartupLocation="CenterOwner" SizeToContent="WidthAndHeight" KeyDown="Window_KeyDown">
+        Title="Nouvel Algo" ResizeMode="NoResize" Background="Black" Icon="logo/logo.ico" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" SizeToContent="WidthAndHeight" KeyDown="Window_KeyDown">
     <Grid>
         <Label Content="Nom de l'algo :" Margin="10,10,0,0" Foreground="White" Background="{x:Null}" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" />
-        <TextBox Name="algonameTB" Margin="109,15,10,0" Text="nouveau_algo" TextWrapping="Wrap" HorizontalAlignment="Left" Width="97" Height="18" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" CaretBrush="White" />
+        <TextBox Name="algonameTB" Margin="109,15,10,0" Text="nouvel_algo" TextWrapping="Wrap" HorizontalAlignment="Left" Width="97" Height="18" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" CaretBrush="White" />
         <Button Name="cancelBtn" Content="Annuler" Margin="23,38,0,10" Width="64" Height="21" Click="cancelBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource cancelBtnStyle}" />
         <Button Name="newBtn" Content="Créer" Margin="126,38,0,0" Width="64" Height="21" Click="newBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" IsDefault="True" Style="{DynamicResource validateBtnStyle}" />
     </Grid>

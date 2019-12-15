@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title=" " Height="555" Width="350" ResizeMode="NoResize" Background="Black" KeyDown="Window_KeyDown">
+        Title=" " Height="555" Width="350" ResizeMode="NoResize" Background="Black" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" KeyDown="Window_KeyDown">
     <Grid>
         <StackPanel>
             <Label Content="Nom :" Margin="2" Foreground="White" />
