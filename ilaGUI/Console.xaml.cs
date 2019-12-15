@@ -67,6 +67,7 @@ namespace ilaGUI
             {
                 // Add the text to the collected output.
                 CmdOutput.Append(Environment.NewLine + $"{outLine.Data}");
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => outputTB.Text = CmdOutput.ToString()));
             }
         }
 
@@ -83,7 +84,6 @@ namespace ilaGUI
                     outputTB.Text = "";
                 }
             }
-            outputTB.Text = CmdOutput.ToString(); // On update le TextBlock MAIS cela doit se faire dans ce thread ET AUCUN AUTRE (sinon crash)
         }
     }
 }
