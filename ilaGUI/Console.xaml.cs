@@ -62,7 +62,7 @@ namespace ilaGUI
                 {
                     StandardOutput.Write(Environment.NewLine + $"{outLine.Data}");
                     StandardOutput.Flush();
-                    consoleScroll.ScrollToVerticalOffset(9999999);
+                    consoleScroll.ScrollToVerticalOffset(double.MaxValue);
                 });
             }
         }
