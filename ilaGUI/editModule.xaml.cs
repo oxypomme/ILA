@@ -22,7 +22,7 @@ namespace ilaGUI
         private UIElement _dummyDragSource = new UIElement();
         private bool _isDown;
         private bool _isDragging;
-        private UIElement _realDragSource;
+        private Parameter _realDragSource;
         private Point _startPoint;
         private Button AddParamButton;
 
@@ -104,7 +104,14 @@ namespace ilaGUI
             if (e.Data.GetDataPresent("UIElement"))
             {
                 e.Effects = DragDropEffects.Move;
+                _realDragSource.Background = new SolidColorBrush(Color.FromArgb(128, 60, 150, 240));
             }
+        }
+
+        private void paramList_DragLeave(object sender, DragEventArgs e)
+        {
+            if (_realDragSource != null)
+                _realDragSource.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
         }
 
         private void paramList_Drop(object sender, DragEventArgs e)
@@ -124,6 +131,7 @@ namespace ilaGUI
                 }
                 if (droptargetIndex != -1)
                 {
+                    _realDragSource.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
                     paramList.Children.Remove(_realDragSource);
                     paramList.Children.Insert(droptargetIndex, _realDragSource);
                     paramList.Children.Remove(AddParamButton);
@@ -163,7 +171,7 @@ namespace ilaGUI
                     (Math.Abs(e.GetPosition(paramList).Y - _startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)))
                 {
                     _isDragging = true;
-                    _realDragSource = e.Source as UIElement;
+                    _realDragSource = e.Source as Parameter;
                     _realDragSource.CaptureMouse();
                     DragDrop.DoDragDrop(_dummyDragSource, new DataObject("UIElement", e.Source, true), DragDropEffects.Move);
                 }
