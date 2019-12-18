@@ -1,0 +1,14 @@
+﻿<Window x:Class="ilaGUI.MessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ilaGUI"
+        mc:Ignorable="d"
+        Title="MessageBox" Height="250" Width="400" Background="Black" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Closed="Window_Closed">
+    <Grid>
+        <Image Margin="50,64,0,0" Height="64" Width="64" Name="iconImg" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock x:Name="text" Margin="175,0,10,0" Foreground="White" VerticalAlignment="Center" TextWrapping="Wrap" />
+        <DockPanel x:Name="buttons" VerticalAlignment="Bottom" LastChildFill="False" HorizontalAlignment="Center" />
+    </Grid>
+</Window>

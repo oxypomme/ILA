@@ -46,6 +46,18 @@ namespace ilaGUI
         public static Tree Tree { get; set; }
         public static List<string> Workspaces { get; set; }
 
+        public static BitmapImage ConvertBitmapToWPF(System.Drawing.Bitmap src)
+        {
+            MemoryStream ms = new MemoryStream();
+            src.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = ms;
+            image.EndInit();
+            return image;
+        }
+
         public static void createModule(bool isFct)
         {
             Module created;
@@ -99,9 +111,9 @@ namespace ilaGUI
                     {
                         mod.Name = dialog.modName.Text;
                         if (!isNameConventionnal(mod.Name))
-                            MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else if (!isNameAvailable(mod.Name))
-                            MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             create = true;
@@ -200,9 +212,9 @@ namespace ilaGUI
                     variable.Name = dialog.varName.Text;
                     variable.Constant = dialog.varConst.IsChecked.Value;
                     if (!isNameConventionnal(variable.Name))
-                        MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else if (!isNameAvailable(variable.Name))
-                        MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                     {
                         if (variable.Constant)
@@ -293,9 +305,9 @@ namespace ilaGUI
                     {
                         fcopy.Name = dialog.modName.Text;
                         if (!isNameConventionnal(dialog.modName.Text))
-                            MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else if (!isNameAvailable(dialog.modName.Text))
-                            MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             choosenName = dialog.modName.Text;
@@ -325,9 +337,9 @@ namespace ilaGUI
                     {
                         copy.Name = dialog.modName.Text;
                         if (!isNameConventionnal(dialog.modName.Text))
-                            MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else if (!isNameAvailable(dialog.modName.Text))
-                            MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
                             choosenName = dialog.modName.Text;
@@ -367,9 +379,9 @@ namespace ilaGUI
                     variable.CreatedVariable.Name = "";
                     variable.CreatedVariable.Constant = dialog.varConst.IsChecked.Value;
                     if (!isNameConventionnal(newName))
-                        MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else if (!isNameAvailable(newName))
-                        MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                     {
                         if (variable.CreatedVariable.Constant)
