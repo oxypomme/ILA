@@ -228,7 +228,7 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("cancelBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor
+                            //Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
