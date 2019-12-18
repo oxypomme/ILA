@@ -24,19 +24,38 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="validateBtnStyle" TargetType="{x:Type Button}">
+        <Style x:Key="neutralBtnStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="Border" Background="#01000000" Padding="{TemplateBinding Padding}" Height="{TemplateBinding Height}">
+                        <Border x:Name="Border" Background="#20ffffff" Padding="{TemplateBinding Padding}" Height="{TemplateBinding Height}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#800096ff" TargetName="Border" />
+                                <Setter Property="Background" Value="#48ffffff" TargetName="Border" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#c00096ff" TargetName="Border" />
+                                <Setter Property="Background" Value="#80ffffff" TargetName="Border" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="validateBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" Background="#500096ff" Padding="{TemplateBinding Padding}" Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#a00096ff" TargetName="Border" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#e00096ff" TargetName="Border" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -47,15 +66,15 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="Border" Background="#01000000" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="Border" Background="#50ff0042" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#80ff0042" TargetName="Border" />
+                                <Setter Property="Background" Value="#a0ff0042" TargetName="Border" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#c0ff0042" TargetName="Border" />
+                                <Setter Property="Background" Value="#e0ff0042" TargetName="Border" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

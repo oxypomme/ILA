@@ -78,6 +78,7 @@ namespace ilaGUI
                             Content = "OK",
                             Margin = new Thickness(10),
                             Padding = new Thickness(10),
+                            Style = dialog.FindResource("neutralBtnStyle") as Style,
                             MinWidth = 100,
                             Foreground = App.DarkFontColor,
                             IsDefault = true
@@ -99,6 +100,7 @@ namespace ilaGUI
                             Content = "OK",
                             Margin = new Thickness(10),
                             Padding = new Thickness(10),
+                            Style = dialog.FindResource("neutralBtnStyle") as Style,
                             MinWidth = 100,
                             Foreground = App.DarkFontColor
                         };
@@ -181,6 +183,7 @@ namespace ilaGUI
                             Content = "Annuler",
                             Margin = new Thickness(10),
                             Padding = new Thickness(10),
+                            Style = dialog.FindResource("neutralBtnStyle") as Style,
                             MinWidth = 100,
                             Foreground = App.DarkFontColor
                         };
