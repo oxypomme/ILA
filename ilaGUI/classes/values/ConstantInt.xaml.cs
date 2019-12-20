@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,17 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour If.xaml
+    /// Logique d'interaction pour ConstantInt.xaml
     /// </summary>
-    public partial class If : UserControl
+    public partial class ConstantInt : UserControl, Linked
     {
-        public If()
+        public ConstantInt()
         {
             InitializeComponent();
         }
+
+        public ILANET.ConstantInt InternalValue { get; set; }
+
+        IBaseObject Linked.Link => InternalValue;
     }
 }

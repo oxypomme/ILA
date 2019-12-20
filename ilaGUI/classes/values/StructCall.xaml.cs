@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,17 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour TableCall.xaml
+    /// Logique d'interaction pour StructCall.xaml
     /// </summary>
-    public partial class TableCall : UserControl
+    public partial class StructCall : UserControl, Linked
     {
-        public TableCall()
+        public StructCall()
         {
             InitializeComponent();
         }
+
+        public ILANET.StructCall InternalValue { get; set; }
+
+        IBaseObject Linked.Link => InternalValue;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,17 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour Operator.xaml
+    /// Logique d'interaction pour ConstantBool.xaml
     /// </summary>
-    public partial class Operator : UserControl
+    public partial class ConstantBool : UserControl, Linked
     {
-        public Operator()
+        public ConstantBool()
         {
             InitializeComponent();
         }
+
+        public ILANET.ConstantBool InternalValue { get; set; }
+
+        IBaseObject Linked.Link => InternalValue;
     }
 }

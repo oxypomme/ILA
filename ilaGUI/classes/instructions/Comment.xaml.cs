@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,17 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour ModuleCall.xaml
+    /// Logique d'interaction pour Comment.xaml
     /// </summary>
-    public partial class ModuleCall : UserControl
+    public partial class Comment : UserControl, Linked
     {
-        public ModuleCall()
+        public Comment()
         {
             InitializeComponent();
         }
+
+        public ILANET.Comment InternalComment { get; set; }
+
+        IBaseObject Linked.Link => InternalComment;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,16 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour DoWhile.xaml
+    /// Logique d'interaction pour Variable.xaml
     /// </summary>
-    public partial class DoWhile : UserControl
+    public partial class Variable : UserControl, Linked
     {
-        public DoWhile()
+        public Variable()
         {
             InitializeComponent();
         }
+
+        public ILANET.Variable InternalValue { get; set; }
+        IBaseObject Linked.Link => InternalValue;
     }
 }

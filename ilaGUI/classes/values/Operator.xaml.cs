@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,17 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour For.xaml
+    /// Logique d'interaction pour Operator.xaml
     /// </summary>
-    public partial class For : UserControl
+    public partial class Operator : UserControl, Linked
     {
-        public For()
+        public Operator()
         {
             InitializeComponent();
         }
+
+        public ILANET.Operator InternalValue { get; set; }
+
+        IBaseObject Linked.Link => InternalValue;
     }
 }

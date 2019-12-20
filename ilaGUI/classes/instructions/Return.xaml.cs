@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILANET;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -14,13 +15,17 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour Case.xaml
+    /// Logique d'interaction pour Return.xaml
     /// </summary>
-    public partial class Case : UserControl
+    public partial class Return : UserControl, Linked
     {
-        public Case()
+        public Return()
         {
             InitializeComponent();
         }
+
+        public ILANET.Return InternalInstruction { get; set; }
+
+        IBaseObject Linked.Link => InternalInstruction;
     }
 }
