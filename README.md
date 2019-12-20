@@ -13,10 +13,10 @@ One to two paragraph statement about your product and what it does.
 
 ## Exemple d'utilisation
 
-Prenons le fichier `helloWorld.ila` suivant :
+Prenons le fichier `test.ila` suivant :
 
 ```
-algo Test
+algo hello_world
 {
     ecrire("Hello World")
 }
@@ -24,9 +24,7 @@ algo Test
 
 Pour l’exécuter il suffit de taper dans la commande :
 
-![example]()
-
-*(Un gif ici ça pourrait être fun)*
+![example](demo.gif)
 
 _Pour plus d'exemples, référez vous au [Wiki](https://github.com/oxypomme/ILA/wiki)._
 
