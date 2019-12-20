@@ -38,10 +38,51 @@ namespace ilaGUI
             App.UpdateEditor();
             App.UpdateLexic();
             App.UpdateTabs();
+
+            InitShortcuts();
         }
 
         private Console Console { get; set; }
         private Tree TreePannel { get; set; }
+
+        private void InitShortcuts()
+        {
+            // inspired by https://stackoverflow.com/a/33450624
+            RoutedCommand keyShortcut = new RoutedCommand();
+
+            /* NEW_ALGO SHORTCUT (Ctrl+N) */
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, newBtn_Click));
+
+            /* OPEN SHORTCUT (Ctrl+O) */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, newBtn_Click));
+
+            /* SAVE SHORTCUT (Ctrl+S) */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, saveBtn_Click));
+
+            /**/
+
+            /* RUN SHORTCUT (F5) */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.F5));
+            CommandBindings.Add(new CommandBinding(keyShortcut, newBtn_Click));
+
+            /* BUILD SHORTCUT (Ctrl+B) */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, buildBtn_Click));
+
+            /**/
+
+            /* HELP SHORTCUT (F1) */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.F1));
+            CommandBindings.Add(new CommandBinding(keyShortcut, wikiBtn_Click));
+        }
 
         private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -63,9 +104,33 @@ namespace ilaGUI
             dialog.ShowDialog();
         }
 
+        private void openBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
             //Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
+        }
+
+        private void stopBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void buildBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void settingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void wikiBtn_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
