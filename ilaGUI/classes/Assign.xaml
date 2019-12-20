@@ -5,15 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI.Classes"
              mc:Ignorable="d"
-             d:DesignHeight="16" d:DesignWidth="200">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid Name="leftGrid" VerticalAlignment="Top" Height="16" Grid.Column="0" />
-        <TextBlock Text="&lt;-" Margin="5,0,5,0" VerticalAlignment="Top" Height="16" Grid.Column="1" Foreground="White" />
-        <Grid Name="rightGrid" VerticalAlignment="Top" Height="16" Grid.Column="2" />
-    </Grid>
+             d:DesignHeight="16" d:DesignWidth="100">
+    <StackPanel Orientation="Horizontal">
+        <Grid Name="leftGrid" />
+        <TextBlock Text="&lt;-" Margin="5,0" Foreground="OrangeRed" />
+        <Grid Name="rightGrid" />
+        <TextBlock x:Name="comment" Foreground="DarkGray" />
+    </StackPanel>
 </UserControl>
