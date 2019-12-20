@@ -7,6 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Name="functionName" Grid.Column="0"/>
+        <TextBlock Text="(" Grid.Column="1" Foreground="White"/>
+        <Grid Name="paramGrid" Grid.Column="2"/>
+        <TextBlock Text=")" Grid.Column="3" Foreground="White"/>
     </Grid>
 </UserControl>
