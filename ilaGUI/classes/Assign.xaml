@@ -13,7 +13,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Name="leftGrid" VerticalAlignment="Top" Height="16" Grid.Column="0" />
-        <TextBlock Text="=" Margin="5,0,5,0" VerticalAlignment="Top" Height="16" Grid.Column="1" Foreground="White" />
+        <TextBlock Text="&lt;-" Margin="5,0,5,0" VerticalAlignment="Top" Height="16" Grid.Column="1" Foreground="White" />
         <Grid Name="rightGrid" VerticalAlignment="Top" Height="16" Grid.Column="2" />
     </Grid>
 </UserControl>
