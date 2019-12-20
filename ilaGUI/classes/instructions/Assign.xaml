@@ -10,6 +10,6 @@
         <Grid Name="leftGrid" />
         <TextBlock Text="&lt;-" Margin="5,0" Foreground="OrangeRed" />
         <Grid Name="rightGrid" />
-        <TextBlock x:Name="comment" Foreground="DarkGray" />
+        <TextBlock Margin="5,0,0,0" x:Name="comment" Foreground="DarkGray" />
     </StackPanel>
 </UserControl>
