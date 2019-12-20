@@ -1,0 +1,15 @@
+﻿<Window x:Class="ilaGUI.editAlgo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ilaGUI"
+        mc:Ignorable="d"
+        Title="Editer Algo" ResizeMode="NoResize" Background="Black" Icon="logo/logo.ico" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" SizeToContent="WidthAndHeight" KeyDown="Window_KeyDown">
+    <Grid>
+        <Label Content="Nom de l'algo :" Margin="10,10,0,0" Foreground="White" Background="{x:Null}" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91" />
+        <TextBox Name="algonameTB" Margin="109,15,10,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="97" Height="18" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" CaretBrush="White" />
+        <Button Name="cancelBtn" Content="Annuler" Padding="10" Margin="126,38,0,10" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource cancelBtnStyle}" Click="cancelBtn_Click" />
+        <Button Name="newBtn" Content="Modifier" Padding="10" Margin="23,38,0,0" Width="80" HorizontalAlignment="Left" VerticalAlignment="Top"  IsDefault="True" Style="{DynamicResource validateBtnStyle}" Click="newBtn_Click" />
+    </Grid>
+</Window>

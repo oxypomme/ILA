@@ -259,9 +259,7 @@ namespace ilaGUI
             } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
         }
 
-        public static void editAlgo(Program algo)
-        {
-        }
+        public static void editAlgo(Program algo) => new editAlgo { Owner = MainDialog }.ShowDialog();
 
         public static void editModule(Module m)
         {
