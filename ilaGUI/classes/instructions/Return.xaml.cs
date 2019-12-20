@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ilaGUI.Classes
+namespace ilaGUI.Editor
 {
     /// <summary>
     /// Logique d'interaction pour Return.xaml
