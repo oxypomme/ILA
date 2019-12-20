@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour Assign.xaml
+    /// Logique d'interaction pour For.xaml
     /// </summary>
-    public partial class Assign : UserControl
+    public partial class For : UserControl
     {
-        public Assign()
+        public For()
         {
             InitializeComponent();
         }
