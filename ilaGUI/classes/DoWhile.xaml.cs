@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace ilaGUI.Classes
 {
     /// <summary>
-    /// Logique d'interaction pour Case.xaml
+    /// Logique d'interaction pour DoWhile.xaml
     /// </summary>
-    public partial class Case : UserControl
+    public partial class DoWhile : UserControl
     {
-        public Case()
+        public DoWhile()
         {
             InitializeComponent();
         }
