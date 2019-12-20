@@ -22,9 +22,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Text="cas" TextDecorations="Underline" Grid.Column="0" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="varGrid" Grid.Column="1" Margin="0,0,10,0">
-                <TextBlock Text="variable" />
-            </Grid>
+            <Grid Name="varGrid" Grid.Column="1" Margin="0,0,10,0" />
             <TextBlock Text="parmi" TextDecorations="Underline" Grid.Column="2" Margin="0,0,10,0" Foreground="White" />
         </Grid>
         <Grid Name="case1Grid" Grid.Row="1">
