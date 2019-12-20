@@ -1,0 +1,27 @@
+﻿<Window x:Class="ilaGUI.createStruct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ilaGUI"
+        mc:Ignorable="d"
+        Title="Edition de la structure" Height="550" Width="300" Background="Black" ResizeMode="NoResize" ShowInTaskbar="False">
+    <Grid>
+        <StackPanel>
+            <Label Content="Nom :" Foreground="White" />
+            <TextBox x:Name="typeName" Background="{x:Null}" Foreground="White" CaretBrush="White" />
+            <Label Content="Membres :" Foreground="White" />
+            <ScrollViewer Height="200" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="membersList" />
+            </ScrollViewer>
+            <Label Content="Description :" Foreground="White" />
+            <TextBox x:Name="comments" VerticalScrollBarVisibility="Auto" Height="100" Background="{x:Null}" Foreground="White" AcceptsReturn="True" CaretBrush="White" />
+            <Label Content="Commentaire :" Foreground="White" />
+            <TextBox x:Name="inlineComm" VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" CaretBrush="White" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Padding="10" Name="validateBtn" Content="Créer" Margin="5" IsDefault="True" Style="{DynamicResource validateBtnStyle}" Width="80" />
+            <Button Padding="10" Name="cancelBtn" Content="Annuler" Margin="5" Style="{DynamicResource cancelBtnStyle}" Width="80" />
+        </StackPanel>
+    </Grid>
+</Window>
