@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ilaGUI
+namespace ilaGUI.Classes
 {
     internal interface InstructionControl
     {
