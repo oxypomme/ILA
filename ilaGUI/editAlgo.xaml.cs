@@ -39,16 +39,16 @@ namespace ilaGUI
                 return;
             }
             App.CurrentILAcode.Name = algonameTB.Text;
+            int selection = App.Tabs.SelectedIndex;
             App.UpdateTabs();
-            App.UpdateTree();
-            App.UpdateEditor();
+            App.Tabs.SelectedIndex = selection;
 
             DialogResult = true;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Escape)
+            if (e.Key == Key.Escape)
                 DialogResult = false;
         }
     }

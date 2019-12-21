@@ -70,6 +70,7 @@ namespace ilaGUI
                     Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.table));
                 else if (td.CreatedType is EnumType)
                     Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._enum));
+                Title.Text = td.CreatedType.Name;
             }
             Title.Foreground = App.DarkFontColor;
         }
@@ -98,7 +99,6 @@ namespace ilaGUI
                 App.CurrentILAcode.Declarations.Remove(Link as IDeclaration);
                 App.UpdateTree();
                 App.UpdateLexic();
-                App.ParseEntireProgram();
             }
         }
 
@@ -119,15 +119,19 @@ namespace ilaGUI
                 App.UpdateLexic();
                 App.UpdateTreeColor();
             }
-            else
+            else if (Link is VariableDeclaration vd)
             {
-                if (Link is VariableDeclaration vd)
-                {
-                    App.editVar(vd, App.CurrentILAcode);
-                    App.UpdateTree();
-                    App.UpdateEditor();
-                    App.UpdateLexic();
-                }
+                App.editVar(vd, App.CurrentILAcode);
+                App.UpdateTree();
+                App.UpdateEditor();
+                App.UpdateLexic();
+            }
+            else if (Link is TypeDeclaration td)
+            {
+                App.editType(td);
+                App.UpdateTree();
+                App.UpdateEditor();
+                App.UpdateLexic();
             }
         }
     }

@@ -34,9 +34,10 @@ namespace ilaGUI
             AddParamButton.Height = 20;
             AddParamButton.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
             AddParamButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+            AddParamButton.ToolTip = "Ajouter un paramètre";
             {
                 var img = new Image();
-                img.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.add));
+                img.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.add_parameter));
                 img.Stretch = Stretch.None;
                 AddParamButton.Content = img;
             }

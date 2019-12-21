@@ -157,8 +157,62 @@ namespace ilaGUI
             return new ParameterEdition(uiParam, scope).ShowDialog() == true ? uiParam : null;
         }
 
-        public static VarType createType(int type) //0 = struct, 1 = table, 2 = enum
+        public static void editType(TypeDeclaration type)
         {
+            var copy = new TypeDeclaration();
+            copy.AboveComment = new Comment
+            {
+                Message = type.AboveComment?.Message,
+                MultiLine = type.AboveComment != null ? type.AboveComment.MultiLine : false
+            };
+            copy.InlineComment = type.InlineComment;
+
+            if (type.CreatedType is StructType st)
+            {
+                var structCopy = new StructType
+                {
+                    Name = st.Name,
+                    Members = new SortedDictionary<string, VarType>()
+                };
+                foreach (var item in st.Members)
+                    structCopy.Members.Add(item.Key, item.Value);
+                copy.CreatedType = structCopy;
+                var dialog = new createStruct(copy);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    Console.WriteLine();
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    type.AboveComment = comm;
+                    type.InlineComment = dialog.inlineComm.Text;
+                    (type.CreatedType as StructType).Members = structCopy.Members;
+                    type.CreatedType.Name = dialog.typeName.Text;
+                }
+            }
+        }
+
+        public static TypeDeclaration createType(int type) //0 = struct, 1 = table, 2 = enum
+        {
+            if (type == 0)
+            {
+                var tmp = new StructType();
+                tmp.Name = "nouvelle_structure";
+                var dialog = new createStruct(new TypeDeclaration() { CreatedType = tmp });
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var decl = new TypeDeclaration();
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    decl.AboveComment = comm;
+                    decl.InlineComment = dialog.inlineComm.Text;
+                    decl.CreatedType = tmp;
+                    return decl;
+                }
+            }
             return null;
         }
 

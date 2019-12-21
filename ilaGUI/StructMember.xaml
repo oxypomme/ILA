@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="ilaGUI.StructMember"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ilaGUI"
+             mc:Ignorable="d" Height="20">
+    <Grid>
+        <Separator VerticalAlignment="Bottom" Margin="0" />
+        <Button x:Name="editMember" Click="editMember_Click" />
+        <StackPanel Orientation="Horizontal" IsHitTestVisible="False" VerticalAlignment="Center">
+            <Image x:Name="memberIcon" Margin="5, 0" Stretch="None" />
+            <TextBlock x:Name="memberName" Foreground="White" />
+            <TextBlock Foreground="OrangeRed" Text=":" />
+            <TextBlock x:Name="memberType" Foreground="LightBlue" />
+        </StackPanel>
+        <Button x:Name="removeBtn" HorizontalAlignment="Right" Click="removeBtn_Click">
+            <Image Stretch="None" Source="icons/png/remove field.png" />
+        </Button>
+    </Grid>
+</UserControl>

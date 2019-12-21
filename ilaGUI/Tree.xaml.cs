@@ -30,7 +30,6 @@ namespace ilaGUI
             App.createVar(3, App.CurrentILAcode);
             App.UpdateTree();
             App.UpdateLexic();
-            App.ParseEntireProgram();
         }
 
         private void newCharBtn_Click(object sender, RoutedEventArgs e)
@@ -38,7 +37,6 @@ namespace ilaGUI
             App.createVar(2, App.CurrentILAcode);
             App.UpdateTree();
             App.UpdateLexic();
-            App.ParseEntireProgram();
         }
 
         private void newCustomBtn_Click(object sender, RoutedEventArgs e)
@@ -46,7 +44,6 @@ namespace ilaGUI
             App.createVar(5, App.CurrentILAcode);
             App.UpdateTree();
             App.UpdateLexic();
-            App.ParseEntireProgram();
         }
 
         private void newFloatBtn_Click(object sender, RoutedEventArgs e)
@@ -54,7 +51,6 @@ namespace ilaGUI
             App.createVar(1, App.CurrentILAcode);
             App.UpdateTree();
             App.UpdateLexic();
-            App.ParseEntireProgram();
         }
 
         private void newFncBtn_Click(object sender, RoutedEventArgs e)
@@ -63,7 +59,6 @@ namespace ilaGUI
             App.UpdateTree();
             App.UpdateLexic();
             App.UpdateEditor();
-            App.ParseEntireProgram();
         }
 
         private void newIntBtn_Click(object sender, RoutedEventArgs e)
@@ -71,7 +66,6 @@ namespace ilaGUI
             App.createVar(0, App.CurrentILAcode);
             App.UpdateTree();
             App.UpdateLexic();
-            App.ParseEntireProgram();
         }
 
         private void newModBtn_Click(object sender, RoutedEventArgs e)
@@ -80,7 +74,6 @@ namespace ilaGUI
             App.UpdateTree();
             App.UpdateLexic();
             App.UpdateEditor();
-            App.ParseEntireProgram();
         }
 
         private void newStringBtn_Click(object sender, RoutedEventArgs e)
@@ -88,7 +81,17 @@ namespace ilaGUI
             App.createVar(4, App.CurrentILAcode);
             App.UpdateTree();
             App.UpdateLexic();
-            App.ParseEntireProgram();
+        }
+
+        private void newStructBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var created = App.createType(0);
+            if (created != null)
+            {
+                App.CurrentILAcode.Declarations.Add(created);
+                App.UpdateTree();
+                App.UpdateLexic();
+            }
         }
     }
 }
