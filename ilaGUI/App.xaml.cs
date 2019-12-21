@@ -497,10 +497,6 @@ namespace ilaGUI
             return true;
         }
 
-        public static void ParseEntireProgram()
-        {
-        }
-
         public static void UpdateEditor()
         {
         }
