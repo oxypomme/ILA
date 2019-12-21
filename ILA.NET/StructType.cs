@@ -15,7 +15,7 @@ namespace ILANET
         /// </summary>
         public StructType()
         {
-            Members = new Dictionary<string, VarType>();
+            Members = new SortedDictionary<string, VarType>();
         }
 
         #region Public Properties
@@ -23,7 +23,7 @@ namespace ILANET
         /// <summary>
         /// The members of the structure
         /// </summary>
-        public Dictionary<string, VarType> Members { get; set; }
+        public SortedDictionary<string, VarType> Members { get; set; }
 
         /// <summary>
         /// Name of the type

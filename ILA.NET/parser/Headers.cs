@@ -387,7 +387,7 @@ namespace ILANET.Parser
                                                     var type = new StructType();
                                                     declaration.CreatedType = type;
                                                     type.Name = name;
-                                                    type.Members = new Dictionary<string, VarType>();
+                                                    type.Members = new SortedDictionary<string, VarType>();
                                                     SkipLine(ilaCode, ref index, true);
                                                     if (ilaCode[index] != '(')
                                                         throw new ILAException("Caractère attendu : '(' ");
