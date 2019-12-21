@@ -27,7 +27,7 @@ namespace ilaGUI
         {
             if (!App.isNameConventionnal(algonameTB.Text))
             {
-                System.Windows.MessageBox.Show(this, "Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(this, "Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             var newAlgo = new ILANET.Program();

@@ -17,8 +17,13 @@ namespace ilaGUI
     /// </summary>
     public partial class EditMember : Window
     {
-        public EditMember(string name, ILANET.VarType type)
+        private readonly string originalName;
+        private readonly ILANET.StructType parent;
+
+        public EditMember(string name, ILANET.VarType type, ILANET.StructType parent, bool edit)
         {
+            this.parent = parent;
+            originalName = edit ? name : "";
             InitializeComponent();
             Background = App.DarkBackground;
             memberName.Text = name;
@@ -49,6 +54,16 @@ namespace ilaGUI
 
         private void validateBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!App.isNameConventionnal(memberName.Text))
+            {
+                MessageBox.Show("Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (memberName.Text != originalName && parent.Members.ContainsKey(memberName.Text))
+            {
+                MessageBox.Show("Nom déjà utilisé", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             DialogResult = true;
         }
 

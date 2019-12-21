@@ -75,19 +75,9 @@ namespace ilaGUI
         private void editMember_Click(object sender, RoutedEventArgs e)
         {
             StackPanel parent = Parent as StackPanel;
-            var dialog = new EditMember(Member, Type.Members[Member]);
+            var dialog = new EditMember(Member, Type.Members[Member], Type, true);
             if (dialog.ShowDialog() == true)
             {
-                if (!App.isNameConventionnal(dialog.memberName.Text))
-                {
-                    MessageBox.Show("Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (dialog.memberName.Text != Member && Type.Members.ContainsKey(dialog.memberName.Text))
-                {
-                    MessageBox.Show("Nom déjà utilisé", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
                 Type.Members.Remove(Member);
                 Type.Members.Add(dialog.memberName.Text, (dialog.memberType.SelectedItem as ToStringOverrider).Content as VarType);
                 while (parent.Children[0] is StructMember)

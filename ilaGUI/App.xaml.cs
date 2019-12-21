@@ -210,6 +210,7 @@ namespace ilaGUI
                     decl.AboveComment = comm;
                     decl.InlineComment = dialog.inlineComm.Text;
                     decl.CreatedType = tmp;
+                    tmp.Name = dialog.typeName.Text;
                     return decl;
                 }
             }
@@ -546,7 +547,7 @@ namespace ilaGUI
             if (!char.IsLetter(name.First()))
                 return false;
             foreach (var item in name)
-                if (!(char.IsLetterOrDigit(item) || item == '_'))
+                if (!(char.IsLetterOrDigit(item) || item == '_') || "éàèêëîïôöûüçÈÉÊËÂÎÇÀÏÔÖÛÜ".Contains(item))
                     return false;
             return true;
         }

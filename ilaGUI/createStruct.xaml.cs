@@ -19,8 +19,11 @@ namespace ilaGUI
     /// </summary>
     public partial class createStruct : Window
     {
+        private readonly string originalName;
+
         public createStruct(TypeDeclaration type)
         {
+            originalName = type.CreatedType.Name;
             var structtype = type.CreatedType as StructType;
             InitializeComponent();
             Background = App.DarkBackground;
@@ -41,20 +44,10 @@ namespace ilaGUI
                 };
                 addbutton.Click += (sender, e) =>
                 {
-                    var dialog = new EditMember("nouveau_membre", GenericType.Int);
+                    var dialog = new EditMember("nouveau_membre", GenericType.Int, structtype, false);
                     dialog.Owner = this;
                     if (dialog.ShowDialog() == true)
                     {
-                        if (!App.isNameConventionnal(dialog.memberName.Text))
-                        {
-                            MessageBox.Show("Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return;
-                        }
-                        if (structtype.Members.ContainsKey(dialog.memberName.Text))
-                        {
-                            MessageBox.Show("Nom déjà utilisé", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return;
-                        }
                         structtype.Members.Add(dialog.memberName.Text, (dialog.memberType.SelectedItem as ToStringOverrider).Content as VarType);
                         while (membersList.Children[0] is StructMember)
                             membersList.Children.RemoveAt(0);
@@ -73,6 +66,16 @@ namespace ilaGUI
 
         private void validateBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (originalName != typeName.Text && !App.isNameAvailable(typeName.Text))
+            {
+                MessageBox.Show("Nom déjà utilisé", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (!App.isNameConventionnal(typeName.Text))
+            {
+                MessageBox.Show("Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             DialogResult = true;
         }
 
