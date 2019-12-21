@@ -45,6 +45,42 @@ namespace ilaGUI
         private Console Console { get; set; }
         private Tree TreePannel { get; set; }
 
+        private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (algoList.SelectedIndex != -1)
+            {
+                App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
+                App.CurrentExecutable = App.CurrentILAcode;
+                App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
+                closeAlgo.IsEnabled = true;
+                App.UpdateTree();
+                App.UpdateEditor();
+                App.UpdateLexic();
+            }
+            else
+            {
+                closeAlgo.IsEnabled = false;
+                App.CurrentILAcode = null;
+                App.CurrentExecutable = null;
+                App.CurrentWorkspace = null;
+                App.UpdateTree();
+                App.UpdateEditor();
+                App.UpdateLexic();
+            }
+        }
+
+        private void buildBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void closeAlgo_Click(object sender, RoutedEventArgs e)
+        {
+            App.ILAcodes.Remove(App.CurrentILAcode);
+            App.Workspaces.Remove(App.CurrentWorkspace);
+            App.UpdateTabs();
+            App.Tabs.SelectedIndex = -1;
+        }
+
         private void InitShortcuts()
         {
             // inspired by https://stackoverflow.com/a/33450624
@@ -64,6 +100,11 @@ namespace ilaGUI
             keyShortcut.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(keyShortcut, saveBtn_Click));
 
+            /* CLOSE ALGO SHORTCUT (Ctrl+W) */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.W, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, closeAlgo_Click));
+
             /**/
 
             /* RUN SHORTCUT (F5) */
@@ -82,19 +123,21 @@ namespace ilaGUI
             keyShortcut = new RoutedCommand();
             keyShortcut.InputGestures.Add(new KeyGesture(Key.F1));
             CommandBindings.Add(new CommandBinding(keyShortcut, wikiBtn_Click));
-        }
 
-        private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (algoList.SelectedIndex != -1)
-            {
-                App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
-                App.CurrentExecutable = App.CurrentILAcode;
-                App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
-                App.UpdateTree();
-                App.UpdateEditor();
-                App.UpdateLexic();
-            }
+            /**/
+
+            /* CHANGE ALGO */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.Tab, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, (sender, e) =>
+            App.Tabs.SelectedIndex = (App.Tabs.SelectedIndex + 1) % App.Tabs.Items.Count
+            ));
+            /* CHANGE ALGO² */
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.Tab, ModifierKeys.Control | ModifierKeys.Shift));
+            CommandBindings.Add(new CommandBinding(keyShortcut, (sender, e) =>
+            App.Tabs.SelectedIndex = (App.Tabs.SelectedIndex - 1 + App.Tabs.Items.Count) % App.Tabs.Items.Count
+            ));
         }
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
@@ -108,24 +151,20 @@ namespace ilaGUI
         {
         }
 
-        private void saveBtn_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
             //Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
         }
 
-        private void stopBtn_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void buildBtn_Click(object sender, RoutedEventArgs e)
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
         }
 
         private void settingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void stopBtn_Click(object sender, RoutedEventArgs e)
         {
         }
 

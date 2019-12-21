@@ -65,6 +65,9 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
+            <Button x:Name="closeAlgo" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" ToolTip="Fermer l'algo (Ctrl + W)" Click="closeAlgo_Click" IsEnabled="False">
+                <Image Stretch="None" Source="icons/png/close algo.png" />
+            </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
             <Button x:Name="runBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20" Click="runBtn_Click" ToolTip="Lancer l'algo (F5)">
                 <Rectangle Width="16" Height="16">
