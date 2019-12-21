@@ -33,6 +33,14 @@ namespace ILANET.Parser
              * all the variables, custom types and other executables header has been added.
              */
             var dispatcher = new Dictionary<int, IExecutable>();
+            /*
+           * These will keep track of declarationsto parse them at the end, so constants and types
+           * can be declared, no matter the order. One string is the comment above and if multiline.
+           * For the constant ones, the object is already declared so they can use each other without being defined.
+           */
+            var constDispatcher = new Dictionary<int, Tuple<VariableDeclaration, string, bool>>();
+            var typesDispatcher = new Dictionary<int, Tuple<TypeDeclaration, string, bool>>();
+            var variablesDispatcher = new Dictionary<int, Tuple<string, bool>>();
             returnProg.AlgoComment = null;
             returnProg.Name = "";
             int index = 0;
@@ -232,8 +240,9 @@ namespace ILANET.Parser
                     //start a declaration
                     else
                     {
+                        int startOfLine = index;
                         if (!IsLetter(ilaCode[index]))
-                            throw new ILAException("Erreur : Déclaration de variable, type, algo, module ou fonction attendu ");
+                            throw new ILAException("Erreur : Déclaration de variable, type, algo, module ou fonction attendu");
                         string name = CatchString(ilaCode, ref index);
                         FastForward(ilaCode, ref index, true);
                         if (ilaCode[index] != ':')
@@ -241,371 +250,560 @@ namespace ILANET.Parser
                         index++;
                         FastForward(ilaCode, ref index, true);
                         string varType = CatchString(ilaCode, ref index);
+                        if (varType == "type")
+                        {
+                            int oldPos = index;
+                            FastForward(ilaCode, ref index, true);
+                            var customType = CatchString(ilaCode, ref index);
+                            switch (customType)
+                            {
+                                case "struct":
+                                case "structure":
+                                    {
+                                        var tmp = new TypeDeclaration
+                                        {
+                                            CreatedType = new StructType
+                                            {
+                                                Name = name
+                                            }
+                                        };
+                                        returnProg.Declarations.Add(tmp);
+                                        typesDispatcher.Add(startOfLine, new Tuple<TypeDeclaration, string, bool>(tmp, lastComment, multilineComm));
+                                    }
+                                    break;
+
+                                case "enum":
+                                case "enumeration":
+                                    {
+                                        var tmp = new TypeDeclaration
+                                        {
+                                            CreatedType = new EnumType
+                                            {
+                                                Name = name
+                                            }
+                                        };
+                                        returnProg.Declarations.Add(tmp);
+                                        typesDispatcher.Add(startOfLine, new Tuple<TypeDeclaration, string, bool>(tmp, lastComment, multilineComm));
+                                    }
+                                    break;
+
+                                case "table":
+                                case "tableau":
+                                    {
+                                        var tmp = new TypeDeclaration
+                                        {
+                                            CreatedType = new TableType
+                                            {
+                                                Name = name
+                                            }
+                                        };
+                                        returnProg.Declarations.Add(tmp);
+                                        typesDispatcher.Add(startOfLine, new Tuple<TypeDeclaration, string, bool>(tmp, lastComment, multilineComm));
+                                    }
+                                    break;
+                            }
+                            index = oldPos;
+                        }
+                        else if (varType == "const")
+                        {
+                            var tmp = new VariableDeclaration
+                            {
+                                CreatedVariable = new Variable
+                                {
+                                    Constant = true,
+                                    Name = name
+                                }
+                            };
+                            returnProg.Declarations.Add(tmp);
+                            constDispatcher.Add(startOfLine, new Tuple<VariableDeclaration, string, bool>(tmp, lastComment, multilineComm));
+                        }
+                        else
+                            variablesDispatcher.Add(startOfLine, new Tuple<string, bool>(lastComment, multilineComm));
+                        //we parse it to find the end, but we do nothing, we will parse it for real after
                         if (varType == "const")
                         {
-                            var variable = new Variable();
-                            var declaration = new VariableDeclaration();
-                            if (lastComment != null)
-                                declaration.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
-                            lastComment = null;
-                            declaration.CreatedVariable = variable;
-                            variable.Constant = true;
-                            variable.Name = name;
-                            FastForward(ilaCode, ref index, true);
-                            varType = CatchString(ilaCode, ref index);
-                            switch (varType)
-                            {
-                                case "entier":
-                                    variable.Type = GenericType.Int;
-                                    break;
-
-                                case "reel":
-                                    variable.Type = GenericType.Float;
-                                    break;
-
-                                case "caractere":
-                                    variable.Type = GenericType.Char;
-                                    break;
-
-                                case "chaine":
-                                    variable.Type = GenericType.String;
-                                    break;
-
-                                case "booleen":
-                                    variable.Type = GenericType.Bool;
-                                    break;
-
-                                default:
-                                    throw new ILAException("Erreur : '" + varType + "' ne peut pas être constant ");
-                            }
-                            FastForward(ilaCode, ref index, true);
-                            if (ilaCode.Substring(index, 2) != "<-")
-                                throw new ILAException("Opérateur attendu '<-' ");
-                            index += 2;
-                            FastForward(ilaCode, ref index, true);
-                            var constValue = "";
-                            while (ilaCode.Length - 1 > index && ilaCode.Substring(index, 2) != "//" && ilaCode[index] != '\n')
-                            {
-                                constValue += ilaCode[index];
+                            while (ilaCode[index] != '\n')
                                 index++;
-                            }
-                            variable.ConstantValue = ParseValue(constValue, returnProg, returnProg, true);
-                            if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
-                            {
-                                index += 2;
-                                string comm = "";
-                                while (ilaCode[index] != '\n')
-                                {
-                                    comm += ilaCode[index];
-                                    index++;
-                                    if (index == ilaCode.Length)
-                                        break;
-                                }
-                                declaration.InlineComment = comm;
-                            }
-                            else
-                                declaration.InlineComment = "";
-                            returnProg.Declarations.Add(declaration);
                         }
                         else
                         {
-                            IDeclaration decl;
-                            switch (varType)
+                            if (varType != "type")
                             {
-                                case "entier":
-                                    {
-                                        var variable = new Variable();
-                                        var declaration = new VariableDeclaration();
-                                        decl = declaration;
-                                        returnProg.Declarations.Add(decl);
-                                        declaration.CreatedVariable = variable;
-                                        variable.Type = GenericType.Int;
-                                        variable.Name = name;
-                                    }
-                                    break;
-
-                                case "reel":
-                                    {
-                                        var variable = new Variable();
-                                        var declaration = new VariableDeclaration();
-                                        decl = declaration;
-                                        returnProg.Declarations.Add(decl);
-                                        declaration.CreatedVariable = variable;
-                                        variable.Type = GenericType.Float;
-                                        variable.Name = name;
-                                    }
-                                    break;
-
-                                case "caractere":
-                                    {
-                                        var variable = new Variable();
-                                        var declaration = new VariableDeclaration();
-                                        decl = declaration;
-                                        returnProg.Declarations.Add(decl);
-                                        declaration.CreatedVariable = variable;
-                                        variable.Type = GenericType.Char;
-                                        variable.Name = name;
-                                    }
-                                    break;
-
-                                case "chaine":
-                                    {
-                                        var variable = new Variable();
-                                        var declaration = new VariableDeclaration();
-                                        decl = declaration;
-                                        returnProg.Declarations.Add(decl);
-                                        declaration.CreatedVariable = variable;
-                                        variable.Type = GenericType.String;
-                                        variable.Name = name;
-                                    }
-                                    break;
-
-                                case "booleen":
-                                    {
-                                        var variable = new Variable();
-                                        var declaration = new VariableDeclaration();
-                                        decl = declaration;
-                                        returnProg.Declarations.Add(decl);
-                                        declaration.CreatedVariable = variable;
-                                        variable.Type = GenericType.Bool;
-                                        variable.Name = name;
-                                    }
-                                    break;
-
-                                case "type":
-                                    {
-                                        var declaration = new TypeDeclaration();
-                                        decl = declaration;
-                                        returnProg.Declarations.Add(decl);
-                                        FastForward(ilaCode, ref index, true);
-                                        var customType = CatchString(ilaCode, ref index);
-                                        switch (customType)
-                                        {
-                                            case "structure":
-                                            case "struct":
-                                                {
-                                                    var type = new StructType();
-                                                    declaration.CreatedType = type;
-                                                    type.Name = name;
-                                                    type.Members = new SortedDictionary<string, VarType>();
-                                                    SkipLine(ilaCode, ref index, true);
-                                                    if (ilaCode[index] != '(')
-                                                        throw new ILAException("Caractère attendu : '(' ");
-                                                    index++;
-                                                    SkipLine(ilaCode, ref index, true);
-                                                    while (ilaCode[index] != ')')
-                                                    {
-                                                        string memberName = CatchString(ilaCode, ref index);
-                                                        FastForward(ilaCode, ref index, true);
-                                                        if (ilaCode[index] != ':')
-                                                            throw new ILAException("Caractère attendu ':' ");
-                                                        index++;
-                                                        FastForward(ilaCode, ref index, true);
-                                                        string memberTypeStr = CatchString(ilaCode, ref index);
-                                                        VarType memberType = null;
-                                                        switch (memberTypeStr)
-                                                        {
-                                                            case "entier":
-                                                                memberType = GenericType.Int;
-                                                                break;
-
-                                                            case "reel":
-                                                                memberType = GenericType.Float;
-                                                                break;
-
-                                                            case "caractere":
-                                                                memberType = GenericType.Char;
-                                                                break;
-
-                                                            case "chaine":
-                                                                memberType = GenericType.String;
-                                                                break;
-
-                                                            case "booleen":
-                                                                memberType = GenericType.Bool;
-                                                                break;
-
-                                                            default:
-                                                                foreach (var item in returnProg.Declarations)
-                                                                {
-                                                                    if (item is TypeDeclaration td)
-                                                                        if (td.CreatedType.Name == memberTypeStr)
-                                                                            memberType = td.CreatedType;
-                                                                }
-                                                                break;
-                                                        }
-                                                        if (memberType == null)
-                                                            throw new ILAException("Type '" + memberTypeStr + "' non reconnu ");
-                                                        type.Members.Add(memberName, memberType);
-                                                        SkipLine(ilaCode, ref index, true);
-                                                        if (ilaCode[index] != ',' && ilaCode[index] != ')')
-                                                            throw new ILAException("Caractère attendu : ',' ou ')' ");
-                                                        if (ilaCode[index] == ',')
-                                                        {
-                                                            index++;
-                                                            SkipLine(ilaCode, ref index, true);
-                                                        }
-                                                    }
-                                                }
-                                                index++;
-                                                break;
-
-                                            case "tableau":
-                                            case "table":
-                                                {
-                                                    var type = new TableType();
-                                                    declaration.CreatedType = type;
-                                                    type.Name = name;
-                                                    type.DimensionsSize = new List<Range>();
-                                                    FastForward(ilaCode, ref index, true);
-                                                    if (ilaCode[index] != '[')
-                                                        throw new ILAException("Caractère attendu : '[' ");
-                                                    index++;
-                                                    FastForward(ilaCode, ref index, true);
-                                                    while (ilaCode[index] != ']')
-                                                    {
-                                                        string min = "", max = "";
-                                                        while (ilaCode.Substring(index, 2) != "..")
-                                                        {
-                                                            min += ilaCode[index];
-                                                            index++;
-                                                            if (index == ilaCode.Length - 1)
-                                                                throw new ILAException("Erreur : données manquantes : ");
-                                                        }
-                                                        index += 2;
-                                                        while (ilaCode[index] != ']' && ilaCode[index] != ',')
-                                                        {
-                                                            max += ilaCode[index];
-                                                            index++;
-                                                            if (index == ilaCode.Length)
-                                                                throw new ILAException("Erreur : données manquantes : ");
-                                                        }
-                                                        if (ilaCode[index] == ',')
-                                                            index++;
-                                                        type.DimensionsSize.Add(new Range(ParseValue(min, returnProg, returnProg, true), ParseValue(max, returnProg, returnProg, true)));
-                                                    }
-                                                    index++;
-                                                    FastForward(ilaCode, ref index, true);
-                                                    if (ilaCode[index] != ':')
-                                                        throw new ILAException("Caractère attendu ':' ");
-                                                    index++;
-                                                    FastForward(ilaCode, ref index, true);
-                                                    var caseTypeStr = CatchString(ilaCode, ref index);
-                                                    VarType caseType = null;
-                                                    switch (caseTypeStr)
-                                                    {
-                                                        case "entier":
-                                                            caseType = GenericType.Int;
-                                                            break;
-
-                                                        case "reel":
-                                                            caseType = GenericType.Float;
-                                                            break;
-
-                                                        case "caractere":
-                                                            caseType = GenericType.Char;
-                                                            break;
-
-                                                        case "chaine":
-                                                            caseType = GenericType.String;
-                                                            break;
-
-                                                        case "booleen":
-                                                            caseType = GenericType.Bool;
-                                                            break;
-
-                                                        default:
-                                                            foreach (var item in returnProg.Declarations)
-                                                            {
-                                                                if (item is TypeDeclaration td)
-                                                                    if (td.CreatedType.Name == caseTypeStr)
-                                                                        caseType = td.CreatedType;
-                                                            }
-                                                            break;
-                                                    }
-                                                    if (caseType == null)
-                                                        throw new ILAException("Type '" + caseTypeStr + "' non reconnu ");
-                                                    type.InternalType = caseType;
-                                                }
-                                                break;
-
-                                            case "enumeration":
-                                            case "enum":
-                                                {
-                                                    var type = new EnumType();
-                                                    declaration.CreatedType = type;
-                                                    type.Name = name;
-                                                    type.Values = new List<string>();
-                                                    SkipLine(ilaCode, ref index, true);
-                                                    if (ilaCode[index] != '(')
-                                                        throw new ILAException("Caractère attendu : '(' ");
-                                                    index++;
-                                                    SkipLine(ilaCode, ref index, true);
-                                                    while (ilaCode[index] != ')')
-                                                    {
-                                                        type.Values.Add(CatchString(ilaCode, ref index));
-                                                        SkipLine(ilaCode, ref index, true);
-                                                        if (ilaCode[index] != ',' && ilaCode[index] != ')')
-                                                            throw new ILAException("Caractère attendu : ',' ou ')' ");
-                                                        if (ilaCode[index] == ',')
-                                                        {
-                                                            index++;
-                                                            SkipLine(ilaCode, ref index, true);
-                                                        }
-                                                    }
-                                                }
-                                                index++;
-                                                break;
-                                        }
-                                    }
-                                    break;
-
-                                default:
-                                    {
-                                        var variable = new Variable();
-                                        var declaration = new VariableDeclaration();
-                                        decl = declaration;
-                                        returnProg.Declarations.Add(decl);
-                                        declaration.CreatedVariable = variable;
-                                        variable.Type = null;
-                                        foreach (var item in returnProg.Declarations)
-                                        {
-                                            if (item is TypeDeclaration td)
-                                                if (td.CreatedType.Name == varType)
-                                                    variable.Type = td.CreatedType;
-                                        }
-                                        if (variable.Type == null)
-                                            throw new ILAException("Erreur : type '" + varType + "' inconnu ");
-                                        variable.Name = name;
-                                    }
-                                    break;
-                            }
-                            if (lastComment != null)
-                                decl.AboveComment = new Comment() { Message = lastComment, MultiLine = multilineComm };
-                            lastComment = null;
-                            FastForward(ilaCode, ref index);
-                            if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
-                            {
-                                index += 2;
-                                string comm = "";
                                 while (ilaCode[index] != '\n')
-                                {
-                                    comm += ilaCode[index];
                                     index++;
-                                    if (index == ilaCode.Length)
-                                        break;
-                                }
-                                decl.Comment = comm;
                             }
                             else
-                                decl.Comment = "";
+                            {
+                                FastForward(ilaCode, ref index, true);
+                                var customType = CatchString(ilaCode, ref index);
+                                switch (customType)
+                                {
+                                    case "structure":
+                                    case "struct":
+                                        {
+                                            SkipLine(ilaCode, ref index, true);
+                                            if (ilaCode[index] != '(')
+                                                throw new ILAException("Caractère attendu : '(' ");
+                                            index++;
+                                            SkipLine(ilaCode, ref index, true);
+                                            while (ilaCode[index] != ')')
+                                            {
+                                                string memberName = CatchString(ilaCode, ref index);
+                                                FastForward(ilaCode, ref index, true);
+                                                if (ilaCode[index] != ':')
+                                                    throw new ILAException("Caractère attendu ':' ");
+                                                index++;
+                                                FastForward(ilaCode, ref index, true);
+                                                string memberTypeStr = CatchString(ilaCode, ref index);
+                                                SkipLine(ilaCode, ref index, true);
+                                                if (ilaCode[index] != ',' && ilaCode[index] != ')')
+                                                    throw new ILAException("Caractère attendu : ',' ou ')' ");
+                                                if (ilaCode[index] == ',')
+                                                {
+                                                    index++;
+                                                    SkipLine(ilaCode, ref index, true);
+                                                }
+                                            }
+                                        }
+                                        while (ilaCode[index] != '\n')
+                                            index++;
+                                        break;
+
+                                    case "tableau":
+                                    case "table":
+                                        while (ilaCode[index] != '\n')
+                                            index++;
+                                        break;
+
+                                    case "enumeration":
+                                    case "enum":
+                                        {
+                                            SkipLine(ilaCode, ref index, true);
+                                            if (ilaCode[index] != '(')
+                                                throw new ILAException("Caractère attendu : '(' ");
+                                            index++;
+                                            SkipLine(ilaCode, ref index, true);
+                                            while (ilaCode[index] != ')')
+                                            {
+                                                CatchString(ilaCode, ref index);
+                                                SkipLine(ilaCode, ref index, true);
+                                                if (ilaCode[index] != ',' && ilaCode[index] != ')')
+                                                    throw new ILAException("Caractère attendu : ',' ou ')' ");
+                                                if (ilaCode[index] == ',')
+                                                {
+                                                    index++;
+                                                    SkipLine(ilaCode, ref index, true);
+                                                }
+                                            }
+                                        }
+                                        while (ilaCode[index] != '\n')
+                                            index++;
+                                        break;
+                                }
+                            }
                         }
+                        lastComment = null;
                     }
                     SkipLine(ilaCode, ref index);
                 }
+
                 if (lastComment != null)
                     returnProg.FileComments.Add(new Comment() { Message = lastComment, MultiLine = multilineComm });
                 lastComment = null;
+                foreach (var item in constDispatcher)
+                {
+                    index = item.Key;
+                    string name = CatchString(ilaCode, ref index);
+                    FastForward(ilaCode, ref index, true);
+                    if (ilaCode[index] != ':')
+                        throw new ILAException("Caractère attendu ':' ");
+                    index++;
+                    FastForward(ilaCode, ref index, true);
+                    string varType = CatchString(ilaCode, ref index);
+                    var variable = item.Value.Item1.CreatedVariable;
+                    var declaration = item.Value.Item1;
+                    declaration.AboveComment = new Comment() { Message = item.Value.Item2, MultiLine = item.Value.Item3 };
+                    declaration.CreatedVariable = variable;
+                    variable.Constant = true;
+                    variable.Name = name;
+                    FastForward(ilaCode, ref index, true);
+                    varType = CatchString(ilaCode, ref index);
+                    switch (varType)
+                    {
+                        case "entier":
+                            variable.Type = GenericType.Int;
+                            break;
+
+                        case "reel":
+                            variable.Type = GenericType.Float;
+                            break;
+
+                        case "caractere":
+                            variable.Type = GenericType.Char;
+                            break;
+
+                        case "chaine":
+                            variable.Type = GenericType.String;
+                            break;
+
+                        case "booleen":
+                            variable.Type = GenericType.Bool;
+                            break;
+
+                        default:
+                            throw new ILAException("Erreur : '" + varType + "' ne peut pas être constant ");
+                    }
+                    FastForward(ilaCode, ref index, true);
+                    if (ilaCode.Substring(index, 2) != "<-")
+                        throw new ILAException("Opérateur attendu '<-' ");
+                    index += 2;
+                    FastForward(ilaCode, ref index, true);
+                    var constValue = "";
+                    while (ilaCode.Length - 1 > index && ilaCode.Substring(index, 2) != "//" && ilaCode[index] != '\n')
+                    {
+                        constValue += ilaCode[index];
+                        index++;
+                    }
+                    variable.ConstantValue = ParseValue(constValue, returnProg, returnProg, true);
+                    if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
+                    {
+                        index += 2;
+                        string comm = "";
+                        while (ilaCode[index] != '\n')
+                        {
+                            comm += ilaCode[index];
+                            index++;
+                            if (index == ilaCode.Length)
+                                break;
+                        }
+                        declaration.InlineComment = comm;
+                    }
+                    else
+                        declaration.InlineComment = "";
+                }
+                foreach (var item in typesDispatcher)
+                {
+                    index = item.Key;
+                    string name = CatchString(ilaCode, ref index);
+                    FastForward(ilaCode, ref index, true);
+                    if (ilaCode[index] != ':')
+                        throw new ILAException("Caractère attendu ':' ");
+                    index++;
+                    FastForward(ilaCode, ref index, true);
+                    string varType = CatchString(ilaCode, ref index);
+                    IDeclaration decl;
+                    {
+                        var declaration = item.Value.Item1;
+                        decl = declaration;
+                        FastForward(ilaCode, ref index, true);
+                        var customType = CatchString(ilaCode, ref index);
+                        switch (customType)
+                        {
+                            case "structure":
+                            case "struct":
+                                {
+                                    var type = declaration.CreatedType as StructType;
+                                    type.Name = name;
+                                    type.Members = new SortedDictionary<string, VarType>();
+                                    SkipLine(ilaCode, ref index, true);
+                                    if (ilaCode[index] != '(')
+                                        throw new ILAException("Caractère attendu : '(' ");
+                                    index++;
+                                    SkipLine(ilaCode, ref index, true);
+                                    while (ilaCode[index] != ')')
+                                    {
+                                        string memberName = CatchString(ilaCode, ref index);
+                                        FastForward(ilaCode, ref index, true);
+                                        if (ilaCode[index] != ':')
+                                            throw new ILAException("Caractère attendu ':' ");
+                                        index++;
+                                        FastForward(ilaCode, ref index, true);
+                                        string memberTypeStr = CatchString(ilaCode, ref index);
+                                        VarType memberType = null;
+                                        switch (memberTypeStr)
+                                        {
+                                            case "entier":
+                                                memberType = GenericType.Int;
+                                                break;
+
+                                            case "reel":
+                                                memberType = GenericType.Float;
+                                                break;
+
+                                            case "caractere":
+                                                memberType = GenericType.Char;
+                                                break;
+
+                                            case "chaine":
+                                                memberType = GenericType.String;
+                                                break;
+
+                                            case "booleen":
+                                                memberType = GenericType.Bool;
+                                                break;
+
+                                            default:
+                                                foreach (var item2 in returnProg.Declarations)
+                                                {
+                                                    if (item2 is TypeDeclaration td)
+                                                        if (td.CreatedType.Name == memberTypeStr)
+                                                            memberType = td.CreatedType;
+                                                }
+                                                break;
+                                        }
+                                        if (memberType == null)
+                                            throw new ILAException("Type '" + memberTypeStr + "' non reconnu ");
+                                        type.Members.Add(memberName, memberType);
+                                        SkipLine(ilaCode, ref index, true);
+                                        if (ilaCode[index] != ',' && ilaCode[index] != ')')
+                                            throw new ILAException("Caractère attendu : ',' ou ')' ");
+                                        if (ilaCode[index] == ',')
+                                        {
+                                            index++;
+                                            SkipLine(ilaCode, ref index, true);
+                                        }
+                                    }
+                                }
+                                index++;
+                                break;
+
+                            case "tableau":
+                            case "table":
+                                {
+                                    var type = declaration.CreatedType as TableType;
+                                    type.Name = name;
+                                    type.DimensionsSize = new List<Range>();
+                                    FastForward(ilaCode, ref index, true);
+                                    if (ilaCode[index] != '[')
+                                        throw new ILAException("Caractère attendu : '[' ");
+                                    index++;
+                                    FastForward(ilaCode, ref index, true);
+                                    while (ilaCode[index] != ']')
+                                    {
+                                        string min = "", max = "";
+                                        while (ilaCode.Substring(index, 2) != "..")
+                                        {
+                                            min += ilaCode[index];
+                                            index++;
+                                            if (index == ilaCode.Length - 1)
+                                                throw new ILAException("Erreur : données manquantes : ");
+                                        }
+                                        index += 2;
+                                        while (ilaCode[index] != ']' && ilaCode[index] != ',')
+                                        {
+                                            max += ilaCode[index];
+                                            index++;
+                                            if (index == ilaCode.Length)
+                                                throw new ILAException("Erreur : données manquantes : ");
+                                        }
+                                        if (ilaCode[index] == ',')
+                                            index++;
+                                        type.DimensionsSize.Add(new Range(ParseValue(min, returnProg, returnProg, true), ParseValue(max, returnProg, returnProg, true)));
+                                    }
+                                    index++;
+                                    FastForward(ilaCode, ref index, true);
+                                    if (ilaCode[index] != ':')
+                                        throw new ILAException("Caractère attendu ':' ");
+                                    index++;
+                                    FastForward(ilaCode, ref index, true);
+                                    var caseTypeStr = CatchString(ilaCode, ref index);
+                                    VarType caseType = null;
+                                    switch (caseTypeStr)
+                                    {
+                                        case "entier":
+                                            caseType = GenericType.Int;
+                                            break;
+
+                                        case "reel":
+                                            caseType = GenericType.Float;
+                                            break;
+
+                                        case "caractere":
+                                            caseType = GenericType.Char;
+                                            break;
+
+                                        case "chaine":
+                                            caseType = GenericType.String;
+                                            break;
+
+                                        case "booleen":
+                                            caseType = GenericType.Bool;
+                                            break;
+
+                                        default:
+                                            foreach (var item2 in returnProg.Declarations)
+                                            {
+                                                if (item2 is TypeDeclaration td)
+                                                    if (td.CreatedType.Name == caseTypeStr)
+                                                        caseType = td.CreatedType;
+                                            }
+                                            break;
+                                    }
+                                    if (caseType == null)
+                                        throw new ILAException("Type '" + caseTypeStr + "' non reconnu ");
+                                    type.InternalType = caseType;
+                                }
+                                break;
+
+                            case "enumeration":
+                            case "enum":
+                                {
+                                    var type = declaration.CreatedType as EnumType;
+                                    type.Name = name;
+                                    type.Values = new List<string>();
+                                    SkipLine(ilaCode, ref index, true);
+                                    if (ilaCode[index] != '(')
+                                        throw new ILAException("Caractère attendu : '(' ");
+                                    index++;
+                                    SkipLine(ilaCode, ref index, true);
+                                    while (ilaCode[index] != ')')
+                                    {
+                                        type.Values.Add(CatchString(ilaCode, ref index));
+                                        SkipLine(ilaCode, ref index, true);
+                                        if (ilaCode[index] != ',' && ilaCode[index] != ')')
+                                            throw new ILAException("Caractère attendu : ',' ou ')' ");
+                                        if (ilaCode[index] == ',')
+                                        {
+                                            index++;
+                                            SkipLine(ilaCode, ref index, true);
+                                        }
+                                    }
+                                }
+                                index++;
+                                break;
+                        }
+                    }
+                    decl.AboveComment = new Comment() { Message = item.Value.Item2, MultiLine = item.Value.Item3 };
+                    FastForward(ilaCode, ref index);
+                    if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
+                    {
+                        index += 2;
+                        string comm = "";
+                        while (ilaCode[index] != '\n')
+                        {
+                            comm += ilaCode[index];
+                            index++;
+                            if (index == ilaCode.Length)
+                                break;
+                        }
+                        decl.Comment = comm;
+                    }
+                    else
+                        decl.Comment = "";
+                }
+                foreach (var item in variablesDispatcher)
+                {
+                    index = item.Key;
+                    string name = CatchString(ilaCode, ref index);
+                    FastForward(ilaCode, ref index, true);
+                    if (ilaCode[index] != ':')
+                        throw new ILAException("Caractère attendu ':' ");
+                    index++;
+                    FastForward(ilaCode, ref index, true);
+                    string varType = CatchString(ilaCode, ref index);
+                    {
+                        IDeclaration decl;
+                        switch (varType)
+                        {
+                            case "entier":
+                                {
+                                    var variable = new Variable();
+                                    var declaration = new VariableDeclaration();
+                                    decl = declaration;
+                                    returnProg.Declarations.Add(decl);
+                                    declaration.CreatedVariable = variable;
+                                    variable.Type = GenericType.Int;
+                                    variable.Name = name;
+                                }
+                                break;
+
+                            case "reel":
+                                {
+                                    var variable = new Variable();
+                                    var declaration = new VariableDeclaration();
+                                    decl = declaration;
+                                    returnProg.Declarations.Add(decl);
+                                    declaration.CreatedVariable = variable;
+                                    variable.Type = GenericType.Float;
+                                    variable.Name = name;
+                                }
+                                break;
+
+                            case "caractere":
+                                {
+                                    var variable = new Variable();
+                                    var declaration = new VariableDeclaration();
+                                    decl = declaration;
+                                    returnProg.Declarations.Add(decl);
+                                    declaration.CreatedVariable = variable;
+                                    variable.Type = GenericType.Char;
+                                    variable.Name = name;
+                                }
+                                break;
+
+                            case "chaine":
+                                {
+                                    var variable = new Variable();
+                                    var declaration = new VariableDeclaration();
+                                    decl = declaration;
+                                    returnProg.Declarations.Add(decl);
+                                    declaration.CreatedVariable = variable;
+                                    variable.Type = GenericType.String;
+                                    variable.Name = name;
+                                }
+                                break;
+
+                            case "booleen":
+                                {
+                                    var variable = new Variable();
+                                    var declaration = new VariableDeclaration();
+                                    decl = declaration;
+                                    returnProg.Declarations.Add(decl);
+                                    declaration.CreatedVariable = variable;
+                                    variable.Type = GenericType.Bool;
+                                    variable.Name = name;
+                                }
+                                break;
+
+                            default:
+                                {
+                                    var variable = new Variable();
+                                    var declaration = new VariableDeclaration();
+                                    decl = declaration;
+                                    returnProg.Declarations.Add(decl);
+                                    declaration.CreatedVariable = variable;
+                                    variable.Type = null;
+                                    foreach (var item2 in returnProg.Declarations)
+                                    {
+                                        if (item2 is TypeDeclaration td)
+                                            if (td.CreatedType.Name == varType)
+                                                variable.Type = td.CreatedType;
+                                    }
+                                    if (variable.Type == null)
+                                        throw new ILAException("Erreur : type '" + varType + "' inconnu ");
+                                    variable.Name = name;
+                                }
+                                break;
+                        }
+                        decl.AboveComment = new Comment() { Message = item.Value.Item1, MultiLine = item.Value.Item2 };
+                        FastForward(ilaCode, ref index);
+                        if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
+                        {
+                            index += 2;
+                            string comm = "";
+                            while (ilaCode[index] != '\n')
+                            {
+                                comm += ilaCode[index];
+                                index++;
+                                if (index == ilaCode.Length)
+                                    break;
+                            }
+                            decl.Comment = comm;
+                        }
+                        else
+                            decl.Comment = "";
+                    }
+                }
                 //parsing inside the executables
                 foreach (var disp in dispatcher)
                 {
@@ -1288,9 +1486,11 @@ namespace ILANET.Parser
                     }
                 }
             }
+
 #if DEBUG
             catch (FieldAccessException)//dummy exception to never catch anything, and throwing everything to the debugger
             { }
+
 #else
             catch (ILAException e)
             {
