@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel x:Name="MainToolbar" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,0">
-            <Button x:Name="newBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="newBtn_Click">
+            <Button x:Name="newBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="newBtn_Click" ToolTip="Créer un nouvel algo (Ctrl + N)">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -33,7 +33,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            <Button x:Name="openBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="openBtn_Click">
+            <Button x:Name="openBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="openBtn_Click" ToolTip="Ouvrir un ficher ila (Ctrl + O)">
                 <Rectangle Height="16" Width="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -49,7 +49,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            <Button x:Name="saveBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="saveBtn_Click">
+            <Button x:Name="saveBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="saveBtn_Click" ToolTip="Sauvegarder l'algo (Ctrl + S)">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -66,7 +66,7 @@
                 </Rectangle>
             </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            <Button x:Name="runBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20" Click="runBtn_Click">
+            <Button x:Name="runBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20" Click="runBtn_Click" ToolTip="Lancer l'algo (F5)">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -81,7 +81,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            <Button x:Name="stopBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20" Width="20" Click="stopBtn_Click">
+            <Button x:Name="stopBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20" Width="20" Click="stopBtn_Click" ToolTip="Arrêter l'algo en cours">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -96,7 +96,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            <Button x:Name="buildBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="buildBtn_Click">
+            <Button x:Name="buildBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="buildBtn_Click" ToolTip="Générer l'algo (Ctrl + B)">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -112,7 +112,7 @@
                 </Rectangle>
             </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-            <Button x:Name="settingsBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" Background="{x:Null}" Width="20" Height="20" HorizontalAlignment="Center" Click="settingsBtn_Click">
+            <Button x:Name="settingsBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" Background="{x:Null}" Width="20" Height="20" HorizontalAlignment="Center" Click="settingsBtn_Click" ToolTip="Paramètres">
                 <Rectangle Width="16" HorizontalAlignment="Center" VerticalAlignment="Center" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
@@ -127,7 +127,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            <Button x:Name="wikiBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="wikiBtn_Click">
+            <Button x:Name="wikiBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="wikiBtn_Click" ToolTip="Aide (F1)">
                 <Rectangle Width="16" Height="16">
                     <Rectangle.Fill>
                         <DrawingBrush>
