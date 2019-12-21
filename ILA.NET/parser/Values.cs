@@ -207,7 +207,11 @@ namespace ILANET.Parser
                                             foreach (var decl in currentBlock.Declarations)
                                             {
                                                 if (decl is VariableDeclaration vd && vd.CreatedVariable.Name == n)
+                                                {
+                                                    if (constLock && !vd.CreatedVariable.Constant)
+                                                        throw new ILAException("Erreur impossible de donner une valeur non constante");
                                                     return vd.CreatedVariable;
+                                                }
                                             }
                                             if (currentBlock is Module m)
                                                 foreach (var par in m.Parameters)

@@ -15,12 +15,12 @@ namespace ILANET
         /// <summary>
         /// The minimum value
         /// </summary>
-        public readonly IValue Max;
+        public IValue Max;
 
         /// <summary>
         /// The maximum value
         /// </summary>
-        public readonly IValue Min;
+        public IValue Min;
 
         /// <summary>
         /// Constructor

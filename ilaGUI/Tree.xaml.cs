@@ -93,5 +93,16 @@ namespace ilaGUI
                 App.UpdateLexic();
             }
         }
+
+        private void newTabBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var created = App.createType(1);
+            if (created != null)
+            {
+                App.CurrentILAcode.Declarations.Add(created);
+                App.UpdateTree();
+                App.UpdateLexic();
+            }
+        }
     }
 }

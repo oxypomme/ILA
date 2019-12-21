@@ -214,6 +214,29 @@ namespace ilaGUI
                     return decl;
                 }
             }
+            else if (type == 1)
+            {
+                var tmp = new TableType();
+                tmp.Name = "nouveau_tableau";
+                tmp.DimensionsSize.Add(new ILANET.Range(new ConstantInt() { Value = 1 }, new ConstantInt() { Value = 10 }));
+                var dialog = new createTable(new TypeDeclaration() { CreatedType = tmp }, false);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var decl = new TypeDeclaration();
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    decl.AboveComment = comm;
+                    decl.InlineComment = dialog.inlineComm.Text;
+                    decl.CreatedType = tmp;
+                    tmp.Name = dialog.typeName.Text;
+                    foreach (var item in dialog.dimList.Children)
+                    {
+                    }
+                    return decl;
+                }
+            }
             return null;
         }
 
@@ -508,8 +531,14 @@ namespace ilaGUI
                     if (vd.CreatedVariable.Name == name)
                         return false;
                 if (item is TypeDeclaration td)
+                {
                     if (td.CreatedType.Name == name)
                         return false;
+                    if (td.CreatedType is EnumType et)
+                        foreach (var item2 in et.Values)
+                            if (item2 == name)
+                                return false;
+                }
             }
             foreach (var item in ilacode.Methods)
             {
@@ -519,19 +548,11 @@ namespace ilaGUI
             if (source is Module m)
             {
                 foreach (var item in m.Parameters)
-                {
                     if (item.ImportedVariable.Name == name)
                         return false;
-                }
-                foreach (var item in source.Declarations)
-                {
-                    if (item is VariableDeclaration vd)
-                        if (vd.CreatedVariable.Name == name)
-                            return false;
-                    if (item is TypeDeclaration td)
-                        if (td.CreatedType.Name == name)
-                            return false;
-                }
+                foreach (var item in m.Declarations)
+                    if (item.CreatedVariable.Name == name)
+                        return false;
             }
             return true;
         }
