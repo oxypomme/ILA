@@ -52,6 +52,20 @@ namespace ilaGUI
                 item.inputTB.IsEnabled = true;
         }
 
+        public static void Write(object obj)
+        {
+            if (obj != null)
+                StandardOutput.Write(obj.ToString());
+        }
+
+        public static void WriteLine(object obj)
+        {
+            if (obj != null)
+                StandardOutput.WriteLine(obj.ToString());
+        }
+
+        public static void WriteLine() => StandardOutput.WriteLine();
+
         internal void CmdOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
         {
             // Collect the sort command output.

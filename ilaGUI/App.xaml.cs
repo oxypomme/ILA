@@ -29,7 +29,7 @@ namespace ilaGUI
             CurrentILAcode = null;
             Workspaces = new List<string>();
             Console.ActiveConsoles = new List<Console>();
-            Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8);
+            Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8) { AutoFlush = true };
 #if RELEASE
             System.Console.SetOut(Console.StandardOutput);
             System.Console.SetError(Console.StandardOutput);
