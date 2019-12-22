@@ -46,6 +46,17 @@ namespace ilaGUI
             App.UpdateLexic();
         }
 
+        private void newEnumBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var created = App.createType(2);
+            if (created != null)
+            {
+                App.CurrentILAcode.Declarations.Add(created);
+                App.UpdateTree();
+                App.UpdateLexic();
+            }
+        }
+
         private void newFloatBtn_Click(object sender, RoutedEventArgs e)
         {
             App.createVar(1, App.CurrentILAcode);

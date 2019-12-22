@@ -77,7 +77,7 @@ namespace ilaGUI
                         func.Name = dialog.modName.Text;
                         if (!isNameConventionnal(func.Name))
                             MessageBox.Show("nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                        else if (!isNameAvailable(func.Name))
+                        else if (!isNameAvailable(func.Name, CurrentILAcode))
                             MessageBox.Show("nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
@@ -96,7 +96,7 @@ namespace ilaGUI
                     }
                     else
                         break;
-                } while (!(isNameAvailable(func.Name) && isNameConventionnal(func.Name)));
+                } while (!(isNameAvailable(func.Name, CurrentILAcode) && isNameConventionnal(func.Name)));
             }
             else
             {
@@ -112,7 +112,7 @@ namespace ilaGUI
                         mod.Name = dialog.modName.Text;
                         if (!isNameConventionnal(mod.Name))
                             MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                        else if (!isNameAvailable(mod.Name))
+                        else if (!isNameAvailable(mod.Name, CurrentILAcode))
                             MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
@@ -130,7 +130,7 @@ namespace ilaGUI
                     }
                     else
                         break;
-                } while (!(isNameAvailable(mod.Name) && isNameConventionnal(mod.Name)));
+                } while (!(isNameAvailable(mod.Name, CurrentILAcode) && isNameConventionnal(mod.Name)));
             }
             if (create)
             {
@@ -206,8 +206,8 @@ namespace ilaGUI
                     foreach (dimension item in dialog.dimList.Children)
                     {
                         tt.DimensionsSize.Add(new ILANET.Range(
-                            ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentExecutable, true),
-                             ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentExecutable, true)
+                            ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentILAcode, true),
+                             ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentILAcode, true)
                            ));
                     }
                 }
@@ -256,11 +256,34 @@ namespace ilaGUI
                     foreach (dimension item in dialog.dimList.Children)
                     {
                         tmp.DimensionsSize.Add(new ILANET.Range(
-          ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentExecutable, true),
-           ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentExecutable, true)
+          ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentILAcode, true),
+           ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentILAcode, true)
          ));
                     }
                     return decl;
+                }
+            }
+            else if (type == 2)
+            {
+                var tmp = new EnumType();
+                tmp.Name = "nouvelle_enumeration";
+                tmp.Values.Add("VALEUR1");
+                var dialog = new createEnum(new TypeDeclaration() { CreatedType = tmp });
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var decl = new TypeDeclaration();
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    decl.AboveComment = comm;
+                    decl.InlineComment = dialog.inlineComm.Text;
+                    decl.CreatedType = tmp;
+                    tmp.Name = dialog.typeName.Text;
+                    tmp.Values.Clear();
+                    foreach (dimension item in dialog.valList.Children)
+                        //tmp.Values.Add();
+                        return decl;
                 }
             }
             return null;
@@ -317,7 +340,7 @@ namespace ilaGUI
                     variable.Constant = dialog.varConst.IsChecked.Value;
                     if (!isNameConventionnal(variable.Name))
                         MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                    else if (!isNameAvailable(variable.Name))
+                    else if (!isNameAvailable(variable.Name, scope))
                         MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                     {
@@ -360,7 +383,7 @@ namespace ilaGUI
                 }
                 else
                     break;
-            } while (!(isNameAvailable(variable.Name) && isNameConventionnal(variable.Name)));
+            } while (!(isNameAvailable(variable.Name, scope) && isNameConventionnal(variable.Name)));
         }
 
         public static void editAlgo(Program algo) => new editAlgo { Owner = MainDialog }.ShowDialog();
@@ -408,7 +431,7 @@ namespace ilaGUI
                         fcopy.Name = dialog.modName.Text;
                         if (!isNameConventionnal(dialog.modName.Text))
                             MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                        else if (!isNameAvailable(dialog.modName.Text))
+                        else if (!isNameAvailable(dialog.modName.Text, CurrentILAcode))
                             MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
@@ -427,7 +450,7 @@ namespace ilaGUI
                     }
                     else
                         break;
-                } while (!(isNameAvailable(fcopy.Name) && isNameConventionnal(fcopy.Name)));
+                } while (!(isNameAvailable(fcopy.Name, CurrentILAcode) && isNameConventionnal(fcopy.Name)));
             }
             else
             {
@@ -440,7 +463,7 @@ namespace ilaGUI
                         copy.Name = dialog.modName.Text;
                         if (!isNameConventionnal(dialog.modName.Text))
                             MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                        else if (!isNameAvailable(dialog.modName.Text))
+                        else if (!isNameAvailable(dialog.modName.Text, CurrentILAcode))
                             MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         else
                         {
@@ -458,7 +481,7 @@ namespace ilaGUI
                     }
                     else
                         break;
-                } while (!(isNameAvailable(copy.Name) && isNameConventionnal(copy.Name)));
+                } while (!(isNameAvailable(copy.Name, CurrentILAcode) && isNameConventionnal(copy.Name)));
             }
             m.Name = choosenName;
             UpdateTree();
@@ -482,7 +505,7 @@ namespace ilaGUI
                     variable.CreatedVariable.Constant = dialog.varConst.IsChecked.Value;
                     if (!isNameConventionnal(newName))
                         MessageBox.Show(dialog, "nom non conventionnel !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                    else if (!isNameAvailable(newName))
+                    else if (!isNameAvailable(newName, scope))
                         MessageBox.Show(dialog, "nom déjà utilisé !", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
                     {
@@ -531,7 +554,7 @@ namespace ilaGUI
                     variable.CreatedVariable.Constant = oldCstState;
                     break;
                 }
-            } while (!(isNameAvailable(variable.CreatedVariable.Name) && isNameConventionnal(variable.CreatedVariable.Name)));
+            } while (!(isNameAvailable(variable.CreatedVariable.Name, scope) && isNameConventionnal(variable.CreatedVariable.Name)));
         }
 
         public static BitmapImage GetBitmapImage(Stream stream)

@@ -67,7 +67,7 @@ namespace ilaGUI
                 MessageBox.Show(this, "Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if ((table.Name != typeName.Text || !editing) && !App.isNameAvailable(typeName.Text))
+            if ((table.Name != typeName.Text || !editing) && !App.isNameAvailable(typeName.Text, App.CurrentILAcode))
             {
                 MessageBox.Show(this, "Nom non conventionnel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

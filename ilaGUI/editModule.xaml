@@ -23,7 +23,7 @@
             </Grid>
             <Grid>
                 <Separator VerticalAlignment="Top" />
-                <Separator VerticalAlignment="Bottom" />
+                <Separator Margin="0" VerticalAlignment="Bottom" />
                 <ScrollViewer Height="150" Margin="2" VerticalScrollBarVisibility="Auto" BorderBrush="Red">
                     <!--https://social.msdn.microsoft.com/Forums/vstudio/en-US/d32bb0af-b14f-4e88-ad36-098d11cd375c/dragdrop-elements-within-a-stack-panel?forum=wpf-->
                     <StackPanel Name="paramList" AllowDrop="True" PreviewMouseLeftButtonDown="paramList_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="paramList_PreviewMouseLeftButtonUp" PreviewMouseMove="paramList_PreviewMouseMove" DragEnter="paramList_DragEnter" Drop="paramList_Drop" DragLeave="paramList_DragLeave" />

@@ -57,7 +57,7 @@ namespace ilaGUI
 
         private void validateBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (originalName != typeName.Text && !App.isNameAvailable(typeName.Text))
+            if (originalName != typeName.Text && !App.isNameAvailable(typeName.Text, App.CurrentILAcode))
             {
                 MessageBox.Show("Nom déjà utilisé", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

@@ -23,7 +23,7 @@
                 <Button x:Name="newStructBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer une structure" Click="newStructBtn_Click">
                     <Image Source="/icons/png/create struct.png" Stretch="None" />
                 </Button>
-                <Button x:Name="newEnumBtn" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer une énumération">
+                <Button x:Name="newEnumBtn" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer une énumération" Click="newEnumBtn_Click">
                     <Image Source="/icons/png/create enum.png" Stretch="None" />
                 </Button>
                 <Button x:Name="newTabBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Background="{x:Null}" ToolTip="Créer un tableau" Click="newTabBtn_Click">
