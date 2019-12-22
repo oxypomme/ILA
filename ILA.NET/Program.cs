@@ -125,20 +125,14 @@ namespace ILANET
             Indent = 0;
 
             foreach (var declaration in Declarations)
-            {
                 declaration.WritePython(textWriter);
-            }
 
             foreach (var module in Methods)
-            {
                 if (!(module is Read || module is Print))
                     module.WritePython(textWriter);
-            }
 
             foreach (var instruction in Instructions)
-            {
                 instruction.WritePython(textWriter);
-            }
         }
 
         internal static void GenerateIndent(TextWriter textWriter)
