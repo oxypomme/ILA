@@ -76,18 +76,24 @@ namespace ILANET
         {
             if (CreatedVariable.Constant)
             {
-                textWriter.Write("global ");
+                textWriter.Write("def ");
                 CreatedVariable.WritePython(textWriter);
-                textWriter.Write("\n");
-            }
-            CreatedVariable.WritePython(textWriter);
-            textWriter.Write(" = ");
-            if (CreatedVariable.Constant)
+                textWriter.Write(" :\n");
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("return ");
                 CreatedVariable.ConstantValue.WritePython(textWriter);
-            else if (!(CreatedVariable.Type is GenericType || CreatedVariable.Type is StringType))
-                CreatedVariable.Type.WritePython(textWriter);
+                Program.Indent--;
+            }
             else
-                textWriter.Write(0);
+            {
+                CreatedVariable.WritePython(textWriter);
+                textWriter.Write(" = ");
+                if (!(CreatedVariable.Type is GenericType || CreatedVariable.Type is StringType))
+                    CreatedVariable.Type.WritePython(textWriter);
+                else
+                    textWriter.Write(0);
+            }
             textWriter.Write("\n");
         }
     }
