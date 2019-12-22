@@ -54,3 +54,15 @@ Nathan HANEN - [WildGoat07](https://github.com/WildGoat07)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
+
+## Bug Report
+
+Avant de poster le moindre bug report, merci de respecter ces quelques règles :
+
+> Le formatage des problèmes (Issues) est le suivant :
+> - :question: en cas de suggestion
+> - :warning: en cas de problème qui n'est pas critique
+> - :red_circle: en cas de problème critique
+> - Mettre le label correspondant : `bug`, `invalid` ou `suggest`
+> - Une description du problème est requise
+> - *Si possible, une image du problème (un gif est encore plus explicit)*
