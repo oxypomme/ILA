@@ -16,8 +16,8 @@
             <CheckBox x:Name="varOutput" Content="variable de sortie" Foreground="White" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Name="validateBtn" Content="Créer" Margin="5" Padding="10" IsDefault="True" Click="validateBtn_Click" Style="{DynamicResource validateBtnStyle}" Width="80" />
             <Button Name="cancelBtn" Content="Annuler" Margin="5" Padding="10" Click="cancelBtn_Click" Style="{DynamicResource cancelBtnStyle}" Width="80" />
+            <Button Name="validateBtn" Content="Créer" Margin="5" Padding="10" IsDefault="True" Click="validateBtn_Click" Style="{DynamicResource validateBtnStyle}" Width="80" />
         </StackPanel>
     </Grid>
 </Window>
