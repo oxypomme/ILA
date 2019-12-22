@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
+        UseLayoutRounding="True"
         Title=" " Height="575" Width="350" ResizeMode="NoResize" Background="Black" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" KeyDown="Window_KeyDown">
     <Grid>
         <StackPanel>
@@ -14,7 +15,12 @@
                 <Label Content="Type du retour :" Margin="2" Foreground="White" />
                 <ComboBox Name="returnType" Margin="100,2,2,2" />
             </Grid>
-            <Label Content="Paramètres :" Foreground="White" Margin="2" />
+            <Grid>
+                <Label Content="Paramètres :" Foreground="White" Margin="2" />
+                <Button x:Name="addPram" HorizontalAlignment="Right" Padding="15,0" Click="addPram_Click">
+                    <Image Stretch="None" Source="icons/png/add parameter.png" />
+                </Button>
+            </Grid>
             <Grid>
                 <Separator VerticalAlignment="Top" />
                 <Separator VerticalAlignment="Bottom" />

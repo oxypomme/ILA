@@ -11,12 +11,17 @@
         <StackPanel>
             <Label Content="Nom :" Foreground="White" />
             <TextBox x:Name="typeName" Background="{x:Null}" Foreground="White" CaretBrush="White" />
-            <Label Content="Membres :" Foreground="White" />
-            <Separator />
+            <Grid>
+                <Label Content="Membres :" Foreground="White" />
+                <Button HorizontalAlignment="Right" Padding="15,0" Name="addMember" Click="addMember_Click">
+                    <Image Stretch="None" Source="icons/png/add field.png" />
+                </Button>
+            </Grid>
+            <Separator Margin="0" />
             <ScrollViewer Height="160" VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="membersList" />
             </ScrollViewer>
-            <Separator />
+            <Separator Margin="0" />
             <Label Content="Description :" Foreground="White" />
             <TextBox x:Name="comments" VerticalScrollBarVisibility="Auto" Height="130" Background="{x:Null}" Foreground="White" AcceptsReturn="True" CaretBrush="White" />
             <Label Content="Commentaire :" Foreground="White" />

@@ -91,6 +91,7 @@ namespace ilaGUI
         private void removeParam_Click(object sender, RoutedEventArgs e)
         {
             ((StackPanel)Parent).Children.Remove(this);
+            scope.Parameters.Remove(Link as ILANET.Parameter);
         }
     }
 }

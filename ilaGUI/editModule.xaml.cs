@@ -24,34 +24,13 @@ namespace ilaGUI
         private bool _isDragging;
         private Parameter _realDragSource;
         private Point _startPoint;
-        private Button AddParamButton;
+        private Module mod;
 
         public createModule(Module mod, bool edit = false)
         {
+            this.mod = mod;
             InitializeComponent();
             modName.Focus();
-            AddParamButton = new Button();
-            AddParamButton.Height = 20;
-            AddParamButton.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            AddParamButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-            AddParamButton.ToolTip = "Ajouter un paramètre";
-            {
-                var img = new Image();
-                img.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.add_parameter));
-                img.Stretch = Stretch.None;
-                AddParamButton.Content = img;
-            }
-            AddParamButton.Click += (object sender, RoutedEventArgs e) =>
-            {
-                var p = App.createParameter(mod);
-                if (p != null)
-                {
-                    paramList.Children.Add(p);
-                    mod.Parameters.Add(p.Link as ILANET.Parameter);
-                    paramList.Children.Remove(AddParamButton);
-                    paramList.Children.Add(AddParamButton);
-                }
-            };
             Background = App.DarkBackground;
             modName.Text = mod.Name;
             if (edit)
@@ -88,11 +67,20 @@ namespace ilaGUI
                 fctOnly.Visibility = Visibility.Collapsed;
             foreach (var item in mod.Parameters)
                 paramList.Children.Add(new Parameter(item, mod));
-            paramList.Children.Add(AddParamButton);
             if (mod.AboveComment != null)
                 comments.Text = mod.AboveComment.Message;
             inlineComm.Text = mod.InlineComment;
             modName.SelectAll();
+        }
+
+        private void addPram_Click(object sender, RoutedEventArgs e)
+        {
+            var p = App.createParameter(mod);
+            if (p != null)
+            {
+                paramList.Children.Add(p);
+                mod.Parameters.Add(p.Link as ILANET.Parameter);
+            }
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
@@ -135,8 +123,6 @@ namespace ilaGUI
                     _realDragSource.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
                     paramList.Children.Remove(_realDragSource);
                     paramList.Children.Insert(droptargetIndex, _realDragSource);
-                    paramList.Children.Remove(AddParamButton);
-                    paramList.Children.Add(AddParamButton);
                 }
 
                 _isDown = false;
