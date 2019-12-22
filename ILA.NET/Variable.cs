@@ -60,7 +60,10 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public virtual void WritePython(TextWriter textWriter)
         {
-            textWriter.Write(Name.ToString());
+            if (Constant)
+                textWriter.Write(Name.ToString() + "()");
+            else
+                textWriter.Write(Name.ToString());
         }
     }
 }

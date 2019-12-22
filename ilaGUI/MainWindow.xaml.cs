@@ -69,18 +69,6 @@ namespace ilaGUI
             }
         }
 
-        private void buildBtn_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void closeAlgo_Click(object sender, RoutedEventArgs e)
-        {
-            App.ILAcodes.Remove(App.CurrentILAcode);
-            App.Workspaces.Remove(App.CurrentWorkspace);
-            App.UpdateTabs();
-            App.Tabs.SelectedIndex = -1;
-        }
-
         private void InitShortcuts()
         {
             // inspired by https://stackoverflow.com/a/33450624
@@ -151,9 +139,21 @@ namespace ilaGUI
         {
         }
 
+        private void closeAlgo_Click(object sender, RoutedEventArgs e)
+        {
+            App.ILAcodes.Remove(App.CurrentILAcode);
+            App.Workspaces.Remove(App.CurrentWorkspace);
+            App.UpdateTabs();
+            App.Tabs.SelectedIndex = -1;
+        }
+
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
             //Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
+        }
+
+        private void buildBtn_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)

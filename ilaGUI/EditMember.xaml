@@ -14,8 +14,9 @@
             <ComboBox Name="memberType" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Padding="10" Name="validateBtn" Content="Terminer" Margin="5" IsDefault="True" Style="{DynamicResource validateBtnStyle}" Width="80" Click="validateBtn_Click" />
+
             <Button Padding="10" Name="cancelBtn" Content="Annuler" Margin="5" Style="{DynamicResource cancelBtnStyle}" Width="80" Click="cancelBtn_Click" />
+            <Button Padding="10" Name="validateBtn" Content="Terminer" Margin="5" IsDefault="True" Style="{DynamicResource validateBtnStyle}" Width="80" Click="validateBtn_Click" />
         </StackPanel>
     </Grid>
 </Window>
