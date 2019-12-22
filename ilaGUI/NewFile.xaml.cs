@@ -37,6 +37,7 @@ namespace ilaGUI
 
             App.UpdateTabs();
             App.Tabs.SelectedIndex = App.ILAcodes.Count - 1;
+            Console.WriteLine("algo '" + algonameTB.Text + "' créé");
 
             DialogResult = true;
         }

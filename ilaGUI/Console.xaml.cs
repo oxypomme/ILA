@@ -81,6 +81,20 @@ namespace ilaGUI
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Window();
+            dialog.Title = "Console";
+            dialog.Background = App.DarkBackground;
+            dialog.Width = 600;
+            dialog.Height = 300;
+            dialog.Owner = App.MainDialog;
+            var content = new Console();
+            dialog.Content = content;
+            dialog.Closed += (sender, e) => ActiveConsoles.Remove(content);
+            dialog.Show();
+        }
+
         private void inputTB_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
