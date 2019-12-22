@@ -25,6 +25,7 @@
             </Setter>
         </Style>
         <Style x:Key="neutralBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderBrush" Value="#c0ffffff" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Template">
