@@ -181,7 +181,6 @@ namespace ilaGUI
                 dialog.Owner = MainDialog;
                 if (dialog.ShowDialog() == true)
                 {
-                    Console.WriteLine();
                     var comm = new Comment();
                     comm.MultiLine = dialog.comments.Text.Contains('\n');
                     comm.Message = dialog.comments.Text;
@@ -189,6 +188,28 @@ namespace ilaGUI
                     type.InlineComment = dialog.inlineComm.Text;
                     (type.CreatedType as StructType).Members = structCopy.Members;
                     type.CreatedType.Name = dialog.typeName.Text;
+                }
+            }
+            else if (type.CreatedType is TableType tt)
+            {
+                var dialog = new createTable(type, true);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    type.AboveComment = comm;
+                    type.InlineComment = dialog.inlineComm.Text;
+                    tt.Name = dialog.typeName.Text;
+                    tt.DimensionsSize.Clear();
+                    foreach (dimension item in dialog.dimList.Children)
+                    {
+                        tt.DimensionsSize.Add(new ILANET.Range(
+                            ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentExecutable, true),
+                             ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentExecutable, true)
+                           ));
+                    }
                 }
             }
         }
@@ -231,8 +252,13 @@ namespace ilaGUI
                     decl.InlineComment = dialog.inlineComm.Text;
                     decl.CreatedType = tmp;
                     tmp.Name = dialog.typeName.Text;
-                    foreach (var item in dialog.dimList.Children)
+                    tmp.DimensionsSize.Clear();
+                    foreach (dimension item in dialog.dimList.Children)
                     {
+                        tmp.DimensionsSize.Add(new ILANET.Range(
+          ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentExecutable, true),
+           ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentExecutable, true)
+         ));
                     }
                     return decl;
                 }

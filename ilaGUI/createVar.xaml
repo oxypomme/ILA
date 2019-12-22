@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="créer nouvelle variable" Height="420" Width="300" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" KeyDown="Window_KeyDown" Background="Black">
+        Title="créer nouvelle variable" Height="450" Width="300" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" KeyDown="Window_KeyDown" Background="Black">
     <Grid>
         <StackPanel>
             <Label Content="Nom de la variable :" Margin="2" Foreground="White" />

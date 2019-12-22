@@ -37,6 +37,8 @@ namespace ilaGUI
                 dimList.Children.Add(new dimension(item, table));
             typeName.Focus();
             typeName.SelectAll();
+            if (dimList.Children.Count == 1)
+                (dimList.Children[0] as dimension).removeBtn.Visibility = Visibility.Collapsed;
         }
 
         private void addDim_Click(object sender, RoutedEventArgs e)
@@ -50,6 +52,7 @@ namespace ilaGUI
                 dim.maxValue.Focus();
             }), System.Windows.Threading.DispatcherPriority.Render);
             dim.maxValue.SelectAll();
+            (dimList.Children[0] as dimension).removeBtn.Visibility = Visibility.Visible;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

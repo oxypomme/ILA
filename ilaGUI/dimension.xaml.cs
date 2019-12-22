@@ -40,6 +40,8 @@ namespace ilaGUI
             table.DimensionsSize.Remove(range);
             var pannel = Parent as StackPanel;
             pannel.Children.Remove(this);
+            if (pannel.Children.Count == 1)
+                (pannel.Children[0] as dimension).removeBtn.Visibility = Visibility.Collapsed;
         }
     }
 }
