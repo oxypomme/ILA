@@ -29,6 +29,10 @@ namespace ilaGUI
             App.Tree = TreePannel;
             TreeGrid.Children.Add(TreePannel);
 
+            Editor = new EditorView();
+            App.Editor = Editor;
+            EditorGrid.Children.Add(Editor);
+
             Console = new Console();
             ConsoleGrid.Children.Add(Console);
 
@@ -43,6 +47,7 @@ namespace ilaGUI
         }
 
         private Console Console { get; set; }
+        private EditorView Editor { get; set; }
         private Tree TreePannel { get; set; }
 
         private void algoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,6 +72,18 @@ namespace ilaGUI
                 App.UpdateEditor();
                 App.UpdateLexic();
             }
+        }
+
+        private void buildBtn_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void closeAlgo_Click(object sender, RoutedEventArgs e)
+        {
+            App.ILAcodes.Remove(App.CurrentILAcode);
+            App.Workspaces.Remove(App.CurrentWorkspace);
+            App.UpdateTabs();
+            App.Tabs.SelectedIndex = -1;
         }
 
         private void InitShortcuts()
@@ -139,21 +156,9 @@ namespace ilaGUI
         {
         }
 
-        private void closeAlgo_Click(object sender, RoutedEventArgs e)
-        {
-            App.ILAcodes.Remove(App.CurrentILAcode);
-            App.Workspaces.Remove(App.CurrentWorkspace);
-            App.UpdateTabs();
-            App.Tabs.SelectedIndex = -1;
-        }
-
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
             //Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
-        }
-
-        private void buildBtn_Click(object sender, RoutedEventArgs e)
-        {
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)

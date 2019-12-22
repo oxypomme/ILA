@@ -44,6 +44,7 @@ namespace ilaGUI
         public static Window MainDialog { get; set; }
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
+        public static EditorView Editor { get; set; }
         public static List<string> Workspaces { get; set; }
 
         public static BitmapImage ConvertBitmapToWPF(System.Drawing.Bitmap src)
@@ -641,6 +642,144 @@ namespace ilaGUI
 
         public static void UpdateEditor()
         {
+            if (CurrentExecutable != null)
+            {
+                if (CurrentExecutable is Program prog)
+                {
+                    Editor.exeIcon.Source = GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.algo));
+                    Editor.exeType.Text = "algo";
+                    Editor.exeName.Text = prog.Name;
+                    Editor.leftParenthesis.Visibility = Visibility.Collapsed;
+                    Editor.moduleParams.Children.Clear();
+                    Editor.rightParenthesis.Visibility = Visibility.Collapsed;
+                    Editor.dbPoint.Visibility = Visibility.Collapsed;
+                    Editor.fctReturnType.Text = "";
+                }
+                else if (CurrentExecutable is Function fct)
+                {
+                    Editor.exeIcon.Source = GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function));
+                    Editor.exeType.Text = "fonction";
+                    Editor.exeName.Text = fct.Name;
+                    Editor.leftParenthesis.Visibility = Visibility.Visible;
+                    Editor.moduleParams.Children.Clear();
+                    for (int i = 0; i < fct.Parameters.Count; i++)
+                    {
+                        var item = fct.Parameters[i];
+                        var sw = new StringWriter();
+                        item.ImportedVariable.WriteILA(sw);
+                        Editor.moduleParams.Children.Add(new TextBlock
+                        {
+                            Text = sw.ToString(),
+                            VerticalAlignment = VerticalAlignment.Bottom,
+                            Foreground = new SolidColorBrush(Colors.White)
+                        });
+                        sw.GetStringBuilder().Clear();
+                        Editor.moduleParams.Children.Add(new TextBlock
+                        {
+                            Text = ":",
+                            VerticalAlignment = VerticalAlignment.Bottom,
+                            Foreground = new SolidColorBrush(Colors.OrangeRed)
+                        });
+                        item.ImportedVariable.Type.WriteILA(sw);
+                        Editor.moduleParams.Children.Add(new TextBlock
+                        {
+                            Text = sw.ToString(),
+                            VerticalAlignment = VerticalAlignment.Bottom,
+                            Foreground = new SolidColorBrush(Colors.LightBlue)
+                        });
+                        if (i < fct.Parameters.Count - 1)
+                            Editor.moduleParams.Children.Add(new TextBlock
+                            {
+                                Text = ", ",
+                                VerticalAlignment = VerticalAlignment.Bottom,
+                                Foreground = new SolidColorBrush(Colors.OrangeRed)
+                            });
+                    }
+                    Editor.rightParenthesis.Visibility = Visibility.Visible;
+                    Editor.dbPoint.Visibility = Visibility.Visible;
+                    {
+                        var sw = new StringWriter();
+                        fct.ReturnType.WriteILA(sw);
+                        Editor.fctReturnType.Text = sw.ToString();
+                    }
+                }
+                else if (CurrentExecutable is Module mod)
+                {
+                    Editor.exeIcon.Source = GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.module));
+                    Editor.exeType.Text = "module";
+                    Editor.exeName.Text = mod.Name;
+                    Editor.leftParenthesis.Visibility = Visibility.Visible;
+                    Editor.moduleParams.Children.Clear();
+                    for (int i = 0; i < mod.Parameters.Count; i++)
+                    {
+                        var item = mod.Parameters[i];
+                        if (item.Mode == ILANET.Parameter.Flags.OUTPUT)
+                            Editor.moduleParams.Children.Add(new TextBlock
+                            {
+                                Text = "s",
+                                VerticalAlignment = VerticalAlignment.Bottom,
+                                Foreground = new SolidColorBrush(Colors.White)
+                            });
+                        if (item.Mode == ILANET.Parameter.Flags.IO)
+                            Editor.moduleParams.Children.Add(new TextBlock
+                            {
+                                Text = "es",
+                                VerticalAlignment = VerticalAlignment.Bottom,
+                                Foreground = new SolidColorBrush(Colors.White)
+                            });
+                        if (item.Mode != ILANET.Parameter.Flags.INPUT)
+                            Editor.moduleParams.Children.Add(new TextBlock
+                            {
+                                Text = "::",
+                                VerticalAlignment = VerticalAlignment.Bottom,
+                                Foreground = new SolidColorBrush(Colors.OrangeRed)
+                            });
+                        var sw = new StringWriter();
+                        item.ImportedVariable.WriteILA(sw);
+                        Editor.moduleParams.Children.Add(new TextBlock
+                        {
+                            Text = sw.ToString(),
+                            VerticalAlignment = VerticalAlignment.Bottom,
+                            Foreground = new SolidColorBrush(Colors.White)
+                        });
+                        sw.GetStringBuilder().Clear();
+                        Editor.moduleParams.Children.Add(new TextBlock
+                        {
+                            Text = ":",
+                            VerticalAlignment = VerticalAlignment.Bottom,
+                            Foreground = new SolidColorBrush(Colors.OrangeRed)
+                        });
+                        item.ImportedVariable.Type.WriteILA(sw);
+                        Editor.moduleParams.Children.Add(new TextBlock
+                        {
+                            Text = sw.ToString(),
+                            VerticalAlignment = VerticalAlignment.Bottom,
+                            Foreground = new SolidColorBrush(Colors.LightBlue)
+                        });
+                        if (i < mod.Parameters.Count - 1)
+                            Editor.moduleParams.Children.Add(new TextBlock
+                            {
+                                Text = ", ",
+                                VerticalAlignment = VerticalAlignment.Bottom,
+                                Foreground = new SolidColorBrush(Colors.OrangeRed)
+                            });
+                    }
+                    Editor.rightParenthesis.Visibility = Visibility.Visible;
+                    Editor.dbPoint.Visibility = Visibility.Collapsed;
+                    Editor.fctReturnType.Text = "";
+                }
+            }
+            else
+            {
+                Editor.exeIcon.Source = null;
+                Editor.exeType.Text = "";
+                Editor.exeName.Text = "";
+                Editor.leftParenthesis.Visibility = Visibility.Collapsed;
+                Editor.moduleParams.Children.Clear();
+                Editor.rightParenthesis.Visibility = Visibility.Collapsed;
+                Editor.dbPoint.Visibility = Visibility.Collapsed;
+                Editor.fctReturnType.Text = "";
+            }
         }
 
         public static void UpdateLexic()
