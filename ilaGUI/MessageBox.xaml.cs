@@ -80,7 +80,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("neutralBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor,
                             IsDefault = true
                         };
                         tmp.Click += (sender, e) =>
@@ -102,7 +101,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("neutralBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
@@ -122,7 +120,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("cancelBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
@@ -145,7 +142,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("validateBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
@@ -165,7 +161,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("cancelBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
@@ -185,7 +180,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("neutralBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
@@ -208,7 +202,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("validateBtnStyle") as Style,
                             MinWidth = 100,
-                            Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
@@ -228,7 +221,6 @@ namespace ilaGUI
                             Padding = new Thickness(10),
                             Style = dialog.FindResource("cancelBtnStyle") as Style,
                             MinWidth = 100,
-                            //Foreground = App.DarkFontColor
                         };
                         tmp.Click += (sender, e) =>
                         {
