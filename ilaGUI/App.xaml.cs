@@ -212,6 +212,23 @@ namespace ilaGUI
                     }
                 }
             }
+            else if (type.CreatedType is EnumType et)
+            {
+                var dialog = new createEnum(type, true);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    type.AboveComment = comm;
+                    type.InlineComment = dialog.inlineComm.Text;
+                    et.Name = dialog.typeName.Text;
+                    et.Values.Clear();
+                    foreach (enumValue item in dialog.valList.Children)
+                        et.Values.Add(item.valueName.Text);
+                }
+            }
         }
 
         public static TypeDeclaration createType(int type) //0 = struct, 1 = table, 2 = enum
@@ -268,7 +285,7 @@ namespace ilaGUI
                 var tmp = new EnumType();
                 tmp.Name = "nouvelle_enumeration";
                 tmp.Values.Add("VALEUR1");
-                var dialog = new createEnum(new TypeDeclaration() { CreatedType = tmp });
+                var dialog = new createEnum(new TypeDeclaration() { CreatedType = tmp }, false);
                 dialog.Owner = MainDialog;
                 if (dialog.ShowDialog() == true)
                 {
@@ -281,9 +298,9 @@ namespace ilaGUI
                     decl.CreatedType = tmp;
                     tmp.Name = dialog.typeName.Text;
                     tmp.Values.Clear();
-                    foreach (dimension item in dialog.valList.Children)
-                        //tmp.Values.Add();
-                        return decl;
+                    foreach (enumValue item in dialog.valList.Children)
+                        tmp.Values.Add(item.valueName.Text);
+                    return decl;
                 }
             }
             return null;
