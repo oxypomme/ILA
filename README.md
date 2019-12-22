@@ -45,7 +45,7 @@ Tom SUBLET – [@OxyTom](https://twitter.com/OxyT0m8) – [oxypomme](https://git
 
 Nathan HANEN - [WildGoat07](https://github.com/WildGoat07)
 
-Ce projet est sous la license MIT. Regardez [``LICENSE``](https://github.com/oxypomme/ILA/blob/master/LICENSE) pour plus d'informations.
+[![license](https://img.shields.io/github/license/WildGoat07/Nim-Mk2?style=for-the-badge)](https://github.com/oxypomme/ILA/blob/master/LICENSE)
 
 ## Contributing
 
