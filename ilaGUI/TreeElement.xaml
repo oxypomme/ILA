@@ -8,8 +8,11 @@
              Height="30" d:DesignWidth="200">
     <Grid>
         <Button x:Name="globalButton" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="globalButton_Click" />
-        <Image x:Name="Icon" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Center" Margin="5,0,0,0" IsHitTestVisible="False" />
-        <TextBlock Name="Title" Text="Label" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Margin="25,0,0,0" Background="{x:Null}" Foreground="Black" IsHitTestVisible="False" />
+        <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+            <Image x:Name="Icon" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Center" Margin="5,0" />
+            <Image x:Name="constant" Margin="5,0" Stretch="None" Source="/icons/png/const.png" />
+            <TextBlock Name="Title" Margin="5,0" Text="Label" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center" Background="{x:Null}" Foreground="Black" />
+        </StackPanel>
         <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" Margin="0,0,5,0">
             <Button x:Name="deleteButton" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,5,0" Width="20" Height="20" Click="deleteButton_Click">
                 <Image Name="deleteIcon" Stretch="None" Source="icons/png/remove.png" />

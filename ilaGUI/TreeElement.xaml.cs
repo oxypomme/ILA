@@ -24,7 +24,9 @@ namespace ilaGUI
         public TreeElement(IBaseObject linkedTo)
         {
             InitializeComponent();
+            Title.Foreground = App.DarkFontColor;
             Link = linkedTo;
+            constant.Visibility = Visibility.Collapsed;
             if (linkedTo is Program pr)
             {
                 deleteButton.Visibility = Visibility.Collapsed;
@@ -43,6 +45,11 @@ namespace ilaGUI
             }
             else if (linkedTo is VariableDeclaration vd)
             {
+                if (vd.CreatedVariable.Constant)
+                {
+                    Title.Foreground = new SolidColorBrush(Colors.LightBlue);
+                    constant.Visibility = Visibility.Visible;
+                }
                 editButton.Visibility = Visibility.Collapsed;
                 if (vd.CreatedVariable.Type is IGenericType gt)
                 {
@@ -72,7 +79,6 @@ namespace ilaGUI
                     Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._enum));
                 Title.Text = td.CreatedType.Name;
             }
-            Title.Foreground = App.DarkFontColor;
         }
 
         public IBaseObject Link { get; private set; }

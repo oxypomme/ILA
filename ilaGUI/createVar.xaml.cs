@@ -36,7 +36,7 @@ namespace ilaGUI
                 string val = "";
                 using (var sw = new StringWriter())
                 {
-                    v.CreatedVariable.ConstantValue.WriteILA(sw);
+                    v.CreatedVariable.ConstantValue?.WriteILA(sw);
                     val = sw.ToString();
                 }
                 constValue.Text = val;
@@ -91,6 +91,11 @@ namespace ilaGUI
 
         private void validateBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (varConst.IsChecked == true && constValue.Text.Trim().Length == 0)
+            {
+                MessageBox.Show(this, "Aucune valeur constante entrée", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             DialogResult = true;
         }
 
