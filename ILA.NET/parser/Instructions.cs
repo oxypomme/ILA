@@ -6,6 +6,19 @@ namespace ILANET.Parser
 {
     public partial class Parser
     {
+        /// <summary>
+        /// Parse a given line of code representing an instruction
+        /// </summary>
+        /// <param name="code">code to parse</param>
+        /// <param name="mainProg">program used</param>
+        /// <param name="currentBlock">scope</param>
+        /// <returns>the parsed instruction</returns>
+        public static Instruction ParseInstruction(string code, Program mainProg, IExecutable currentBlock)
+        {
+            int index = 0;
+            return ParseInstru(code, mainProg, currentBlock, ref index);
+        }
+
         internal static Instruction ParseInstru(string code, Program mainProg, IExecutable currentBlock, ref int index)
         {
             if (code.Substring(index, 2) == "//")
