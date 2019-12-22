@@ -6,7 +6,7 @@ using System.Text;
 namespace ILANET
 {
     /// <summary>
-    /// Length function, returns
+    /// Returns the value just after the given scalar value
     /// </summary>
     public class Next : Function, Native
     {

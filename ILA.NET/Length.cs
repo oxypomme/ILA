@@ -6,7 +6,7 @@ using System.Text;
 namespace ILANET
 {
     /// <summary>
-    /// Length function, returns
+    /// Length function, returns teh size of a string
     /// </summary>
     public class Length : Function, Native
     {

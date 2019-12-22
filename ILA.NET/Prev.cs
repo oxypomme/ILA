@@ -6,7 +6,7 @@ using System.Text;
 namespace ILANET
 {
     /// <summary>
-    /// Length function, returns
+    /// Returns the value just before the given scalar value
     /// </summary>
     public class Prev : Function, Native
     {
