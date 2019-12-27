@@ -26,65 +26,65 @@
                             <Image Source="icons/png/new_file.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Ouvrir" Click="openBtn_Click" InputGestureText="Ctrl+O" >
+                    <MenuItem Header="Ouvrir" Click="openBtn_Click" InputGestureText="Ctrl+O">
                         <MenuItem.Icon>
                             <Image Source="icons/png/open.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
                     <MenuItem Header="Ajouter" Style="{StaticResource SubMenuItemBaseStyle}">
-                        <MenuItem Header="Module" >
+                        <MenuItem Header="Module">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create module.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Fonction" >
+                        <MenuItem Header="Fonction">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create function.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Structure" >
+                        <MenuItem Header="Structure">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create struct.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Enumération" >
+                        <MenuItem Header="Énumération">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create enum.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Tableau" >
+                        <MenuItem Header="Tableau">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create table.png" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="Entier" >
+                        <MenuItem Header="Entier">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create int.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Réel" >
+                        <MenuItem Header="Réel">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create float.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Caractère" >
+                        <MenuItem Header="Caractère">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create char.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Booléen" >
+                        <MenuItem Header="Booléen">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create bool.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Chaine" >
+                        <MenuItem Header="Chaîne">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create string.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Variable Personalisé" >
+                        <MenuItem Header="Variable Personnalisé">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create cutom.png" />
                             </MenuItem.Icon>
@@ -92,21 +92,20 @@
                     </MenuItem>
                     <Separator />
                     <MenuItem Header="Fermer l'onglet" />
-                    <MenuItem Header="Fermer l'algo" Click="closeAlgo_Click" InputGestureText="Ctrl+W" >
+                    <MenuItem Header="Fermer l'algo" Click="closeAlgo_Click" InputGestureText="Ctrl+W">
                         <MenuItem.Icon>
                             <Image Source="icons/png/close algo.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Sauvegarder" Click="saveBtn_Click" InputGestureText="Ctrl+S" >
+                    <MenuItem Header="Sauvegarder" Click="saveBtn_Click" InputGestureText="Ctrl+S">
                         <MenuItem.Icon>
                             <Image Source="icons/png/save.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Sauvegarder sous..." InputGestureText="Ctrl+Maj+S" />
                     <Separator />
-                    <MenuItem Name="RecentFileMenu" Header="Fichier récents">
-                    </MenuItem>
+                    <MenuItem Name="RecentFileMenu" Header="Fichier récents" />
                     <Separator />
                     <MenuItem Header="Quitter" InputGestureText="Alt+F4" />
                 </MenuItem>
@@ -119,7 +118,7 @@
                     <MenuItem Header="Coller" InputGestureText="Ctrl+V" />
                 </MenuItem>
                 <MenuItem Header="Générer" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Générer NAME" InputGestureText="Ctrl+B" >
+                    <MenuItem Header="Générer NAME" InputGestureText="Ctrl+B">
                         <MenuItem.Icon>
                             <Image Source="icons/png/build.png" />
                         </MenuItem.Icon>
@@ -143,7 +142,7 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Aide" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Afficher l'aide" InputGestureText="F1" >
+                    <MenuItem Header="Afficher l'aide" InputGestureText="F1">
                         <MenuItem.Icon>
                             <Image Source="icons/png/help.png" />
                         </MenuItem.Icon>
