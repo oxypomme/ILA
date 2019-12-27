@@ -162,6 +162,7 @@
                                     <ColumnDefinition Width="Auto" MinWidth="32" SharedSizeGroup="IconGroup" />
                                     <ColumnDefinition Width="*" MinWidth="30" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="20" />
@@ -169,6 +170,7 @@
                                 <ContentPresenter Grid.Column="0" Grid.Row="0" x:Name="Icon" ContentSource="Icon" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" />
                                 <Path Grid.Column="2" Grid.Row="0" x:Name="GlyphPanel" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Visibility="Collapsed" VerticalAlignment="Center" />
                                 <ContentPresenter Grid.Column="1" Grid.Row="0" x:Name="content" ContentSource="Header" Margin="3,3,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <Path Grid.Column="3" Margin="0,0,5,0" Width="8" Height="8" Data="F1M568.254,-7.43524L568.159,-7.34277 567.977,-7.52246 546.559,-28.9417 525.484,-28.9417 549.787,-4.63446 557.439,3.01532 557.619,3.19629 550.067,10.7549 525.758,35.0583 546.834,35.0583 568.254,13.6429 578.792,3.10254 568.254,-7.43524z" Stretch="Uniform" Fill="#FFFFFFFF" RenderTransformOrigin="0.5,0.5" />
                                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Right" VerticalOffset="-1">
                                     <!-- TODO: Non hard-coded background color-->
                                     <Border BorderThickness="1" BorderBrush="Blue" Background="#2D2A2E">
