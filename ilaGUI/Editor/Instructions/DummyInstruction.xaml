@@ -6,5 +6,5 @@
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
              Height="25" d:DesignWidth="300" DragLeave="UserControl_DragLeave" DragEnter="UserControl_DragEnter" DragOver="UserControl_DragOver" Drop="UserControl_Drop">
-    <Rectangle Margin="30, 5" x:Name="outline" Stroke="#80FFFFFF" Fill="#01000000" />
+    <Rectangle Margin="0,5,15,5" x:Name="outline" Stroke="#80FFFFFF" Fill="#01000000" />
 </UserControl>
