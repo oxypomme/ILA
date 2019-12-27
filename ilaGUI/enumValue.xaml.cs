@@ -23,6 +23,7 @@ namespace ilaGUI
         public enumValue(string name, createEnum main)
         {
             InitializeComponent();
+            (removeBtn.Content as Image).Source = App.MakeDarkTheme((removeBtn.Content as Image).Source as BitmapSource);
             valueName.Text = name;
             this.main = main;
         }

@@ -30,6 +30,7 @@ namespace ilaGUI
         {
             this.mod = mod;
             InitializeComponent();
+            (addPram.Content as Image).Source = App.MakeDarkTheme((addPram.Content as Image).Source as BitmapSource);
             modName.Focus();
             Background = App.DarkBackground;
             modName.Text = mod.Name;

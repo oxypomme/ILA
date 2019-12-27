@@ -24,23 +24,26 @@ namespace ilaGUI
         public TreeElement(IBaseObject linkedTo)
         {
             InitializeComponent();
+            constant.Source = App.MakeDarkTheme(constant.Source as BitmapSource);
+            (deleteButton.Content as Image).Source = App.MakeDarkTheme((deleteButton.Content as Image).Source as BitmapSource);
+            (editButton.Content as Image).Source = App.MakeDarkTheme((editButton.Content as Image).Source as BitmapSource);
             Title.Foreground = App.DarkFontColor;
             Link = linkedTo;
             constant.Visibility = Visibility.Collapsed;
             if (linkedTo is Program pr)
             {
                 deleteButton.Visibility = Visibility.Collapsed;
-                Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.algo));
+                Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.algo)));
                 Title.Text = pr.Name;
             }
             else if (linkedTo is Function fct)
             {
-                Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.function));
+                Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.function)));
                 Title.Text = fct.Name;
             }
             else if (linkedTo is ILANET.Module mod)
             {
-                Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.module));
+                Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.module)));
                 Title.Text = mod.Name;
             }
             else if (linkedTo is VariableDeclaration vd)
@@ -54,29 +57,29 @@ namespace ilaGUI
                 if (vd.CreatedVariable.Type is IGenericType gt)
                 {
                     if (gt == GenericType.String)
-                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._string));
+                        Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._string)));
                     else if (gt == GenericType.Int)
-                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var));
+                        Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var)));
                     else if (gt == GenericType.Char)
-                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._char));
+                        Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._char)));
                     else if (gt == GenericType.Bool)
-                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._bool));
+                        Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._bool)));
                     else if (gt == GenericType.Float)
-                        Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var));
+                        Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var)));
                 }
                 else
-                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.custom_var));
+                    Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.custom_var)));
                 Title.Text = vd.CreatedVariable.Name;
             }
             else if (linkedTo is TypeDeclaration td)
             {
                 editButton.Visibility = Visibility.Collapsed;
                 if (td.CreatedType is StructType)
-                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
+                    Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._struct)));
                 else if (td.CreatedType is TableType)
-                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.table));
+                    Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.table)));
                 else if (td.CreatedType is EnumType)
-                    Icon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._enum));
+                    Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._enum)));
                 Title.Text = td.CreatedType.Name;
             }
         }

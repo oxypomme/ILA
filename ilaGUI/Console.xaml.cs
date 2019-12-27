@@ -26,10 +26,9 @@ namespace ilaGUI
         public Console()
         {
             InitializeComponent();
-            {
-                ActiveConsoles.Add(this);
-                inputTB.IsEnabled = ConsolesUnlocked;
-            }
+            (newConsole.Content as Image).Source = App.MakeDarkTheme((newConsole.Content as Image).Source as BitmapSource);
+            ActiveConsoles.Add(this);
+            inputTB.IsEnabled = ConsolesUnlocked;
         }
 
         public static TextWriter RuntimeInput { get; set; }

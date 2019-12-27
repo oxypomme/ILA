@@ -15,7 +15,7 @@
             <Separator VerticalAlignment="Top" Margin="0" />
             <TextBlock Text="&gt;" Foreground="White" FontFamily="Consolas" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" Background="{x:Null}" Foreground="White" Margin="15,0,20,0" FontFamily="Consolas" BorderBrush="{x:Null}" CaretBrush="White" />
-            <Button Width="20" HorizontalAlignment="Right" Click="Button_Click">
+            <Button x:Name="newConsole" Width="20" HorizontalAlignment="Right" Click="Button_Click">
                 <Image Stretch="None" Source="icons/png/new console window.png" />
             </Button>
         </Grid>
