@@ -29,6 +29,7 @@ namespace ilaGUI
             Type = type;
             table = type.CreatedType as TableType;
             InitializeComponent();
+            (addDim.Content as Image).Source = App.MakeDarkTheme((addDim.Content as Image).Source as BitmapSource);
             Background = App.DarkBackground;
             typeName.Text = table.Name;
             comments.Text = type.AboveComment?.Message;

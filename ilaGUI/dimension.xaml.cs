@@ -27,6 +27,7 @@ namespace ilaGUI
             this.range = range;
             table = type;
             InitializeComponent();
+            (removeBtn.Content as Image).Source = App.MakeDarkTheme((removeBtn.Content as Image).Source as BitmapSource);
             var sw = new StringWriter();
             range.Min.WriteILA(sw);
             minValue.Text = sw.ToString();

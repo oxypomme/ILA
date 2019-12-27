@@ -97,42 +97,42 @@ namespace ilaGUI
             }
             if (linked.ImportedVariable.Type == ILANET.GenericType.Int)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var)));
                 selectedParam.paramType.Text = "entier";
             }
             else if (linked.ImportedVariable.Type == ILANET.GenericType.Float)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var)));
                 selectedParam.paramType.Text = "reel";
             }
             else if (linked.ImportedVariable.Type == ILANET.GenericType.Char)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._char));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._char)));
                 selectedParam.paramType.Text = "caractere";
             }
             else if (linked.ImportedVariable.Type == ILANET.GenericType.Bool)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._bool));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._bool)));
                 selectedParam.paramType.Text = "booleen";
             }
             else if (linked.ImportedVariable.Type == ILANET.GenericType.String)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._string));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._string)));
                 selectedParam.paramType.Text = "chaine";
             }
             else if (linked.ImportedVariable.Type is ILANET.StructType st)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._struct)));
                 selectedParam.paramType.Text = st.Name;
             }
             else if (linked.ImportedVariable.Type is ILANET.EnumType et)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._enum));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._enum)));
                 selectedParam.paramType.Text = et.Name;
             }
             else if (linked.ImportedVariable.Type is ILANET.TableType tt)
             {
-                selectedParam.iconType.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.table));
+                selectedParam.iconType.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.table)));
                 selectedParam.paramType.Text = tt.Name;
             }
             else

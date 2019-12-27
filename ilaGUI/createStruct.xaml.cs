@@ -27,6 +27,7 @@ namespace ilaGUI
             originalName = type.CreatedType.Name;
             structtype = type.CreatedType as StructType;
             InitializeComponent();
+            (addMember.Content as Image).Source = App.MakeDarkTheme((addMember.Content as Image).Source as BitmapSource);
             Background = App.DarkBackground;
             typeName.Text = type.CreatedType.Name;
             comments.Text = type.AboveComment?.Message;

@@ -29,45 +29,46 @@ namespace ilaGUI
             Type = type;
             Member = member;
             InitializeComponent();
+            (removeBtn.Content as Image).Source = App.MakeDarkTheme((removeBtn.Content as Image).Source as BitmapSource);
             memberName.Text = member;
             if (type.Members[member] == GenericType.Int)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.int_var)));
                 memberType.Text = "entier";
             }
             else if (type.Members[member] == GenericType.Float)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.float_var)));
                 memberType.Text = "reel";
             }
             else if (type.Members[member] == GenericType.Char)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._char));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._char)));
                 memberType.Text = "caractere";
             }
             else if (type.Members[member] == GenericType.Bool)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._bool));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._bool)));
                 memberType.Text = "booleen";
             }
             else if (type.Members[member] == GenericType.String)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._string));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._string)));
                 memberType.Text = "chaine";
             }
             else if (type.Members[member] is StructType st)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._struct)));
                 memberType.Text = st.Name;
             }
             else if (type.Members[member] is TableType tt)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._struct)));
                 memberType.Text = tt.Name;
             }
             else if (type.Members[member] is EnumType et)
             {
-                memberIcon.Source = App.GetBitmapImage(new MemoryStream(Properties.Resources._struct));
+                memberIcon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._struct)));
                 memberType.Text = et.Name;
             }
         }

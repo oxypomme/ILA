@@ -23,6 +23,15 @@ namespace ilaGUI
         public MainWindow()
         {
             InitializeComponent();
+            (newBtn.Content as Image).Source = App.MakeDarkTheme((newBtn.Content as Image).Source as BitmapSource);
+            (openBtn.Content as Image).Source = App.MakeDarkTheme((openBtn.Content as Image).Source as BitmapSource);
+            (saveBtn.Content as Image).Source = App.MakeDarkTheme((saveBtn.Content as Image).Source as BitmapSource);
+            (closeAlgo.Content as Image).Source = App.MakeDarkTheme((closeAlgo.Content as Image).Source as BitmapSource);
+            (runBtn.Content as Image).Source = App.MakeDarkTheme((runBtn.Content as Image).Source as BitmapSource);
+            (stopBtn.Content as Image).Source = App.MakeDarkTheme((stopBtn.Content as Image).Source as BitmapSource);
+            (buildBtn.Content as Image).Source = App.MakeDarkTheme((buildBtn.Content as Image).Source as BitmapSource);
+            (settingsBtn.Content as Image).Source = App.MakeDarkTheme((settingsBtn.Content as Image).Source as BitmapSource);
+            (wikiBtn.Content as Image).Source = App.MakeDarkTheme((wikiBtn.Content as Image).Source as BitmapSource);
             App.MainDialog = this;
 
             TreePannel = new Tree();

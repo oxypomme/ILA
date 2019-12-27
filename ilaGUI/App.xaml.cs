@@ -20,8 +20,9 @@ namespace ilaGUI
     /// </summary>
     public partial class App : Application
     {
-        public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
-        public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
+        public static readonly Brush DarkBackground = new SolidColorBrush(DarkThemeColor);
+        public static readonly Brush DarkFontColor = new SolidColorBrush(Colors.White);
         public static Control Dragged { get; set; }
 
         public App()
@@ -47,18 +48,6 @@ namespace ilaGUI
         public static Tree Tree { get; set; }
         public static EditorView Editor { get; set; }
         public static List<string> Workspaces { get; set; }
-
-        public static BitmapImage ConvertBitmapToWPF(System.Drawing.Bitmap src)
-        {
-            MemoryStream ms = new MemoryStream();
-            src.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            ms.Seek(0, SeekOrigin.Begin);
-            image.StreamSource = ms;
-            image.EndInit();
-            return image;
-        }
 
         public static void createModule(bool isFct)
         {
@@ -576,78 +565,13 @@ namespace ilaGUI
             } while (!(isNameAvailable(variable.CreatedVariable.Name, scope) && isNameConventionnal(variable.CreatedVariable.Name)));
         }
 
-        public static BitmapImage GetBitmapImage(Stream stream)
-        {
-            //https://stackoverflow.com/a/9564425
-            var image = new BitmapImage();
-            stream.Position = 0;
-            image.BeginInit();
-            image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-            image.CacheOption = BitmapCacheOption.OnLoad;
-            image.UriSource = null;
-            image.StreamSource = stream;
-            image.EndInit();
-            image.Freeze();
-            return image;
-        }
-
-        public static bool isNameAvailable(string name, IExecutable source, Program ilacode)
-        {
-            foreach (var item in ilacode.Declarations)
-            {
-                if (item is VariableDeclaration vd)
-                    if (vd.CreatedVariable.Name == name)
-                        return false;
-                if (item is TypeDeclaration td)
-                {
-                    if (td.CreatedType.Name == name)
-                        return false;
-                    if (td.CreatedType is EnumType et)
-                        foreach (var item2 in et.Values)
-                            if (item2 == name)
-                                return false;
-                }
-            }
-            foreach (var item in ilacode.Methods)
-            {
-                if (item.Name == name)
-                    return false;
-            }
-            if (source is Module m)
-            {
-                foreach (var item in m.Parameters)
-                    if (item.ImportedVariable.Name == name)
-                        return false;
-                foreach (var item in m.Declarations)
-                    if (item.CreatedVariable.Name == name)
-                        return false;
-            }
-            return true;
-        }
-
-        public static bool isNameAvailable(string name) => isNameAvailable(name, CurrentExecutable, CurrentILAcode);
-
-        public static bool isNameAvailable(string name, IExecutable source) => isNameAvailable(name, source, CurrentILAcode);
-
-        public static bool isNameConventionnal(string name)
-        {
-            if (name.Length == 0)
-                return false;
-            if (!char.IsLetter(name.First()))
-                return false;
-            foreach (var item in name)
-                if (!(char.IsLetterOrDigit(item) || item == '_') || "éàèêëîïôöûüçÈÉÊËÂÎÇÀÏÔÖÛÜ".Contains(item))
-                    return false;
-            return true;
-        }
-
         public static void UpdateEditor()
         {
             if (CurrentExecutable != null)
             {
                 if (CurrentExecutable is Program prog)
                 {
-                    Editor.exeIcon.Source = GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.algo));
+                    Editor.exeIcon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.algo)));
                     Editor.exeType.Text = "algo";
                     Editor.exeName.Text = prog.Name;
                     Editor.leftParenthesis.Visibility = Visibility.Collapsed;
@@ -658,7 +582,7 @@ namespace ilaGUI
                 }
                 else if (CurrentExecutable is Function fct)
                 {
-                    Editor.exeIcon.Source = GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function));
+                    Editor.exeIcon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function)));
                     Editor.exeType.Text = "fonction";
                     Editor.exeName.Text = fct.Name;
                     Editor.leftParenthesis.Visibility = Visibility.Visible;
@@ -706,7 +630,7 @@ namespace ilaGUI
                 }
                 else if (CurrentExecutable is Module mod)
                 {
-                    Editor.exeIcon.Source = GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.module));
+                    Editor.exeIcon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.module)));
                     Editor.exeType.Text = "module";
                     Editor.exeName.Text = mod.Name;
                     Editor.leftParenthesis.Visibility = Visibility.Visible;
@@ -813,19 +737,6 @@ namespace ilaGUI
 
         public static void UpdateLexic()
         {
-        }
-
-        public static bool recursiveSearch(IEnumerable<IDropableInstruction> array, IDropableInstruction toFind)
-        {
-            foreach (var item in array)
-            {
-                if (item == toFind)
-                    return true;
-                if (item is InstructionBlock ib)
-                    if (recursiveSearch(ib.Instructions, toFind))
-                        return true;
-            }
-            return false;
         }
 
         public static void UpdateTabs()

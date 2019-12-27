@@ -29,6 +29,7 @@ namespace ilaGUI
             this.edit = edit;
             enumtype = enumdecl.CreatedType as EnumType;
             InitializeComponent();
+            (addVal.Content as Image).Source = App.MakeDarkTheme((addVal.Content as Image).Source as BitmapSource);
             Background = App.DarkBackground;
             originalName = enumtype.Name;
             typeName.Text = enumtype.Name;

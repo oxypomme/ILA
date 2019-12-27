@@ -22,6 +22,17 @@ namespace ilaGUI
         public Tree()
         {
             InitializeComponent();
+            (newModBtn.Content as Image).Source = App.MakeDarkTheme((newModBtn.Content as Image).Source as BitmapSource);
+            (newFncBtn.Content as Image).Source = App.MakeDarkTheme((newFncBtn.Content as Image).Source as BitmapSource);
+            (newStructBtn.Content as Image).Source = App.MakeDarkTheme((newStructBtn.Content as Image).Source as BitmapSource);
+            (newEnumBtn.Content as Image).Source = App.MakeDarkTheme((newEnumBtn.Content as Image).Source as BitmapSource);
+            (newTabBtn.Content as Image).Source = App.MakeDarkTheme((newTabBtn.Content as Image).Source as BitmapSource);
+            (newIntBtn.Content as Image).Source = App.MakeDarkTheme((newIntBtn.Content as Image).Source as BitmapSource);
+            (newFloatBtn.Content as Image).Source = App.MakeDarkTheme((newFloatBtn.Content as Image).Source as BitmapSource);
+            (newCharBtn.Content as Image).Source = App.MakeDarkTheme((newCharBtn.Content as Image).Source as BitmapSource);
+            (newBoolBtn.Content as Image).Source = App.MakeDarkTheme((newBoolBtn.Content as Image).Source as BitmapSource);
+            (newStringBtn.Content as Image).Source = App.MakeDarkTheme((newStringBtn.Content as Image).Source as BitmapSource);
+            (newCustomBtn.Content as Image).Source = App.MakeDarkTheme((newCustomBtn.Content as Image).Source as BitmapSource);
             Title.Foreground = App.DarkFontColor;
         }
 
