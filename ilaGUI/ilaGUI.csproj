@@ -35,15 +35,18 @@
     <None Remove="icons\png\add field.png" />
     <None Remove="icons\png\add parameter.png" />
     <None Remove="icons\png\add.png" />
+    <None Remove="icons\png\AddMethod_16x.png" />
     <None Remove="icons\png\AddVariable_16x.png" />
     <None Remove="icons\png\algo.png" />
     <None Remove="icons\png\assign.png" />
     <None Remove="icons\png\back.png" />
     <None Remove="icons\png\bool.png" />
+    <None Remove="icons\png\build.png" />
     <None Remove="icons\png\char.png" />
     <None Remove="icons\png\close algo.png" />
     <None Remove="icons\png\comment.png" />
     <None Remove="icons\png\const.png" />
+    <None Remove="icons\png\copy.png" />
     <None Remove="icons\png\create assign.png" />
     <None Remove="icons\png\create bool.png" />
     <None Remove="icons\png\create char.png" />
@@ -62,27 +65,41 @@
     <None Remove="icons\png\create string.png" />
     <None Remove="icons\png\create struct.png" />
     <None Remove="icons\png\create table.png" />
+    <None Remove="icons\png\cube.png" />
+    <None Remove="icons\png\custom_var.png" />
+    <None Remove="icons\png\cut.png" />
     <None Remove="icons\png\edit.png" />
     <None Remove="icons\png\enum.png" />
     <None Remove="icons\png\error.png" />
     <None Remove="icons\png\FieldAdded_16x.png" />
     <None Remove="icons\png\FieldDeleted_16x.png" />
+    <None Remove="icons\png\Field_16x.png" />
     <None Remove="icons\png\float var.png" />
     <None Remove="icons\png\for.png" />
     <None Remove="icons\png\forward.png" />
     <None Remove="icons\png\function.png" />
+    <None Remove="icons\png\GlobalVariable_16x.png" />
+    <None Remove="icons\png\help.png" />
     <None Remove="icons\png\if.png" />
     <None Remove="icons\png\int var.png" />
     <None Remove="icons\png\module.png" />
     <None Remove="icons\png\new console window.png" />
+    <None Remove="icons\png\new_file.png" />
     <None Remove="icons\png\ok.png" />
+    <None Remove="icons\png\open.png" />
+    <None Remove="icons\png\Property_16x.png" />
     <None Remove="icons\png\remove field.png" />
     <None Remove="icons\png\remove parameter.png" />
     <None Remove="icons\png\remove.png" />
     <None Remove="icons\png\return.png" />
+    <None Remove="icons\png\run.png" />
+    <None Remove="icons\png\save.png" />
+    <None Remove="icons\png\settings.png" />
+    <None Remove="icons\png\stop.png" />
     <None Remove="icons\png\string.png" />
     <None Remove="icons\png\struct.png" />
     <None Remove="icons\png\table.png" />
+    <None Remove="icons\png\UserFunction_16x.png" />
     <None Remove="icons\png\warning.png" />
     <None Remove="icons\png\while.png" />
     <None Remove="logo\logo.ico" />
@@ -103,7 +120,12 @@
     <Resource Include="icons\png\add parameter.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\png\add.png" />
+    <Resource Include="icons\png\add.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\AddMethod_16x.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\algo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -116,14 +138,24 @@
     <Resource Include="icons\png\bool.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\build.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\char.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\png\close algo.png" />
+    <Resource Include="icons\png\close algo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\comment.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\png\const.png" />
+    <Resource Include="icons\png\const.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\copy.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\create assign.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -172,11 +204,25 @@
     <Resource Include="icons\png\create table.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="icons\png\edit.png" />
+    <Resource Include="icons\png\cube.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\custom_var.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\cut.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\edit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\enum.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\error.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\Field_16x.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\float var.png">
@@ -191,6 +237,12 @@
     <Resource Include="icons\png\function.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\GlobalVariable_16x.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\help.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\if.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -203,7 +255,16 @@
     <Resource Include="icons\png\new console window.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\new_file.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\ok.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\open.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\Property_16x.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\remove field.png">
@@ -215,6 +276,18 @@
     <Resource Include="icons\png\return.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\run.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\save.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\settings.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\stop.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icons\png\string.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -222,6 +295,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\table.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\png\UserFunction_16x.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="icons\png\warning.png">
