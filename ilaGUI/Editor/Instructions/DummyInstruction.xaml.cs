@@ -30,7 +30,7 @@ namespace ilaGUI.Editor
                 if (value)
                     outline.Stroke = new SolidColorBrush(Color.FromArgb(255, 50, 250, 150));
                 else
-                    outline.Stroke = new SolidColorBrush(Colors.White);
+                    outline.Stroke = new SolidColorBrush(Color.FromArgb(128, 255, 255, 255));
             }
         }
 
@@ -62,6 +62,8 @@ namespace ilaGUI.Editor
         {
             DropVisual = false;
             (App.Dragged as IDropableInstruction).MovingVisual = false;
+            if (App.Dragged is InstructionBlock block && App.recursiveSearch(block.Instructions, this))
+                return;
             if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
                 (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
         }

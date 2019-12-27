@@ -29,6 +29,8 @@ namespace ilaGUI
 
         public Editor.DummyInstruction EndInsturction { get; set; }
 
+        public IDropableInstruction[] Instructions => throw new NotImplementedException();
+
         public void UpdateInternalInstructions()
         {
             //instructions.Children stuff

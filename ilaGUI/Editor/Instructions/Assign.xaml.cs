@@ -29,9 +29,9 @@ namespace ilaGUI.Editor
             set
             {
                 if (value)
-                    Background = new SolidColorBrush(Color.FromArgb(75, 50, 250, 150));
+                    insertHere.Visibility = Visibility.Visible;
                 else
-                    Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
+                    insertHere.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -43,7 +43,7 @@ namespace ilaGUI.Editor
             set
             {
                 if (value)
-                    Background = new SolidColorBrush(Color.FromArgb(75, 150, 50, 250));
+                    Background = new SolidColorBrush(Color.FromArgb(75, 50, 150, 250));
                 else
                     Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
             }
@@ -51,7 +51,7 @@ namespace ilaGUI.Editor
 
         private void UserControl_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "" && App.Dragged != this)
             {
                 DropVisual = true;
                 (App.Dragged as IDropableInstruction).MovingVisual = true;
@@ -67,7 +67,7 @@ namespace ilaGUI.Editor
         private void UserControl_DragOver(object sender, DragEventArgs e)
         {
             e.Effects = DragDropEffects.None;
-            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "" && App.Dragged != this)
                 e.Effects = DragDropEffects.Move;
         }
 
@@ -75,7 +75,9 @@ namespace ilaGUI.Editor
         {
             DropVisual = false;
             (App.Dragged as IDropableInstruction).MovingVisual = false;
-            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+            if (App.Dragged is InstructionBlock block && App.recursiveSearch(block.Instructions, this))
+                return;
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "" && App.Dragged != this)
                 (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
         }
 

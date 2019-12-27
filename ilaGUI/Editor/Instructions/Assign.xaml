@@ -7,10 +7,13 @@
              mc:Ignorable="d"
              AllowDrop="True"
              d:DesignHeight="16" d:DesignWidth="100" MouseMove="UserControl_MouseMove" DragEnter="UserControl_DragEnter" DragLeave="UserControl_DragLeave" DragOver="UserControl_DragOver" Drop="UserControl_Drop" Background="#01000000">
-    <StackPanel Orientation="Horizontal">
-        <Grid Name="leftGrid" />
-        <TextBlock Text="&lt;-" Margin="5,0" Foreground="OrangeRed" />
-        <Grid Name="rightGrid" />
-        <TextBlock Margin="5,0,0,0" x:Name="comment" Foreground="DarkGray" />
-    </StackPanel>
+    <Grid>
+        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <StackPanel Orientation="Horizontal">
+            <Grid Name="leftGrid" />
+            <TextBlock Text="&lt;-" Margin="5,0" Foreground="OrangeRed" />
+            <Grid Name="rightGrid" />
+            <TextBlock Margin="5,0,0,0" x:Name="comment" Foreground="DarkGray" />
+        </StackPanel>
+    </Grid>
 </UserControl>

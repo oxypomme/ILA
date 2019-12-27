@@ -782,12 +782,16 @@ namespace ilaGUI
                     Editor.instructions.Children.Add(assign);
                 }
                 {
+                    var loop = new Editor.While();
+                    loop.conditionGrid.Children.Add(new Label() { Content = "vrai", Foreground = DarkFontColor });
                     var assign = new Editor.Assign();
+                    loop.instructions.Children.Add(assign);
+                    loop.instructions.Children.Add(loop.EndInsturction);
                     var grid1 = assign.leftGrid;
                     var grid2 = assign.rightGrid;
                     grid1.Children.Add(new Label() { Content = "variable", Foreground = DarkFontColor });
                     grid2.Children.Add(new Label() { Content = "value", Foreground = DarkFontColor });
-                    Editor.instructions.Children.Add(assign);
+                    Editor.instructions.Children.Add(loop);
                 }
 
                 ////////////////////////
@@ -809,6 +813,19 @@ namespace ilaGUI
 
         public static void UpdateLexic()
         {
+        }
+
+        public static bool recursiveSearch(IEnumerable<IDropableInstruction> array, IDropableInstruction toFind)
+        {
+            foreach (var item in array)
+            {
+                if (item == toFind)
+                    return true;
+                if (item is InstructionBlock ib)
+                    if (recursiveSearch(ib.Instructions, toFind))
+                        return true;
+            }
+            return false;
         }
 
         public static void UpdateTabs()
