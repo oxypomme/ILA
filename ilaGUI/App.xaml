@@ -117,5 +117,78 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="MenuItemBaseStyle" TargetType="{x:Type MenuItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="_border" BorderThickness="1" BorderBrush="{x:Null}">
+                            <Grid SnapsToDevicePixels="true">
+                                <DockPanel>
+                                    <ContentPresenter x:Name="Icon" ContentSource="Icon" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" />
+                                    <Path x:Name="GlyphPanel" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Visibility="Collapsed" VerticalAlignment="Center" />
+                                    <ContentPresenter x:Name="content" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </DockPanel>
+                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom" VerticalOffset="-1">
+                                    <!-- TODO: Non hard-coded background color-->
+                                    <Border BorderThickness="1" BorderBrush="White" Background="#2D2A2E">
+                                        <ScrollViewer x:Name="SubMenuScrollViewer" CanContentScroll="true" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" Margin="2" KeyboardNavigation.TabNavigation="Cycle" />
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="BorderBrush" Value="#26A0DA" TargetName="_border" />
+                                <Setter Property="Background" Value="#3826A0DA" TargetName="_border" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SubMenuItemBaseStyle" TargetType="{x:Type MenuItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Border x:Name="_border" BorderThickness="1" BorderBrush="{x:Null}">
+                            <Grid SnapsToDevicePixels="true">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" MinWidth="32" SharedSizeGroup="IconGroup" />
+                                    <ColumnDefinition Width="*" MinWidth="30" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter Grid.Column="0" Grid.Row="0" x:Name="Icon" ContentSource="Icon" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" />
+                                <Path Grid.Column="2" Grid.Row="0" x:Name="GlyphPanel" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Visibility="Collapsed" VerticalAlignment="Center" />
+                                <ContentPresenter Grid.Column="1" Grid.Row="0" x:Name="content" ContentSource="Header" Margin="3,3,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Right" VerticalOffset="-1">
+                                    <!-- TODO: Non hard-coded background color-->
+                                    <Border BorderThickness="1" BorderBrush="Blue" Background="#2D2A2E">
+                                        <ScrollViewer x:Name="SubMenuScrollViewer" CanContentScroll="true" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                            <Grid RenderOptions.ClearTypeHint="Enabled">
+                                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" Margin="2" KeyboardNavigation.TabNavigation="Cycle" />
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter Property="BorderBrush" Value="#26A0DA" TargetName="_border" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
