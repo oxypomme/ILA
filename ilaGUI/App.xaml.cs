@@ -777,20 +777,20 @@ namespace ilaGUI
                     var assign = new Editor.Assign();
                     var grid1 = assign.leftGrid;
                     var grid2 = assign.rightGrid;
-                    grid1.Children.Add(new Label() { Content = "left", Foreground = DarkFontColor });
-                    grid2.Children.Add(new Label() { Content = "right", Foreground = DarkFontColor });
+                    grid1.Children.Add(new TextBlock() { Text = "left", Foreground = DarkFontColor });
+                    grid2.Children.Add(new TextBlock() { Text = "right", Foreground = DarkFontColor });
                     Editor.instructions.Children.Add(assign);
                 }
                 {
                     var loop = new Editor.While();
-                    loop.conditionGrid.Children.Add(new Label() { Content = "vrai", Foreground = DarkFontColor });
+                    loop.conditionGrid.Children.Add(new TextBlock() { Text = "vrai", Foreground = DarkFontColor });
                     var assign = new Editor.Assign();
                     loop.instructions.Children.Add(assign);
                     loop.instructions.Children.Add(loop.EndInsturction);
                     var grid1 = assign.leftGrid;
                     var grid2 = assign.rightGrid;
-                    grid1.Children.Add(new Label() { Content = "variable", Foreground = DarkFontColor });
-                    grid2.Children.Add(new Label() { Content = "value", Foreground = DarkFontColor });
+                    grid1.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                    grid2.Children.Add(new TextBlock() { Text = "value", Foreground = DarkFontColor });
                     Editor.instructions.Children.Add(loop);
                 }
 
