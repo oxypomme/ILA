@@ -1,22 +1,15 @@
 ﻿<UserControl x:Class="ilaGUI.Editor.ModuleCall"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI.Editor"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <TextBlock Name="functionName" Grid.Column="0"/>
-        <TextBlock Text="(" Grid.Column="1" Foreground="White"/>
-        <Grid Name="paramGrid" Grid.Column="2"/>
-        <TextBlock Text=")" Grid.Column="3" Foreground="White"/>
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Name="functionName" />
+        <TextBlock Text="(" Foreground="White" />
+        <Grid Name="paramGrid" />
+        <TextBlock Text=")" Foreground="White" />
+    </StackPanel>
 </UserControl>

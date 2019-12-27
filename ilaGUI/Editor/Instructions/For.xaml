@@ -6,40 +6,21 @@
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid Name="forGrid" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="pour" TextDecorations="Underline" Grid.Column="0" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="varGrid" Grid.Column="1" Margin="0,0,10,0" />
-            <TextBlock Text="&lt;-" Grid.Column="2" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="infGrid" Grid.Column="3" Margin="0,0,10,0" />
-            <TextBlock Text="à" Grid.Column="4" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="supGrid" Grid.Column="5" Margin="0,0,10,0" />
-            <Grid Name="stepGrid" Grid.Column="6" Margin="0,0,10,0" />
-            <TextBlock Text="faire" TextDecorations="Underline" Grid.Column="7" Foreground="White" />
-        </Grid>
-        <Grid Name="loopGrid" Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Separator Grid.Column="0" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="instructGrid" Grid.Column="1" />
-        </Grid>
-        <TextBlock Text="fpour" TextDecorations="Underline" Grid.Row="2" Foreground="White" />
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Name="forGrid">
+            <TextBlock Text="pour" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
+            <Grid Name="varGrid" Margin="0,0,10,0" />
+            <TextBlock Text="&lt;-" Margin="0,0,10,0" Foreground="White" />
+            <Grid Name="infGrid" Margin="0,0,10,0" />
+            <TextBlock Text="à" Margin="0,0,10,0" Foreground="White" />
+            <Grid Name="supGrid" Margin="0,0,10,0" />
+            <Grid Name="stepGrid" Margin="0,0,10,0" />
+            <TextBlock Text="faire" TextDecorations="Underline" Foreground="White" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Name="loopGrid">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
+            <Grid Name="instructGrid" />
+        </StackPanel>
+        <TextBlock Text="fpour" TextDecorations="Underline" Foreground="White" />
+    </StackPanel>
 </UserControl>
