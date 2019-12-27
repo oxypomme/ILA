@@ -20,7 +20,8 @@ namespace ilaGUI
     /// </summary>
     public partial class App : Application
     {
-        public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
+        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
+        public static readonly Brush DarkBackground = new SolidColorBrush(DarkThemeColor);
         public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         public static Control Dragged { get; set; }
 
@@ -813,19 +814,6 @@ namespace ilaGUI
 
         public static void UpdateLexic()
         {
-        }
-
-        public static bool recursiveSearch(IEnumerable<IDropableInstruction> array, IDropableInstruction toFind)
-        {
-            foreach (var item in array)
-            {
-                if (item == toFind)
-                    return true;
-                if (item is InstructionBlock ib)
-                    if (recursiveSearch(ib.Instructions, toFind))
-                        return true;
-            }
-            return false;
         }
 
         public static void UpdateTabs()
