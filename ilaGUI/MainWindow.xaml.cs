@@ -147,6 +147,11 @@ namespace ilaGUI
             ));
         }
 
+        private void quitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void newBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new NewFileDialog();

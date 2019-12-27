@@ -107,7 +107,7 @@
                     <Separator />
                     <MenuItem Name="recentFileMenu" Header="Fichier récents" Style="{StaticResource SubMenuItemBaseStyle}" IsEnabled="False" />
                     <Separator />
-                    <MenuItem Header="Quitter" InputGestureText="Alt+F4" />
+                    <MenuItem Header="Quitter" Click="quitBtn_Click" InputGestureText="Alt+F4" />
                 </MenuItem>
                 <MenuItem Header="Edition" Style="{StaticResource MenuItemBaseStyle}">
                     <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False">
@@ -143,26 +143,26 @@
                             <Image Source="icons/png/build.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Name="startMenu" Header="Lancer l'algo" InputGestureText="F5" IsEnabled="False">
+                    <MenuItem Name="startMenu" Header="Lancer l'algo" Click="runBtn_Click" InputGestureText="F5" IsEnabled="False">
                         <MenuItem.Icon>
                             <Image Source="icons/png/run.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Name="stopMenu"  Header="Arrêter l'algo" IsEnabled="False">
+                    <MenuItem Name="stopMenu" Header="Arrêter l'algo" Click="stopBtn_Click" IsEnabled="False">
                         <MenuItem.Icon>
                             <Image Source="icons/png/stop.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Outils" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Options">
+                    <MenuItem Header="Options" Click="settingsBtn_Click">
                         <MenuItem.Icon>
                             <Image Source="icons/png/settings.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Aide" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Afficher l'aide" InputGestureText="F1">
+                    <MenuItem Header="Afficher l'aide" Click="wikiBtn_Click" InputGestureText="F1">
                         <MenuItem.Icon>
                             <Image Source="icons/png/help.png" />
                         </MenuItem.Icon>
