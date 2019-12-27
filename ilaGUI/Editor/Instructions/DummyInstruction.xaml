@@ -5,6 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
-             Height="75" d:DesignWidth="300" DragLeave="UserControl_DragLeave" DragEnter="UserControl_DragEnter" DragOver="UserControl_DragOver">
-    <Rectangle x:Name="outline" Stroke="#FFFFFFFF" />
+             Height="50" d:DesignWidth="300" DragLeave="UserControl_DragLeave" DragEnter="UserControl_DragEnter" DragOver="UserControl_DragOver" Drop="UserControl_Drop">
+    <Rectangle Margin="30, 5" x:Name="outline" Stroke="#FFFFFFFF" Fill="#01000000" />
 </UserControl>

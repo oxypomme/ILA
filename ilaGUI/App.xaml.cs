@@ -22,6 +22,7 @@ namespace ilaGUI
     {
         public static readonly Brush DarkBackground = new SolidColorBrush(Color.FromRgb(45, 42, 46));
         public static readonly Brush DarkFontColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        public static Control Dragged { get; set; }
 
         public App()
         {
@@ -768,6 +769,29 @@ namespace ilaGUI
                     Editor.dbPoint.Visibility = Visibility.Collapsed;
                     Editor.fctReturnType.Text = "";
                 }
+                Editor.instructions.Children.Clear();
+
+                /////////////////////////
+                //dummy additions, for tests
+                {
+                    var assign = new Editor.Assign();
+                    var grid1 = assign.leftGrid;
+                    var grid2 = assign.rightGrid;
+                    grid1.Children.Add(new Label() { Content = "left", Foreground = DarkFontColor });
+                    grid2.Children.Add(new Label() { Content = "right", Foreground = DarkFontColor });
+                    Editor.instructions.Children.Add(assign);
+                }
+                {
+                    var assign = new Editor.Assign();
+                    var grid1 = assign.leftGrid;
+                    var grid2 = assign.rightGrid;
+                    grid1.Children.Add(new Label() { Content = "variable", Foreground = DarkFontColor });
+                    grid2.Children.Add(new Label() { Content = "value", Foreground = DarkFontColor });
+                    Editor.instructions.Children.Add(assign);
+                }
+
+                ////////////////////////
+                Editor.instructions.Children.Add(Editor.EndInsturction);
             }
             else
             {
@@ -779,6 +803,7 @@ namespace ilaGUI
                 Editor.rightParenthesis.Visibility = Visibility.Collapsed;
                 Editor.dbPoint.Visibility = Visibility.Collapsed;
                 Editor.fctReturnType.Text = "";
+                Editor.instructions.Children.Clear();
             }
         }
 

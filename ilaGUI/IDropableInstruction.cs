@@ -8,6 +8,9 @@ namespace ilaGUI
 {
     public interface IDropableInstruction
     {
+        bool DropVisual { set; }
+        bool MovingVisual { set; }
+
         public void DropRecieved(IDropableInstruction droppedOnto)
         {
             var this_control = this as Control;

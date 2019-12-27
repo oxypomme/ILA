@@ -24,8 +24,9 @@ namespace ilaGUI.Editor
             InitializeComponent();
         }
 
+        public bool DropVisual { set => throw new NotImplementedException(); }
         public ILANET.ModuleCall InternalInstruction { get; set; }
-
         IBaseObject Linked.Link => InternalInstruction;
+        public bool MovingVisual { set => throw new NotImplementedException(); }
     }
 }

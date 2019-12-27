@@ -23,19 +23,47 @@ namespace ilaGUI.Editor
             InitializeComponent();
         }
 
+        public bool DropVisual
+        {
+            set
+            {
+                if (value)
+                    outline.Stroke = new SolidColorBrush(Color.FromArgb(255, 50, 250, 150));
+                else
+                    outline.Stroke = new SolidColorBrush(Colors.White);
+            }
+        }
+
+        public bool MovingVisual { get; set; }
+
         private void UserControl_DragEnter(object sender, DragEventArgs e)
         {
-            outline.Stroke = new SolidColorBrush(Color.FromArgb(255, 50, 250, 150));
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+            {
+                DropVisual = true;
+                (App.Dragged as IDropableInstruction).MovingVisual = true;
+            }
         }
 
         private void UserControl_DragLeave(object sender, DragEventArgs e)
         {
-            outline.Stroke = new SolidColorBrush(Colors.White);
+            DropVisual = false;
+            (App.Dragged as IDropableInstruction).MovingVisual = false;
         }
 
         private void UserControl_DragOver(object sender, DragEventArgs e)
         {
             e.Effects = DragDropEffects.None;
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+                e.Effects = DragDropEffects.Move;
+        }
+
+        private void UserControl_Drop(object sender, DragEventArgs e)
+        {
+            DropVisual = false;
+            (App.Dragged as IDropableInstruction).MovingVisual = false;
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+                (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
         }
     }
 }

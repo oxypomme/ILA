@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
-             d:DesignHeight="16" d:DesignWidth="100">
+             AllowDrop="True"
+             d:DesignHeight="16" d:DesignWidth="100" MouseMove="UserControl_MouseMove" DragEnter="UserControl_DragEnter" DragLeave="UserControl_DragLeave" DragOver="UserControl_DragOver" Drop="UserControl_Drop" Background="#01000000">
     <StackPanel Orientation="Horizontal">
         <Grid Name="leftGrid" />
         <TextBlock Text="&lt;-" Margin="5,0" Foreground="OrangeRed" />

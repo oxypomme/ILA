@@ -24,8 +24,68 @@ namespace ilaGUI.Editor
             InitializeComponent();
         }
 
-        public ILANET.Assign InternalInstruction { get; set; }
+        public bool DropVisual
+        {
+            set
+            {
+                if (value)
+                    Background = new SolidColorBrush(Color.FromArgb(75, 50, 250, 150));
+                else
+                    Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
+            }
+        }
 
+        public ILANET.Assign InternalInstruction { get; set; }
         IBaseObject Linked.Link => InternalInstruction;
+
+        public bool MovingVisual
+        {
+            set
+            {
+                if (value)
+                    Background = new SolidColorBrush(Color.FromArgb(75, 150, 50, 250));
+                else
+                    Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
+            }
+        }
+
+        private void UserControl_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+            {
+                DropVisual = true;
+                (App.Dragged as IDropableInstruction).MovingVisual = true;
+            }
+        }
+
+        private void UserControl_DragLeave(object sender, DragEventArgs e)
+        {
+            DropVisual = false;
+            (App.Dragged as IDropableInstruction).MovingVisual = false;
+        }
+
+        private void UserControl_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effects = DragDropEffects.None;
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+                e.Effects = DragDropEffects.Move;
+        }
+
+        private void UserControl_Drop(object sender, DragEventArgs e)
+        {
+            DropVisual = false;
+            (App.Dragged as IDropableInstruction).MovingVisual = false;
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")
+                (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                App.Dragged = this;
+                DragDrop.DoDragDrop(this, "", DragDropEffects.Move);
+            }
+        }
     }
 }
