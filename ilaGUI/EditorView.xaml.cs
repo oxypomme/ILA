@@ -24,7 +24,7 @@ namespace ilaGUI
         {
             InitializeComponent();
             instructions.Tag = this;
-            EndInsturction = new Editor.DummyInstruction();
+            EndInsturction = new Editor.DummyInstruction() { Height = 150 };
         }
 
         public Editor.DummyInstruction EndInsturction { get; set; }
