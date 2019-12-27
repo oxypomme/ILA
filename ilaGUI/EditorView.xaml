@@ -18,8 +18,8 @@
             <TextBlock VerticalAlignment="Bottom" x:Name="fctReturnType" Foreground="LightBlue" />
         </StackPanel>
         <Separator VerticalAlignment="Top" Margin="0,20,0,0" />
-        <ScrollViewer Margin="5, 22, 0, 0" VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="instructions" AllowDrop="True" Drop="instructions_Drop" DragOver="instructions_DragOver" />
+        <ScrollViewer Margin="0, 22, 0, 0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="5,0,0,0" x:Name="instructions" AllowDrop="True" Drop="instructions_Drop" DragOver="instructions_DragOver" />
         </ScrollViewer>
     </Grid>
 </UserControl>

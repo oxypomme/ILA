@@ -28,9 +28,9 @@ namespace ilaGUI.Editor
             set
             {
                 if (value)
-                    outline.Stroke = new SolidColorBrush(Color.FromArgb(255, 50, 250, 150));
+                    insertHere.Visibility = Visibility.Visible;
                 else
-                    outline.Stroke = new SolidColorBrush(Color.FromArgb(128, 255, 255, 255));
+                    insertHere.Visibility = Visibility.Collapsed;
             }
         }
 
