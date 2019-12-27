@@ -18,16 +18,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5,0,0,0">
-            <Image Source="logo/small/logo24.png" Margin="0,0,5,0"/>
+            <Image Source="logo/small/logo24.png" Margin="0,0,5,0" />
             <Menu Background="Black" Foreground="White" Height="16">
                 <MenuItem Header="Fichier">
                     <MenuItem Header="Nouvel Algo" Click="newBtn_Click" InputGestureText="Ctrl+N">
                         <MenuItem.Icon>
                             <!--ICON OF NEW-->
-                            <Image Source="" />
+                            <Image Source="icons/png/new_file.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Ouvrir" Click="openBtn_Click" InputGestureText="Ctrl+O"/>
+                    <MenuItem Header="Ouvrir" Click="openBtn_Click" InputGestureText="Ctrl+O" />
                     <Separator />
                     <MenuItem Header="Ajouter">
                         <MenuItem Header="Module" />
@@ -35,29 +35,28 @@
                         <MenuItem Header="..." />
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Fermer l'onglet"/>
-                    <MenuItem Header="Fermer l'algo" Click="closeAlgo_Click" InputGestureText="Ctrl+W"/>
+                    <MenuItem Header="Fermer l'onglet" />
+                    <MenuItem Header="Fermer l'algo" Click="closeAlgo_Click" InputGestureText="Ctrl+W" />
                     <Separator />
-                    <MenuItem Header="Sauvegarder" Click="saveBtn_Click" InputGestureText="Ctrl+S"/>
-                    <MenuItem Header="Sauvegarder sous..." InputGestureText="Ctrl+Maj+S"/>
+                    <MenuItem Header="Sauvegarder" Click="saveBtn_Click" InputGestureText="Ctrl+S" />
+                    <MenuItem Header="Sauvegarder sous..." InputGestureText="Ctrl+Maj+S" />
                     <Separator />
                     <MenuItem Name="RecentFileMenu" Header="Fichier récents">
-                       
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Quitter" InputGestureText="Alt+F4"/>
+                    <MenuItem Header="Quitter" InputGestureText="Alt+F4" />
                 </MenuItem>
                 <MenuItem Header="Edition">
-                    <MenuItem Header="Annuler" InputGestureText="Ctrl+Z"/>
-                    <MenuItem Header="Rétablir" InputGestureText="Ctrl+Y"/>
+                    <MenuItem Header="Annuler" InputGestureText="Ctrl+Z" />
+                    <MenuItem Header="Rétablir" InputGestureText="Ctrl+Y" />
                     <Separator />
-                    <MenuItem Header="Couper" InputGestureText="Ctrl+X"/>
-                    <MenuItem Header="Copier" InputGestureText="Ctrl+C"/>
-                    <MenuItem Header="Coller" InputGestureText="Ctrl+V"/>
+                    <MenuItem Header="Couper" InputGestureText="Ctrl+X" />
+                    <MenuItem Header="Copier" InputGestureText="Ctrl+C" />
+                    <MenuItem Header="Coller" InputGestureText="Ctrl+V" />
                 </MenuItem>
             </Menu>
         </StackPanel>
-        
+
         <StackPanel x:Name="MainToolbar" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,0">
             <Button x:Name="newBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" Click="newBtn_Click" ToolTip="Créer un nouvel algo (Ctrl + N)">
                 <Image Stretch="None" Source="icons/png/new_file.png" />

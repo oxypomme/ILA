@@ -30,6 +30,23 @@
   <ItemGroup>
     <None Remove="cursors\drag.cur" />
     <None Remove="cursors\grip.cur" />
+    <None Remove="fonts\FiraCode\FiraCode-Bold.ttf" />
+    <None Remove="fonts\FiraCode\FiraCode-Light.ttf" />
+    <None Remove="fonts\FiraCode\FiraCode-Medium.ttf" />
+    <None Remove="fonts\FiraCode\FiraCode-Regular.ttf" />
+    <None Remove="fonts\FiraCode\FiraCode-Retina.ttf" />
+    <None Remove="fonts\Roboto\Roboto-Black.ttf" />
+    <None Remove="fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <None Remove="fonts\Roboto\Roboto-Bold.ttf" />
+    <None Remove="fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <None Remove="fonts\Roboto\Roboto-Italic.ttf" />
+    <None Remove="fonts\Roboto\Roboto-Light.ttf" />
+    <None Remove="fonts\Roboto\Roboto-LightItalic.ttf" />
+    <None Remove="fonts\Roboto\Roboto-Medium.ttf" />
+    <None Remove="fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <None Remove="fonts\Roboto\Roboto-Regular.ttf" />
+    <None Remove="fonts\Roboto\Roboto-Thin.ttf" />
+    <None Remove="fonts\Roboto\Roboto-ThinItalic.ttf" />
     <None Remove="icons\BuildSolutionAnimation_16x.gif" />
     <None Remove="icons\Cube_16x.svg" />
     <None Remove="icons\png\add field.png" />
@@ -114,6 +131,23 @@
     <None Remove="logo\small\logo64.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="fonts\FiraCode\FiraCode-Bold.ttf" />
+    <Resource Include="fonts\FiraCode\FiraCode-Light.ttf" />
+    <Resource Include="fonts\FiraCode\FiraCode-Medium.ttf" />
+    <Resource Include="fonts\FiraCode\FiraCode-Regular.ttf" />
+    <Resource Include="fonts\FiraCode\FiraCode-Retina.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-Black.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-Bold.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-Italic.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-Light.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-Medium.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-Regular.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-Thin.ttf" />
+    <Resource Include="fonts\Roboto\Roboto-ThinItalic.ttf" />
     <Resource Include="icons\png\add field.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
