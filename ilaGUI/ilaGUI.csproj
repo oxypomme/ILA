@@ -104,7 +104,9 @@
     <None Remove="icons\png\new_file.png" />
     <None Remove="icons\png\ok.png" />
     <None Remove="icons\png\open.png" />
+    <None Remove="icons\png\paste.png" />
     <None Remove="icons\png\Property_16x.png" />
+    <None Remove="icons\png\redo.png" />
     <None Remove="icons\png\remove field.png" />
     <None Remove="icons\png\remove parameter.png" />
     <None Remove="icons\png\remove.png" />
@@ -116,6 +118,7 @@
     <None Remove="icons\png\string.png" />
     <None Remove="icons\png\struct.png" />
     <None Remove="icons\png\table.png" />
+    <None Remove="icons\png\undo.png" />
     <None Remove="icons\png\UserFunction_16x.png" />
     <None Remove="icons\png\warning.png" />
     <None Remove="icons\png\while.png" />
@@ -298,9 +301,11 @@
     <Resource Include="icons\png\open.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\paste.png" />
     <Resource Include="icons\png\Property_16x.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\redo.png" />
     <Resource Include="icons\png\remove field.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -331,6 +336,7 @@
     <Resource Include="icons\png\table.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\undo.png" />
     <Resource Include="icons\png\UserFunction_16x.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

@@ -110,12 +110,32 @@
                     <MenuItem Header="Quitter" InputGestureText="Alt+F4" />
                 </MenuItem>
                 <MenuItem Header="Edition" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Annuler" InputGestureText="Ctrl+Z" />
-                    <MenuItem Header="Rétablir" InputGestureText="Ctrl+Y" />
+                    <MenuItem Header="Annuler" InputGestureText="Ctrl+Z">
+                        <MenuItem.Icon>
+                            <Image Source="icons/png/undo.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Rétablir" InputGestureText="Ctrl+Y">
+                        <MenuItem.Icon>
+                            <Image Source="icons/png/redo.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
-                    <MenuItem Header="Couper" InputGestureText="Ctrl+X" />
-                    <MenuItem Header="Copier" InputGestureText="Ctrl+C" />
-                    <MenuItem Header="Coller" InputGestureText="Ctrl+V" />
+                    <MenuItem Header="Couper" InputGestureText="Ctrl+X">
+                        <MenuItem.Icon>
+                            <Image Source="icons/png/cut.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Copier" InputGestureText="Ctrl+C">
+                        <MenuItem.Icon>
+                            <Image Source="icons/png/copy.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Coller" InputGestureText="Ctrl+V">
+                        <MenuItem.Icon>
+                            <Image Source="icons/png/paste.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Générer" Style="{StaticResource MenuItemBaseStyle}">
                     <MenuItem Header="Générer NAME" InputGestureText="Ctrl+B">
