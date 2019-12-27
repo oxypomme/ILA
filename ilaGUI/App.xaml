@@ -211,12 +211,14 @@
                         <ColumnDefinition Width="Auto" MinWidth="32" SharedSizeGroup="IconGroup" />
                         <ColumnDefinition Width="*" MinWidth="30" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
                     <ContentPresenter ContentSource="Icon" Margin="{TemplateBinding Padding}" Width="16" />
                     <ContentPresenter x:Name="_content" Grid.Column="1" Grid.Row="0"  Margin="3,0,32,0" VerticalAlignment="Center" ContentSource="Header" RecognizesAccessKey="True" />
+                    <ContentPresenter x:Name="_keybind" Grid.Column="2" Grid.Row="0" Margin="0,0,32,0" VerticalAlignment="Center" ContentSource="InputGestureText" />
                 </Grid>
             </Border>
             <ControlTemplate.Triggers>
@@ -228,6 +230,7 @@
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="MenuItem.Foreground" Value="#80ffffff" TargetName="_content" />
+                    <Setter Property="MenuItem.Foreground" Value="#80ffffff" TargetName="_keybind" />
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
