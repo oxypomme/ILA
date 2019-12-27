@@ -122,16 +122,16 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type MenuItem}">
-                        <Border x:Name="_border" BorderThickness="1" BorderBrush="{x:Null}">
+                        <Border x:Name="_border" BorderThickness="0">
                             <Grid SnapsToDevicePixels="true">
                                 <DockPanel>
                                     <ContentPresenter x:Name="Icon" ContentSource="Icon" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" />
                                     <Path x:Name="GlyphPanel" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Visibility="Collapsed" VerticalAlignment="Center" />
-                                    <ContentPresenter x:Name="content" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                    <ContentPresenter x:Name="_content" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                 </DockPanel>
-                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom" VerticalOffset="-1">
+                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom">
                                     <!-- TODO: Non hard-coded background color-->
-                                    <Border BorderThickness="1" BorderBrush="White" Background="#2D2A2E">
+                                    <Border BorderThickness="1" BorderBrush="#413c42" Background="#2D2A2E">
                                         <ScrollViewer x:Name="SubMenuScrollViewer" CanContentScroll="true" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                                 <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" Margin="2" KeyboardNavigation.TabNavigation="Cycle" />
@@ -143,8 +143,13 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="True">
-                                <Setter Property="BorderBrush" Value="#26A0DA" TargetName="_border" />
-                                <Setter Property="Background" Value="#3826A0DA" TargetName="_border" />
+                                <Setter Property="Background" Value="#48ffffff" TargetName="_border" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#80ffffff" TargetName="_border" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="MenuItem.Foreground" Value="#80ffffff" TargetName="_content" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -169,11 +174,11 @@
                                 </Grid.RowDefinitions>
                                 <ContentPresenter Grid.Column="0" Grid.Row="0" x:Name="Icon" ContentSource="Icon" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" />
                                 <Path Grid.Column="2" Grid.Row="0" x:Name="GlyphPanel" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Visibility="Collapsed" VerticalAlignment="Center" />
-                                <ContentPresenter Grid.Column="1" Grid.Row="0" x:Name="content" ContentSource="Header" Margin="3,3,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                <Path Grid.Column="3" Margin="0,0,5,0" Width="8" Height="8" Data="F1M568.254,-7.43524L568.159,-7.34277 567.977,-7.52246 546.559,-28.9417 525.484,-28.9417 549.787,-4.63446 557.439,3.01532 557.619,3.19629 550.067,10.7549 525.758,35.0583 546.834,35.0583 568.254,13.6429 578.792,3.10254 568.254,-7.43524z" Stretch="Uniform" Fill="#FFFFFFFF" RenderTransformOrigin="0.5,0.5" />
-                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Right" VerticalOffset="-1">
+                                <ContentPresenter Grid.Column="1" Grid.Row="0" x:Name="_content" ContentSource="Header" Margin="3,3,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <Path x:Name="arrow" Grid.Column="3" Margin="0,0,5,0" Width="8" Height="8" Data="F1M568.254,-7.43524L568.159,-7.34277 567.977,-7.52246 546.559,-28.9417 525.484,-28.9417 549.787,-4.63446 557.439,3.01532 557.619,3.19629 550.067,10.7549 525.758,35.0583 546.834,35.0583 568.254,13.6429 578.792,3.10254 568.254,-7.43524z" Stretch="Uniform" Fill="#FFFFFFFF" RenderTransformOrigin="0.5,0.5" />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Right" VerticalOffset="-1">
                                     <!-- TODO: Non hard-coded background color-->
-                                    <Border BorderThickness="1" BorderBrush="Blue" Background="#2D2A2E">
+                                    <Border BorderThickness="1" BorderBrush="#413c42" Background="#2D2A2E">
                                         <ScrollViewer x:Name="SubMenuScrollViewer" CanContentScroll="true" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                                 <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" Margin="2" KeyboardNavigation.TabNavigation="Cycle" />
@@ -185,12 +190,49 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="True">
-                                <Setter Property="BorderBrush" Value="#26A0DA" TargetName="_border" />
+                                <Setter Property="BorderBrush" Value="#48ffffff" TargetName="_border" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="#80ffffff" TargetName="_border" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="MenuItem.Foreground" Value="#80ffffff" TargetName="_content" />
+                                <Setter Property="Fill" Value="#80ffffff" TargetName="arrow" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <ControlTemplate x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" TargetType="MenuItem">
+            <Border Background="{x:Null}" x:Name="_grid">
+                <Grid  SnapsToDevicePixels="true">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="32" SharedSizeGroup="IconGroup" />
+                        <ColumnDefinition Width="*" MinWidth="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <ContentPresenter ContentSource="Icon" Margin="{TemplateBinding Padding}" Width="16" />
+                    <ContentPresenter x:Name="_content" Grid.Column="1" Grid.Row="0"  Margin="3,0,32,0" VerticalAlignment="Center" ContentSource="Header" RecognizesAccessKey="True" />
+                    <ContentPresenter x:Name="_keybind" Grid.Column="2" Grid.Row="0" Margin="0,0,32,0" VerticalAlignment="Center" ContentSource="InputGestureText" />
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" Value="#48ffffff" TargetName="_grid" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#80ffffff" TargetName="_grid" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="MenuItem.Foreground" Value="#80ffffff" TargetName="_content" />
+                    <Setter Property="MenuItem.Foreground" Value="#80ffffff" TargetName="_keybind" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </Application.Resources>
 </Application>
