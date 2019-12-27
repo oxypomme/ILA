@@ -17,7 +17,7 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour Comment.xaml
     /// </summary>
-    public partial class Comment : UserControl, Linked
+    public partial class Comment : UserControl, Linked, IDropableInstruction
     {
         public Comment()
         {

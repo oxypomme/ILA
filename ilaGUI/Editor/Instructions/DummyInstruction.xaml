@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="ilaGUI.Editor.DummyInstruction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ilaGUI.Editor"
+             mc:Ignorable="d"
+             Height="75" d:DesignWidth="300" DragLeave="UserControl_DragLeave" DragEnter="UserControl_DragEnter" DragOver="UserControl_DragOver">
+    <Rectangle x:Name="outline" Stroke="#FFFFFFFF" />
+</UserControl>

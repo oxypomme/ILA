@@ -17,7 +17,7 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour Assign.xaml
     /// </summary>
-    public partial class Assign : UserControl, Linked
+    public partial class Assign : UserControl, Linked, IDropableInstruction
     {
         public Assign()
         {

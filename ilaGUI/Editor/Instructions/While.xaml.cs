@@ -17,15 +17,21 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour While.xaml
     /// </summary>
-    public partial class While : UserControl, Linked
+    public partial class While : UserControl, Linked, InstructionBlock, IDropableInstruction
     {
         public While()
         {
             InitializeComponent();
+            EndInsturction = new DummyInstruction();
+            //Tag
         }
 
+        public DummyInstruction EndInsturction { get; set; }
         public ILANET.While InternalInstruction { get; set; }
-
         IBaseObject Linked.Link => InternalInstruction;
+
+        public void UpdateInternalInstructions()
+        {
+        }
     }
 }

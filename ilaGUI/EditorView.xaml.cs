@@ -16,11 +16,31 @@ namespace ilaGUI
     /// <summary>
     /// Logique d'interaction pour EditorView.xaml
     /// </summary>
-    public partial class EditorView : UserControl
+    public partial class EditorView : UserControl, InstructionBlock
     {
+        public static UIElement draggedElement;
+
         public EditorView()
         {
             InitializeComponent();
+            instructions.Tag = this;
+            EndInsturction = new Editor.DummyInstruction();
+        }
+
+        public Editor.DummyInstruction EndInsturction { get; set; }
+
+        public void UpdateInternalInstructions()
+        {
+            //instructions.Children stuff
+        }
+
+        private void instructions_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effects = DragDropEffects.None;
+        }
+
+        private void instructions_Drop(object sender, DragEventArgs e)
+        {
         }
     }
 }

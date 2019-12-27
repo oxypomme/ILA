@@ -17,15 +17,21 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour Case.xaml
     /// </summary>
-    public partial class Switch : UserControl, Linked
+    public partial class Switch : UserControl, Linked, InstructionBlock, IDropableInstruction
     {
         public Switch()
         {
             InitializeComponent();
+            EndInsturction = new DummyInstruction();
+            //Tag
         }
 
+        public DummyInstruction EndInsturction { get; set; }
         public ILANET.Switch InternalInstruction { get; set; }
-
         IBaseObject Linked.Link => InternalInstruction;
+
+        public void UpdateInternalInstructions()
+        {
+        }
     }
 }

@@ -17,15 +17,21 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour DoWhile.xaml
     /// </summary>
-    public partial class DoWhile : UserControl, Linked
+    public partial class DoWhile : UserControl, Linked, InstructionBlock, IDropableInstruction
     {
         public DoWhile()
         {
             InitializeComponent();
+            EndInsturction = new DummyInstruction();
+            //Tag
         }
 
+        public DummyInstruction EndInsturction { get; set; }
         public ILANET.DoWhile InternalInstruction { get; set; }
-
         IBaseObject Linked.Link => InternalInstruction;
+
+        public void UpdateInternalInstructions()
+        {
+        }
     }
 }

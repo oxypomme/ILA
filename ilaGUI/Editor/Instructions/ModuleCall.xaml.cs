@@ -17,7 +17,7 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour ModuleCall.xaml
     /// </summary>
-    public partial class ModuleCall : UserControl, Linked
+    public partial class ModuleCall : UserControl, Linked, IDropableInstruction
     {
         public ModuleCall()
         {

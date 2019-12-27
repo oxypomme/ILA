@@ -17,15 +17,21 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour If.xaml
     /// </summary>
-    public partial class If : UserControl, Linked
+    public partial class If : UserControl, Linked, InstructionBlock, IDropableInstruction
     {
         public If()
         {
             InitializeComponent();
+            EndInsturction = new DummyInstruction();
+            //Tag
         }
 
+        public DummyInstruction EndInsturction { get; set; }
         public ILANET.If InternalInstruction { get; set; }
-
         IBaseObject Linked.Link => InternalInstruction;
+
+        public void UpdateInternalInstructions()
+        {
+        }
     }
 }

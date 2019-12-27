@@ -17,15 +17,21 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour For.xaml
     /// </summary>
-    public partial class For : UserControl, Linked
+    public partial class For : UserControl, Linked, InstructionBlock, IDropableInstruction
     {
         public For()
         {
             InitializeComponent();
+            EndInsturction = new DummyInstruction();
+            //Tag
         }
 
+        public DummyInstruction EndInsturction { get; set; }
         public ILANET.For InternalInstruction { get; set; }
-
         IBaseObject Linked.Link => InternalInstruction;
+
+        public void UpdateInternalInstructions()
+        {
+        }
     }
 }

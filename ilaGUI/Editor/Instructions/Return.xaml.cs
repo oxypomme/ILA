@@ -17,7 +17,7 @@ namespace ilaGUI.Editor
     /// <summary>
     /// Logique d'interaction pour Return.xaml
     /// </summary>
-    public partial class Return : UserControl, Linked
+    public partial class Return : UserControl, Linked, IDropableInstruction
     {
         public Return()
         {
