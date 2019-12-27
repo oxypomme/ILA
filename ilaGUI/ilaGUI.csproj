@@ -97,30 +97,6 @@
     <None Remove="logo\small\logo64.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Remove="icons\BuildSolution_16x.xaml" />
-    <Page Remove="icons\Cube_16x.xaml" />
-    <Page Remove="icons\Field_16x.xaml" />
-    <Page Remove="icons\NewFile_16x.xaml" />
-    <Page Remove="icons\OpenFile_16x.xaml" />
-    <Page Remove="icons\Run_16x.xaml" />
-    <Page Remove="icons\Save_16x.xaml" />
-    <Page Remove="icons\Settings_16x.xaml" />
-    <Page Remove="icons\StatusHelp_16x.xaml" />
-    <Page Remove="icons\UserFunction_16x.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\BuildSolution_16x.xaml" />
-    <None Include="icons\Cube_16x.xaml" />
-    <None Include="icons\Field_16x.xaml" />
-    <None Include="icons\NewFile_16x.xaml" />
-    <None Include="icons\OpenFile_16x.xaml" />
-    <None Include="icons\Run_16x.xaml" />
-    <None Include="icons\Save_16x.xaml" />
-    <None Include="icons\Settings_16x.xaml" />
-    <None Include="icons\StatusHelp_16x.xaml" />
-    <None Include="icons\UserFunction_16x.xaml" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="icons\png\add field.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
