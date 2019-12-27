@@ -105,7 +105,7 @@
                     </MenuItem>
                     <MenuItem Header="Sauvegarder sous..." InputGestureText="Ctrl+Maj+S" />
                     <Separator />
-                    <MenuItem Name="RecentFileMenu" Header="Fichier récents" />
+                    <MenuItem Name="RecentFileMenu" Header="Fichier récents" Style="{StaticResource SubMenuItemBaseStyle}" />
                     <Separator />
                     <MenuItem Header="Quitter" InputGestureText="Alt+F4" />
                 </MenuItem>
