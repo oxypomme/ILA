@@ -24,8 +24,9 @@ namespace ilaGUI.Editor
             InitializeComponent();
         }
 
+        public bool DropVisual { set => throw new NotImplementedException(); }
         public ILANET.Comment InternalComment { get; set; }
-
         IBaseObject Linked.Link => InternalComment;
+        public bool MovingVisual { set => throw new NotImplementedException(); }
     }
 }

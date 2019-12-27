@@ -26,9 +26,11 @@ namespace ilaGUI.Editor
             //Tag
         }
 
+        public bool DropVisual { set => throw new NotImplementedException(); }
         public DummyInstruction EndInsturction { get; set; }
         public ILANET.Switch InternalInstruction { get; set; }
         IBaseObject Linked.Link => InternalInstruction;
+        public bool MovingVisual { set => throw new NotImplementedException(); }
 
         public void UpdateInternalInstructions()
         {
