@@ -19,9 +19,13 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class Variable : UserControl, Linked
     {
-        public Variable()
+        public Variable(ILANET.Variable value)
         {
             InitializeComponent();
+            InternalValue = value;
+            variable.Text = value.Name;
+            if (value.Constant)
+                variable.Foreground = new SolidColorBrush(Colors.LightCoral);
         }
 
         public ILANET.Variable InternalValue { get; set; }

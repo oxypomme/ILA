@@ -6,5 +6,5 @@
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <TextBlock x:Name="enumValue" FontFamily="Consolas" Foreground="MediumSeaGreen" />
+    <TextBlock x:Name="enumValue" FontFamily="Consolas" Foreground="LightCoral" />
 </UserControl>

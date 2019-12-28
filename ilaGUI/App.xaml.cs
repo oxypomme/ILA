@@ -699,10 +699,30 @@ namespace ilaGUI
                 //dummy additions, for tests
                 {
                     var assign = new Editor.Assign();
-                    var grid1 = assign.leftGrid;
-                    var grid2 = assign.rightGrid;
-                    grid1.Children.Add(new TextBlock() { Text = "left", Foreground = DarkFontColor });
-                    grid2.Children.Add(new TextBlock() { Text = "right", Foreground = DarkFontColor });
+                    assign.leftGrid.Children.Add(new TextBlock() { Text = "left", Foreground = DarkFontColor });
+                    assign.rightGrid.Children.Add(GetValueControl(new StructCall()
+                    {
+                        Name = "member",
+                        Struct = new TableCall()
+                        {
+                            DimensionsIndex = new List<IValue>() {
+                                   new EnumCall()
+                                   {
+                                        Index = 0,
+                                         Enum = new EnumType()
+                                         {
+                                              Name = "custom_enum",
+                                               Values = new List<string>(){"VALUE1", "VALUE2"}
+                                         }
+                                   },
+                                   new Variable(){Constant=true, Name="CONST_VAR", ConstantValue=new ConstantInt(){Value=1}}
+                               },
+                            Table = new Variable()
+                            {
+                                Name = "big_var"
+                            }
+                        }
+                    }));
                     Editor.instructions.Children.Add(assign);
                 }
                 {

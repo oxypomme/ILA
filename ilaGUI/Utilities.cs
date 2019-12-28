@@ -238,7 +238,7 @@ namespace ilaGUI
             else if (value is TableCall)
                 return new Editor.TableCall(value as TableCall);
             else if (value is Variable)
-                return new Editor.Variable();
+                return new Editor.Variable(value as Variable);
             else
                 return null;
         }
