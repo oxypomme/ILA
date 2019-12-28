@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -212,6 +213,34 @@ namespace ilaGUI
             rgb.B = Convert.ToByte(b * 255.0f);
             rgb.A = alpha;
             return rgb;
+        }
+
+        public static Control GetValueControl(IValue value)
+        {
+            if (value is ConstantBool)
+                return new Editor.ConstantBool(value as ConstantBool);
+            else if (value is ConstantChar)
+                return new Editor.ConstantChar(value as ConstantChar);
+            else if (value is ConstantFloat)
+                return new Editor.ConstantFloat(value as ConstantFloat);
+            else if (value is ConstantInt)
+                return new Editor.ConstantInt(value as ConstantInt);
+            else if (value is ConstantString)
+                return new Editor.ConstantString(value as ConstantString);
+            else if (value is EnumCall)
+                return new Editor.EnumCall();
+            else if (value is FunctionCall)
+                return new Editor.FunctionCall();
+            else if (value is Operator)
+                return new Editor.Operator();
+            else if (value is StructCall)
+                return new Editor.StructCall();
+            else if (value is TableCall)
+                return new Editor.TableCall();
+            else if (value is Variable)
+                return new Editor.Variable();
+            else
+                return null;
         }
 
         public static bool isNameAvailable(string name, IExecutable source, Program ilacode)
