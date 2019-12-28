@@ -35,8 +35,8 @@ namespace ILANET
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public override string Name
         {
-            get => throw new Parser.Parser.ILAException("Name is not supported on a table call");
-            set => throw new Parser.Parser.ILAException("Name is not supported on a table call");
+            get => null;
+            set { }
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ILANET
         /// <summary>
         /// Type of the element. read only
         /// </summary>
-        public override VarType Type { get => ((TableType)Table.Type).InternalType; set => throw new Parser.Parser.ILAException("Name is not supported on a table call"); }
+        public override VarType Type { get => ((TableType)Table.Type).InternalType; set { } }
 
         /// <summary>
         /// Generate ila code to for this element.
