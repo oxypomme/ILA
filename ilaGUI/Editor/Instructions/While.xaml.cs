@@ -61,6 +61,8 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
+            comment.Text = InternalInstruction.Comment;
+            endComment.Text = InternalInstruction.EndComment;
         }
 
         private void hitbox_DragEnter(object sender, DragEventArgs e)

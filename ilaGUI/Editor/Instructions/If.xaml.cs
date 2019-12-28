@@ -81,6 +81,15 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
+            comment.Text = InternalInstruction.Comment;
+            endComment.Text = InternalInstruction.EndComment;
+            conditionGrid.Children.Clear();
+            for (int i = 0; i < InternalInstruction.Elif.Count; i++)
+            {
+                elifList[i].comment.Text = InternalInstruction.ElifComments[i];
+                elifList[i].condition.Children.Clear();
+                elifList[i].condition.Children.Add(App.GetValueControl(InternalInstruction.Elif[i].Item1));
+            }
         }
 
         private void hitbox_DragEnter(object sender, DragEventArgs e)

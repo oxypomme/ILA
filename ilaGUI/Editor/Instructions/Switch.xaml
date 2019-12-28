@@ -25,12 +25,13 @@
                 <TextBlock Text="cas " Foreground="LightBlue" FontFamily="Consolas" />
                 <Grid Name="varGrid" />
                 <TextBlock Text=" parmi" Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
             </StackPanel>
             <StackPanel Margin="25,0,0,0" x:Name="casesList">
                 <!--<Grid>
                     <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="5,16,0,0" />
                     <StackPanel Orientation="Horizontal">
-                        <Grid Name="conditionValue" />
+                        <StackPanel Orientation="Horizontal" Name="conditionValue" />
                         <TextBlock Text=" : " Foreground="OrangeRed" FontFamily="Consolas" />
                         <StackPanel Name="instructions" />
                     </StackPanel>
@@ -46,6 +47,7 @@
             </Grid>
             <StackPanel Orientation="Horizontal" Margin="21,0,0,0">
                 <TextBlock Text="fcas" FontFamily="Consolas" Foreground="LightBlue" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
             </StackPanel>
         </StackPanel>
     </Grid>
