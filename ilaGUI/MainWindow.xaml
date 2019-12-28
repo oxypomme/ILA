@@ -21,12 +21,12 @@
             <Image Source="logo/small/logo24.png" Margin="0,0,3,0" />
             <Menu Background="{x:Null}" Foreground="White" Height="16" FontFamily="./resources/#Roboto Light">
                 <MenuItem Header="Fichier" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Nouvel Algo" Click="newBtn_Click" InputGestureText="Ctrl+N">
+                    <MenuItem Name="newAlgoMenu" Header="Nouvel Algo" Click="newBtn_Click" InputGestureText="Ctrl+N">
                         <MenuItem.Icon>
                             <Image Source="icons/png/new_file.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Ouvrir" Click="openBtn_Click" InputGestureText="Ctrl+O">
+                    <MenuItem Name="openAlgoMenu" Header="Ouvrir" Click="openBtn_Click" InputGestureText="Ctrl+O">
                         <MenuItem.Icon>
                             <Image Source="icons/png/open.png" />
                         </MenuItem.Icon>
@@ -155,14 +155,14 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Outils" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Options" Click="settingsBtn_Click">
+                    <MenuItem Name="settingsMenu" Header="Options" Click="settingsBtn_Click">
                         <MenuItem.Icon>
                             <Image Source="icons/png/settings.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Aide" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Header="Afficher l'aide" Click="wikiBtn_Click" InputGestureText="F1">
+                    <MenuItem Name="helpMenu" Header="Afficher l'aide" Click="wikiBtn_Click" InputGestureText="F1">
                         <MenuItem.Icon>
                             <Image Source="icons/png/help.png" />
                         </MenuItem.Icon>

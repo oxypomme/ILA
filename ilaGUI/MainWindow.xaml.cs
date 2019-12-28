@@ -23,6 +23,22 @@ namespace ilaGUI
         public MainWindow()
         {
             InitializeComponent();
+
+            (newAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((newAlgoMenu.Icon as Image).Source as BitmapSource);
+            (openAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((openAlgoMenu.Icon as Image).Source as BitmapSource);
+            (closeAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((closeAlgoMenu.Icon as Image).Source as BitmapSource);
+            (saveMenu.Icon as Image).Source = App.MakeDarkTheme((saveMenu.Icon as Image).Source as BitmapSource);
+            (undoMenu.Icon as Image).Source = App.MakeDarkTheme((undoMenu.Icon as Image).Source as BitmapSource);
+            (redoMenu.Icon as Image).Source = App.MakeDarkTheme((redoMenu.Icon as Image).Source as BitmapSource);
+            (cutMenu.Icon as Image).Source = App.MakeDarkTheme((cutMenu.Icon as Image).Source as BitmapSource);
+            (copyMenu.Icon as Image).Source = App.MakeDarkTheme((copyMenu.Icon as Image).Source as BitmapSource);
+            (pasteMenu.Icon as Image).Source = App.MakeDarkTheme((pasteMenu.Icon as Image).Source as BitmapSource);
+            (buildMenu.Icon as Image).Source = App.MakeDarkTheme((buildMenu.Icon as Image).Source as BitmapSource);
+            (startMenu.Icon as Image).Source = App.MakeDarkTheme((startMenu.Icon as Image).Source as BitmapSource);
+            (stopMenu.Icon as Image).Source = App.MakeDarkTheme((stopMenu.Icon as Image).Source as BitmapSource);
+            (settingsMenu.Icon as Image).Source = App.MakeDarkTheme((settingsMenu.Icon as Image).Source as BitmapSource);
+            (helpMenu.Icon as Image).Source = App.MakeDarkTheme((helpMenu.Icon as Image).Source as BitmapSource);
+
             (newBtn.Content as Image).Source = App.MakeDarkTheme((newBtn.Content as Image).Source as BitmapSource);
             (openBtn.Content as Image).Source = App.MakeDarkTheme((openBtn.Content as Image).Source as BitmapSource);
             (saveBtn.Content as Image).Source = App.MakeDarkTheme((saveBtn.Content as Image).Source as BitmapSource);

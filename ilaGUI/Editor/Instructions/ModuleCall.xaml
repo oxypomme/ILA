@@ -8,7 +8,15 @@
              mc:Ignorable="d"
              Background="#01000000"
              d:DesignWidth="800" DragEnter="UserControl_DragEnter" DragLeave="UserControl_DragLeave" DragOver="UserControl_DragOver" Drop="UserControl_Drop" MouseMove="UserControl_MouseMove">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="InstructionDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid ContextMenu="{StaticResource InstructionContextMenu}">
         <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <StackPanel Orientation="Horizontal">
             <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" />
@@ -18,6 +26,5 @@
             <TextBlock Text=")" FontFamily="Consolas" Foreground="OrangeRed" />
             <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
         </StackPanel>
-        <!--<ilagui:InstructionContextMenu />-->
     </Grid>
 </UserControl>
