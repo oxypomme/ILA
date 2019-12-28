@@ -230,7 +230,7 @@ namespace ilaGUI
             else if (value is EnumCall)
                 return new Editor.EnumCall(value as EnumCall);
             else if (value is FunctionCall)
-                return new Editor.FunctionCall();
+                return new Editor.FunctionCall(value as FunctionCall);
             else if (value is Operator)
                 return new Editor.Operator();
             else if (value is StructCall)

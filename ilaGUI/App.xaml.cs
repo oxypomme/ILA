@@ -754,7 +754,11 @@ namespace ilaGUI
                     var instru = new Editor.For();
                     instru.instructions.Children.Add(instru.EndInstruction);
                     instru.varGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
-                    instru.infGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
+                    instru.infGrid.Children.Add(GetValueControl(new FunctionCall()
+                    {
+                        Args = new List<IValue>() { new ConstantInt() { Value = 5 }, new ConstantString() { Value = "arg" } },
+                        CalledFunction = new Function() { Name = "test_function" }
+                    }));
                     instru.supGrid.Children.Add(new TextBlock() { Text = "10", Foreground = new SolidColorBrush(Colors.Plum) });
                     instru.stepGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
                     Editor.instructions.Children.Add(instru);

@@ -19,9 +19,22 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class FunctionCall : UserControl, Linked
     {
-        public FunctionCall()
+        public FunctionCall(ILANET.FunctionCall value)
         {
             InitializeComponent();
+            InternalValue = value;
+            fctName.Text = value.CalledFunction.Name;
+            for (int i = 0; i < value.Args.Count; i++)
+            {
+                parameters.Children.Add(App.GetValueControl(value.Args[i]));
+                if (i < value.Args.Count - 1)
+                    parameters.Children.Add(new TextBlock()
+                    {
+                        Text = ", ",
+                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        FontFamily = fctName.FontFamily
+                    });
+            }
         }
 
         public ILANET.FunctionCall InternalValue { get; set; }
