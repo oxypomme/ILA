@@ -20,9 +20,9 @@
         <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <StackPanel Orientation="Horizontal">
             <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/assign.png" />
-            <Grid Name="leftGrid" />
+            <ContentControl Name="leftHolder" />
             <TextBlock Text="&lt;-" FontFamily="Consolas" Margin="5,0" Foreground="OrangeRed" />
-            <Grid Name="rightGrid" />
+            <ContentControl Name="rightHolder" />
             <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
         </StackPanel>
     </Grid>

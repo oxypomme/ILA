@@ -28,7 +28,7 @@
             <StackPanel Margin="25,0, 0, 0" x:Name="instructions" />
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
                 <TextBlock Margin="21,0,0,0" Text="jusqua " FontFamily="Consolas" Foreground="LightBlue" />
-                <Grid Name="condGrid" />
+                <ContentControl Name="condHolder" />
                 <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
             </StackPanel>
         </StackPanel>

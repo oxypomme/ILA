@@ -22,7 +22,7 @@
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/while.png" />
                 <TextBlock FontFamily="Consolas" Text="tant que " Foreground="LightBlue" />
-                <Grid x:Name="conditionGrid" />
+                <ContentControl x:Name="conditionHolder" />
                 <TextBlock FontFamily="Consolas" Text=" faire" Foreground="LightBlue" />
                 <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
             </StackPanel>

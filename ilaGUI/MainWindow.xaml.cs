@@ -52,14 +52,14 @@ namespace ilaGUI
 
             TreePannel = new Tree();
             App.Tree = TreePannel;
-            TreeGrid.Children.Add(TreePannel);
+            TreeHolder.Content = TreePannel;
 
             Editor = new EditorView();
             App.Editor = Editor;
-            EditorGrid.Children.Add(Editor);
+            EditorHolder.Content = Editor;
 
             Console = new Console();
-            ConsoleGrid.Children.Add(Console);
+            ConsoleHolder.Content = Console;
 
             Background = App.DarkBackground;
             App.Tabs = algoList;
@@ -172,11 +172,6 @@ namespace ilaGUI
             ));
         }
 
-        private void quitBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void newBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new NewFileDialog();
@@ -186,6 +181,11 @@ namespace ilaGUI
 
         private void openBtn_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void quitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         private void runBtn_Click(object sender, RoutedEventArgs e)

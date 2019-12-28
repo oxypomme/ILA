@@ -23,14 +23,14 @@
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/icons/png/switch.png" />
                 <TextBlock Text="cas " Foreground="LightBlue" FontFamily="Consolas" />
-                <Grid Name="varGrid" />
+                <ContentControl Name="varHolder" />
                 <TextBlock Text=" parmi" Foreground="LightBlue" FontFamily="Consolas" />
             </StackPanel>
             <StackPanel Margin="25,0,0,0" x:Name="casesList">
                 <!--<Grid>
                     <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="5,16,0,0" />
                     <StackPanel Orientation="Horizontal">
-                        <Grid Name="conditionValue" />
+                        <ContentControl Name="conditionValue" />
                         <TextBlock Text=" : " Foreground="OrangeRed" FontFamily="Consolas" />
                         <StackPanel Name="instructions" />
                     </StackPanel>
