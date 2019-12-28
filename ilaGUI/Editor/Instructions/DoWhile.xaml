@@ -6,15 +6,22 @@
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="repeter" TextDecorations="Underline" Foreground="White" />
-        <StackPanel Orientation="Horizontal" Name="loopGrid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="instructGrid" />
+    <Grid>
+        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,20,0,20" />
+        <Grid x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" />
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/while.png" />
+                <TextBlock Text="repeter" Foreground="LightBlue" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+            </StackPanel>
+            <StackPanel Margin="25,0, 0, 0" x:Name="instructions" />
+            <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
+                <TextBlock Text="jusqua " Foreground="LightBlue" />
+                <Grid Name="condGrid" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="forGrid">
-            <TextBlock Text="jusqua" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="condGrid" Margin="0,0,10,0" />
-        </StackPanel>
-    </StackPanel>
+    </Grid>
 </UserControl>
