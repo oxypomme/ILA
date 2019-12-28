@@ -228,7 +228,7 @@ namespace ilaGUI
             else if (value is ConstantString)
                 return new Editor.ConstantString(value as ConstantString);
             else if (value is EnumCall)
-                return new Editor.EnumCall();
+                return new Editor.EnumCall(value as EnumCall);
             else if (value is FunctionCall)
                 return new Editor.FunctionCall();
             else if (value is Operator)

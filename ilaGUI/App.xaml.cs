@@ -721,7 +721,7 @@ namespace ilaGUI
                     var instru = new Editor.ModuleCall();
                     instru.moduleName.Text = "module";
                     instru.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.module)));
-                    instru.parameters.Children.Add(new Editor.ConstantChar(new ConstantChar() { Value = 'a' }));
+                    instru.parameters.Children.Add(GetValueControl(new ConstantChar() { Value = 'a' }));
                     Editor.instructions.Children.Add(instru);
                 }
                 {
@@ -744,7 +744,7 @@ namespace ilaGUI
                         var instru2 = new Editor.ModuleCall();
                         instru2.moduleName.Text = "fonction";
                         instru2.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function)));
-                        instru2.parameters.Children.Add(new Editor.ConstantString(new ConstantString() { Value = "test" }));
+                        instru2.parameters.Children.Add(GetValueControl(new ConstantString() { Value = "test" }));
                         instru.ifInstructions.Children.Add(instru2);
                     }
                     instru.ifInstructions.Children.Add(instru.EndInstruction);

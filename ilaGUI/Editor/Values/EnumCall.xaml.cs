@@ -19,9 +19,11 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class EnumCall : UserControl, Linked
     {
-        public EnumCall()
+        public EnumCall(ILANET.EnumCall value)
         {
             InitializeComponent();
+            InternalValue = value;
+            enumValue.Text = value.Enum.Values[value.Index];
         }
 
         public ILANET.EnumCall InternalValue { get; set; }
