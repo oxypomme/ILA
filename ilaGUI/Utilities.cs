@@ -232,7 +232,7 @@ namespace ilaGUI
             else if (value is FunctionCall)
                 return new Editor.FunctionCall(value as FunctionCall);
             else if (value is Operator)
-                return new Editor.Operator();
+                return new Editor.Operator(value as Operator);
             else if (value is StructCall)
                 return new Editor.StructCall();
             else if (value is TableCall)

@@ -727,7 +727,16 @@ namespace ilaGUI
                 {
                     var instru = new Editor.DoWhile();
                     instru.instructions.Children.Add(instru.EndInstruction);
-                    instru.condGrid.Children.Add(new TextBlock() { Text = "faux", Foreground = DarkFontColor });
+                    instru.condGrid.Children.Add(GetValueControl(new Operator()
+                    {
+                        OperatorType = Operator.Tag.DIFFRENT,
+                        Left = new ConstantBool() { Value = true },
+                        Right = new Operator()
+                        {
+                            OperatorType = Operator.Tag.NOT,
+                            Right = new ConstantBool() { Value = true }
+                        }
+                    }));
                     Editor.instructions.Children.Add(instru);
                 }
                 {
