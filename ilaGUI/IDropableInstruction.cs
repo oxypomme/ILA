@@ -26,5 +26,7 @@ namespace ilaGUI
             this_pannel.Children.Insert(this_pannel.Children.IndexOf(this_control), other_control);
             this_parent.UpdateInternalInstructions();
         }
+
+        void UpdateVisuals();
     }
 }

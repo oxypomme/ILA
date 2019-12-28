@@ -36,6 +36,10 @@ namespace ilaGUI.Editor
 
         public bool MovingVisual { get; set; }
 
+        public void UpdateVisuals()
+        {
+        }
+
         private void UserControl_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "")

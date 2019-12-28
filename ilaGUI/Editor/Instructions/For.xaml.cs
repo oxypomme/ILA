@@ -36,5 +36,9 @@ namespace ilaGUI.Editor
         public void UpdateInternalInstructions()
         {
         }
+
+        public void UpdateVisuals()
+        {
+        }
     }
 }
