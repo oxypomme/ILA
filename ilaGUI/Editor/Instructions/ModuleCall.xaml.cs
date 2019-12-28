@@ -1,6 +1,7 @@
 ﻿using ILANET;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,6 +52,24 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
+            if (InternalInstruction.CalledModule is Function)
+                icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.function)));
+            else
+                icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.module)));
+            moduleName.Text = InternalInstruction.CalledModule.Name;
+            comment.Text = "//" + InternalInstruction.Comment;
+            parameters.Children.Clear();
+            for (int i = 0; i < InternalInstruction.Args.Count; i++)
+            {
+                parameters.Children.Add(App.GetValueControl(InternalInstruction.Args[i]));
+                if (i < InternalInstruction.Args.Count - 1)
+                    parameters.Children.Add(new TextBlock
+                    {
+                        Text = ", ",
+                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        FontFamily = comment.FontFamily
+                    });
+            }
         }
 
         private void UserControl_DragEnter(object sender, DragEventArgs e)

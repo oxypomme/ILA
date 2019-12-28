@@ -52,6 +52,10 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
+            if (InternalComment.MultiLine)
+                comment.Text = "/*" + InternalComment.Message + "*/";
+            else
+                comment.Text = "//" + InternalComment.Message;
         }
 
         private void UserControl_DragEnter(object sender, DragEventArgs e)
