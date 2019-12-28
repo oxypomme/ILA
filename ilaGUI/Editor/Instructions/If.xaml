@@ -17,7 +17,7 @@
 
     <Grid ContextMenu="{StaticResource InstructionContextMenu}">
         <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
-        <Grid x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" />
+        <Grid x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" MouseEnter="hitbox_MouseEnter" MouseLeave="hitbox_MouseLeave" />
         <StackPanel>
             <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/if.png" />

@@ -102,6 +102,16 @@ namespace ilaGUI.Editor
                 (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
         }
 
+        private void hitbox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            hitbox.Background = new SolidColorBrush(Color.FromArgb(64, 255, 255, 255));
+        }
+
+        private void hitbox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            hitbox.Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
+        }
+
         private void hitbox_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

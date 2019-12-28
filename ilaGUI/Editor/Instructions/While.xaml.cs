@@ -40,8 +40,11 @@ namespace ilaGUI.Editor
         }
 
         public DummyInstruction EndInstruction { get; set; }
+
         public IDropableInstruction[] Instructions => instructions.Children.Cast<IDropableInstruction>().ToArray();
+
         public ILANET.While InternalInstruction { get; set; }
+
         IBaseObject Linked.Link => InternalInstruction;
 
         public bool MovingVisual
@@ -99,6 +102,16 @@ namespace ilaGUI.Editor
                 return;
             if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "" && App.Dragged != this)
                 (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
+        }
+
+        private void hitbox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            hitbox.Background = new SolidColorBrush(Color.FromArgb(64, 255, 255, 255));
+        }
+
+        private void hitbox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            hitbox.Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
         }
 
         private void hitbox_MouseMove(object sender, MouseEventArgs e)

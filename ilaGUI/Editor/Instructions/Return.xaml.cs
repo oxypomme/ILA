@@ -37,6 +37,7 @@ namespace ilaGUI.Editor
         }
 
         public ILANET.Return InternalInstruction { get; set; }
+
         IBaseObject Linked.Link => InternalInstruction;
 
         public bool MovingVisual
@@ -88,6 +89,16 @@ namespace ilaGUI.Editor
                 return;
             if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) == "" && App.Dragged != this)
                 (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
+        }
+
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Background = new SolidColorBrush(Color.FromArgb(64, 255, 255, 255));
+        }
+
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
