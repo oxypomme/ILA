@@ -20,7 +20,7 @@
             </StackPanel>
             <StackPanel Margin="25,0, 0, 0" x:Name="instructions" />
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
-                <TextBlock  IsHitTestVisible="False" FontFamily="Consolas" Text="ftq" Foreground="LightBlue" />
+                <TextBlock Margin="21,0,0,0" IsHitTestVisible="False" FontFamily="Consolas" Text="ftq" Foreground="LightBlue" />
                 <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
             </StackPanel>
         </StackPanel>

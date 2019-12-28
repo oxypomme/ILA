@@ -721,20 +721,29 @@ namespace ilaGUI
                     var instru = new Editor.ModuleCall();
                     instru.moduleName.Text = "module";
                     instru.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.module)));
-                    instru.parameters.Children.Add(new TextBlock() { Text = "8", Foreground = new SolidColorBrush(Colors.OrangeRed) });
+                    instru.parameters.Children.Add(new TextBlock() { Text = "8", Foreground = new SolidColorBrush(Colors.Plum) });
                     Editor.instructions.Children.Add(instru);
                 }
                 {
                     var instru = new Editor.ModuleCall();
                     instru.moduleName.Text = "fonction";
                     instru.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function)));
-                    instru.parameters.Children.Add(new TextBlock() { Text = "variable", Foreground = new SolidColorBrush(Colors.OrangeRed) });
+                    instru.parameters.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
                     Editor.instructions.Children.Add(instru);
                 }
                 {
                     var instru = new Editor.DoWhile();
                     instru.instructions.Children.Add(instru.EndInsturction);
                     instru.condGrid.Children.Add(new TextBlock() { Text = "faux", Foreground = DarkFontColor });
+                    Editor.instructions.Children.Add(instru);
+                }
+                {
+                    var instru = new Editor.For();
+                    instru.instructions.Children.Add(instru.EndInsturction);
+                    instru.varGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                    instru.infGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
+                    instru.supGrid.Children.Add(new TextBlock() { Text = "10", Foreground = new SolidColorBrush(Colors.Plum) });
+                    instru.stepGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
                     Editor.instructions.Children.Add(instru);
                 }
                 {
