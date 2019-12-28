@@ -19,9 +19,11 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class ConstantBool : UserControl, Linked
     {
-        public ConstantBool()
+        public ConstantBool(ILANET.ConstantBool value)
         {
             InitializeComponent();
+            InternalValue = value;
+            constant.Text = value.Value ? "vrai" : "faux";
         }
 
         public ILANET.ConstantBool InternalValue { get; set; }

@@ -19,9 +19,12 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class StructCall : UserControl, Linked
     {
-        public StructCall()
+        public StructCall(ILANET.StructCall value)
         {
             InitializeComponent();
+            InternalValue = value;
+            memberName.Text = value.Name;
+            structValue.Children.Add(App.GetValueControl(value.Struct));
         }
 
         public ILANET.StructCall InternalValue { get; set; }

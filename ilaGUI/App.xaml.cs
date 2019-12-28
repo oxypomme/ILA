@@ -699,10 +699,30 @@ namespace ilaGUI
                 //dummy additions, for tests
                 {
                     var assign = new Editor.Assign();
-                    var grid1 = assign.leftGrid;
-                    var grid2 = assign.rightGrid;
-                    grid1.Children.Add(new TextBlock() { Text = "left", Foreground = DarkFontColor });
-                    grid2.Children.Add(new TextBlock() { Text = "right", Foreground = DarkFontColor });
+                    assign.leftGrid.Children.Add(new TextBlock() { Text = "left", Foreground = DarkFontColor });
+                    assign.rightGrid.Children.Add(GetValueControl(new StructCall()
+                    {
+                        Name = "member",
+                        Struct = new TableCall()
+                        {
+                            DimensionsIndex = new List<IValue>() {
+                                   new EnumCall()
+                                   {
+                                        Index = 0,
+                                         Enum = new EnumType()
+                                         {
+                                              Name = "custom_enum",
+                                               Values = new List<string>(){"VALUE1", "VALUE2"}
+                                         }
+                                   },
+                                   new Variable(){Constant=true, Name="CONST_VAR", ConstantValue=new ConstantInt(){Value=1}}
+                               },
+                            Table = new Variable()
+                            {
+                                Name = "big_var"
+                            }
+                        }
+                    }));
                     Editor.instructions.Children.Add(assign);
                 }
                 {
@@ -721,13 +741,22 @@ namespace ilaGUI
                     var instru = new Editor.ModuleCall();
                     instru.moduleName.Text = "module";
                     instru.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.module)));
-                    instru.parameters.Children.Add(new TextBlock() { Text = "8", Foreground = new SolidColorBrush(Colors.Plum) });
+                    instru.parameters.Children.Add(GetValueControl(new ConstantChar() { Value = 'a' }));
                     Editor.instructions.Children.Add(instru);
                 }
                 {
                     var instru = new Editor.DoWhile();
                     instru.instructions.Children.Add(instru.EndInstruction);
-                    instru.condGrid.Children.Add(new TextBlock() { Text = "faux", Foreground = DarkFontColor });
+                    instru.condGrid.Children.Add(GetValueControl(new Operator()
+                    {
+                        OperatorType = Operator.Tag.DIFFRENT,
+                        Left = new ConstantBool() { Value = true },
+                        Right = new Operator()
+                        {
+                            OperatorType = Operator.Tag.NOT,
+                            Right = new ConstantBool() { Value = true }
+                        }
+                    }));
                     Editor.instructions.Children.Add(instru);
                 }
                 {
@@ -744,7 +773,7 @@ namespace ilaGUI
                         var instru2 = new Editor.ModuleCall();
                         instru2.moduleName.Text = "fonction";
                         instru2.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function)));
-                        instru2.parameters.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                        instru2.parameters.Children.Add(GetValueControl(new ConstantString() { Value = "test" }));
                         instru.ifInstructions.Children.Add(instru2);
                     }
                     instru.ifInstructions.Children.Add(instru.EndInstruction);
@@ -754,7 +783,11 @@ namespace ilaGUI
                     var instru = new Editor.For();
                     instru.instructions.Children.Add(instru.EndInstruction);
                     instru.varGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
-                    instru.infGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
+                    instru.infGrid.Children.Add(GetValueControl(new FunctionCall()
+                    {
+                        Args = new List<IValue>() { new ConstantInt() { Value = 5 }, new ConstantString() { Value = "arg" } },
+                        CalledFunction = new Function() { Name = "test_function" }
+                    }));
                     instru.supGrid.Children.Add(new TextBlock() { Text = "10", Foreground = new SolidColorBrush(Colors.Plum) });
                     instru.stepGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
                     Editor.instructions.Children.Add(instru);

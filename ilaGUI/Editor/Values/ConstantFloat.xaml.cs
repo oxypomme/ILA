@@ -19,9 +19,10 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class ConstantFloat : UserControl, Linked
     {
-        public ConstantFloat()
+        public ConstantFloat(ILANET.ConstantFloat value)
         {
             InitializeComponent();
+            constant.Text = value.Value.ToString();
         }
 
         public ILANET.ConstantFloat InternalValue { get; set; }

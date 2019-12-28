@@ -19,9 +19,10 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class ConstantInt : UserControl, Linked
     {
-        public ConstantInt()
+        public ConstantInt(ILANET.ConstantInt value)
         {
             InitializeComponent();
+            constant.Text = value.Value.ToString();
         }
 
         public ILANET.ConstantInt InternalValue { get; set; }

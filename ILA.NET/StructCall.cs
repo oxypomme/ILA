@@ -34,7 +34,7 @@ namespace ILANET
         /// <summary>
         /// Type of the subvariable. read only.
         /// </summary>
-        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set => throw new Parser.Parser.ILAException("Name is not supported on a table call"); }
+        public override VarType Type { get => ((StructType)Struct.Type).Members[Name]; set { } }
 
         /// <summary>
         /// Generate ila code to for this element.

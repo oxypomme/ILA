@@ -19,9 +19,11 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class ConstantChar : UserControl, Linked
     {
-        public ConstantChar()
+        public ConstantChar(ILANET.ConstantChar value)
         {
             InitializeComponent();
+            InternalValue = value;
+            constant.Text = "'" + value.Value + "'";
         }
 
         public ILANET.ConstantChar InternalValue { get; set; }

@@ -18,6 +18,6 @@
             <TextBlock Text=")" FontFamily="Consolas" Foreground="OrangeRed" />
             <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
         </StackPanel>
-        <ilagui:InstructionContextMenu />
+        <!--<ilagui:InstructionContextMenu />-->
     </Grid>
 </UserControl>
