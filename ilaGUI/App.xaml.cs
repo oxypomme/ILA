@@ -725,21 +725,28 @@ namespace ilaGUI
                     Editor.instructions.Children.Add(instru);
                 }
                 {
-                    var instru = new Editor.ModuleCall();
-                    instru.moduleName.Text = "fonction";
-                    instru.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function)));
-                    instru.parameters.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
-                    Editor.instructions.Children.Add(instru);
-                }
-                {
                     var instru = new Editor.DoWhile();
-                    instru.instructions.Children.Add(instru.EndInsturction);
+                    instru.instructions.Children.Add(instru.EndInstruction);
                     instru.condGrid.Children.Add(new TextBlock() { Text = "faux", Foreground = DarkFontColor });
                     Editor.instructions.Children.Add(instru);
                 }
                 {
+                    var instru = new Editor.If();
+                    instru.conditionGrid.Children.Add(new TextBlock() { Text = "faux", Foreground = DarkFontColor });
+                    Editor.instructions.Children.Add(instru);
+                    {
+                        var instru2 = new Editor.ModuleCall();
+                        instru2.moduleName.Text = "fonction";
+                        instru2.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function)));
+                        instru2.parameters.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                        instru.ifInstructions.Children.Add(instru2);
+                    }
+                    instru.ifInstructions.Children.Add(instru.EndInstruction);
+                    instru.elseInstructions.Children.Add(instru.ElseEndInstruction);
+                }
+                {
                     var instru = new Editor.For();
-                    instru.instructions.Children.Add(instru.EndInsturction);
+                    instru.instructions.Children.Add(instru.EndInstruction);
                     instru.varGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
                     instru.infGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
                     instru.supGrid.Children.Add(new TextBlock() { Text = "10", Foreground = new SolidColorBrush(Colors.Plum) });
@@ -751,7 +758,7 @@ namespace ilaGUI
                     loop.conditionGrid.Children.Add(new TextBlock() { Text = "vrai", Foreground = DarkFontColor });
                     var assign = new Editor.Assign();
                     loop.instructions.Children.Add(assign);
-                    loop.instructions.Children.Add(loop.EndInsturction);
+                    loop.instructions.Children.Add(loop.EndInstruction);
                     var grid1 = assign.leftGrid;
                     var grid2 = assign.rightGrid;
                     grid1.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
@@ -760,7 +767,7 @@ namespace ilaGUI
                 }
 
                 ////////////////////////
-                Editor.instructions.Children.Add(Editor.EndInsturction);
+                Editor.instructions.Children.Add(Editor.EndInstruction);
             }
             else
             {

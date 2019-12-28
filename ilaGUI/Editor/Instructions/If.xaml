@@ -6,30 +6,36 @@
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal" Name="ifGrid">
-            <TextBlock Text="si" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="conditionGrid" Margin="0,0,10,0" />
-            <TextBlock Text="alors" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
+    <Grid>
+        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <Grid x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" />
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
+                <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/if.png" />
+                <TextBlock Text="si " Foreground="LightBlue" FontFamily="Consolas" />
+                <Grid Name="conditionGrid" />
+                <TextBlock Text=" alors" Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+            </StackPanel>
+            <Grid>
+                <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,0,0,0" />
+                <StackPanel Margin="25,0,0,0" Name="ifInstructions" />
+            </Grid>
+            <StackPanel x:Name="elifs" />
+            <StackPanel x:Name="else">
+                <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
+                    <TextBlock Margin="21,0,0,0" Text="sinon" Foreground="LightBlue" FontFamily="Consolas" />
+                    <TextBlock Margin="5,0,0,0" x:Name="elseComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                </StackPanel>
+                <Grid>
+                    <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,0,0,0" />
+                    <StackPanel Margin="25,0,0,0" x:Name="elseInstructions" />
+                </Grid>
+            </StackPanel>
+            <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
+                <TextBlock Margin="21,0,0,0" Text="fsi" Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="ifThenGrid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="ifInstrGrid" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="elseIfGrid">
-            <TextBlock Text="sinonsi" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="elseIfconditionGrid" Margin="0,0,10,0" />
-            <TextBlock Text="alors" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="elseifThenGrid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="elseifInstrGrid" />
-        </StackPanel>
-        <TextBlock Text="sinon" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
-        <StackPanel Orientation="Horizontal" Name="elseThenGrid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="elseInstrGrid" />
-        </StackPanel>
-        <TextBlock Text="fsi" TextDecorations="Underline" Foreground="White" />
-    </StackPanel>
+    </Grid>
 </UserControl>

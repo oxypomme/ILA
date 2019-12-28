@@ -24,10 +24,10 @@ namespace ilaGUI
         {
             InitializeComponent();
             instructions.Tag = this;
-            EndInsturction = new Editor.DummyInstruction() { Height = 150 };
+            EndInstruction = new Editor.DummyInstruction() { Height = 150 };
         }
 
-        public Editor.DummyInstruction EndInsturction { get; set; }
+        public Editor.DummyInstruction EndInstruction { get; set; }
 
         public IDropableInstruction[] Instructions => throw new NotImplementedException();
 

@@ -6,7 +6,7 @@ namespace ilaGUI
 {
     public interface InstructionBlock
     {
-        Editor.DummyInstruction EndInsturction { get; }
+        Editor.DummyInstruction EndInstruction { get; }
         IDropableInstruction[] Instructions { get; }
 
         void UpdateInternalInstructions();

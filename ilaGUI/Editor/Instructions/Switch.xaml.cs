@@ -22,12 +22,12 @@ namespace ilaGUI.Editor
         public Switch()
         {
             InitializeComponent();
-            EndInsturction = new DummyInstruction();
+            EndInstruction = new DummyInstruction();
             //Tag
         }
 
         public bool DropVisual { set => throw new NotImplementedException(); }
-        public DummyInstruction EndInsturction { get; set; }
+        public DummyInstruction EndInstruction { get; set; }
         public IDropableInstruction[] Instructions => throw new NotImplementedException();
         public ILANET.Switch InternalInstruction { get; set; }
         IBaseObject Linked.Link => InternalInstruction;

@@ -23,9 +23,9 @@ namespace ilaGUI.Editor
         public For()
         {
             InitializeComponent();
-            EndInsturction = new DummyInstruction();
+            EndInstruction = new DummyInstruction();
             icon.Source = App.MakeDarkTheme(icon.Source as BitmapSource);
-            EndInsturction = new DummyInstruction();
+            EndInstruction = new DummyInstruction();
             instructions.Tag = this;
         }
 
@@ -40,7 +40,7 @@ namespace ilaGUI.Editor
             }
         }
 
-        public DummyInstruction EndInsturction { get; set; }
+        public DummyInstruction EndInstruction { get; set; }
         public IDropableInstruction[] Instructions => instructions.Children.Cast<IDropableInstruction>().ToArray();
         public ILANET.For InternalInstruction { get; set; }
         IBaseObject Linked.Link => InternalInstruction;
