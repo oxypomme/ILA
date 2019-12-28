@@ -21,6 +21,13 @@ namespace ilaGUI
         public InstructionContextMenu()
         {
             InitializeComponent();
+
+            (undoMenu.Icon as Image).Source = App.MakeDarkTheme((undoMenu.Icon as Image).Source as BitmapSource);
+            (redoMenu.Icon as Image).Source = App.MakeDarkTheme((redoMenu.Icon as Image).Source as BitmapSource);
+            (cutMenu.Icon as Image).Source = App.MakeDarkTheme((cutMenu.Icon as Image).Source as BitmapSource);
+            (copyMenu.Icon as Image).Source = App.MakeDarkTheme((copyMenu.Icon as Image).Source as BitmapSource);
+            (editMenu.Icon as Image).Source = App.MakeDarkTheme((editMenu.Icon as Image).Source as BitmapSource);
+            (deleteMenu.Icon as Image).Source = App.MakeDarkTheme((deleteMenu.Icon as Image).Source as BitmapSource);
         }
     }
 }
