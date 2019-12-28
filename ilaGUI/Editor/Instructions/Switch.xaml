@@ -40,6 +40,6 @@
                 <TextBlock Text="fcas" FontFamily="Consolas" Foreground="LightBlue" />
             </StackPanel>
         </StackPanel>
-        <ilagui:InstructionContextMenu />
+        <!--<ilagui:InstructionContextMenu />-->
     </Grid>
 </UserControl>
