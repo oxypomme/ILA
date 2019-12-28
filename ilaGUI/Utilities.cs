@@ -234,7 +234,7 @@ namespace ilaGUI
             else if (value is Operator)
                 return new Editor.Operator(value as Operator);
             else if (value is StructCall)
-                return new Editor.StructCall();
+                return new Editor.StructCall(value as StructCall);
             else if (value is TableCall)
                 return new Editor.TableCall();
             else if (value is Variable)
