@@ -136,6 +136,10 @@
     <None Remove="logo\small\logo64.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="InstructionDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
     <Resource Include="fonts\FiraCode\FiraCode-Bold.ttf" />
     <Resource Include="fonts\FiraCode\FiraCode-Light.ttf" />
     <Resource Include="fonts\FiraCode\FiraCode-Medium.ttf" />

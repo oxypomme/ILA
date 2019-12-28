@@ -7,7 +7,15 @@
              xmlns:ilagui="clr-namespace:ilaGUI"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="InstructionDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid ContextMenu="{StaticResource InstructionContextMenu}">
         <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,20,0,20" />
         <Grid x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" />
@@ -24,6 +32,5 @@
                 <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
             </StackPanel>
         </StackPanel>
-        <!--<ilagui:InstructionContextMenu />-->
     </Grid>
 </UserControl>
