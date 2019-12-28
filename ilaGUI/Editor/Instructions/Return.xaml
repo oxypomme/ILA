@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI.Editor"
+             xmlns:ilagui="clr-namespace:ilaGUI"
              mc:Ignorable="d"
              Background="#01000000"
              d:DesignHeight="450" d:DesignWidth="800" MouseMove="UserControl_MouseMove" DragEnter="UserControl_DragEnter" DragLeave="UserControl_DragLeave" DragOver="UserControl_DragOver" Drop="UserControl_Drop">
@@ -16,5 +17,6 @@
             <Grid Name="valueGrid" />
             <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
         </StackPanel>
+        <ilagui:InstructionContextMenu />
     </Grid>
 </UserControl>
