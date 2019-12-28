@@ -132,6 +132,7 @@ namespace ilaGUI.Editor
         {
             public TextBlock comment;
             public Grid condition;
+            public DummyInstruction EndInstruction;
             public StackPanel instructions;
         }
     }

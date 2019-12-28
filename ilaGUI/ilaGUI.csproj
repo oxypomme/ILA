@@ -118,6 +118,7 @@
     <None Remove="icons\png\stop.png" />
     <None Remove="icons\png\string.png" />
     <None Remove="icons\png\struct.png" />
+    <None Remove="icons\png\switch.png" />
     <None Remove="icons\png\table.png" />
     <None Remove="icons\png\undo.png" />
     <None Remove="icons\png\UserFunction_16x.png" />
@@ -337,6 +338,7 @@
     <Resource Include="icons\png\struct.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="icons\png\switch.png" />
     <Resource Include="icons\png\table.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

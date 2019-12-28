@@ -731,6 +731,12 @@ namespace ilaGUI
                     Editor.instructions.Children.Add(instru);
                 }
                 {
+                    var instru = new Editor.Switch();
+                    instru.defaultInstructions.Children.Add(instru.EndInstruction);
+                    instru.varGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                    Editor.instructions.Children.Add(instru);
+                }
+                {
                     var instru = new Editor.If();
                     instru.conditionGrid.Children.Add(new TextBlock() { Text = "faux", Foreground = DarkFontColor });
                     Editor.instructions.Children.Add(instru);

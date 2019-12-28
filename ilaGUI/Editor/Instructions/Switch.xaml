@@ -7,37 +7,39 @@
              xmlns:ilagui="clr-namespace:ilaGUI"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal" Name="caseGrid">
-            <TextBlock Text="cas" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="varGrid" Margin="0,0,10,0" />
-            <TextBlock Text="parmi" TextDecorations="Underline" Margin="0,0,10,0" Foreground="White" />
+    <Grid>
+        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,20,0,20" />
+        <Grid x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" />
+        <StackPanel Orientation="Vertical">
+            <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
+                <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/icons/png/switch.png" />
+                <TextBlock Text="cas " Foreground="LightBlue" FontFamily="Consolas" />
+                <Grid Name="varGrid" />
+                <TextBlock Text=" parmi" Foreground="LightBlue" FontFamily="Consolas" />
+            </StackPanel>
+            <StackPanel Margin="25,0,0,0" x:Name="casesList">
+                <!--<Grid>
+                    <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="5,16,0,0" />
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Name="conditionValue" />
+                        <TextBlock Text=" : " Foreground="OrangeRed" FontFamily="Consolas" />
+                        <StackPanel Name="instructions" />
+                    </StackPanel>
+                </Grid>-->
+            </StackPanel>
+            <Grid x:Name="defaultGrid">
+                <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="30,16,0,0" />
+                <DockPanel Margin="25,0,0,0">
+                    <TextBlock Text="defaut" Foreground="LightBlue" FontFamily="Consolas" />
+                    <TextBlock Text=" : " Foreground="OrangeRed" FontFamily="Consolas" />
+                    <StackPanel Name="defaultInstructions" />
+                </DockPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal" Margin="21,0,0,0">
+                <TextBlock Text="fcas" FontFamily="Consolas" Foreground="LightBlue" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="case1Grid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="val1Grid" Margin="0,0,10,0" />
-            <TextBlock Text=":" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="instr1Grid" Margin="0,0,10,0" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="case2Grid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="val2Grid" Margin="0,0,10,0" />
-            <TextBlock Text=":" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="instr2Grid" Margin="0,0,10,0" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="casenGrid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <Grid Name="valnGrid" Margin="0,0,10,0" />
-            <TextBlock Text=":" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="instrnGrid" Margin="0,0,10,0" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="caseDefGrid">
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="5,0,5,0" Background="White" />
-            <TextBlock Text="defaut" Margin="0,0,10,0" Foreground="White" />
-            <TextBlock Text=":" Margin="0,0,10,0" Foreground="White" />
-            <Grid Name="instrDefGrid" Margin="0,0,10,0" />
-        </StackPanel>
-        <TextBlock Text="fcas" TextDecorations="Underline" Foreground="White" />
         <ilagui:InstructionContextMenu />
-    </StackPanel>
+    </Grid>
 </UserControl>
