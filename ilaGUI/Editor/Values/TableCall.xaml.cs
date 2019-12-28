@@ -19,9 +19,22 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class TableCall : UserControl, Linked
     {
-        public TableCall()
+        public TableCall(ILANET.TableCall value)
         {
             InitializeComponent();
+            InternalValue = value;
+            variable.Children.Add(App.GetValueControl(value.Table));
+            for (int i = 0; i < value.DimensionsIndex.Count; i++)
+            {
+                parameters.Children.Add(App.GetValueControl(value.DimensionsIndex[i]));
+                if (i < value.DimensionsIndex.Count - 1)
+                    parameters.Children.Add(new TextBlock()
+                    {
+                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        FontFamily = linkToFont.FontFamily,
+                        Text = ", "
+                    });
+            }
         }
 
         public ILANET.TableCall InternalValue { get; set; }
