@@ -711,9 +711,24 @@ namespace ilaGUI
                     Editor.instructions.Children.Add(instru);
                 }
                 {
+                    var instru = new Editor.Return();
+                    instru.comment.Text = "//commentaire";
+                    instru.fctName.Text = "nom_fct";
+                    instru.valueGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                    Editor.instructions.Children.Add(instru);
+                }
+                {
                     var instru = new Editor.ModuleCall();
                     instru.moduleName.Text = "module";
+                    instru.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.module)));
                     instru.parameters.Children.Add(new TextBlock() { Text = "8", Foreground = new SolidColorBrush(Colors.OrangeRed) });
+                    Editor.instructions.Children.Add(instru);
+                }
+                {
+                    var instru = new Editor.ModuleCall();
+                    instru.moduleName.Text = "fonction";
+                    instru.icon.Source = MakeDarkTheme(GetBitmapImage(new MemoryStream(ilaGUI.Properties.Resources.function)));
+                    instru.parameters.Children.Add(new TextBlock() { Text = "variable", Foreground = new SolidColorBrush(Colors.OrangeRed) });
                     Editor.instructions.Children.Add(instru);
                 }
                 {

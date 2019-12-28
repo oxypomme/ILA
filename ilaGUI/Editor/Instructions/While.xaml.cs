@@ -23,6 +23,7 @@ namespace ilaGUI.Editor
         public While()
         {
             InitializeComponent();
+            icon.Source = App.MakeDarkTheme(icon.Source as BitmapSource);
             EndInsturction = new DummyInstruction();
             instructions.Tag = this;
         }

@@ -22,6 +22,7 @@ namespace ilaGUI.Editor
         public Comment()
         {
             InitializeComponent();
+            icon.Source = App.MakeDarkTheme(icon.Source as BitmapSource);
         }
 
         public bool DropVisual

@@ -5,7 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ilaGUI.Editor"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Orientation="Horizontal">
-    </StackPanel>
+             Background="#01000000"
+             d:DesignHeight="450" d:DesignWidth="800" MouseMove="UserControl_MouseMove" DragEnter="UserControl_DragEnter" DragLeave="UserControl_DragLeave" DragOver="UserControl_DragOver" Drop="UserControl_Drop">
+    <Grid>
+        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <StackPanel Orientation="Horizontal">
+            <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/return.png" />
+            <TextBlock Foreground="LightGreen" FontFamily="Consolas" Name="fctName" />
+            <TextBlock Text="&lt;-" Margin="5,0" FontFamily="Consolas" Foreground="OrangeRed" />
+            <Grid Name="valueGrid" />
+            <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+        </StackPanel>
+    </Grid>
 </UserControl>
