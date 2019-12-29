@@ -78,6 +78,23 @@ namespace ilaGUI.Editor
 
         public void UpdateInternalInstructions()
         {
+            InternalInstruction.IfInstructions.Clear();
+            InternalInstruction.ElseInstructions.Clear();
+            foreach (var item in InternalInstruction.Elif)
+                item.Item2.Clear();
+            foreach (var item in ifInstructions.Children)
+                if (!(item is DummyInstruction))
+                    InternalInstruction.IfInstructions.Add((item as Linked).Link as Instruction);
+            foreach (var item in elseInstructions.Children)
+                if (!(item is DummyInstruction))
+                    InternalInstruction.ElseInstructions.Add((item as Linked).Link as Instruction);
+            for (int i = 0; i < elifList.Count; i++)
+            {
+                var elif = elifList[i];
+                foreach (var item in elif.instructions.Children)
+                    if (!(item is DummyInstruction))
+                        InternalInstruction.Elif[i].Item2.Add((item as Linked).Link as Instruction);
+            }
         }
 
         public void UpdateVisuals()

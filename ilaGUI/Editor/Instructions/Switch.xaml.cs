@@ -74,6 +74,19 @@ namespace ilaGUI.Editor
 
         public void UpdateInternalInstructions()
         {
+            InternalInstruction.Default.Clear();
+            foreach (var item in InternalInstruction.Cases)
+                item.Item2.Clear();
+            foreach (var item in defaultInstructions.Children)
+                if (!(item is DummyInstruction))
+                    InternalInstruction.Default.Add((item as Linked).Link as Instruction);
+            for (int i = 0; i < Cases.Count; i++)
+            {
+                var ca = Cases[i];
+                foreach (var item in ca.instructions.Children)
+                    if (!(item is DummyInstruction))
+                        InternalInstruction.Cases[i].Item2.Add((item as Linked).Link as Instruction);
+            }
         }
 
         public void UpdateVisuals()
