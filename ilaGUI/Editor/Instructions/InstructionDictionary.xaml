@@ -34,11 +34,5 @@
                 <Image Source="/icons/png/redo.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <Separator />
-        <MenuItem Name="insertAssign" Header="Rétablir">
-            <MenuItem.Icon>
-                <Image Source="/icons/png/redo.png" />
-            </MenuItem.Icon>
-        </MenuItem>
     </ContextMenu>
 </ResourceDictionary>
