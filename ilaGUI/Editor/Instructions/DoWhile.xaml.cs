@@ -58,6 +58,9 @@ namespace ilaGUI.Editor
 
         public void UpdateInternalInstructions()
         {
+            instructions.Children.Clear();
+            foreach (var item in InternalInstruction.Instructions)
+                instructions.Children.Add(App.GetInstructionControl(item));
         }
 
         public void UpdateVisuals()
