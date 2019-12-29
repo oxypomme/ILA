@@ -13,26 +13,31 @@
                 <Image Source="/icons/png/remove.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <Separator />
         <MenuItem Name="copyMenu" Header="Copier" InputGestureText="Ctrl+C">
             <MenuItem.Icon>
-                <Image Source="icons/png/copy.png" />
+                <Image Source="/icons/png/copy.png" />
             </MenuItem.Icon>
         </MenuItem>
         <MenuItem Name="cutMenu" Header="Couper" InputGestureText="Ctrl+X">
             <MenuItem.Icon>
-                <Image Source="icons/png/cut.png" />
+                <Image Source="/icons/png/cut.png" />
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
         <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z">
             <MenuItem.Icon>
-                <Image Source="icons/png/undo.png" />
+                <Image Source="/icons/png/undo.png" />
             </MenuItem.Icon>
         </MenuItem>
         <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y">
             <MenuItem.Icon>
-                <Image Source="icons/png/redo.png" />
+                <Image Source="/icons/png/redo.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator />
+        <MenuItem Name="insertAssign" Header="Rétablir">
+            <MenuItem.Icon>
+                <Image Source="/icons/png/redo.png" />
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>
