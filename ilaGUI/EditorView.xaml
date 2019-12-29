@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:ilaGUI"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Editor/Instructions/InstructionDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,2,0,0">
             <Image x:Name="exeIcon" Stretch="None" VerticalAlignment="Bottom" Margin="10,0" />
@@ -19,7 +26,7 @@
         </StackPanel>
         <Separator VerticalAlignment="Top" Margin="0,20,0,0" />
         <ScrollViewer Margin="0, 22, 0, 0" VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="5,0,0,0" x:Name="instructions" AllowDrop="True" Drop="instructions_Drop" DragOver="instructions_DragOver" />
+            <StackPanel Margin="5,0,0,0" x:Name="instructions" AllowDrop="True" Drop="instructions_Drop" DragOver="instructions_DragOver" ContextMenu="{StaticResource EmptyInstructionContextMenu}" />
         </ScrollViewer>
     </Grid>
 </UserControl>
