@@ -62,7 +62,8 @@ namespace ilaGUI.Editor
         {
             InternalInstruction.Instructions.Clear();
             foreach (var item in instructions.Children)
-                InternalInstruction.Instructions.Add((item as Linked).Link as Instruction);
+                if (!(item is DummyInstruction))
+                    InternalInstruction.Instructions.Add((item as Linked).Link as Instruction);
         }
 
         public void UpdateVisuals()
