@@ -1,4 +1,5 @@
 ﻿using ILANET;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -385,6 +386,40 @@ namespace ilaGUI
                 }
             }
             return bitmap;
+        }
+
+        public static void OpenFile()
+        {
+            string path = CurrentWorkspace != null ? CurrentWorkspace : "";
+            var dialog = new OpenFileDialog
+            {
+                FileName = path,
+                Title = "Ouvrir un fichier",
+                Filter = "Algo|*.ila|Tous les fichiers|*.*",
+                Multiselect = true
+            };
+            if (dialog.ShowDialog().Value)
+            {
+                foreach (var item in dialog.FileNames)
+                {
+                    var workspace = item;
+                    using var sr = new StreamReader(item);
+                    Program prog;
+                    try
+                    {
+                        prog = ILANET.Parser.Parser.Parse(sr.ReadToEnd());
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        return;
+                    }
+                    ILAcodes.Add(prog);
+                    Workspaces.Add(workspace);
+                    UpdateTabs();
+                    Tabs.SelectedIndex = Tabs.Items.Count - 1;
+                }
+            }
         }
 
         public static bool recursiveSearch(IEnumerable<IDropableInstruction> array, IDropableInstruction toFind)

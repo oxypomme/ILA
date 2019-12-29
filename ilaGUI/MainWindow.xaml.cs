@@ -192,6 +192,7 @@ namespace ilaGUI
 
         private void openBtn_Click(object sender, RoutedEventArgs e)
         {
+            App.OpenFile();
         }
 
         private void quitBtn_Click(object sender, RoutedEventArgs e)
