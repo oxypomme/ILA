@@ -84,8 +84,12 @@ namespace ilaGUI
                 App.CurrentExecutable = App.CurrentILAcode;
                 App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
                 closeAlgo.IsEnabled = true;
+                saveMenu.IsEnabled = true;
+                saveAsMenu.IsEnabled = true;
                 closeAlgoMenu.IsEnabled = true;
                 addFieldMenu.IsEnabled = true;
+                buildMenu.IsEnabled = true;
+                startMenu.IsEnabled = true;
                 App.UpdateTree();
                 App.UpdateEditor();
                 App.UpdateLexic();
@@ -93,8 +97,12 @@ namespace ilaGUI
             else
             {
                 closeAlgo.IsEnabled = false;
+                saveMenu.IsEnabled = false;
+                saveAsMenu.IsEnabled = false;
                 closeAlgoMenu.IsEnabled = false;
                 addFieldMenu.IsEnabled = false;
+                buildMenu.IsEnabled = false;
+                startMenu.IsEnabled = false;
                 App.CurrentILAcode = null;
                 App.CurrentExecutable = null;
                 App.CurrentWorkspace = null;
