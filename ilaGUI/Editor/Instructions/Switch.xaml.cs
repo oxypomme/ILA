@@ -78,6 +78,18 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
+            comment.Text = InternalInstruction.Comment;
+            endComment.Text = InternalInstruction.EndComment;
+            for (int i = 0; i < InternalInstruction.Cases.Count; i++)
+            {
+                Cases[i].conditions.Children.Clear();
+                for (int j = 0; j < InternalInstruction.Cases[i].Item1.Count; j++)
+                {
+                    Cases[i].conditions.Children.Add(App.GetValueControl(InternalInstruction.Cases[i].Item1[j]));
+                    if (j < InternalInstruction.Cases[i].Item1.Count - 1)
+                        Cases[i].conditions.Children.Add(new TextBlock { Text = ", ", Foreground = new SolidColorBrush(Colors.OrangeRed), FontFamily = comment.FontFamily });
+                }
+            }
         }
 
         private void hitbox_DragEnter(object sender, DragEventArgs e)
@@ -116,6 +128,16 @@ namespace ilaGUI.Editor
                 (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
         }
 
+        private void hitbox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            hitbox.Background = new SolidColorBrush(Color.FromArgb(64, 255, 255, 255));
+        }
+
+        private void hitbox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            hitbox.Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
+        }
+
         private void hitbox_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -127,7 +149,7 @@ namespace ilaGUI.Editor
 
         public struct Case
         {
-            public Grid conditionValue;
+            public StackPanel conditions;
             public DummyInstruction EndInstruction;
             public StackPanel instructions;
         }

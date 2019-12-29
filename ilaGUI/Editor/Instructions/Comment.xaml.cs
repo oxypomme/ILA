@@ -90,6 +90,16 @@ namespace ilaGUI.Editor
                 (this as IDropableInstruction).DropRecieved(App.Dragged as IDropableInstruction);
         }
 
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Background = new SolidColorBrush(Color.FromArgb(64, 255, 255, 255));
+        }
+
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Background = new SolidColorBrush(Color.FromArgb(1, 0, 0, 0));
+        }
+
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

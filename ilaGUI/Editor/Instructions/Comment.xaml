@@ -7,6 +7,7 @@
              xmlns:ilagui="clr-namespace:ilaGUI"
              mc:Ignorable="d"
              Background="#01000000"
+             MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave"
              d:DesignHeight="450" d:DesignWidth="800" DragEnter="UserControl_DragEnter" DragLeave="UserControl_DragLeave" DragOver="UserControl_DragOver" Drop="UserControl_Drop" MouseMove="UserControl_MouseMove">
     <UserControl.Resources>
         <ResourceDictionary>
