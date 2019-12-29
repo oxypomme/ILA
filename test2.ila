@@ -69,12 +69,12 @@ tab: t_tab
 */
 fonction fnc_carre(nombre:entier):entier
 {
-    cas nombre parmi
-    {
+   cas nombre parmi
+    
         1:fnc_carre <-nombre * nombre
         2,3:fnc_carre <-nombre * nombre + 1
         defaut: fnc_carre <-nombre * nombre
-    }
+    fcas
      fnc_carre <-nombre * nombre
 }
 //le mode par défaut est ENTRÉE,
