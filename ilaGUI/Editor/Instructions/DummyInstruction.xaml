@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="#01000000" ContextMenu="{StaticResource InstructionContextMenu}">
+    <Grid x:Name="hitbox" Background="#01000000" ContextMenu="{StaticResource InstructionContextMenu}">
         <Separator Name="insertHere" Visibility="Collapsed" Margin="0" Background="OrangeRed" VerticalAlignment="Top" />
     </Grid>
 </UserControl>
