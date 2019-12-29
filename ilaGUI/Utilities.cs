@@ -137,8 +137,64 @@ namespace ilaGUI
             }
             else if (instru is If)
             {
+                var block = instru as If;
                 var res = new Editor.If();
+                var font = res.comment.FontFamily;
                 res.InternalInstruction = instru as If;
+                foreach (var item in block.IfInstructions)
+                    res.ifInstructions.Children.Add(GetInstructionControl(item));
+                res.ifInstructions.Children.Add(res.EndInstruction);
+                foreach (var item in block.ElseInstructions)
+                    res.elseInstructions.Children.Add(GetInstructionControl(item));
+                res.elseInstructions.Children.Add(res.ElseEndInstruction);
+                foreach (var elif in block.Elif)
+                {
+                    var elifStruct = new Editor.If.Elif();
+                    elifStruct.EndInstruction = new Editor.DummyInstruction();
+                    var firstLine = new StackPanel { Orientation = Orientation.Horizontal, IsHitTestVisible = false };
+                    firstLine.Children.Add(new TextBlock
+                    {
+                        Text = "sinon si ",
+                        Foreground = new SolidColorBrush(Colors.LightBlue),
+                        FontFamily = font,
+                        Margin = new System.Windows.Thickness(21, 0, 0, 0)
+                    });
+                    elifStruct.condition = new ContentControl();
+                    firstLine.Children.Add(elifStruct.condition);
+                    firstLine.Children.Add(new TextBlock
+                    {
+                        Text = " alors",
+                        Foreground = new SolidColorBrush(Colors.LightBlue),
+                        FontFamily = font
+                    });
+                    elifStruct.comment = new TextBlock
+                    {
+                        Foreground = new SolidColorBrush(Colors.DarkGray),
+                        FontFamily = font,
+                        FontStyle = System.Windows.FontStyles.Italic,
+                        Margin = new System.Windows.Thickness(5, 0, 0, 0)
+                    };
+                    firstLine.Children.Add(elifStruct.comment);
+                    var mainFlow = new StackPanel();
+                    mainFlow.Children.Add(firstLine);
+                    var instruGrid = new Grid();
+                    mainFlow.Children.Add(instruGrid);
+                    instruGrid.Children.Add(new System.Windows.Shapes.Rectangle
+                    {
+                        Width = 1,
+                        Fill = new SolidColorBrush(Colors.Gray),
+                        HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                        Margin = new System.Windows.Thickness(12, 0, 0, 0)
+                    });
+                    elifStruct.instructions = new StackPanel { Margin = new System.Windows.Thickness(25, 0, 0, 0) };
+                    elifStruct.instructions.Tag = res;
+                    foreach (var item in elif.Item2)
+                        elifStruct.instructions.Children.Add(GetInstructionControl(item));
+                    elifStruct.instructions.Children.Add(elifStruct.EndInstruction);
+                    instruGrid.Children.Add(elifStruct.instructions);
+                    res.elifs.Children.Add(mainFlow);
+                    res.elifList.Add(elifStruct);
+                }
                 res.UpdateVisuals();
                 return res;
             }
