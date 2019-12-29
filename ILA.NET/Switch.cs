@@ -43,7 +43,7 @@ namespace ILANET
         public string EndComment { get; set; }
 
         /// <summary>
-        /// Comment after the default
+        /// Value to analyze
         /// </summary>
         public IValue Value { get; set; }
 
