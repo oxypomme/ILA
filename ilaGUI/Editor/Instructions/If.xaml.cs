@@ -84,12 +84,11 @@ namespace ilaGUI.Editor
         {
             comment.Text = InternalInstruction.Comment;
             endComment.Text = InternalInstruction.EndComment;
-            conditionGrid.Children.Clear();
+            conditionHolder.Content = App.GetValueControl(InternalInstruction.IfCondition);
             for (int i = 0; i < InternalInstruction.Elif.Count; i++)
             {
                 elifList[i].comment.Text = InternalInstruction.ElifComments[i];
-                elifList[i].condition.Children.Clear();
-                elifList[i].condition.Children.Add(App.GetValueControl(InternalInstruction.Elif[i].Item1));
+                elifList[i].condition.Content = App.GetValueControl(InternalInstruction.Elif[i].Item1);
             }
         }
 
@@ -151,7 +150,7 @@ namespace ilaGUI.Editor
         public struct Elif
         {
             public TextBlock comment;
-            public Grid condition;
+            public ContentControl condition;
             public DummyInstruction EndInstruction;
             public StackPanel instructions;
         }

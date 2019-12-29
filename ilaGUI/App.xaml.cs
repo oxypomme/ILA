@@ -699,8 +699,8 @@ namespace ilaGUI
                 //dummy additions, for tests
                 {
                     var assign = new Editor.Assign();
-                    assign.leftGrid.Children.Add(new TextBlock() { Text = "left", Foreground = DarkFontColor });
-                    assign.rightGrid.Children.Add(GetValueControl(new StructCall()
+                    assign.leftHolder.Content = new TextBlock() { Text = "left", Foreground = DarkFontColor };
+                    assign.rightHolder.Content = GetValueControl(new StructCall()
                     {
                         Name = "member",
                         Struct = new TableCall()
@@ -722,7 +722,7 @@ namespace ilaGUI
                                 Name = "big_var"
                             }
                         }
-                    }));
+                    });
                     Editor.instructions.Children.Add(assign);
                 }
                 {
@@ -734,7 +734,7 @@ namespace ilaGUI
                     var instru = new Editor.Return();
                     instru.comment.Text = "//commentaire";
                     instru.fctName.Text = "nom_fct";
-                    instru.valueGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                    instru.valueHolder.Content = new TextBlock() { Text = "variable", Foreground = DarkFontColor };
                     Editor.instructions.Children.Add(instru);
                 }
                 {
@@ -747,7 +747,7 @@ namespace ilaGUI
                 {
                     var instru = new Editor.DoWhile();
                     instru.instructions.Children.Add(instru.EndInstruction);
-                    instru.condGrid.Children.Add(GetValueControl(new Operator()
+                    instru.condHolder.Content = GetValueControl(new Operator()
                     {
                         OperatorType = Operator.Tag.DIFFRENT,
                         Left = new ConstantBool() { Value = true },
@@ -756,18 +756,18 @@ namespace ilaGUI
                             OperatorType = Operator.Tag.NOT,
                             Right = new ConstantBool() { Value = true }
                         }
-                    }));
+                    });
                     Editor.instructions.Children.Add(instru);
                 }
                 {
                     var instru = new Editor.Switch();
                     instru.defaultInstructions.Children.Add(instru.EndInstruction);
-                    instru.varGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
+                    instru.varHolder.Content = new TextBlock() { Text = "variable", Foreground = DarkFontColor };
                     Editor.instructions.Children.Add(instru);
                 }
                 {
                     var instru = new Editor.If();
-                    instru.conditionGrid.Children.Add(new TextBlock() { Text = "faux", Foreground = DarkFontColor });
+                    instru.conditionHolder.Content = new TextBlock() { Text = "faux", Foreground = DarkFontColor };
                     Editor.instructions.Children.Add(instru);
                     {
                         var instru2 = new Editor.ModuleCall();
@@ -782,26 +782,26 @@ namespace ilaGUI
                 {
                     var instru = new Editor.For();
                     instru.instructions.Children.Add(instru.EndInstruction);
-                    instru.varGrid.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
-                    instru.infGrid.Children.Add(GetValueControl(new FunctionCall()
+                    instru.varHolder.Content = new TextBlock() { Text = "variable", Foreground = DarkFontColor };
+                    instru.infHolder.Content = GetValueControl(new FunctionCall()
                     {
                         Args = new List<IValue>() { new ConstantInt() { Value = 5 }, new ConstantString() { Value = "arg" } },
                         CalledFunction = new Function() { Name = "test_function" }
-                    }));
-                    instru.supGrid.Children.Add(new TextBlock() { Text = "10", Foreground = new SolidColorBrush(Colors.Plum) });
-                    instru.stepGrid.Children.Add(new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) });
+                    });
+                    instru.supHolder.Content = new TextBlock() { Text = "10", Foreground = new SolidColorBrush(Colors.Plum) };
+                    instru.stepHolder.Content = new TextBlock() { Text = "1", Foreground = new SolidColorBrush(Colors.Plum) };
                     Editor.instructions.Children.Add(instru);
                 }
                 {
                     var loop = new Editor.While();
-                    loop.conditionGrid.Children.Add(new TextBlock() { Text = "vrai", Foreground = DarkFontColor });
+                    loop.conditionHolder.Content = new TextBlock() { Text = "vrai", Foreground = DarkFontColor };
                     var assign = new Editor.Assign();
                     loop.instructions.Children.Add(assign);
                     loop.instructions.Children.Add(loop.EndInstruction);
-                    var grid1 = assign.leftGrid;
-                    var grid2 = assign.rightGrid;
-                    grid1.Children.Add(new TextBlock() { Text = "variable", Foreground = DarkFontColor });
-                    grid2.Children.Add(new TextBlock() { Text = "value", Foreground = DarkFontColor });
+                    var grid1 = assign.leftHolder;
+                    var grid2 = assign.rightHolder;
+                    grid1.Content = new TextBlock() { Text = "variable", Foreground = DarkFontColor };
+                    grid2.Content = new TextBlock() { Text = "value", Foreground = DarkFontColor };
                     Editor.instructions.Children.Add(loop);
                 }
 
