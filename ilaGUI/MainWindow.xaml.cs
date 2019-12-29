@@ -26,6 +26,7 @@ namespace ilaGUI
 
             (newAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((newAlgoMenu.Icon as Image).Source as BitmapSource);
             (openAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((openAlgoMenu.Icon as Image).Source as BitmapSource);
+            (addFieldMenu.Icon as Image).Source = App.MakeDarkTheme((addFieldMenu.Icon as Image).Source as BitmapSource);
             (closeAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((closeAlgoMenu.Icon as Image).Source as BitmapSource);
             (saveMenu.Icon as Image).Source = App.MakeDarkTheme((saveMenu.Icon as Image).Source as BitmapSource);
             (undoMenu.Icon as Image).Source = App.MakeDarkTheme((undoMenu.Icon as Image).Source as BitmapSource);
