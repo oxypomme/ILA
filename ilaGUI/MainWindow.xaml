@@ -32,7 +32,10 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Name="addVarMenu" Header="Ajouter" Style="{StaticResource SubMenuItemBaseStyle}" IsEnabled="False">
+                    <MenuItem Name="addFieldMenu" Header="Ajouter" Style="{StaticResource SubMenuItemBaseStyle}" IsEnabled="False">
+                        <MenuItem.Icon>
+                            <Image Source="icons/png/add.png" />
+                        </MenuItem.Icon>
                         <MenuItem Header="Module">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create module.png" />
@@ -41,52 +44,6 @@
                         <MenuItem Header="Fonction">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create function.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Structure">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create struct.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Énumération">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create enum.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Tableau">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create table.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <Separator />
-                        <MenuItem Header="Entier">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create int.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Réel">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create float.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Caractère">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create char.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Booléen">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create bool.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Chaîne">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create string.png" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="Variable Personnalisé">
-                            <MenuItem.Icon>
-                                <Image Source="icons/png/create cutom.png" />
                             </MenuItem.Icon>
                         </MenuItem>
                     </MenuItem>
