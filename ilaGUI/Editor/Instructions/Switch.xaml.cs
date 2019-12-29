@@ -93,6 +93,7 @@ namespace ilaGUI.Editor
         {
             comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
+            varHolder.Content = App.GetValueControl(InternalInstruction.Value);
             for (int i = 0; i < InternalInstruction.Cases.Count; i++)
             {
                 Cases[i].conditions.Children.Clear();

@@ -140,7 +140,7 @@ namespace ilaGUI
                 var block = instru as If;
                 var res = new Editor.If();
                 var font = res.comment.FontFamily;
-                res.InternalInstruction = instru as If;
+                res.InternalInstruction = block;
                 foreach (var item in block.IfInstructions)
                     res.ifInstructions.Children.Add(GetInstructionControl(item));
                 res.ifInstructions.Children.Add(res.EndInstruction);
@@ -214,8 +214,48 @@ namespace ilaGUI
             }
             else if (instru is Switch)
             {
+                var block = instru as Switch;
                 var res = new Editor.Switch();
-                res.InternalInstruction = instru as Switch;
+                var font = res.comment.FontFamily;
+                res.InternalInstruction = block;
+                foreach (var item in block.Default)
+                    res.defaultInstructions.Children.Add(GetInstructionControl(item));
+                res.defaultInstructions.Children.Add(res.EndInstruction);
+                foreach (var cas in block.Cases)
+                {
+                    var caseStruct = new Editor.Switch.Case();
+                    caseStruct.EndInstruction = new Editor.DummyInstruction();
+                    var firstLine = new DockPanel { Margin = new System.Windows.Thickness(25, 0, 0, 0) };
+                    caseStruct.conditions = new StackPanel
+                    {
+                        IsHitTestVisible = false,
+                        Orientation = Orientation.Horizontal
+                    };
+                    firstLine.Children.Add(caseStruct.conditions);
+                    firstLine.Children.Add(new TextBlock
+                    {
+                        Text = " : ",
+                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        FontFamily = font
+                    });
+                    caseStruct.instructions = new StackPanel();
+                    firstLine.Children.Add(caseStruct.instructions);
+                    var mainGrid = new Grid();
+                    mainGrid.Children.Add(firstLine);
+                    mainGrid.Children.Add(new System.Windows.Shapes.Rectangle
+                    {
+                        Width = 1,
+                        Fill = new SolidColorBrush(Colors.Gray),
+                        HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                        Margin = new System.Windows.Thickness(30, 16, 0, 0)
+                    });
+                    caseStruct.instructions.Tag = res;
+                    foreach (var item in cas.Item2)
+                        caseStruct.instructions.Children.Add(GetInstructionControl(item));
+                    caseStruct.instructions.Children.Add(caseStruct.EndInstruction);
+                    res.casesList.Children.Add(mainGrid);
+                    res.Cases.Add(caseStruct);
+                }
                 res.UpdateVisuals();
                 return res;
             }
