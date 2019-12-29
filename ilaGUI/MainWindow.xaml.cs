@@ -207,6 +207,7 @@ namespace ilaGUI
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
+            App.SaveCurrent();
         }
 
         private void settingsBtn_Click(object sender, RoutedEventArgs e)

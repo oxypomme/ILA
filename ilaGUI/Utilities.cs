@@ -538,6 +538,30 @@ namespace ilaGUI
             return false;
         }
 
+        public static void SaveCurrent()
+        {
+            string path = CurrentWorkspace != null ? CurrentWorkspace : "";
+            if (path == "")
+            {
+                var dialog = new SaveFileDialog
+                {
+                    Title = "Sauvegarder un fichier",
+                    Filter = "Algo|*.ila|Tous les fichiers|*.*"
+                };
+                if (dialog.ShowDialog().Value)
+                {
+                    var workspace = dialog.FileName;
+                    using var sr = new StreamWriter(workspace);
+                    CurrentILAcode.WriteILA(sr);
+                }
+            }
+            else
+            {
+                using var sr = new StreamWriter(CurrentWorkspace);
+                CurrentILAcode.WriteILA(sr);
+            }
+        }
+
         public static System.Drawing.Color ToClassic(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B);
 
         public static Color ToWPF(System.Drawing.Color c) => Color.FromArgb(c.A, c.R, c.G, c.B);
