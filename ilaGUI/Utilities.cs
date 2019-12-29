@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -212,9 +213,9 @@ namespace ilaGUI
                 res.UpdateVisuals();
                 return res;
             }
-            else if (instru is Switch)
+            else if (instru is ILANET.Switch)
             {
-                var block = instru as Switch;
+                var block = instru as ILANET.Switch;
                 var res = new Editor.Switch();
                 var font = res.comment.FontFamily;
                 res.InternalInstruction = block;
@@ -538,8 +539,48 @@ namespace ilaGUI
             return false;
         }
 
-        public static void SaveCurrent()
+        public static void RunCurrentILA()
         {
+            if (CurrentILAcode == null)
+                Console.WriteLine("Veuillez selectionner un programme à lancer");
+            else if (Executing != null)
+                Console.WriteLine("Veuillez fermer le programme actuel");
+            else if (SaveCurrent())
+            {
+                var proc = new Process();
+                proc.Exited += (sender, e) =>
+                {
+                    Console.LockConsoles();
+                    Executing = null;
+                    MainDialog.Dispatcher.Invoke(() => MainDialog.stopBtn.IsEnabled = false);
+                    Console.WriteLine("Programme terminé");
+                };
+                proc.StartInfo = new ProcessStartInfo
+                {
+                    Arguments = CurrentWorkspace,
+                    FileName = "ila.exe",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    CreateNoWindow = false
+                };
+                proc.EnableRaisingEvents = true;
+                proc.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
+                proc.ErrorDataReceived += (sender, e) => Console.WriteLine(e.Data);
+                Executing = proc;
+                proc.Start();
+                MainDialog.stopBtn.IsEnabled = true;
+                proc.BeginOutputReadLine();
+                Console.RuntimeInput = proc.StandardInput;
+                Console.UnlockConsoles();
+            }
+        }
+
+        public static bool SaveCurrent()
+        {
+            if (CurrentILAcode == null)
+                return false;
             string path = CurrentWorkspace != null ? CurrentWorkspace : "";
             if (path == "")
             {
@@ -550,15 +591,19 @@ namespace ilaGUI
                 };
                 if (dialog.ShowDialog().Value)
                 {
-                    var workspace = dialog.FileName;
-                    using var sr = new StreamWriter(workspace);
+                    CurrentWorkspace = dialog.FileName;
+                    using var sr = new StreamWriter(CurrentWorkspace);
                     CurrentILAcode.WriteILA(sr);
+                    return true;
                 }
+                else
+                    return false;
             }
             else
             {
                 using var sr = new StreamWriter(CurrentWorkspace);
                 CurrentILAcode.WriteILA(sr);
+                return true;
             }
         }
 

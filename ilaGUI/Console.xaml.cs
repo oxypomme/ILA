@@ -29,6 +29,18 @@ namespace ilaGUI
             (newConsole.Content as Image).Source = App.MakeDarkTheme((newConsole.Content as Image).Source as BitmapSource);
             ActiveConsoles.Add(this);
             inputTB.IsEnabled = ConsolesUnlocked;
+            if (ConsolesUnlocked)
+            {
+                upperSeparator.Background = new SolidColorBrush(Colors.DodgerBlue);
+                lowerSeparator.Background = new SolidColorBrush(Colors.DodgerBlue);
+                inputSign.Foreground = new SolidColorBrush(Colors.DodgerBlue);
+            }
+            else
+            {
+                upperSeparator.Background = new SolidColorBrush(Colors.Gray);
+                lowerSeparator.Background = new SolidColorBrush(Colors.Gray);
+                inputSign.Foreground = new SolidColorBrush(Colors.White);
+            }
         }
 
         public static TextWriter RuntimeInput { get; set; }
@@ -41,14 +53,26 @@ namespace ilaGUI
         {
             ConsolesUnlocked = false;
             foreach (var item in ActiveConsoles)
-                item.inputTB.IsEnabled = false;
+                item.Dispatcher.Invoke(() =>
+                {
+                    item.inputTB.IsEnabled = false;
+                    item.upperSeparator.Background = new SolidColorBrush(Colors.Gray);
+                    item.lowerSeparator.Background = new SolidColorBrush(Colors.Gray);
+                    item.inputSign.Foreground = new SolidColorBrush(Colors.White);
+                });
         }
 
         public static void UnlockConsoles()
         {
             ConsolesUnlocked = true;
             foreach (var item in ActiveConsoles)
-                item.inputTB.IsEnabled = true;
+                item.Dispatcher.Invoke(() =>
+                {
+                    item.inputTB.IsEnabled = true;
+                    item.upperSeparator.Background = new SolidColorBrush(Colors.DodgerBlue);
+                    item.lowerSeparator.Background = new SolidColorBrush(Colors.DodgerBlue);
+                    item.inputSign.Foreground = new SolidColorBrush(Colors.DodgerBlue);
+                });
         }
 
         public static void Write(object obj)
@@ -65,19 +89,10 @@ namespace ilaGUI
 
         public static void WriteLine() => StandardOutput.WriteLine();
 
-        internal void CmdOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
+        private static void ScrollConsolesDown()
         {
-            // Collect the sort command output.
-            if (!string.IsNullOrEmpty(outLine.Data))
-            {
-                // Add the text to the collected output.
-                Dispatcher.Invoke(() =>
-                {
-                    StandardOutput.Write(Environment.NewLine + $"{outLine.Data}");
-                    StandardOutput.Flush();
-                    consoleScroll.ScrollToVerticalOffset(double.MaxValue);
-                });
-            }
+            foreach (var item in ActiveConsoles)
+                item.Dispatcher.Invoke(() => item.consoleScroll.ScrollToVerticalOffset(double.MaxValue));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -99,14 +114,15 @@ namespace ilaGUI
             switch (e.Key)
             {
                 case Key.Return:
-                    RuntimeInput.Write(inputTB.Text);
+                    RuntimeInput.WriteLine(inputTB.Text);
+                    RuntimeInput.Flush();
                     StandardOutput.WriteLine(inputTB.Text);
                     inputTB.Text = "";
                     break;
             }
         }
 
-        public class ConsoleStream : Stream
+        public class ConsoleOutputStream : Stream
         {
             public override bool CanRead => false;
 
@@ -141,7 +157,8 @@ namespace ilaGUI
             {
                 var content = Encoding.UTF8.GetString(buffer, offset, count);
                 foreach (var item in ActiveConsoles)
-                    item.outputTB.Text += content;
+                    item.Dispatcher.Invoke(() => item.outputTB.Text += content);
+                ScrollConsolesDown();
             }
         }
     }

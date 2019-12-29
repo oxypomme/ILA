@@ -23,7 +23,8 @@ namespace ilaGUI
         public MainWindow()
         {
             InitializeComponent();
-
+            runBtn.IsEnabled = false;
+            stopBtn.IsEnabled = false;
             (newAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((newAlgoMenu.Icon as Image).Source as BitmapSource);
             (openAlgoMenu.Icon as Image).Source = App.MakeDarkTheme((openAlgoMenu.Icon as Image).Source as BitmapSource);
             (addFieldMenu.Icon as Image).Source = App.MakeDarkTheme((addFieldMenu.Icon as Image).Source as BitmapSource);
@@ -83,6 +84,7 @@ namespace ilaGUI
                 App.CurrentILAcode = App.ILAcodes[algoList.SelectedIndex];
                 App.CurrentExecutable = App.CurrentILAcode;
                 App.CurrentWorkspace = App.Workspaces[algoList.SelectedIndex];
+                runBtn.IsEnabled = true;
                 closeAlgo.IsEnabled = true;
                 saveMenu.IsEnabled = true;
                 saveAsMenu.IsEnabled = true;
@@ -96,6 +98,7 @@ namespace ilaGUI
             }
             else
             {
+                runBtn.IsEnabled = false;
                 closeAlgo.IsEnabled = false;
                 saveMenu.IsEnabled = false;
                 saveAsMenu.IsEnabled = false;
@@ -202,7 +205,7 @@ namespace ilaGUI
 
         private void runBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Console.WriteInConsole($"ila {App.WorkspacePath + App.CurrentILAcode.Name}.ila");
+            App.RunCurrentILA();
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
@@ -216,10 +219,16 @@ namespace ilaGUI
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)
         {
+            App.Executing?.Kill();
         }
 
         private void wikiBtn_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            App.Executing?.Kill();
         }
     }
 }

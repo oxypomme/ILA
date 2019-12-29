@@ -29,9 +29,10 @@ namespace ilaGUI
         {
             ILAcodes = new List<Program>();
             CurrentILAcode = null;
+            Executing = null;
             Workspaces = new List<string>();
             Console.ActiveConsoles = new List<Console>();
-            Console.StandardOutput = new StreamWriter(new Console.ConsoleStream(), Encoding.UTF8) { AutoFlush = true };
+            Console.StandardOutput = new StreamWriter(new Console.ConsoleOutputStream(), Encoding.UTF8) { AutoFlush = true };
 #if RELEASE
             System.Console.SetOut(Console.StandardOutput);
             System.Console.SetError(Console.StandardOutput);
@@ -39,11 +40,12 @@ namespace ilaGUI
             CurrentExecutable = CurrentILAcode;
         }
 
+        public static System.Diagnostics.Process Executing { get; set; }
         public static IExecutable CurrentExecutable { get; set; }
         public static Program CurrentILAcode { get; set; }
         public static string CurrentWorkspace { get; set; }
         public static List<Program> ILAcodes { get; set; }
-        public static Window MainDialog { get; set; }
+        public static MainWindow MainDialog { get; set; }
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
         public static EditorView Editor { get; set; }
