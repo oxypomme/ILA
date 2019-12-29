@@ -57,7 +57,7 @@ namespace ilaGUI.Editor
             else
                 icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.module)));
             moduleName.Text = InternalInstruction.CalledModule.Name;
-            comment.Text = "//" + InternalInstruction.Comment;
+            comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             parameters.Children.Clear();
             for (int i = 0; i < InternalInstruction.Args.Count; i++)
             {

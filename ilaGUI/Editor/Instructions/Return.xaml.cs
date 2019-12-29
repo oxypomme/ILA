@@ -53,7 +53,7 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            comment.Text = InternalInstruction.Comment;
+            comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             fctName.Text = InternalInstruction.Function.Name;
             valueHolder.Content = App.GetValueControl(InternalInstruction.Value);
         }

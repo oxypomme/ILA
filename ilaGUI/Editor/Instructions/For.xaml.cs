@@ -73,8 +73,8 @@ namespace ilaGUI.Editor
             infHolder.Content = App.GetValueControl(InternalInstruction.Start);
             supHolder.Content = App.GetValueControl(InternalInstruction.End);
             stepHolder.Content = App.GetValueControl(InternalInstruction.Step);
-            comment.Text = InternalInstruction.Comment;
-            endComment.Text = InternalInstruction.EndComment;
+            comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
+            endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
         }
 
         private void hitbox_DragEnter(object sender, DragEventArgs e)

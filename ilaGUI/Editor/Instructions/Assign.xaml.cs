@@ -52,7 +52,7 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            comment.Text = "//" + InternalInstruction.Comment;
+            comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             leftHolder.Content = App.GetValueControl(InternalInstruction.Left);
             rightHolder.Content = App.GetValueControl(InternalInstruction.Right);
         }

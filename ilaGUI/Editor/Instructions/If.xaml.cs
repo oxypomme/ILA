@@ -99,12 +99,12 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            comment.Text = InternalInstruction.Comment;
-            endComment.Text = InternalInstruction.EndComment;
+            comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
+            endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
             conditionHolder.Content = App.GetValueControl(InternalInstruction.IfCondition);
             for (int i = 0; i < InternalInstruction.Elif.Count; i++)
             {
-                elifList[i].comment.Text = InternalInstruction.ElifComments[i];
+                elifList[i].comment.Text = string.IsNullOrEmpty(InternalInstruction.ElifComments[i]) ? "" : "//" + InternalInstruction.ElifComments[i];
                 elifList[i].condition.Content = App.GetValueControl(InternalInstruction.Elif[i].Item1);
             }
         }

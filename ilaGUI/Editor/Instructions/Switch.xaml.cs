@@ -91,8 +91,8 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            comment.Text = InternalInstruction.Comment;
-            endComment.Text = InternalInstruction.EndComment;
+            comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
+            endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
             for (int i = 0; i < InternalInstruction.Cases.Count; i++)
             {
                 Cases[i].conditions.Children.Clear();

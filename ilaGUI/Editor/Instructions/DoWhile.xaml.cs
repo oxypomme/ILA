@@ -66,8 +66,9 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            comment.Text = InternalInstruction.Comment;
-            endComment.Text = InternalInstruction.EndComment;
+            comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
+            endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
+            condHolder.Content = App.GetValueControl(InternalInstruction.Condition);
         }
 
         private void hitbox_DragEnter(object sender, DragEventArgs e)
