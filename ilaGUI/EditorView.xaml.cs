@@ -33,7 +33,22 @@ namespace ilaGUI
 
         public void UpdateInternalInstructions()
         {
-            //instructions.Children stuff
+            var instrus = new List<ILANET.Instruction>();
+            {
+                if (App.CurrentExecutable is ILANET.Program prog)
+                    prog.Instructions.Clear();
+                else if (App.CurrentExecutable is ILANET.Module mod)
+                    mod.Instructions.Clear();
+            }
+            foreach (var item in instructions.Children)
+                if (!(item is Editor.DummyInstruction))
+                    instrus.Add((item as Linked).Link as ILANET.Instruction);
+            {
+                if (App.CurrentExecutable is ILANET.Program prog)
+                    prog.Instructions = instrus;
+                else if (App.CurrentExecutable is ILANET.Module mod)
+                    mod.Instructions = instrus;
+            }
         }
 
         private void instructions_DragOver(object sender, DragEventArgs e)
