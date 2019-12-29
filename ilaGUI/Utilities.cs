@@ -96,6 +96,80 @@ namespace ilaGUI
             return (hue, satur, lum);
         }
 
+        public static Control GetInstructionControl(Instruction instru)
+        {
+            if (instru is Assign)
+            {
+                var res = new Editor.Assign();
+                res.InternalInstruction = instru as Assign;
+                res.UpdateVisuals();
+                return res;
+            }
+            else if (instru is Comment)
+            {
+                var res = new Editor.Comment();
+                res.InternalComment = instru as Comment;
+                res.UpdateVisuals();
+                return res;
+            }
+            else if (instru is DoWhile)
+            {
+                var res = new Editor.DoWhile();
+                res.InternalInstruction = instru as DoWhile;
+                res.UpdateVisuals();
+                res.UpdateInternalInstructions();
+                return res;
+            }
+            else if (instru is For)
+            {
+                var res = new Editor.For();
+                res.InternalInstruction = instru as For;
+                res.UpdateVisuals();
+                res.UpdateInternalInstructions();
+                return res;
+            }
+            else if (instru is If)
+            {
+                var res = new Editor.If();
+                res.InternalInstruction = instru as If;
+                res.UpdateVisuals();
+                res.UpdateInternalInstructions();
+                return res;
+            }
+            else if (instru is ModuleCall)
+            {
+                var res = new Editor.ModuleCall();
+                res.InternalInstruction = instru as ModuleCall;
+                res.UpdateVisuals();
+                return res;
+            }
+            else if (instru is Return)
+            {
+                var res = new Editor.Return();
+                res.InternalInstruction = instru as Return;
+                res.UpdateVisuals();
+                return res;
+            }
+            else if (instru is Switch)
+            {
+                var res = new Editor.Switch();
+                res.InternalInstruction = instru as Switch;
+                res.UpdateVisuals();
+                res.UpdateInternalInstructions();
+                return res;
+            }
+            else if (instru is While)
+            {
+                var res = new Editor.While();
+                res.InternalInstruction = instru as While;
+                res.UpdateVisuals();
+                res.UpdateInternalInstructions();
+                return res;
+            }
+            else
+                return null;
+        }
+
         public static Color GetRGB((double, double, double) c) => GetRGB(255, c.Item1, c.Item2, c.Item3);
 
         public static Color GetRGB(byte alpha, double hue, double satur, double lum)
