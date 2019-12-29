@@ -24,8 +24,8 @@ namespace ilaGUI.Editor
             InitializeComponent();
             InternalValue = value;
             if (value.Left != null)
-                leftOperand.Children.Add(App.GetValueControl(value.Left));
-            rightOperand.Children.Add(App.GetValueControl(value.Right));
+                leftOperand.Content = App.GetValueControl(value.Left);
+            rightOperand.Content = App.GetValueControl(value.Right);
             switch (value.OperatorType)
             {
                 case ILANET.Operator.Tag.MINUS:
