@@ -115,18 +115,24 @@ namespace ilaGUI
             }
             else if (instru is DoWhile)
             {
+                var loop = instru as DoWhile;
                 var res = new Editor.DoWhile();
-                res.InternalInstruction = instru as DoWhile;
+                res.InternalInstruction = loop;
+                foreach (var item in loop.Instructions)
+                    res.instructions.Children.Add(GetInstructionControl(item));
+                res.instructions.Children.Add(res.EndInstruction);
                 res.UpdateVisuals();
-                res.UpdateInternalInstructions();
                 return res;
             }
             else if (instru is For)
             {
+                var loop = instru as For;
                 var res = new Editor.For();
-                res.InternalInstruction = instru as For;
+                res.InternalInstruction = loop;
+                foreach (var item in loop.Instructions)
+                    res.instructions.Children.Add(GetInstructionControl(item));
+                res.instructions.Children.Add(res.EndInstruction);
                 res.UpdateVisuals();
-                res.UpdateInternalInstructions();
                 return res;
             }
             else if (instru is If)
@@ -134,7 +140,6 @@ namespace ilaGUI
                 var res = new Editor.If();
                 res.InternalInstruction = instru as If;
                 res.UpdateVisuals();
-                res.UpdateInternalInstructions();
                 return res;
             }
             else if (instru is ModuleCall)
@@ -156,15 +161,17 @@ namespace ilaGUI
                 var res = new Editor.Switch();
                 res.InternalInstruction = instru as Switch;
                 res.UpdateVisuals();
-                res.UpdateInternalInstructions();
                 return res;
             }
             else if (instru is While)
             {
+                var loop = instru as While;
                 var res = new Editor.While();
-                res.InternalInstruction = instru as While;
+                res.InternalInstruction = loop;
+                foreach (var item in loop.Instructions)
+                    res.instructions.Children.Add(GetInstructionControl(item));
+                res.instructions.Children.Add(res.EndInstruction);
                 res.UpdateVisuals();
-                res.UpdateInternalInstructions();
                 return res;
             }
             else

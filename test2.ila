@@ -36,16 +36,22 @@ tab: t_tab
      ecrire(tab[2])
      bou <- vrai
      variableStruct.variable1 <- 5
-     variableStruct.variable2 <-""une belle structure""
+     variableStruct.variable2 <-"une belle structure"
      resultat <-fnc_carre(nombre)
      modu_resultat(resultat, message, bou)
-     si message = ""yay"" alors
+     si message = "yay" alors
         pour i <-1 a 5 faire
              ecrire(message)
          fpour
         pour i <-5 a 1 pas 1 faire
              ecrire(message)
          fpour
+    sinon si message="test" alors
+    //stuff
+    sinon si message="test" alors
+    //stuff2
+    sinon
+    //stuff3
     fsi
      /*
         sinon si vrai alors
