@@ -165,7 +165,7 @@
                 <ColumnDefinition Width="200" MinWidth="100" MaxWidth="350" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" x:Name="TreeGrid" />
+            <ContentControl Grid.Column="0" x:Name="TreeHolder" />
             <Border HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Grid.Column="0" BorderThickness="1" BorderBrush="White" Margin="-1,0,-1,-1" />
             <GridSplitter Grid.Column="0" VerticalAlignment="Stretch" Width="2" />
             <Grid Grid.Column="1">
@@ -173,15 +173,15 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="200" MinHeight="100" MaxHeight="300" />
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="1" x:Name="ConsoleGrid" />
+                <ContentControl Grid.Row="1" x:Name="ConsoleHolder" />
                 <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="2" VerticalAlignment="Top" />
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="200" MinWidth="150" MaxWidth="350" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" x:Name="EditorGrid" />
-                    <Grid Grid.Column="1" x:Name="LexicGrid" />
+                    <ContentControl Grid.Column="0" x:Name="EditorHolder" />
+                    <ContentControl Grid.Column="1" x:Name="LexicHolder" />
                     <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="2" />
                 </Grid>
             </Grid>

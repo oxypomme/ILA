@@ -52,11 +52,9 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            leftGrid.Children.Clear();
-            rightGrid.Children.Clear();
             comment.Text = "//" + InternalInstruction.Comment;
-            leftGrid.Children.Add(App.GetValueControl(InternalInstruction.Left));
-            rightGrid.Children.Add(App.GetValueControl(InternalInstruction.Right));
+            leftHolder.Content = App.GetValueControl(InternalInstruction.Left);
+            rightHolder.Content = App.GetValueControl(InternalInstruction.Right);
         }
 
         private void UserControl_DragEnter(object sender, DragEventArgs e)

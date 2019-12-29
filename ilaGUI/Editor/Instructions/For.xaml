@@ -23,13 +23,13 @@
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/for.png" />
                 <TextBlock Text="pour " FontFamily="Consolas" Foreground="LightBlue" />
-                <Grid Name="varGrid" />
+                <ContentControl Name="varHolder" />
                 <TextBlock Text=" &lt;- " FontFamily="Consolas" Foreground="OrangeRed" />
-                <Grid Name="infGrid" />
+                <ContentControl Name="infHolder" />
                 <TextBlock Text=" a " Foreground="LightBlue" FontFamily="Consolas" />
-                <Grid Name="supGrid" />
+                <ContentControl Name="supHolder" />
                 <TextBlock Text=" pas " Foreground="LightBlue" FontFamily="Consolas" />
-                <Grid Name="stepGrid" />
+                <ContentControl Name="stepHolder" />
                 <TextBlock Text=" faire" FontFamily="Consolas" Foreground="LightBlue" />
                 <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
             </StackPanel>

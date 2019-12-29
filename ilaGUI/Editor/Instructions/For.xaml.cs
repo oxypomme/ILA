@@ -65,14 +65,10 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            varGrid.Children.Clear();
-            infGrid.Children.Clear();
-            supGrid.Children.Clear();
-            stepGrid.Children.Clear();
-            varGrid.Children.Add(App.GetValueControl(InternalInstruction.Index));
-            infGrid.Children.Add(App.GetValueControl(InternalInstruction.Start));
-            supGrid.Children.Add(App.GetValueControl(InternalInstruction.End));
-            stepGrid.Children.Add(App.GetValueControl(InternalInstruction.Step));
+            varHolder.Content = App.GetValueControl(InternalInstruction.Index);
+            infHolder.Content = App.GetValueControl(InternalInstruction.Start);
+            supHolder.Content = App.GetValueControl(InternalInstruction.End);
+            stepHolder.Content = App.GetValueControl(InternalInstruction.Step);
             comment.Text = InternalInstruction.Comment;
             endComment.Text = InternalInstruction.EndComment;
         }

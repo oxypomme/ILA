@@ -55,8 +55,7 @@ namespace ilaGUI.Editor
         {
             comment.Text = InternalInstruction.Comment;
             fctName.Text = InternalInstruction.Function.Name;
-            valueGrid.Children.Clear();
-            valueGrid.Children.Add(App.GetValueControl(InternalInstruction.Value));
+            valueHolder.Content = App.GetValueControl(InternalInstruction.Value);
         }
 
         private void UserControl_DragEnter(object sender, DragEventArgs e)

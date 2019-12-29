@@ -23,7 +23,7 @@ namespace ilaGUI.Editor
         {
             InitializeComponent();
             InternalValue = value;
-            variable.Children.Add(App.GetValueControl(value.Table));
+            variable.Content = App.GetValueControl(value.Table);
             for (int i = 0; i < value.DimensionsIndex.Count; i++)
             {
                 parameters.Children.Add(App.GetValueControl(value.DimensionsIndex[i]));
