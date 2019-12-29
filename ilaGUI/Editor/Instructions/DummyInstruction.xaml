@@ -7,78 +7,14 @@
              xmlns:ilagui="clr-namespace:ilaGUI"
              mc:Ignorable="d"
              Height="20" d:DesignWidth="300" DragLeave="UserControl_DragLeave" DragEnter="UserControl_DragEnter" DragOver="UserControl_DragOver" Drop="UserControl_Drop">
-    <Grid x:Name="hitbox" Background="#01000000">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="InstructionDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="hitbox" Background="#01000000" ContextMenu="{StaticResource EmptyInstructionContextMenu}">
         <Separator Name="insertHere" Visibility="Collapsed" Margin="0" Background="OrangeRed" VerticalAlignment="Top" />
-        <Grid.ContextMenu>
-            <ContextMenu>
-                <MenuItem Name="addMenu" Header="Ajouter">
-                    <MenuItem.Icon>
-                        <Image Source="/icons/png/add.png" />
-                    </MenuItem.Icon>
-                    <MenuItem Name="insertAssign" Header="Ajouter une assignation">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create assign.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertComm" Header="Ajouter un commentaire">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create comment.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertDoWhile" Header="Ajouter un répéter">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create loop.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertFor" Header="Ajouter un POUR">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create loop.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertIf" Header="Ajouter un SI">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create if.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertModuleCall" Header="Ajouter un appel">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create module.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertSwitch" Header="Ajouter un CAS PARMI">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create if.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertWhile" Header="Ajouter un TANT QUE">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create loop.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="insertReturn" Header="Ajouter un retour de fonction" IsEnabled="False">
-                        <!--Uniquement disponible dans une fonction /!\-->
-                        <MenuItem.Icon>
-                            <Image Source="/icons/png/create return.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem Name="pasteMenu" Header="Coller" InputGestureText="Ctrl+V">
-                    <MenuItem.Icon>
-                        <Image Source="/icons/png/paste.png" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z">
-                    <MenuItem.Icon>
-                        <Image Source="/icons/png/undo.png" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y">
-                    <MenuItem.Icon>
-                        <Image Source="/icons/png/redo.png" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </ContextMenu>
-        </Grid.ContextMenu>
     </Grid>
 </UserControl>
