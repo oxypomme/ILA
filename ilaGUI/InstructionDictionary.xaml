@@ -25,12 +25,12 @@
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z">
+        <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False">
             <MenuItem.Icon>
                 <Image Source="icons/png/undo.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y">
+        <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False">
             <MenuItem.Icon>
                 <Image Source="icons/png/redo.png" />
             </MenuItem.Icon>
