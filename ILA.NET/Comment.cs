@@ -39,7 +39,7 @@ namespace ILANET
         /// <param name="textWriter">TextWriter to write in.</param>
         public void WriteILA(TextWriter textWriter)
         {
-            if (Message.Length > 0)
+            if (!string.IsNullOrEmpty(Message))
             {
                 Program.GenerateIndent(textWriter);
                 if (MultiLine)
