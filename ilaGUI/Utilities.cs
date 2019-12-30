@@ -545,7 +545,7 @@ namespace ilaGUI
                 };
                 proc.StartInfo = new ProcessStartInfo
                 {
-                    Arguments = CurrentWorkspace,
+                    Arguments = '"' + CurrentWorkspace + '"',
                     FileName = "ila.exe",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
