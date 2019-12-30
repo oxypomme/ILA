@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid ContextMenu="{StaticResource InstructionContextMenu}">
+    <Grid x:Name="mainGrid" ContextMenu="{StaticResource InstructionContextMenu}">
         <Separator Visibility="Collapsed" Name="insertHere" Background="OrangeRed" VerticalAlignment="Top" Margin="0" />
         <StackPanel Orientation="Horizontal">
             <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/comment.png" VerticalAlignment="Top" />
