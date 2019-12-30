@@ -130,6 +130,15 @@ namespace ILANET
                 }
             }
 
+            foreach (var declaration in Declarations)
+            {
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
+                declaration.WritePython(textWriter);
+                textWriter.Write(" = 0\n");
+                Program.Indent--;
+            }
+
             // write the instructions
             foreach (var instruction in Instructions)
             {
