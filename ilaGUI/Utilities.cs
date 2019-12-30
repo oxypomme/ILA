@@ -480,10 +480,11 @@ namespace ilaGUI
                     try
                     {
                         prog = ILANET.Parser.Parser.Parse(sr.ReadToEnd());
+                        Console.WriteLine("'" + prog.Name + "' chargé avec succès");
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                        MessageBox.Show(e.Message, "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
                     ILAcodes.Add(prog);
@@ -529,9 +530,9 @@ namespace ilaGUI
         public static void RunCurrentILA()
         {
             if (CurrentILAcode == null)
-                Console.WriteLine("Veuillez selectionner un programme à lancer");
+                MessageBox.Show("Veuillez selectionner un programme à lancer", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (Executing != null)
-                Console.WriteLine("Veuillez fermer le programme actuel");
+                MessageBox.Show("Veuillez fermer le programme actuel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (SaveCurrent())
             {
                 var proc = new Process();

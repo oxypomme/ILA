@@ -42,6 +42,29 @@ namespace ilaGUI
 
         public static MessageBoxResult Show(Window owner, string messageBoxText, string caption = "", MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.None, MessageBoxResult defaultResult = MessageBoxResult.None)
         {
+            if (App.Executing == null)
+                switch (icon)
+                {
+                    case MessageBoxImage.None:
+                        Console.WriteLine(messageBoxText);
+                        break;
+
+                    case MessageBoxImage.Error:
+                        Console.WriteLine("[ERREUR]:" + messageBoxText);
+                        break;
+
+                    case MessageBoxImage.Question:
+                        Console.WriteLine("[QUESTION]:" + messageBoxText);
+                        break;
+
+                    case MessageBoxImage.Exclamation:
+                        Console.WriteLine("[ATTENTION]:" + messageBoxText);
+                        break;
+
+                    case MessageBoxImage.Asterisk:
+                        Console.WriteLine("[INFO]:" + messageBoxText);
+                        break;
+                };
             var dialog = new MessageBox();
             //dialog.Owner = owner;
             dialog.Title = caption;
