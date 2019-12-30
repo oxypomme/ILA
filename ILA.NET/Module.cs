@@ -135,7 +135,6 @@ namespace ILANET
                 Program.Indent++;
                 Program.GenerateIndent(textWriter);
                 declaration.WritePython(textWriter);
-                textWriter.Write(" = 0\n");
                 Program.Indent--;
             }
 
