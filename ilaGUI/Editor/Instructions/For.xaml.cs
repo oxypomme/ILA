@@ -27,6 +27,7 @@ namespace ilaGUI.Editor
             icon.Source = App.MakeDarkTheme(icon.Source as BitmapSource);
             EndInstruction = new DummyInstruction();
             instructions.Tag = this;
+            hitbox.ContextMenu.Tag = this;
         }
 
         public bool DropVisual

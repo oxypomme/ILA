@@ -29,6 +29,7 @@ namespace ilaGUI.Editor
             elifList = new List<Elif>();
             ifInstructions.Tag = this;
             elseInstructions.Tag = this;
+            hitbox.ContextMenu.Tag = this;
         }
 
         public bool DropVisual

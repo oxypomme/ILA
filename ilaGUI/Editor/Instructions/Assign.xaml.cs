@@ -23,6 +23,7 @@ namespace ilaGUI.Editor
         {
             InitializeComponent();
             icon.Source = App.MakeDarkTheme(icon.Source as BitmapSource);
+            mainGrid.ContextMenu.Tag = this;
         }
 
         public bool DropVisual

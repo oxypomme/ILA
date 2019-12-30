@@ -23,6 +23,7 @@ namespace ilaGUI.Editor
         public ModuleCall()
         {
             InitializeComponent();
+            mainGrid.ContextMenu.Tag = this;
         }
 
         public bool DropVisual

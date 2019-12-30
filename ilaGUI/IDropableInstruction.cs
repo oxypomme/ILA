@@ -27,6 +27,16 @@ namespace ilaGUI
             this_parent.UpdateInternalInstructions();
         }
 
+        public void Remove()
+        {
+            var this_control = this as Control;
+            var this_pannel = this_control.Parent as StackPanel;
+            var this_parent = this_pannel.Tag as InstructionBlock;
+
+            this_pannel.Children.Remove(this_control);
+            this_parent.UpdateInternalInstructions();
+        }
+
         void UpdateVisuals();
     }
 }

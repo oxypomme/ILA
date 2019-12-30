@@ -28,6 +28,7 @@ namespace ilaGUI.Editor
             EndInstruction = new DummyInstruction();
             defaultInstructions.Tag = this;
             Cases = new List<Case>();
+            hitbox.ContextMenu.Tag = this;
         }
 
         public List<Case> Cases { get; set; }
