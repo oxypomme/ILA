@@ -18,10 +18,10 @@ namespace ilaGUI
             var this_parent = this_pannel.Tag as InstructionBlock;
             var other_control = droppedOnto as Control;
             var other_pannel = other_control.Parent as StackPanel;
-            var other_parent = other_pannel.Tag as InstructionBlock;
+            var other_parent = other_pannel?.Tag as InstructionBlock;
 
-            other_pannel.Children.Remove(other_control);
-            other_parent.UpdateInternalInstructions();
+            other_pannel?.Children.Remove(other_control);
+            other_parent?.UpdateInternalInstructions();
 
             this_pannel.Children.Insert(this_pannel.Children.IndexOf(this_control), other_control);
             this_parent.UpdateInternalInstructions();

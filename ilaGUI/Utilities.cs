@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -36,6 +37,20 @@ namespace ilaGUI
             var bitmap = new System.Drawing.Bitmap(outStream);
 
             return new System.Drawing.Bitmap(bitmap);
+        }
+
+        public static void CopyInstruction(IDropableInstruction toCopy)
+        {
+            var instru = (toCopy as Linked).Link as Instruction;
+            using var sw = new StringWriter();
+            instru.WriteILA(sw);
+            Clipboard.SetText(sw.ToString());
+        }
+
+        public static void CutInstruction(IDropableInstruction toCut)
+        {
+            CopyInstruction(toCut);
+            toCut.Remove();
         }
 
         public static BitmapImage GetBitmapImage(Stream stream)
@@ -476,6 +491,25 @@ namespace ilaGUI
                     UpdateTabs();
                     Tabs.SelectedIndex = Tabs.Items.Count - 1;
                 }
+            }
+        }
+
+        public static void PasteInstruction(IDropableInstruction insertHere)
+        {
+            var clipContent = Clipboard.GetText();
+            if (!string.IsNullOrWhiteSpace(clipContent))
+            {
+                try
+                {
+                    var instru = GetInstructionControl(ILANET.Parser.Parser.ParseInstruction(clipContent, CurrentILAcode, CurrentExecutable));
+                    insertHere.DropRecieved(instru as IDropableInstruction);
+                }
+                catch (ILANET.Parser.Parser.ILAException e)
+                {
+                    MessageBox.Show(e.Message, "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception)
+                { }
             }
         }
 

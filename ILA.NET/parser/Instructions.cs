@@ -21,6 +21,10 @@ namespace ILANET.Parser
 
         internal static Instruction ParseInstru(string code, Program mainProg, IExecutable currentBlock, ref int index)
         {
+            code = code.TrimStart();
+            if (code[^1] != '\n')
+                code += '\n';
+            code += "        ";
             if (code.Substring(index, 2) == "//")
             {
                 index += 2;
