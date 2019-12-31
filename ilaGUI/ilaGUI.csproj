@@ -136,6 +136,9 @@
     <None Remove="logo\small\logo64.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="fonts\FiraCode\FiraCode-Bold.ttf" />
     <Resource Include="fonts\FiraCode\FiraCode-Light.ttf" />
     <Resource Include="fonts\FiraCode\FiraCode-Medium.ttf" />
