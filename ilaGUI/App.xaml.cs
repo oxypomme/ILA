@@ -20,10 +20,11 @@ namespace ilaGUI
     /// </summary>
     public partial class App : Application
     {
+        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
         public static readonly Brush DarkBackground = new SolidColorBrush(DarkThemeColor);
         public static readonly Brush DarkFontColor = new SolidColorBrush(Colors.White);
-        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
-        public static Setting Settings { get; set; }
+
+        public static Setting Settings = new Setting();
 
         public App()
         {
