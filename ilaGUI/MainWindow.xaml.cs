@@ -26,10 +26,7 @@ namespace ilaGUI
             runBtn.IsEnabled = false;
             stopBtn.IsEnabled = false;
 
-            foreach (MenuItem headerItem in menuTop.Items)
-            {
-                App.DarkmodeUrLife(headerItem.Items);
-            }
+            App.DarkmodeUrLife(menuTop.Items);
 
             for (int i = 0; i < MainToolbar.Children.Count; i++)
             {
