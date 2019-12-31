@@ -574,6 +574,7 @@ namespace ilaGUI
                 proc.BeginOutputReadLine();
                 Console.RuntimeInput = proc.StandardInput;
                 Console.UnlockConsoles();
+                Console.ActiveConsoles.Last().inputTB.Focus();
             }
         }
 

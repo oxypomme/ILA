@@ -89,12 +89,6 @@ namespace ilaGUI
 
         public static void WriteLine() => StandardOutput.WriteLine();
 
-        private static void ScrollConsolesDown()
-        {
-            foreach (var item in ActiveConsoles)
-                item.Dispatcher.Invoke(() => item.consoleScroll.ScrollToVerticalOffset(double.MaxValue));
-        }
-
         public void Button_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new Window();
@@ -107,6 +101,13 @@ namespace ilaGUI
             dialog.Content = content;
             dialog.Closed += (sender, e) => ActiveConsoles.Remove(content);
             dialog.Show();
+            content.inputTB.Focus();
+        }
+
+        private static void ScrollConsolesDown()
+        {
+            foreach (var item in ActiveConsoles)
+                item.Dispatcher.Invoke(() => item.consoleScroll.ScrollToVerticalOffset(double.MaxValue));
         }
 
         private void inputTB_KeyDown(object sender, KeyEventArgs e)
