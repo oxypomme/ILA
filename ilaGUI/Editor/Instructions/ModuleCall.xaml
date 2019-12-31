@@ -21,7 +21,7 @@
         <Separator Visibility="Collapsed" Background="{StaticResource insertLineColor}" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <StackPanel Orientation="Horizontal">
             <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" />
-            <TextBlock Foreground="LightGreen" FontFamily="{DynamicResource firacode}" Name="moduleName" />
+            <TextBlock Foreground="{StaticResource moduleColor}" FontFamily="{DynamicResource firacode}" Name="moduleName" />
             <TextBlock Text="(" FontFamily="{DynamicResource firacode}" Foreground="{StaticResource symbolColor}" />
             <StackPanel Orientation="Horizontal" x:Name="parameters" />
             <TextBlock Text=")" FontFamily="{DynamicResource firacode}" Foreground="{StaticResource symbolColor}" />
