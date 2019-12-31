@@ -21,6 +21,30 @@ namespace ilaGUI.Editor
         public DummyInstruction()
         {
             InitializeComponent();
+
+            for (int i = 0; i < hitbox.ContextMenu.Items.Count; i++)
+            {
+                MenuItem menuItem;
+                try
+                {
+                    menuItem = (MenuItem)hitbox.ContextMenu.Items[i];
+                }
+                catch (InvalidCastException) { i++; menuItem = (MenuItem)hitbox.ContextMenu.Items[i]; }
+                if (menuItem.Icon != null)
+                    (menuItem.Icon as Image).Source = App.MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
+
+                for (int j = 0; j < menuItem.Items.Count; j++)
+                {
+                    MenuItem subMenuItem;
+                    try
+                    {
+                        subMenuItem = (MenuItem)menuItem.Items[j];
+                    }
+                    catch (InvalidCastException) { j++; subMenuItem = (MenuItem)menuItem.Items[j]; }
+                    if (subMenuItem.Icon != null)
+                        (subMenuItem.Icon as Image).Source = App.MakeDarkTheme((subMenuItem.Icon as Image).Source as BitmapSource);
+                }
+            }
         }
 
         public bool DropVisual

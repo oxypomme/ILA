@@ -26,9 +26,17 @@ namespace ilaGUI
             instructions.Tag = this;
             EndInstruction = new Editor.DummyInstruction() { Height = 150 };
 
-            //foreach (MenuItem menuItem in ContextMenu.Items)
+            // Useless for some reasons ?
+            //for (int i = 0; i < instructions.ContextMenu.Items.Count; i++)
             //{
-            //    (menuItem.Icon as Image).Source = App.MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
+            //    MenuItem menuItem;
+            //    try
+            //    {
+            //        menuItem = (MenuItem)instructions.ContextMenu.Items[i];
+            //    }
+            //    catch (InvalidCastException) { i++; menuItem = (MenuItem)instructions.ContextMenu.Items[i]; }
+            //    if (menuItem.Icon != null)
+            //        (menuItem.Icon as Image).Source = App.MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
             //}
         }
 
