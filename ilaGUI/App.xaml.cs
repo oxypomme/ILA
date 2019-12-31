@@ -56,11 +56,14 @@ namespace ilaGUI
             foreach (var item in headerItems)
             {
                 MenuItem menuItem = item as MenuItem;
-                if (menuItem != null && menuItem.Icon != null)
-                    (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
+                if (menuItem != null)
+                {
+                    if (menuItem.Icon != null)
+                        (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
 
-                if (menuItem.Items.Count > 0)
-                    DarkmodeUrMenus(menuItem.Items);
+                    if (menuItem.Items.Count > 0)
+                        DarkmodeUrMenus(menuItem.Items);
+                }
             }
         }
 
