@@ -4,7 +4,7 @@
                     xmlns:ilagui="clr-namespace:ilaGUI"
                     xmlns:local="clr-namespace:ilaGUI">
 
-    <ContextMenu x:Key="InstructionContextMenu" x:Shared="true">
+    <ContextMenu x:Key="InstructionContextMenu" x:Shared="true" Foreground="White">
         <MenuItem Name="editMenu" Header="Éditer" Click="editMenu_click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/edit.png" />
@@ -39,8 +39,8 @@
         </MenuItem>
     </ContextMenu>
 
-    <ContextMenu x:Key="EmptyInstructionContextMenu" x:Shared="true">
-        <MenuItem Name="addMenu" Header="Ajouter">
+    <ContextMenu x:Key="EmptyInstructionContextMenu" x:Shared="true" Foreground="White">
+        <MenuItem Name="addMenu" Header="Ajouter" Style="{StaticResource SubMenuItemBaseStyle}">
             <MenuItem.Icon>
                 <Image Source="/icons/png/add.png" />
             </MenuItem.Icon>

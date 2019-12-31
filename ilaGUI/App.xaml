@@ -240,8 +240,28 @@
             <Setter Property="FontFamily" Value="./fonts/Roboto/#Roboto Light" />
             <Setter Property="Foreground" Value="White" />
             <!-- TODO: Non hard-coded background color-->
-            <Setter Property="Background" Value="#413c42" />
+            <Setter Property="Background" Value="#2D2A2E" />
             <Setter Property="BorderBrush" Value="#413c42" />
+        </Style>
+
+        <Style TargetType="{x:Type ContextMenu}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+            <Setter Property="HasDropShadow" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContextMenu}">
+                        <!-- TODO: Non hard-coded background color-->
+                        <Border x:Name="Border" Background="#2D2A2E" BorderThickness="1">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="#413c42" />
+                            </Border.BorderBrush>
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Application.Resources>
 </Application>
