@@ -36,12 +36,12 @@
                         <MenuItem.Icon>
                             <Image Source="icons/png/add.png" />
                         </MenuItem.Icon>
-                        <MenuItem Header="Module">
+                        <MenuItem x:Name="addModMenu" Header="Module" Click="addModMenu_Click">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create module.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Fonction">
+                        <MenuItem x:Name="addFncMenu" Header="Fonction" Click="addFncMenu_Click">
                             <MenuItem.Icon>
                                 <Image Source="icons/png/create function.png" />
                             </MenuItem.Icon>

@@ -235,5 +235,15 @@ namespace ilaGUI
         {
             App.Redo();
         }
+
+        private void addModMenu_Click(object sender, RoutedEventArgs e)
+        {
+            TreePannel.newModBtn_Click(sender, e);
+        }
+
+        private void addFncMenu_Click(object sender, RoutedEventArgs e)
+        {
+            TreePannel.newFncBtn_Click(sender, e);
+        }
     }
 }
