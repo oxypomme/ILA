@@ -50,8 +50,6 @@ namespace ilaGUI
             App.UpdateTabs();
 
             InitShortcuts();
-
-            App.Settings(); //DEBUG
         }
 
         private Console Console { get; set; }

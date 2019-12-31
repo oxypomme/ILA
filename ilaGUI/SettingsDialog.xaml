@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ilaGUI"
         mc:Ignorable="d"
-        Title="Nouvel Algo" ResizeMode="NoResize" Background="Black" Icon="logo/logo.ico" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" SizeToContent="WidthAndHeight" KeyDown="Window_KeyDown">
+        Title="Nouvel Algo" ResizeMode="NoResize" Background="Black" Icon="logo/logo.ico" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" SizeToContent="WidthAndHeight">
     <Grid>
     </Grid>
 </Window>

@@ -31,6 +31,31 @@ namespace ilaGUI
         public string EditorFont { get; set; }
         public string CodeFont { get; set; }
 
+        public void GenConfig()
+        {
+            if (!File.Exists("settings.json"))
+            {
+                File.Create("settings.json").Close();
+
+                EditorFont = "Roboto";
+                CodeFont = "FiraCode";
+
+                UpdateConfigJSON();
+            }
+            else
+            {
+                Settings settings;
+                using (StreamReader file = new StreamReader("settings.json"))
+                {
+                    settings = JsonConvert.DeserializeObject<Settings>(file.ReadToEnd());
+                    file.Close();
+                }
+
+                EditorFont = settings.EditorFont;
+                CodeFont = settings.CodeFont;
+            }
+        }
+
         public void UpdateConfigJSON()
         {
             using StreamWriter file = new StreamWriter("settings.json");
