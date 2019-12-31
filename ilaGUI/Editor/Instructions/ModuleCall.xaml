@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid x:Name="mainGrid" ContextMenu="{StaticResource InstructionContextMenu}">
+    <Grid x:Name="mainGrid" Background="#01000000" ContextMenu="{StaticResource InstructionContextMenu}">
         <Separator Visibility="Collapsed" Background="{StaticResource insertLineColor}" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <StackPanel Orientation="Horizontal">
             <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" />
