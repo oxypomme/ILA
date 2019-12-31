@@ -11,15 +11,15 @@ namespace ilaGUI
     {
         private void deleteMenu_click(object sender, RoutedEventArgs e)
         {
-            if (GetCaller(sender) is Button)
+            if (GetCaller(sender).PlacementTarget is Button)
             {
-                var parent = ((GetCaller(sender) as Button).Parent as Grid).Parent;
+                var parent = ((GetCaller(sender).PlacementTarget as Button).Parent as Grid).Parent;
                 if (parent is TreeElement)
                     (parent as TreeElement).deleteButton_Click(sender, e);
             }
-            else if (GetCaller(sender) is Grid)
+            else if (GetCaller(sender).Tag is Grid)
             {
-                var parent = ((GetCaller(sender) as Grid).Parent as Grid).Parent;
+                var parent = ((sender as MenuItem).Parent as ContextMenu).Tag;
                 //if (parent is Assign)
                 //    (parent as Assign).deleteButton_Click(sender, e);
                 //else if (parent is Comment)
@@ -43,15 +43,15 @@ namespace ilaGUI
 
         private void editMenu_click(object sender, RoutedEventArgs e)
         {
-            if (GetCaller(sender) is Button)
+            if (GetCaller(sender).PlacementTarget is Button)
             {
-                var parent = ((GetCaller(sender) as Button).Parent as Grid).Parent;
+                var parent = ((GetCaller(sender).PlacementTarget as Button).Parent as Grid).Parent;
                 if (parent is TreeElement)
                     (parent as TreeElement).editButton_Click(sender, e);
             }
-            else if (GetCaller(sender) is Grid)
+            else if (GetCaller(sender).PlacementTarget is Grid)
             {
-                var parent = ((GetCaller(sender) as Grid).Parent as Grid).Parent;
+                var parent = ((sender as MenuItem).Parent as ContextMenu).Tag;
                 //if (parent is Assign)
                 //    (parent as Assign).editButton_Click(sender, e);
                 //else if (parent is Comment)
@@ -73,7 +73,7 @@ namespace ilaGUI
             }
         }
 
-        private UIElement GetCaller(object menuItem) => ((menuItem as MenuItem).Parent as ContextMenu).PlacementTarget;
+        private ContextMenu GetCaller(object menuItem) => (menuItem as MenuItem).Parent as ContextMenu;
 
         private void copyMenu_Click(object sender, RoutedEventArgs e)
         {
