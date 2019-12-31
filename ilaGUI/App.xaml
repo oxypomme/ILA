@@ -234,5 +234,13 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+
+        <Style x:Key="{x:Type ToolTip}" TargetType="ToolTip">
+            <Setter Property="FontFamily" Value="./fonts/Roboto/#Roboto Light" />
+            <Setter Property="Foreground" Value="White" />
+            <!-- TODO: Non hard-coded background color-->
+            <Setter Property="Background" Value="#413c42" />
+            <Setter Property="BorderBrush" Value="#413c42" />
+        </Style>
     </Application.Resources>
 </Application>
