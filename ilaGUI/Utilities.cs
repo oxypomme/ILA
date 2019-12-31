@@ -641,6 +641,20 @@ namespace ilaGUI
             }
         }
 
+        public static void NewFile()
+        {
+            var dialog = new NewFileDialog();
+            dialog.Owner = Current.MainWindow;
+            dialog.ShowDialog();
+        }
+
+        public static void OpenSettings()
+        {
+            var dialog = new SettingsDialog();
+            dialog.Owner = Current.MainWindow;
+            dialog.ShowDialog();
+        }
+
         public static System.Drawing.Color ToClassic(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B);
 
         public static Color ToWPF(System.Drawing.Color c) => Color.FromArgb(c.A, c.R, c.G, c.B);
