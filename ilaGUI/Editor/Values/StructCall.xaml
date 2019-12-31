@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Horizontal">
         <ContentControl x:Name="structValue" />
-        <TextBlock Text="." FontFamily="Consolas" Foreground="OrangeRed" />
-        <TextBlock x:Name="memberName" FontFamily="Consolas" Foreground="White" />
+        <TextBlock Text="." FontFamily="{DynamicResource firacode}" Foreground="OrangeRed" />
+        <TextBlock x:Name="memberName" FontFamily="{DynamicResource firacode}" Foreground="White" />
     </StackPanel>
 </UserControl>

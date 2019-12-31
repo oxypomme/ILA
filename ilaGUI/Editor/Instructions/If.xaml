@@ -21,10 +21,10 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/if.png" />
-                <TextBlock Text="si " Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Text="si " Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
                 <ContentControl Name="conditionHolder" />
-                <TextBlock Text=" alors" Foreground="LightBlue" FontFamily="Consolas" />
-                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Text=" alors" Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
             <Grid>
                 <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,0,0,0" />
@@ -33,8 +33,8 @@
             <StackPanel x:Name="elifs" />
             <StackPanel x:Name="else">
                 <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
-                    <TextBlock Margin="21,0,0,0" Text="sinon" Foreground="LightBlue" FontFamily="Consolas" />
-                    <TextBlock Margin="5,0,0,0" x:Name="elseComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                    <TextBlock Margin="21,0,0,0" Text="sinon" Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
+                    <TextBlock Margin="5,0,0,0" x:Name="elseComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
                 </StackPanel>
                 <Grid>
                     <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,0,0,0" />
@@ -42,8 +42,8 @@
                 </Grid>
             </StackPanel>
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
-                <TextBlock Margin="21,0,0,0" Text="fsi" Foreground="LightBlue" FontFamily="Consolas" />
-                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Margin="21,0,0,0" Text="fsi" Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
         </StackPanel>
     </Grid>

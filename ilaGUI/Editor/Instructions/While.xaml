@@ -21,15 +21,15 @@
         <StackPanel>
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/while.png" />
-                <TextBlock FontFamily="Consolas" Text="tant que " Foreground="LightBlue" />
+                <TextBlock FontFamily="{DynamicResource firacode}" Text="tant que " Foreground="LightBlue" />
                 <ContentControl x:Name="conditionHolder" />
-                <TextBlock FontFamily="Consolas" Text=" faire" Foreground="LightBlue" />
-                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock FontFamily="{DynamicResource firacode}" Text=" faire" Foreground="LightBlue" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
             <StackPanel Margin="25,0, 0, 0" x:Name="instructions" />
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
-                <TextBlock Margin="21,0,0,0" IsHitTestVisible="False" FontFamily="Consolas" Text="ftq" Foreground="LightBlue" />
-                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Margin="21,0,0,0" IsHitTestVisible="False" FontFamily="{DynamicResource firacode}" Text="ftq" Foreground="LightBlue" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
         </StackPanel>
     </Grid>

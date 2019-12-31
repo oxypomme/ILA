@@ -22,17 +22,17 @@
         <StackPanel Orientation="Vertical">
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/icons/png/switch.png" />
-                <TextBlock Text="cas " Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Text="cas " Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
                 <ContentControl Name="varHolder" />
-                <TextBlock Text=" parmi" Foreground="LightBlue" FontFamily="Consolas" />
-                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Text=" parmi" Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
             <StackPanel Margin="25,0,0,0" x:Name="casesList">
                 <!--<Grid>
                     <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="5,16,0,0" />
                     <StackPanel Orientation="Horizontal">
                         <StackPanel  IsHitTestVisible="False" Orientation="Horizontal" Name="conditionValue" />
-                        <TextBlock  IsHitTestVisible="False" Text=" : " Foreground="OrangeRed" FontFamily="Consolas" />
+                        <TextBlock  IsHitTestVisible="False" Text=" : " Foreground="OrangeRed" FontFamily="{DynamicResource firacode}" />
                         <StackPanel Name="instructions" />
                     </StackPanel>
                 </Grid>-->
@@ -40,14 +40,14 @@
             <Grid x:Name="defaultGrid">
                 <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="30,16,0,0" />
                 <DockPanel Margin="25,0,0,0">
-                    <TextBlock  IsHitTestVisible="False" Text="defaut" Foreground="LightBlue" FontFamily="Consolas" />
-                    <TextBlock  IsHitTestVisible="False" Text=" : " Foreground="OrangeRed" FontFamily="Consolas" />
+                    <TextBlock  IsHitTestVisible="False" Text="defaut" Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
+                    <TextBlock  IsHitTestVisible="False" Text=" : " Foreground="OrangeRed" FontFamily="{DynamicResource firacode}" />
                     <StackPanel Name="defaultInstructions" />
                 </DockPanel>
             </Grid>
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal" Margin="21,0,0,0">
-                <TextBlock Text="fcas" FontFamily="Consolas" Foreground="LightBlue" />
-                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Text="fcas" FontFamily="{DynamicResource firacode}" Foreground="LightBlue" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
         </StackPanel>
     </Grid>

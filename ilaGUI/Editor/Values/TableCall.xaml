@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Horizontal">
         <ContentControl x:Name="variable" />
-        <TextBlock x:Name="linkToFont" Text="[" FontFamily="Consolas" Foreground="OrangeRed" />
+        <TextBlock x:Name="linkToFont" Text="[" FontFamily="{DynamicResource firacode}" Foreground="OrangeRed" />
         <StackPanel Orientation="Horizontal" Name="parameters" />
-        <TextBlock Text="]" FontFamily="Consolas" Foreground="OrangeRed" />
+        <TextBlock Text="]" FontFamily="{DynamicResource firacode}" Foreground="OrangeRed" />
     </StackPanel>
 </UserControl>

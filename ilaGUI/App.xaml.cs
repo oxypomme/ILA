@@ -602,6 +602,7 @@ namespace ilaGUI
 
         public static void UpdateEditor()
         {
+            var firacodeFont = Editor.fctReturnType.FontFamily;
             if (CurrentExecutable != null)
             {
                 if (CurrentExecutable is Program prog)
@@ -629,6 +630,7 @@ namespace ilaGUI
                         item.ImportedVariable.WriteILA(sw);
                         Editor.moduleParams.Children.Add(new TextBlock
                         {
+                            FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
                             Foreground = new SolidColorBrush(Colors.White)
@@ -636,6 +638,7 @@ namespace ilaGUI
                         sw.GetStringBuilder().Clear();
                         Editor.moduleParams.Children.Add(new TextBlock
                         {
+                            FontFamily = firacodeFont,
                             Text = ":",
                             VerticalAlignment = VerticalAlignment.Bottom,
                             Foreground = new SolidColorBrush(Colors.OrangeRed)
@@ -643,6 +646,7 @@ namespace ilaGUI
                         item.ImportedVariable.Type.WriteILA(sw);
                         Editor.moduleParams.Children.Add(new TextBlock
                         {
+                            FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
                             Foreground = new SolidColorBrush(Colors.LightBlue)
@@ -650,6 +654,7 @@ namespace ilaGUI
                         if (i < fct.Parameters.Count - 1)
                             Editor.moduleParams.Children.Add(new TextBlock
                             {
+                                FontFamily = firacodeFont,
                                 Text = ", ",
                                 VerticalAlignment = VerticalAlignment.Bottom,
                                 Foreground = new SolidColorBrush(Colors.OrangeRed)
@@ -676,6 +681,7 @@ namespace ilaGUI
                         if (item.Mode == ILANET.Parameter.Flags.OUTPUT)
                             Editor.moduleParams.Children.Add(new TextBlock
                             {
+                                FontFamily = firacodeFont,
                                 Text = "s",
                                 VerticalAlignment = VerticalAlignment.Bottom,
                                 Foreground = new SolidColorBrush(Colors.White)
@@ -683,6 +689,7 @@ namespace ilaGUI
                         if (item.Mode == ILANET.Parameter.Flags.IO)
                             Editor.moduleParams.Children.Add(new TextBlock
                             {
+                                FontFamily = firacodeFont,
                                 Text = "es",
                                 VerticalAlignment = VerticalAlignment.Bottom,
                                 Foreground = new SolidColorBrush(Colors.White)
@@ -690,6 +697,7 @@ namespace ilaGUI
                         if (item.Mode != ILANET.Parameter.Flags.INPUT)
                             Editor.moduleParams.Children.Add(new TextBlock
                             {
+                                FontFamily = firacodeFont,
                                 Text = "::",
                                 VerticalAlignment = VerticalAlignment.Bottom,
                                 Foreground = new SolidColorBrush(Colors.OrangeRed)
@@ -698,6 +706,7 @@ namespace ilaGUI
                         item.ImportedVariable.WriteILA(sw);
                         Editor.moduleParams.Children.Add(new TextBlock
                         {
+                            FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
                             Foreground = new SolidColorBrush(Colors.White)
@@ -705,6 +714,7 @@ namespace ilaGUI
                         sw.GetStringBuilder().Clear();
                         Editor.moduleParams.Children.Add(new TextBlock
                         {
+                            FontFamily = firacodeFont,
                             Text = ":",
                             VerticalAlignment = VerticalAlignment.Bottom,
                             Foreground = new SolidColorBrush(Colors.OrangeRed)
@@ -712,6 +722,7 @@ namespace ilaGUI
                         item.ImportedVariable.Type.WriteILA(sw);
                         Editor.moduleParams.Children.Add(new TextBlock
                         {
+                            FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
                             Foreground = new SolidColorBrush(Colors.LightBlue)
@@ -719,6 +730,7 @@ namespace ilaGUI
                         if (i < mod.Parameters.Count - 1)
                             Editor.moduleParams.Children.Add(new TextBlock
                             {
+                                FontFamily = firacodeFont,
                                 Text = ", ",
                                 VerticalAlignment = VerticalAlignment.Bottom,
                                 Foreground = new SolidColorBrush(Colors.OrangeRed)

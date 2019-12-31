@@ -16,13 +16,13 @@
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,2,0,0">
             <Image x:Name="exeIcon" Stretch="None" VerticalAlignment="Bottom" Margin="10,0" />
-            <TextBlock Text="test" FontFamily="Consolas" x:Name="exeType" Foreground="LightBlue" VerticalAlignment="Bottom" />
-            <TextBlock VerticalAlignment="Bottom" Margin="5,0" FontFamily="Consolas" x:Name="exeName" Foreground="White" />
-            <TextBlock VerticalAlignment="Bottom" x:Name="leftParenthesis" Foreground="OrangeRed" Text="(" />
+            <TextBlock Text="test" FontFamily="{DynamicResource firacode}" x:Name="exeType" Foreground="LightBlue" VerticalAlignment="Bottom" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5,0" FontFamily="{DynamicResource firacode}" x:Name="exeName" Foreground="White" />
+            <TextBlock FontFamily="{DynamicResource firacode}" VerticalAlignment="Bottom" x:Name="leftParenthesis" Foreground="OrangeRed" Text="(" />
             <StackPanel x:Name="moduleParams" Orientation="Horizontal" />
-            <TextBlock VerticalAlignment="Bottom" x:Name="rightParenthesis" Foreground="OrangeRed" Text=")" />
-            <TextBlock VerticalAlignment="Bottom" x:Name="dbPoint" Text=" : " Foreground="OrangeRed" />
-            <TextBlock VerticalAlignment="Bottom" x:Name="fctReturnType" Foreground="LightBlue" />
+            <TextBlock FontFamily="{DynamicResource firacode}" VerticalAlignment="Bottom" x:Name="rightParenthesis" Foreground="OrangeRed" Text=")" />
+            <TextBlock FontFamily="{DynamicResource firacode}" VerticalAlignment="Bottom" x:Name="dbPoint" Text=" : " Foreground="OrangeRed" />
+            <TextBlock FontFamily="{DynamicResource firacode}" VerticalAlignment="Bottom" x:Name="fctReturnType" Foreground="LightBlue" />
         </StackPanel>
         <Separator VerticalAlignment="Top" Margin="0,20,0,0" />
         <ScrollViewer Margin="0, 22, 0, 0" VerticalScrollBarVisibility="Auto">

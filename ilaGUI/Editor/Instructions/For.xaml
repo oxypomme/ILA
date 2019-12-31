@@ -22,21 +22,21 @@
         <StackPanel>
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/for.png" />
-                <TextBlock Text="pour " FontFamily="Consolas" Foreground="LightBlue" />
+                <TextBlock Text="pour " FontFamily="{DynamicResource firacode}" Foreground="LightBlue" />
                 <ContentControl Name="varHolder" />
-                <TextBlock Text=" &lt;- " FontFamily="Consolas" Foreground="OrangeRed" />
+                <TextBlock Text=" &lt;- " FontFamily="{DynamicResource firacode}" Foreground="OrangeRed" />
                 <ContentControl Name="infHolder" />
-                <TextBlock Text=" a " Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Text=" a " Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
                 <ContentControl Name="supHolder" />
-                <TextBlock Text=" pas " Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Text=" pas " Foreground="LightBlue" FontFamily="{DynamicResource firacode}" />
                 <ContentControl Name="stepHolder" />
-                <TextBlock Text=" faire" FontFamily="Consolas" Foreground="LightBlue" />
-                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Text=" faire" FontFamily="{DynamicResource firacode}" Foreground="LightBlue" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
             <StackPanel Margin="25,0, 0, 0" x:Name="instructions" />
             <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
-                <TextBlock Margin="21,0,0,0" FontFamily="Consolas" Text="fpour" Foreground="LightBlue" />
-                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Margin="21,0,0,0" FontFamily="{DynamicResource firacode}" Text="fpour" Foreground="LightBlue" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
         </StackPanel>
     </Grid>
