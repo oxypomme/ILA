@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5,5,0,0">
             <Image Source="logo/small/logo24.png" Margin="0,0,3,0" />
-            <Menu Background="{x:Null}" Foreground="White" Height="16" FontFamily="./resources/#Roboto Light">
+            <Menu Background="{x:Null}" Foreground="White" Height="16" FontFamily="./fonts/Roboto/#Roboto Light">
                 <MenuItem Header="Fichier" Style="{StaticResource MenuItemBaseStyle}">
                     <MenuItem Name="newAlgoMenu" Header="Nouvel Algo" Click="newBtn_Click" InputGestureText="Ctrl+N">
                         <MenuItem.Icon>
