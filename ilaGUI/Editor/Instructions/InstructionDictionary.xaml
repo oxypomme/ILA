@@ -16,23 +16,23 @@
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Name="copyMenu" Header="Copier" InputGestureText="Ctrl+C">
+        <MenuItem Name="copyMenu" Header="Copier" InputGestureText="Ctrl+C" Click="copyMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/copy.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Name="cutMenu" Header="Couper" InputGestureText="Ctrl+X">
+        <MenuItem Name="cutMenu" Header="Couper" InputGestureText="Ctrl+X" Click="cutMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/cut.png" />
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False">
+        <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False" Click="undoMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/undo.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False">
+        <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False" Click="redoMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/redo.png" />
             </MenuItem.Icon>

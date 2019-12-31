@@ -43,7 +43,6 @@ namespace ilaGUI
 
         private void editMenu_click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Sender: " + GetCaller(sender));
             if (GetCaller(sender) is Button)
             {
                 var parent = ((GetCaller(sender) as Button).Parent as Grid).Parent;
@@ -75,5 +74,21 @@ namespace ilaGUI
         }
 
         private UIElement GetCaller(object menuItem) => ((menuItem as MenuItem).Parent as ContextMenu).PlacementTarget;
+
+        private void copyMenu_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void cutMenu_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void undoMenu_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void redoMenu_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
