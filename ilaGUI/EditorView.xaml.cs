@@ -25,6 +25,11 @@ namespace ilaGUI
             InitializeComponent();
             instructions.Tag = this;
             EndInstruction = new Editor.DummyInstruction() { Height = 150 };
+
+            //foreach (MenuItem menuItem in ContextMenu.Items)
+            //{
+            //    (menuItem.Icon as Image).Source = App.MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
+            //}
         }
 
         public Editor.DummyInstruction EndInstruction { get; set; }
