@@ -122,5 +122,17 @@ namespace ilaGUI
                 App.UpdateLexic();
             }
         }
+
+        private void pasteMenu_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void undoMenu_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void redoMenu_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

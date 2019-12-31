@@ -17,27 +17,9 @@ namespace ilaGUI
                 if (parent is TreeElement)
                     (parent as TreeElement).deleteButton_Click(sender, e);
             }
-            else if (GetCaller(sender).Tag is Grid)
+            else if (GetCaller(sender).PlacementTarget is Grid)
             {
-                var parent = ((sender as MenuItem).Parent as ContextMenu).Tag;
-                //if (parent is Assign)
-                //    (parent as Assign).deleteButton_Click(sender, e);
-                //else if (parent is Comment)
-                //    (parent as Comment).deleteButton_Click(sender, e);
-                //else if (parent is DoWhile)
-                //    (parent as DoWhile).deleteButton_Click(sender, e);
-                //else if (parent is For)
-                //    (parent as For).deleteButton_Click(sender, e);
-                //else if (parent is If)
-                //    (parent as If).deleteButton_Click(sender, e);
-                //else if (parent is ModuleCall)
-                //    (parent as ModuleCall).deleteButton_Click(sender, e);
-                //else if (parent is Return)
-                //    (parent as Return).deleteButton_Click(sender, e);
-                //else if (parent is Switch)
-                //    (parent as Switch).deleteButton_Click(sender, e);
-                //else if (parent is While)
-                //    (parent as While).deleteButton_Click(sender, e);
+                (((sender as MenuItem).Parent as ContextMenu).Tag as IDropableInstruction).Remove();
             }
         }
 
@@ -51,25 +33,7 @@ namespace ilaGUI
             }
             else if (GetCaller(sender).PlacementTarget is Grid)
             {
-                var parent = ((sender as MenuItem).Parent as ContextMenu).Tag;
-                //if (parent is Assign)
-                //    (parent as Assign).editButton_Click(sender, e);
-                //else if (parent is Comment)
-                //    (parent as Comment).editButton_Click(sender, e);
-                //else if (parent is DoWhile)
-                //    (parent as DoWhile).editButton_Click(sender, e);
-                //else if (parent is For)
-                //    (parent as For).editButton_Click(sender, e);
-                //else if (parent is If)
-                //    (parent as If).editButton_Click(sender, e);
-                //else if (parent is ModuleCall)
-                //    (parent as ModuleCall).editButton_Click(sender, e);
-                //else if (parent is Return)
-                //    (parent as Return).editButton_Click(sender, e);
-                //else if (parent is Switch)
-                //    (parent as Switch).editButton_Click(sender, e);
-                //else if (parent is While)
-                //    (parent as While).editButton_Click(sender, e);
+                //(((sender as MenuItem).Parent as ContextMenu).Tag as IDropableInstruction).Edit();
             }
         }
 

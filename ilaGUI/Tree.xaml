@@ -54,6 +54,88 @@
         <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Height="1" VerticalAlignment="Bottom" />
         <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="1">
             <StackPanel x:Name="TreeList">
+                <StackPanel.ContextMenu>
+                    <ContextMenu Foreground="White">
+                        <MenuItem Name="addMenu" Header="Ajouter" Style="{StaticResource SubMenuItemBaseStyle}">
+                            <MenuItem.Icon>
+                                <Image Source="/icons/png/add.png" />
+                            </MenuItem.Icon>
+                            <MenuItem Header="Module">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create module.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Fonction">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create function.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Structure">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create struct.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Enumeration">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create enum.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Tableau">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create table.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <Separator />
+                            <MenuItem Header="Entier">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create int.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Réel">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create float.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Caractère">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create char.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Booléen">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create bool.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Chaîne">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create string.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Type personnalisé">
+                                <MenuItem.Icon>
+                                    <Image Source="/icons/png/create cutom.png" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Name="pasteMenu" Header="Coller" InputGestureText="Ctrl+V" IsEnabled="False" Click="pasteMenu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/icons/png/paste.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False" Click="undoMenu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/icons/png/undo.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False" Click="redoMenu_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/icons/png/redo.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </StackPanel.ContextMenu>
             </StackPanel>
         </ScrollViewer>
     </Grid>
