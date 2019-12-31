@@ -36,10 +36,10 @@ namespace ilaGUI
                 deleteButton.Visibility = Visibility.Collapsed;
                 Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.algo)));
                 Title.Text = pr.Name;
-                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(5)); //Remove a separator from contextmenu
-                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(4)); //Remove Cut from contextmenu
-                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(3)); //Remove Copy from contextmenu
-                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(1)); //Remove Delete from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(6)); //Remove a separator from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(5)); //Remove Cut from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(4)); //Remove Copy from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(2)); //Remove Delete from contextmenu
             }
             else if (linkedTo is Function fct)
             {
@@ -87,6 +87,8 @@ namespace ilaGUI
                     Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._enum)));
                 Title.Text = td.CreatedType.Name;
             }
+            globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(1)); //Remove Add from contextmenu
+            globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(globalButton.ContextMenu.Items.Count - 4)); //Remove Paste from contextmenu
         }
 
         public IBaseObject Link { get; private set; }
