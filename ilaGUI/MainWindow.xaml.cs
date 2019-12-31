@@ -27,17 +27,9 @@ namespace ilaGUI
             stopBtn.IsEnabled = false;
 
             foreach (MenuItem headerItem in menuTop.Items)
-                for (int i = 0; i < headerItem.Items.Count; i++)
-                {
-                    MenuItem menuItem;
-                    try
-                    {
-                        menuItem = (MenuItem)headerItem.Items[i];
-                    }
-                    catch (InvalidCastException) { i++; menuItem = (MenuItem)headerItem.Items[i]; }
-                    if (menuItem.Icon != null)
-                        (menuItem.Icon as Image).Source = App.MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
-                }
+            {
+                App.DarkmodeUrLife(headerItem.Items);
+            }
 
             for (int i = 0; i < MainToolbar.Children.Count; i++)
             {

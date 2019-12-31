@@ -51,6 +51,24 @@ namespace ilaGUI
         public static EditorView Editor { get; set; }
         public static List<string> Workspaces { get; set; }
 
+        public static void DarkmodeUrLife(ItemCollection headerItems)
+        {
+            for (int i = 0; i < headerItems.Count; i++)
+            {
+                MenuItem menuItem;
+                try
+                {
+                    menuItem = (MenuItem)headerItems[i];
+                }
+                catch (InvalidCastException) { i++; menuItem = (MenuItem)headerItems[i]; }
+                if (menuItem.Icon != null)
+                    (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
+
+                if (menuItem.Items.Count > 0)
+                    DarkmodeUrLife(menuItem.Items);
+            }
+        }
+
         public static void createModule(bool isFct)
         {
             Module created;
