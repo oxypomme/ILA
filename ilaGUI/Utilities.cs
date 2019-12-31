@@ -53,6 +53,39 @@ namespace ilaGUI
             toCut.Remove();
         }
 
+        public static void DarkmodeUrBtns(UIElementCollection headerItems)
+        {
+            for (int i = 0; i < headerItems.Count; i++)
+            {
+                Button menuItem;
+                try
+                {
+                    menuItem = (Button)headerItems[i];
+                }
+                catch (InvalidCastException) { i++; menuItem = (Button)headerItems[i]; }
+                if (menuItem.Content != null)
+                    (menuItem.Content as Image).Source = MakeDarkTheme((menuItem.Content as Image).Source as BitmapSource);
+            }
+        }
+
+        public static void DarkmodeUrMenus(ItemCollection headerItems)
+        {
+            for (int i = 0; i < headerItems.Count; i++)
+            {
+                MenuItem menuItem;
+                try
+                {
+                    menuItem = (MenuItem)headerItems[i];
+                }
+                catch (InvalidCastException) { i++; menuItem = (MenuItem)headerItems[i]; }
+                if (menuItem.Icon != null)
+                    (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
+
+                if (menuItem.Items.Count > 0)
+                    DarkmodeUrMenus(menuItem.Items);
+            }
+        }
+
         public static BitmapImage GetBitmapImage(Stream stream)
         {
             //https://stackoverflow.com/a/9564425
@@ -171,7 +204,7 @@ namespace ilaGUI
                     firstLine.Children.Add(new TextBlock
                     {
                         Text = "sinon si ",
-                        Foreground = new SolidColorBrush(Colors.LightBlue),
+                        Foreground = App.KeywordColorBrush,
                         FontFamily = font,
                         Margin = new System.Windows.Thickness(21, 0, 0, 0)
                     });
@@ -180,12 +213,12 @@ namespace ilaGUI
                     firstLine.Children.Add(new TextBlock
                     {
                         Text = " alors",
-                        Foreground = new SolidColorBrush(Colors.LightBlue),
+                        Foreground = App.KeywordColorBrush,
                         FontFamily = font
                     });
                     elifStruct.comment = new TextBlock
                     {
-                        Foreground = new SolidColorBrush(Colors.DarkGray),
+                        Foreground = commentsColorBrush,
                         FontFamily = font,
                         FontStyle = System.Windows.FontStyles.Italic,
                         Margin = new System.Windows.Thickness(5, 0, 0, 0)
@@ -251,7 +284,7 @@ namespace ilaGUI
                     firstLine.Children.Add(new TextBlock
                     {
                         Text = " : ",
-                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        Foreground = App.SymbolColorBrush,
                         FontFamily = font
                     });
                     caseStruct.instructions = new StackPanel();

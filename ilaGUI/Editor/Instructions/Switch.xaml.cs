@@ -102,7 +102,7 @@ namespace ilaGUI.Editor
                 {
                     Cases[i].conditions.Children.Add(App.GetValueControl(InternalInstruction.Cases[i].Item1[j]));
                     if (j < InternalInstruction.Cases[i].Item1.Count - 1)
-                        Cases[i].conditions.Children.Add(new TextBlock { Text = ", ", Foreground = new SolidColorBrush(Colors.OrangeRed), FontFamily = comment.FontFamily });
+                        Cases[i].conditions.Children.Add(new TextBlock { Text = ", ", Foreground = App.SymbolColorBrush, FontFamily = comment.FontFamily });
                 }
             }
         }

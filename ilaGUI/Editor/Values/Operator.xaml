@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Horizontal">
-        <TextBlock Text="(" Foreground="OrangeRed" FontFamily="{DynamicResource firacode}" />
+        <TextBlock Text="(" Foreground="{StaticResource symbolColor}" FontFamily="{DynamicResource firacode}" />
         <ContentControl x:Name="leftOperand" />
-        <TextBlock x:Name="operatorType" Foreground="OrangeRed" FontFamily="{DynamicResource firacode}" />
+        <TextBlock x:Name="operatorType" Foreground="{StaticResource symbolColor}" FontFamily="{DynamicResource firacode}" />
         <ContentControl x:Name="rightOperand" />
-        <TextBlock Text=")" Foreground="OrangeRed" FontFamily="{DynamicResource firacode}" />
+        <TextBlock Text=")" Foreground="{StaticResource symbolColor}" FontFamily="{DynamicResource firacode}" />
     </StackPanel>
 </UserControl>

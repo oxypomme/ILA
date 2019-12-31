@@ -20,10 +20,9 @@ namespace ilaGUI
     /// </summary>
     public partial class App : Application
     {
-        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
         public static readonly Brush DarkBackground = new SolidColorBrush(DarkThemeColor);
         public static readonly Brush DarkFontColor = new SolidColorBrush(Colors.White);
-        public static Control Dragged { get; set; }
+        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
 
         public App()
         {
@@ -36,49 +35,26 @@ namespace ilaGUI
             CurrentExecutable = CurrentILAcode;
         }
 
-        public static System.Diagnostics.Process Executing { get; set; }
+        public static Brush charColorBrush => (Brush)Current.FindResource("charColor");
+        public static Brush commentsColorBrush => (Brush)Current.FindResource("commentsColor");
+        public static Brush ConstColorBrush => (Brush)Current.FindResource("constColor");
         public static IExecutable CurrentExecutable { get; set; }
         public static Program CurrentILAcode { get; set; }
         public static string CurrentWorkspace { get; set; }
+        public static Control Dragged { get; set; }
+        public static EditorView Editor { get; set; }
+        public static System.Diagnostics.Process Executing { get; set; }
         public static List<Program> ILAcodes { get; set; }
+        public static Brush KeywordColorBrush => (Brush)Current.FindResource("keywordColor");
         public static MainWindow MainDialog { get; set; }
+        public static Brush ModuleColorBrush => (Brush)Current.FindResource("moduleColor");
+        public static Brush NumbersColorBrush => (Brush)Current.FindResource("numbersColor");
+        public static Brush StringColorBrush => (Brush)Current.FindResource("stringColor");
+        public static Brush SymbolColorBrush => (Brush)Current.FindResource("symbolColor");
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
-        public static EditorView Editor { get; set; }
+        public static Brush VariableColorBrush => (Brush)Current.FindResource("variableColor");
         public static List<string> Workspaces { get; set; }
-
-        public static void DarkmodeUrMenus(ItemCollection headerItems)
-        {
-            for (int i = 0; i < headerItems.Count; i++)
-            {
-                MenuItem menuItem;
-                try
-                {
-                    menuItem = (MenuItem)headerItems[i];
-                }
-                catch (InvalidCastException) { i++; menuItem = (MenuItem)headerItems[i]; }
-                if (menuItem.Icon != null)
-                    (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
-
-                if (menuItem.Items.Count > 0)
-                    DarkmodeUrMenus(menuItem.Items);
-            }
-        }
-
-        public static void DarkmodeUrBtns(UIElementCollection headerItems)
-        {
-            for (int i = 0; i < headerItems.Count; i++)
-            {
-                Button menuItem;
-                try
-                {
-                    menuItem = (Button)headerItems[i];
-                }
-                catch (InvalidCastException) { i++; menuItem = (Button)headerItems[i]; }
-                if (menuItem.Content != null)
-                    (menuItem.Content as Image).Source = MakeDarkTheme((menuItem.Content as Image).Source as BitmapSource);
-            }
-        }
 
         public static void createModule(bool isFct)
         {
@@ -177,80 +153,6 @@ namespace ilaGUI
             };
             var uiParam = new Parameter(param, scope);
             return new ParameterEdition(uiParam, scope).ShowDialog() == true ? uiParam : null;
-        }
-
-        public static void editType(TypeDeclaration type)
-        {
-            var copy = new TypeDeclaration();
-            copy.AboveComment = new Comment
-            {
-                Message = type.AboveComment?.Message,
-                MultiLine = type.AboveComment != null ? type.AboveComment.MultiLine : false
-            };
-            copy.InlineComment = type.InlineComment;
-
-            if (type.CreatedType is StructType st)
-            {
-                var structCopy = new StructType
-                {
-                    Name = st.Name,
-                    Members = new SortedDictionary<string, VarType>()
-                };
-                foreach (var item in st.Members)
-                    structCopy.Members.Add(item.Key, item.Value);
-                copy.CreatedType = structCopy;
-                var dialog = new createStruct(copy);
-                dialog.Owner = MainDialog;
-                if (dialog.ShowDialog() == true)
-                {
-                    var comm = new Comment();
-                    comm.MultiLine = dialog.comments.Text.Contains('\n');
-                    comm.Message = dialog.comments.Text;
-                    type.AboveComment = comm;
-                    type.InlineComment = dialog.inlineComm.Text;
-                    (type.CreatedType as StructType).Members = structCopy.Members;
-                    type.CreatedType.Name = dialog.typeName.Text;
-                }
-            }
-            else if (type.CreatedType is TableType tt)
-            {
-                var dialog = new createTable(type, true);
-                dialog.Owner = MainDialog;
-                if (dialog.ShowDialog() == true)
-                {
-                    var comm = new Comment();
-                    comm.MultiLine = dialog.comments.Text.Contains('\n');
-                    comm.Message = dialog.comments.Text;
-                    type.AboveComment = comm;
-                    type.InlineComment = dialog.inlineComm.Text;
-                    tt.Name = dialog.typeName.Text;
-                    tt.DimensionsSize.Clear();
-                    foreach (dimension item in dialog.dimList.Children)
-                    {
-                        tt.DimensionsSize.Add(new ILANET.Range(
-                            ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentILAcode, true),
-                             ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentILAcode, true)
-                           ));
-                    }
-                }
-            }
-            else if (type.CreatedType is EnumType et)
-            {
-                var dialog = new createEnum(type, true);
-                dialog.Owner = MainDialog;
-                if (dialog.ShowDialog() == true)
-                {
-                    var comm = new Comment();
-                    comm.MultiLine = dialog.comments.Text.Contains('\n');
-                    comm.Message = dialog.comments.Text;
-                    type.AboveComment = comm;
-                    type.InlineComment = dialog.inlineComm.Text;
-                    et.Name = dialog.typeName.Text;
-                    et.Values.Clear();
-                    foreach (enumValue item in dialog.valList.Children)
-                        et.Values.Add(item.valueName.Text);
-                }
-            }
         }
 
         public static TypeDeclaration createType(int type) //0 = struct, 1 = table, 2 = enum
@@ -529,6 +431,80 @@ namespace ilaGUI
 
         public static void editParameter(Parameter param, Module scope) => new ParameterEdition(param, scope, true).ShowDialog();
 
+        public static void editType(TypeDeclaration type)
+        {
+            var copy = new TypeDeclaration();
+            copy.AboveComment = new Comment
+            {
+                Message = type.AboveComment?.Message,
+                MultiLine = type.AboveComment != null ? type.AboveComment.MultiLine : false
+            };
+            copy.InlineComment = type.InlineComment;
+
+            if (type.CreatedType is StructType st)
+            {
+                var structCopy = new StructType
+                {
+                    Name = st.Name,
+                    Members = new SortedDictionary<string, VarType>()
+                };
+                foreach (var item in st.Members)
+                    structCopy.Members.Add(item.Key, item.Value);
+                copy.CreatedType = structCopy;
+                var dialog = new createStruct(copy);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    type.AboveComment = comm;
+                    type.InlineComment = dialog.inlineComm.Text;
+                    (type.CreatedType as StructType).Members = structCopy.Members;
+                    type.CreatedType.Name = dialog.typeName.Text;
+                }
+            }
+            else if (type.CreatedType is TableType tt)
+            {
+                var dialog = new createTable(type, true);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    type.AboveComment = comm;
+                    type.InlineComment = dialog.inlineComm.Text;
+                    tt.Name = dialog.typeName.Text;
+                    tt.DimensionsSize.Clear();
+                    foreach (dimension item in dialog.dimList.Children)
+                    {
+                        tt.DimensionsSize.Add(new ILANET.Range(
+                            ILANET.Parser.Parser.ParseValue(item.minValue.Text, CurrentILAcode, CurrentILAcode, true),
+                             ILANET.Parser.Parser.ParseValue(item.maxValue.Text, CurrentILAcode, CurrentILAcode, true)
+                           ));
+                    }
+                }
+            }
+            else if (type.CreatedType is EnumType et)
+            {
+                var dialog = new createEnum(type, true);
+                dialog.Owner = MainDialog;
+                if (dialog.ShowDialog() == true)
+                {
+                    var comm = new Comment();
+                    comm.MultiLine = dialog.comments.Text.Contains('\n');
+                    comm.Message = dialog.comments.Text;
+                    type.AboveComment = comm;
+                    type.InlineComment = dialog.inlineComm.Text;
+                    et.Name = dialog.typeName.Text;
+                    et.Values.Clear();
+                    foreach (enumValue item in dialog.valList.Children)
+                        et.Values.Add(item.valueName.Text);
+                }
+            }
+        }
+
         public static void editVar(VariableDeclaration variable, IExecutable scope)
         {
             string oldName = variable.CreatedVariable.Name, newName;
@@ -629,7 +605,7 @@ namespace ilaGUI
                             FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
-                            Foreground = new SolidColorBrush(Colors.White)
+                            Foreground = VariableColorBrush
                         });
                         sw.GetStringBuilder().Clear();
                         Editor.moduleParams.Children.Add(new TextBlock
@@ -637,7 +613,7 @@ namespace ilaGUI
                             FontFamily = firacodeFont,
                             Text = ":",
                             VerticalAlignment = VerticalAlignment.Bottom,
-                            Foreground = new SolidColorBrush(Colors.OrangeRed)
+                            Foreground = SymbolColorBrush
                         });
                         item.ImportedVariable.Type.WriteILA(sw);
                         Editor.moduleParams.Children.Add(new TextBlock
@@ -645,7 +621,7 @@ namespace ilaGUI
                             FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
-                            Foreground = new SolidColorBrush(Colors.LightBlue)
+                            Foreground = KeywordColorBrush
                         });
                         if (i < fct.Parameters.Count - 1)
                             Editor.moduleParams.Children.Add(new TextBlock
@@ -653,7 +629,7 @@ namespace ilaGUI
                                 FontFamily = firacodeFont,
                                 Text = ", ",
                                 VerticalAlignment = VerticalAlignment.Bottom,
-                                Foreground = new SolidColorBrush(Colors.OrangeRed)
+                                Foreground = SymbolColorBrush
                             });
                     }
                     Editor.rightParenthesis.Visibility = Visibility.Visible;
@@ -680,7 +656,7 @@ namespace ilaGUI
                                 FontFamily = firacodeFont,
                                 Text = "s",
                                 VerticalAlignment = VerticalAlignment.Bottom,
-                                Foreground = new SolidColorBrush(Colors.White)
+                                Foreground = VariableColorBrush
                             });
                         if (item.Mode == ILANET.Parameter.Flags.IO)
                             Editor.moduleParams.Children.Add(new TextBlock
@@ -688,7 +664,7 @@ namespace ilaGUI
                                 FontFamily = firacodeFont,
                                 Text = "es",
                                 VerticalAlignment = VerticalAlignment.Bottom,
-                                Foreground = new SolidColorBrush(Colors.White)
+                                Foreground = VariableColorBrush
                             });
                         if (item.Mode != ILANET.Parameter.Flags.INPUT)
                             Editor.moduleParams.Children.Add(new TextBlock
@@ -696,7 +672,7 @@ namespace ilaGUI
                                 FontFamily = firacodeFont,
                                 Text = "::",
                                 VerticalAlignment = VerticalAlignment.Bottom,
-                                Foreground = new SolidColorBrush(Colors.OrangeRed)
+                                Foreground = SymbolColorBrush
                             });
                         var sw = new StringWriter();
                         item.ImportedVariable.WriteILA(sw);
@@ -705,7 +681,7 @@ namespace ilaGUI
                             FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
-                            Foreground = new SolidColorBrush(Colors.White)
+                            Foreground = VariableColorBrush
                         });
                         sw.GetStringBuilder().Clear();
                         Editor.moduleParams.Children.Add(new TextBlock
@@ -713,7 +689,7 @@ namespace ilaGUI
                             FontFamily = firacodeFont,
                             Text = ":",
                             VerticalAlignment = VerticalAlignment.Bottom,
-                            Foreground = new SolidColorBrush(Colors.OrangeRed)
+                            Foreground = SymbolColorBrush
                         });
                         item.ImportedVariable.Type.WriteILA(sw);
                         Editor.moduleParams.Children.Add(new TextBlock
@@ -721,7 +697,7 @@ namespace ilaGUI
                             FontFamily = firacodeFont,
                             Text = sw.ToString(),
                             VerticalAlignment = VerticalAlignment.Bottom,
-                            Foreground = new SolidColorBrush(Colors.LightBlue)
+                            Foreground = KeywordColorBrush
                         });
                         if (i < mod.Parameters.Count - 1)
                             Editor.moduleParams.Children.Add(new TextBlock
@@ -729,7 +705,7 @@ namespace ilaGUI
                                 FontFamily = firacodeFont,
                                 Text = ", ",
                                 VerticalAlignment = VerticalAlignment.Bottom,
-                                Foreground = new SolidColorBrush(Colors.OrangeRed)
+                                Foreground = SymbolColorBrush
                             });
                     }
                     Editor.rightParenthesis.Visibility = Visibility.Visible;

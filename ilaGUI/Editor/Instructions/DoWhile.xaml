@@ -16,20 +16,20 @@
     </UserControl.Resources>
 
     <Grid>
-        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <Separator Visibility="Collapsed" Background="{StaticResource insertLineColor}" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,20,0,20" />
         <Grid ContextMenu="{StaticResource InstructionContextMenu}" x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" MouseEnter="hitbox_MouseEnter" MouseLeave="hitbox_MouseLeave" />
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/while.png" />
-                <TextBlock Text="repeter" FontFamily="{DynamicResource firacode}" Foreground="LightBlue" />
-                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
+                <TextBlock Text="repeter" FontFamily="{DynamicResource firacode}" Foreground="{StaticResource keywordColor}" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="{StaticResource commentsColor}" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
             <StackPanel Margin="25,0, 0, 0" x:Name="instructions" />
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
-                <TextBlock Margin="21,0,0,0" Text="jusqua " FontFamily="{DynamicResource firacode}" Foreground="LightBlue" />
+                <TextBlock Margin="21,0,0,0" Text="jusqua " FontFamily="{DynamicResource firacode}" Foreground="{StaticResource keywordColor}" />
                 <ContentControl Name="condHolder" />
-                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="{DynamicResource firacode}" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="{StaticResource commentsColor}" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
         </StackPanel>
     </Grid>

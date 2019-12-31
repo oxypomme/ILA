@@ -7,9 +7,9 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Horizontal">
-        <TextBlock x:Name="fctName" FontFamily="{DynamicResource firacode}" Foreground="LightGreen" />
-        <TextBlock FontFamily="{DynamicResource firacode}" Foreground="OrangeRed" Text="(" />
+        <TextBlock x:Name="fctName" FontFamily="{DynamicResource firacode}" Foreground="{StaticResource moduleColor}" />
+        <TextBlock FontFamily="{DynamicResource firacode}" Foreground="{StaticResource symbolColor}" Text="(" />
         <StackPanel Orientation="Horizontal" Name="parameters" />
-        <TextBlock FontFamily="{DynamicResource firacode}" Foreground="OrangeRed" Text=")" />
+        <TextBlock FontFamily="{DynamicResource firacode}" Foreground="{StaticResource symbolColor}" Text=")" />
     </StackPanel>
 </UserControl>
