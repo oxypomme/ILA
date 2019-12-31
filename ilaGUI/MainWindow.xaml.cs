@@ -35,6 +35,7 @@ namespace ilaGUI
             (cutMenu.Icon as Image).Source = App.MakeDarkTheme((cutMenu.Icon as Image).Source as BitmapSource);
             (copyMenu.Icon as Image).Source = App.MakeDarkTheme((copyMenu.Icon as Image).Source as BitmapSource);
             (pasteMenu.Icon as Image).Source = App.MakeDarkTheme((pasteMenu.Icon as Image).Source as BitmapSource);
+            (unbindConsole.Icon as Image).Source = App.MakeDarkTheme((unbindConsole.Icon as Image).Source as BitmapSource);
             (buildMenu.Icon as Image).Source = App.MakeDarkTheme((buildMenu.Icon as Image).Source as BitmapSource);
             (startMenu.Icon as Image).Source = App.MakeDarkTheme((startMenu.Icon as Image).Source as BitmapSource);
             (stopMenu.Icon as Image).Source = App.MakeDarkTheme((stopMenu.Icon as Image).Source as BitmapSource);
@@ -229,6 +230,11 @@ namespace ilaGUI
         private void Window_Closed(object sender, EventArgs e)
         {
             App.Executing?.Kill();
+        }
+
+        private void unbindConsole_Click(object sender, RoutedEventArgs e)
+        {
+            Console.Button_Click(sender, e);
         }
     }
 }

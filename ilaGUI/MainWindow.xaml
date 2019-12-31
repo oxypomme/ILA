@@ -95,7 +95,7 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Générer" Style="{StaticResource MenuItemBaseStyle}">
-                    <MenuItem Name="buildMenu" Header="Générer l'algo" InputGestureText="Ctrl+B" IsEnabled="False">
+                    <MenuItem Name="buildMenu" Header="Générer l'algo" Click="buildBtn_Click" InputGestureText="Ctrl+B" IsEnabled="False">
                         <MenuItem.Icon>
                             <Image Source="icons/png/build.png" />
                         </MenuItem.Icon>
@@ -108,6 +108,13 @@
                     <MenuItem Name="stopMenu" Header="Arrêter l'algo" Click="stopBtn_Click" IsEnabled="False">
                         <MenuItem.Icon>
                             <Image Source="icons/png/stop.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Fenêtre" Style="{StaticResource MenuItemBaseStyle}">
+                    <MenuItem Name="unbindConsole" Header="Nouvelle fenêtre de console" Click="unbindConsole_Click">
+                        <MenuItem.Icon>
+                            <Image Source="icons/png/new console window.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>

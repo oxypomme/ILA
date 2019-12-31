@@ -95,7 +95,7 @@ namespace ilaGUI
                 item.Dispatcher.Invoke(() => item.consoleScroll.ScrollToVerticalOffset(double.MaxValue));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new Window();
             dialog.Title = "Console";
