@@ -51,7 +51,7 @@ namespace ilaGUI
         public static EditorView Editor { get; set; }
         public static List<string> Workspaces { get; set; }
 
-        public static void DarkmodeUrLife(ItemCollection headerItems)
+        public static void DarkmodeUrMenus(ItemCollection headerItems)
         {
             for (int i = 0; i < headerItems.Count; i++)
             {
@@ -65,7 +65,22 @@ namespace ilaGUI
                     (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
 
                 if (menuItem.Items.Count > 0)
-                    DarkmodeUrLife(menuItem.Items);
+                    DarkmodeUrMenus(menuItem.Items);
+            }
+        }
+
+        public static void DarkmodeUrBtns(UIElementCollection headerItems)
+        {
+            for (int i = 0; i < headerItems.Count; i++)
+            {
+                Button menuItem;
+                try
+                {
+                    menuItem = (Button)headerItems[i];
+                }
+                catch (InvalidCastException) { i++; menuItem = (Button)headerItems[i]; }
+                if (menuItem.Content != null)
+                    (menuItem.Content as Image).Source = MakeDarkTheme((menuItem.Content as Image).Source as BitmapSource);
             }
         }
 

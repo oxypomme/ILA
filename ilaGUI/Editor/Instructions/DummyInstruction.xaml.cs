@@ -22,7 +22,7 @@ namespace ilaGUI.Editor
         {
             InitializeComponent();
 
-            App.DarkmodeUrLife(hitbox.ContextMenu.Items);
+            App.DarkmodeUrMenus(hitbox.ContextMenu.Items);
         }
 
         public bool DropVisual

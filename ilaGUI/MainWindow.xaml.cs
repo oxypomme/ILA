@@ -26,19 +26,8 @@ namespace ilaGUI
             runBtn.IsEnabled = false;
             stopBtn.IsEnabled = false;
 
-            App.DarkmodeUrLife(menuTop.Items);
-
-            for (int i = 0; i < MainToolbar.Children.Count; i++)
-            {
-                Button toolbarItem;
-                try
-                {
-                    toolbarItem = (Button)MainToolbar.Children[i];
-                }
-                catch (InvalidCastException) { i++; toolbarItem = (Button)MainToolbar.Children[i]; }
-                if (toolbarItem.Content != null)
-                    (toolbarItem.Content as Image).Source = App.MakeDarkTheme((toolbarItem.Content as Image).Source as BitmapSource);
-            }
+            App.DarkmodeUrMenus(menuTop.Items);
+            App.DarkmodeUrBtns(MainToolbar.Children);
 
             App.MainDialog = this;
 

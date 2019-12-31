@@ -26,17 +26,7 @@ namespace ilaGUI
             for (int i = 1; i < operations.Children.Count; i++) // To avoid the label
             {
                 StackPanel toolbar = (StackPanel)operations.Children[i];
-                for (int j = 0; j < toolbar.Children.Count; j++)
-                {
-                    Button toolbarItem;
-                    try
-                    {
-                        toolbarItem = (Button)toolbar.Children[j];
-                    }
-                    catch (InvalidCastException) { j++; toolbarItem = (Button)toolbar.Children[j]; }
-                    if (toolbarItem.Content != null)
-                        (toolbarItem.Content as Image).Source = App.MakeDarkTheme((toolbarItem.Content as Image).Source as BitmapSource);
-                }
+                App.DarkmodeUrBtns(toolbar.Children);
             }
 
             Title.Foreground = App.DarkFontColor;
