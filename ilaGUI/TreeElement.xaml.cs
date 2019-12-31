@@ -35,6 +35,8 @@ namespace ilaGUI
                 deleteButton.Visibility = Visibility.Collapsed;
                 Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.algo)));
                 Title.Text = pr.Name;
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(3)); //Remove Copy from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(4)); //Remove Cut from contextmenu
             }
             else if (linkedTo is Function fct)
             {

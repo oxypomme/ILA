@@ -6,8 +6,16 @@
              xmlns:local="clr-namespace:ilaGUI"
              mc:Ignorable="d"
              Height="30" d:DesignWidth="200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Editor/Instructions/InstructionDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-        <Button x:Name="globalButton" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="globalButton_Click" />
+        <Button x:Name="globalButton" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="globalButton_Click" ContextMenu="{StaticResource InstructionContextMenu}" />
         <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
             <Image x:Name="Icon" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Center" Margin="5,0" />
             <Image x:Name="constant" Margin="5,0" Stretch="None" Source="/icons/png/const.png" />
