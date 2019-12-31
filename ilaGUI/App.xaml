@@ -245,6 +245,7 @@
         </Style>
 
         <Style TargetType="{x:Type ContextMenu}">
+            <Setter Property="FontFamily" Value="./fonts/Roboto/#Roboto Light" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Grid.IsSharedSizeScope" Value="true" />
