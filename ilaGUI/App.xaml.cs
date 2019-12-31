@@ -53,15 +53,10 @@ namespace ilaGUI
 
         public static void DarkmodeUrMenus(ItemCollection headerItems)
         {
-            for (int i = 0; i < headerItems.Count; i++)
+            foreach (var item in headerItems)
             {
-                MenuItem menuItem;
-                try
-                {
-                    menuItem = (MenuItem)headerItems[i];
-                }
-                catch (InvalidCastException) { i++; menuItem = (MenuItem)headerItems[i]; }
-                if (menuItem.Icon != null)
+                MenuItem menuItem = item as MenuItem;
+                if (menuItem != null && menuItem.Icon != null)
                     (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
 
                 if (menuItem.Items.Count > 0)
@@ -71,15 +66,11 @@ namespace ilaGUI
 
         public static void DarkmodeUrBtns(UIElementCollection headerItems)
         {
-            for (int i = 0; i < headerItems.Count; i++)
+            foreach (var item in headerItems)
             {
-                Button menuItem;
-                try
-                {
-                    menuItem = (Button)headerItems[i];
-                }
-                catch (InvalidCastException) { i++; menuItem = (Button)headerItems[i]; }
-                if (menuItem.Content != null)
+                Button menuItem = item as Button;
+
+                if (menuItem != null && menuItem.Content != null)
                     (menuItem.Content as Image).Source = MakeDarkTheme((menuItem.Content as Image).Source as BitmapSource);
             }
         }
