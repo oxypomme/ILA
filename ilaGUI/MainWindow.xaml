@@ -149,6 +149,13 @@
                 <Image Stretch="None" Source="icons/png/close algo.png" />
             </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            <Button x:Name="undoBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" ToolTip="Annuler (Ctrl + Z)" Click="undoBtn_Click" IsEnabled="False">
+                <Image Stretch="None" Source="icons/png/undo.png" />
+            </Button>
+            <Button x:Name="redoBtn" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{x:Null}" Height="20" Width="20" ToolTip="Retablir (Ctrl + Y)" Click="redoBtn_Click" IsEnabled="False">
+                <Image Stretch="None" Source="icons/png/redo.png" />
+            </Button>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
             <Button x:Name="runBtn" BorderBrush="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" Height="20" Click="runBtn_Click" ToolTip="Lancer l'algo (F5)">
                 <Image Stretch="None" Source="icons/png/run.png" />
             </Button>

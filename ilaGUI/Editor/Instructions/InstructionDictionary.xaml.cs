@@ -85,9 +85,15 @@ namespace ilaGUI
 
         private void undoMenu_Click(object sender, RoutedEventArgs e)
         {
+            App.Undo();
         }
 
         private void redoMenu_Click(object sender, RoutedEventArgs e)
+        {
+            App.Redo();
+        }
+
+        private void pasteMenu_Click(object sender, RoutedEventArgs e)
         {
         }
     }

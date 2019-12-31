@@ -91,18 +91,18 @@
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
-        <MenuItem Name="pasteMenu" Header="Coller" InputGestureText="Ctrl+V" IsEnabled="False">
+        <MenuItem Name="pasteMenu" Header="Coller" InputGestureText="Ctrl+V" IsEnabled="False" Click="pasteMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/paste.png" />
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Name="EundoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False">
+        <MenuItem Name="EundoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False" Click="undoMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/undo.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Name="EredoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False">
+        <MenuItem Name="EredoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False" Click="redoMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/redo.png" />
             </MenuItem.Icon>
