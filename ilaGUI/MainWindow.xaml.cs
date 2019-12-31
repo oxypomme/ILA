@@ -192,7 +192,7 @@ namespace ilaGUI
 
         private void settingsBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.Settings();
+            App.OpenSettings();
         }
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)

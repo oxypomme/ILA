@@ -602,7 +602,7 @@ namespace ilaGUI
             dialog.ShowDialog();
         }
 
-        public static void Settings()
+        public static void OpenSettings()
         {
             var dialog = new SettingsDialog();
             dialog.Owner = Current.MainWindow;

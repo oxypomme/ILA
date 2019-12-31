@@ -24,6 +24,7 @@ namespace ilaGUI
         public static readonly Brush DarkBackground = new SolidColorBrush(DarkThemeColor);
         public static readonly Brush DarkFontColor = new SolidColorBrush(Colors.White);
         public static Control Dragged { get; set; }
+        public static Setting Settings { get; set; }
 
         public App()
         {
