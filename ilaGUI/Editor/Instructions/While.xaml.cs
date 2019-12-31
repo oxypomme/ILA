@@ -23,6 +23,7 @@ namespace ilaGUI.Editor
         public While()
         {
             InitializeComponent();
+            App.DarkmodeUrMenus(hitbox.ContextMenu.Items);
             icon.Source = App.MakeDarkTheme(icon.Source as BitmapSource);
             EndInstruction = new DummyInstruction();
             instructions.Tag = this;

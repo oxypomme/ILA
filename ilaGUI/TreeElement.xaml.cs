@@ -24,6 +24,7 @@ namespace ilaGUI
         public TreeElement(IBaseObject linkedTo)
         {
             InitializeComponent();
+            App.DarkmodeUrMenus(globalButton.ContextMenu.Items);
             constant.Source = App.MakeDarkTheme(constant.Source as BitmapSource);
             (deleteButton.Content as Image).Source = App.MakeDarkTheme((deleteButton.Content as Image).Source as BitmapSource);
             (editButton.Content as Image).Source = App.MakeDarkTheme((editButton.Content as Image).Source as BitmapSource);
