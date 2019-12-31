@@ -20,10 +20,8 @@ namespace ilaGUI
     /// </summary>
     public partial class App : Application
     {
-        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
-        public static readonly Brush DarkBackground = new SolidColorBrush(DarkThemeColor);
         public static readonly Brush DarkFontColor = new SolidColorBrush(Colors.White);
-
+        public static readonly Color DarkThemeColor = Color.FromRgb(45, 42, 46);
         public static Setting Settings = new Setting();
 
         public App()
@@ -32,6 +30,7 @@ namespace ilaGUI
             CurrentILAcode = null;
             Executing = null;
             Workspaces = new List<string>();
+            SelectedInstructions = new List<IDropableInstruction>();
             Console.ActiveConsoles = new List<Console>();
             Console.StandardOutput = new StreamWriter(new Console.ConsoleOutputStream(), Encoding.UTF8) { AutoFlush = true };
             CurrentExecutable = CurrentILAcode;
@@ -43,6 +42,7 @@ namespace ilaGUI
         public static IExecutable CurrentExecutable { get; set; }
         public static Program CurrentILAcode { get; set; }
         public static string CurrentWorkspace { get; set; }
+        public static Brush DarkBackground => new SolidColorBrush(DarkThemeColor);
         public static Control Dragged { get; set; }
         public static EditorView Editor { get; set; }
         public static System.Diagnostics.Process Executing { get; set; }
@@ -51,6 +51,7 @@ namespace ilaGUI
         public static MainWindow MainDialog { get; set; }
         public static Brush ModuleColorBrush => (Brush)Current.FindResource("moduleColor");
         public static Brush NumbersColorBrush => (Brush)Current.FindResource("numbersColor");
+        public static List<IDropableInstruction> SelectedInstructions { get; set; }
         public static Brush StringColorBrush => (Brush)Current.FindResource("stringColor");
         public static Brush SymbolColorBrush => (Brush)Current.FindResource("symbolColor");
         public static TabControl Tabs { get; set; }

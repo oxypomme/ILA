@@ -818,7 +818,7 @@ namespace ILANET.Parser
                         index = disp.Key;
                         while (ilaCode[index] != '}')
                         {
-                            returnProg.Instructions.Add(ParseInstru(ilaCode, returnProg, returnProg, ref index, ignoreConstValues));
+                            returnProg.Instructions.Add(ParseInstruction(ilaCode, returnProg, returnProg, ref index, ignoreConstValues));
                             SkipLine(ilaCode, ref index, true);
                         }
                     }
@@ -1211,7 +1211,7 @@ namespace ILANET.Parser
                         fct.Instructions = new List<Instruction>();
                         while (ilaCode[index] != '}')
                         {
-                            fct.Instructions.Add(ParseInstru(ilaCode, returnProg, fct, ref index, ignoreConstValues));
+                            fct.Instructions.Add(ParseInstruction(ilaCode, returnProg, fct, ref index, ignoreConstValues));
                             SkipLine(ilaCode, ref index, true);
                         }
                         index++;
@@ -1561,7 +1561,7 @@ namespace ILANET.Parser
                         module.Instructions = new List<Instruction>();
                         while (ilaCode[index] != '}')
                         {
-                            module.Instructions.Add(ParseInstru(ilaCode, returnProg, module, ref index, ignoreConstValues));
+                            module.Instructions.Add(ParseInstruction(ilaCode, returnProg, module, ref index, ignoreConstValues));
                             SkipLine(ilaCode, ref index, true);
                         }
                         index++;

@@ -14,7 +14,7 @@ namespace ilaGUI
 
         private void editMenu_click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(GetCaller(sender));
+            App.PasteInstruction(GetCaller(sender));
         }
 
         private IDropableInstruction GetCaller(object menuItem) => ((menuItem as MenuItem).Parent as ContextMenu).Tag as IDropableInstruction;

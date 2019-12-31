@@ -12,16 +12,14 @@ namespace ILANET.Parser
         /// <param name="code">code to parse</param>
         /// <param name="mainProg">program used</param>
         /// <param name="currentBlock">scope</param>
+        /// <param name="index">index from which to start parsing</param>
+        /// <param name="ignoreConsts">true if the parse ignore const checks</param>
         /// <returns>the parsed instruction</returns>
-        public static Instruction ParseInstruction(string code, Program mainProg, IExecutable currentBlock, bool ignoreConsts)
+        public static Instruction ParseInstruction(string code, Program mainProg, IExecutable currentBlock, ref int index, bool ignoreConsts)
         {
-            int index = 0;
-            return ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts);
-        }
-
-        internal static Instruction ParseInstru(string code, Program mainProg, IExecutable currentBlock, ref int index, bool ignoreConsts)
-        {
-            code = code.TrimStart();
+            SkipLine(code, ref index);
+            if (string.IsNullOrWhiteSpace(code))
+                return null;
             if (code[^1] != '\n')
                 code += '\n';
             code += "        ";
@@ -116,7 +114,7 @@ namespace ILANET.Parser
                         }
                         goto elseEtiq;
                     }
-                    instru.IfInstructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
+                    instru.IfInstructions.Add(ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
             elif:
@@ -183,7 +181,7 @@ namespace ILANET.Parser
                             }
                             goto elseEtiq;
                         }
-                        currInstru.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
+                        currInstru.Add(ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts));
                         SkipLine(code, ref index);
                     }
                 }
@@ -206,7 +204,7 @@ namespace ILANET.Parser
                             }
                             return instru;
                         }
-                        instru.ElseInstructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
+                        instru.ElseInstructions.Add(ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts));
                         SkipLine(code, ref index);
                     }
                 }
@@ -263,7 +261,7 @@ namespace ILANET.Parser
                 instru.Instructions = new List<Instruction>();
                 while (code.Substring(index, 5) != "fpour")
                 {
-                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
+                    instru.Instructions.Add(ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
                 index += 5;
@@ -306,7 +304,7 @@ namespace ILANET.Parser
                 while (code.Substring(index, 8) != "ftantque" &&
                         code.Substring(index, 3) != "ftq")
                 {
-                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
+                    instru.Instructions.Add(ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
                 if (code.Substring(index, 8) == "ftantque")
@@ -343,7 +341,7 @@ namespace ILANET.Parser
                 SkipLine(code, ref index);
                 while (code.Substring(index, 7) != "jusqua ")
                 {
-                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
+                    instru.Instructions.Add(ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
                 index += 7;
@@ -417,7 +415,7 @@ namespace ILANET.Parser
                             break;
                         }
                         if (!line.Contains(':'))
-                            currInstrus.Add(ParseInstru(line + "\n       ", mainProg, currentBlock, ref subIndex, ignoreConsts));
+                            currInstrus.Add(ParseInstruction(line + "\n       ", mainProg, currentBlock, ref subIndex, ignoreConsts));
                         else if (line.Substring(0, 7) == "defaut " ||
                                 line.Substring(0, 7) == "defaut:")
                         {
@@ -435,7 +433,7 @@ namespace ILANET.Parser
                             SkipLine(code, ref index);
                             while (code.Substring(index, 4) != "fcas")
                             {
-                                instru.Default.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
+                                instru.Default.Add(ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts));
                                 SkipLine(code, ref index);
                             }
                             index += 4;
@@ -672,6 +670,20 @@ namespace ILANET.Parser
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Parse a given line of code representing an instruction
+        /// </summary>
+        /// <param name="code">code to parse</param>
+        /// <param name="mainProg">program used</param>
+        /// <param name="currentBlock">scope</param>
+        /// <param name="ignoreConsts">true if the parse ignore const checks</param>
+        /// <returns>the parsed instruction</returns>
+        public static Instruction ParseInstruction(string code, Program mainProg, IExecutable currentBlock, bool ignoreConsts)
+        {
+            int index = 0;
+            return ParseInstruction(code, mainProg, currentBlock, ref index, ignoreConsts);
         }
     }
 }
