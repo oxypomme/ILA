@@ -134,6 +134,7 @@
     <None Remove="logo\small\logo40.png" />
     <None Remove="logo\small\logo48.png" />
     <None Remove="logo\small\logo64.png" />
+    <None Remove="settings.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -383,6 +384,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="logo\small\logo64.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="settings.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
