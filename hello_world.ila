@@ -1,0 +1,22 @@
+fonction test_bool(var:booleen):booleen
+{
+    si (var = parse("true")) alors
+        test_bool <- non test_bool(non var)
+    sinon 
+        test_bool <- (var = parse("true"))
+    fsi
+}
+fonction parse(str:chaine):booleen
+{
+    si ((str = "true") != faux) alors
+        parse <- non parse("faux")
+    sinon 
+        parse <- (faux = vrai)
+    fsi
+}
+algo main
+{
+    si (test_bool(vrai) = vrai) alors
+        ecrire("hello world!")
+    fsi
+}
