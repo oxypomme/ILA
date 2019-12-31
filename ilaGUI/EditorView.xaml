@@ -16,8 +16,8 @@
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,2,0,0">
             <Image x:Name="exeIcon" Stretch="None" VerticalAlignment="Bottom" Margin="10,0" />
-            <TextBlock Text="test" FontFamily="{DynamicResource firacode}" x:Name="exeType" Foreground="{StaticResource keywordColor}" VerticalAlignment="Bottom" />
-            <TextBlock VerticalAlignment="Bottom" Margin="5,0" FontFamily="{DynamicResource firacode}" x:Name="exeName" Foreground="White" />
+            <TextBlock FontFamily="{DynamicResource firacode}" x:Name="exeType" Foreground="{StaticResource keywordColor}" VerticalAlignment="Bottom" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5,0" FontFamily="{DynamicResource firacode}" x:Name="exeName" Foreground="{StaticResource moduleColor}" />
             <TextBlock FontFamily="{DynamicResource firacode}" VerticalAlignment="Bottom" x:Name="leftParenthesis" Foreground="{StaticResource symbolColor}" Text="(" />
             <StackPanel x:Name="moduleParams" Orientation="Horizontal" />
             <TextBlock FontFamily="{DynamicResource firacode}" VerticalAlignment="Bottom" x:Name="rightParenthesis" Foreground="{StaticResource symbolColor}" Text=")" />
