@@ -50,19 +50,23 @@ namespace ilaGUI
                         break;
 
                     case MessageBoxImage.Error:
-                        Console.WriteLine("[ERREUR]:" + messageBoxText);
+                        Console.Write("[ERREUR] ", ConsoleColor.Red);
+                        Console.WriteLine(messageBoxText);
                         break;
 
                     case MessageBoxImage.Question:
-                        Console.WriteLine("[QUESTION]:" + messageBoxText);
+                        Console.Write("[QUESTION] ", ConsoleColor.Blue);
+                        Console.WriteLine(messageBoxText);
                         break;
 
                     case MessageBoxImage.Exclamation:
-                        Console.WriteLine("[ATTENTION]:" + messageBoxText);
+                        Console.Write("[ATTENTION] ", ConsoleColor.Yellow);
+                        Console.WriteLine(messageBoxText);
                         break;
 
                     case MessageBoxImage.Asterisk:
-                        Console.WriteLine("[INFO]:" + messageBoxText);
+                        Console.Write("[INFO] ", ConsoleColor.Blue);
+                        Console.WriteLine(messageBoxText);
                         break;
                 };
             var dialog = new MessageBox();

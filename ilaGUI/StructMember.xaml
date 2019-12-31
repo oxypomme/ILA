@@ -11,8 +11,8 @@
         <StackPanel Orientation="Horizontal" IsHitTestVisible="False" VerticalAlignment="Center">
             <Image x:Name="memberIcon" Margin="5, 0" Stretch="None" />
             <TextBlock x:Name="memberName" Foreground="White" />
-            <TextBlock Foreground="OrangeRed" Text=":" />
-            <TextBlock x:Name="memberType" Foreground="LightBlue" />
+            <TextBlock Foreground="{StaticResource symbolColor}" Text=":" />
+            <TextBlock x:Name="memberType" Foreground="{StaticResource keywordColor}" />
         </StackPanel>
         <Button x:Name="removeBtn" HorizontalAlignment="Right" Click="removeBtn_Click">
             <Image Stretch="None" Source="icons/png/remove field.png" />

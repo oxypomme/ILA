@@ -16,15 +16,15 @@
     </UserControl.Resources>
 
     <Grid>
-        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <Separator Visibility="Collapsed" Background="{StaticResource insertLineColor}" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <Grid ContextMenu="{StaticResource InstructionContextMenu}" x:Name="hitbox" AllowDrop="True" MouseMove="hitbox_MouseMove" DragEnter="hitbox_DragEnter" DragLeave="hitbox_DragLeave" DragOver="hitbox_DragOver" Drop="hitbox_Drop" Background="#01000000" MouseEnter="hitbox_MouseEnter" MouseLeave="hitbox_MouseLeave" />
         <StackPanel>
             <StackPanel Orientation="Horizontal" IsHitTestVisible="False">
                 <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/if.png" />
-                <TextBlock Text="si " Foreground="LightBlue" FontFamily="Consolas" />
+                <TextBlock Text="si " Foreground="{StaticResource keywordColor}" FontFamily="{DynamicResource firacode}" />
                 <ContentControl Name="conditionHolder" />
-                <TextBlock Text=" alors" Foreground="LightBlue" FontFamily="Consolas" />
-                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Text=" alors" Foreground="{StaticResource keywordColor}" FontFamily="{DynamicResource firacode}" />
+                <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="{StaticResource commentsColor}" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
             <Grid>
                 <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,0,0,0" />
@@ -33,8 +33,8 @@
             <StackPanel x:Name="elifs" />
             <StackPanel x:Name="else">
                 <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
-                    <TextBlock Margin="21,0,0,0" Text="sinon" Foreground="LightBlue" FontFamily="Consolas" />
-                    <TextBlock Margin="5,0,0,0" x:Name="elseComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                    <TextBlock Margin="21,0,0,0" Text="sinon" Foreground="{StaticResource keywordColor}" FontFamily="{DynamicResource firacode}" />
+                    <TextBlock Margin="5,0,0,0" x:Name="elseComment" FontStyle="Italic" Foreground="{StaticResource commentsColor}" FontFamily="{DynamicResource firacode}" />
                 </StackPanel>
                 <Grid>
                     <Rectangle Width="1" Fill="Gray" HorizontalAlignment="Left" Margin="12,0,0,0" />
@@ -42,8 +42,8 @@
                 </Grid>
             </StackPanel>
             <StackPanel IsHitTestVisible="False" Orientation="Horizontal">
-                <TextBlock Margin="21,0,0,0" Text="fsi" Foreground="LightBlue" FontFamily="Consolas" />
-                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+                <TextBlock Margin="21,0,0,0" Text="fsi" Foreground="{StaticResource keywordColor}" FontFamily="{DynamicResource firacode}" />
+                <TextBlock Margin="5,0,0,0" x:Name="endComment" FontStyle="Italic" Foreground="{StaticResource commentsColor}" FontFamily="{DynamicResource firacode}" />
             </StackPanel>
         </StackPanel>
     </Grid>

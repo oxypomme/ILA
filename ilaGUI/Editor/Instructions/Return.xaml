@@ -18,13 +18,13 @@
     </UserControl.Resources>
 
     <Grid x:Name="mainGrid" ContextMenu="{StaticResource InstructionContextMenu}">
-        <Separator Visibility="Collapsed" Background="OrangeRed" Name="insertHere" Margin="0" VerticalAlignment="Top" />
+        <Separator Visibility="Collapsed" Background="{StaticResource insertLineColor}" Name="insertHere" Margin="0" VerticalAlignment="Top" />
         <StackPanel Orientation="Horizontal">
             <Image Margin="0,0,5,0" x:Name="icon" Stretch="None" Source="/ilaGUI;component/icons/png/return.png" />
-            <TextBlock Foreground="LightGreen" FontFamily="Consolas" Name="fctName" />
-            <TextBlock Text="&lt;-" Margin="5,0" FontFamily="Consolas" Foreground="OrangeRed" />
+            <TextBlock Foreground="LightGreen" FontFamily="{DynamicResource firacode}" Name="fctName" />
+            <TextBlock Text="&lt;-" Margin="5,0" FontFamily="{DynamicResource firacode}" Foreground="{StaticResource symbolColor}" />
             <ContentControl Name="valueHolder" />
-            <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="DarkGray" FontFamily="Consolas" />
+            <TextBlock Margin="5,0,0,0" x:Name="comment" FontStyle="Italic" Foreground="{StaticResource commentsColor}" FontFamily="{DynamicResource firacode}" />
         </StackPanel>
     </Grid>
 </UserControl>
