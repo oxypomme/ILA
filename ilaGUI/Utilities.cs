@@ -479,7 +479,7 @@ namespace ilaGUI
                     Program prog;
                     try
                     {
-                        prog = ILANET.Parser.Parser.Parse(sr.ReadToEnd());
+                        prog = ILANET.Parser.Parser.Parse(sr.ReadToEnd(), true);
                         Console.WriteLine("'" + prog.Name + "' chargé avec succès");
                     }
                     catch (Exception e)
@@ -502,7 +502,7 @@ namespace ilaGUI
             {
                 try
                 {
-                    var instru = GetInstructionControl(ILANET.Parser.Parser.ParseInstruction(clipContent, CurrentILAcode, CurrentExecutable));
+                    var instru = GetInstructionControl(ILANET.Parser.Parser.ParseInstruction(clipContent, CurrentILAcode, CurrentExecutable, true));
                     insertHere.DropRecieved(instru as IDropableInstruction);
                 }
                 catch (ILANET.Parser.Parser.ILAException e)
@@ -535,6 +535,18 @@ namespace ilaGUI
                 MessageBox.Show("Veuillez fermer le programme actuel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (SaveCurrent())
             {
+                {
+                    using var stream = new StreamReader(CurrentWorkspace);
+                    try
+                    {
+                        var prog = ILANET.Parser.Parser.Parse(stream.ReadToEnd());
+                    }
+                    catch (ILANET.Parser.Parser.ILAException e)
+                    {
+                        MessageBox.Show(e.Message, "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
                 var proc = new Process();
                 proc.Exited += (sender, e) =>
                 {

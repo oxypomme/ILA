@@ -22,12 +22,13 @@ namespace ILANET
             {
                 new Parameter()
                 {
-                 ImportedVariable = new Variable()
-                 {
-                      Constant = false,
-                       Name = "input",
-                        Type = GenericType.String
-                 }
+                    ImportedVariable = new Variable()
+                    {
+                        Constant = false,
+                        Name = "input",
+                        Type = null
+                    },
+                    Mode = Parameter.Flags.INPUT
                 }
             };
             ReturnType = GenericType.Int;

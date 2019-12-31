@@ -13,13 +13,13 @@ namespace ILANET.Parser
         /// <param name="mainProg">program used</param>
         /// <param name="currentBlock">scope</param>
         /// <returns>the parsed instruction</returns>
-        public static Instruction ParseInstruction(string code, Program mainProg, IExecutable currentBlock)
+        public static Instruction ParseInstruction(string code, Program mainProg, IExecutable currentBlock, bool ignoreConsts)
         {
             int index = 0;
-            return ParseInstru(code, mainProg, currentBlock, ref index);
+            return ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts);
         }
 
-        internal static Instruction ParseInstru(string code, Program mainProg, IExecutable currentBlock, ref int index)
+        internal static Instruction ParseInstru(string code, Program mainProg, IExecutable currentBlock, ref int index, bool ignoreConsts)
         {
             code = code.TrimStart();
             if (code[^1] != '\n')
@@ -116,7 +116,7 @@ namespace ILANET.Parser
                         }
                         goto elseEtiq;
                     }
-                    instru.IfInstructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                    instru.IfInstructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
             elif:
@@ -183,7 +183,7 @@ namespace ILANET.Parser
                             }
                             goto elseEtiq;
                         }
-                        currInstru.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                        currInstru.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
                         SkipLine(code, ref index);
                     }
                 }
@@ -206,7 +206,7 @@ namespace ILANET.Parser
                             }
                             return instru;
                         }
-                        instru.ElseInstructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                        instru.ElseInstructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
                         SkipLine(code, ref index);
                     }
                 }
@@ -224,7 +224,7 @@ namespace ILANET.Parser
                 {
                     var indexer = ParseValue(variable, mainProg, currentBlock);
                     if (!(indexer is Variable))
-                        throw new ILAException("Erreur : l'idexeur doit être une variable");
+                        throw new ILAException("Erreur : l'indexeur doit être une variable");
                     instru.Index = indexer as Variable;
                 }
                 index += 2;
@@ -263,7 +263,7 @@ namespace ILANET.Parser
                 instru.Instructions = new List<Instruction>();
                 while (code.Substring(index, 5) != "fpour")
                 {
-                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
                 index += 5;
@@ -306,7 +306,7 @@ namespace ILANET.Parser
                 while (code.Substring(index, 8) != "ftantque" &&
                         code.Substring(index, 3) != "ftq")
                 {
-                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
                 if (code.Substring(index, 8) == "ftantque")
@@ -343,7 +343,7 @@ namespace ILANET.Parser
                 SkipLine(code, ref index);
                 while (code.Substring(index, 7) != "jusqua ")
                 {
-                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                    instru.Instructions.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
                     SkipLine(code, ref index);
                 }
                 index += 7;
@@ -417,7 +417,7 @@ namespace ILANET.Parser
                             break;
                         }
                         if (!line.Contains(':'))
-                            currInstrus.Add(ParseInstru(line + "\n       ", mainProg, currentBlock, ref subIndex));
+                            currInstrus.Add(ParseInstru(line + "\n       ", mainProg, currentBlock, ref subIndex, ignoreConsts));
                         else if (line.Substring(0, 7) == "defaut " ||
                                 line.Substring(0, 7) == "defaut:")
                         {
@@ -435,7 +435,7 @@ namespace ILANET.Parser
                             SkipLine(code, ref index);
                             while (code.Substring(index, 4) != "fcas")
                             {
-                                instru.Default.Add(ParseInstru(code, mainProg, currentBlock, ref index));
+                                instru.Default.Add(ParseInstru(code, mainProg, currentBlock, ref index, ignoreConsts));
                                 SkipLine(code, ref index);
                             }
                             index += 4;
@@ -527,6 +527,13 @@ namespace ILANET.Parser
                         instru2.Args = new List<IValue>();
                         foreach (var item in args)
                             instru2.Args.Add(ParseValue(item, mainProg, currentBlock));
+                        if (instru2.Args.Count > instru2.CalledModule.Parameters.Count && !ignoreConsts)
+                            throw new ILAException("Erreur : nombre d'arguments trop élevé");
+                        for (int i = 0; i < instru2.Args.Count; i++)
+                        {
+                            if ((instru2.CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0 && instru2.Args[i] is Variable v && v.Constant && !ignoreConsts)
+                                throw new ILAException("Erreur : impossible de passer une variable constante en paramètre de sortie");
+                        }
                         FastForward(code, ref index);
                         if (code.Substring(index, 2) == "//")
                         {
@@ -542,7 +549,7 @@ namespace ILANET.Parser
                     else
                         throw new ILAException("Erreur : operateur attendu : '<-'");
                 }
-                if (!(currentBlock is Function))
+                if (!(currentBlock is Function) && !ignoreConsts)
                     throw new ILAException("Erreur : impossible de créer une retour en dehors d'une fonction");
                 instru.Function = currentBlock as Function;
                 index += 2;
@@ -575,7 +582,7 @@ namespace ILANET.Parser
                             throw new ILAException("Seules les variables peuvent être assignées");
                         var instru = new Assign();
                         instru.Left = v as Variable;
-                        if (instru.Left.Constant)
+                        if (instru.Left.Constant && !ignoreConsts)
                             throw new ILAException("Erreur : impossible de changer la valeur d'une constante");
                         index += 2;
                         FastForward(code, ref index);
@@ -639,6 +646,13 @@ namespace ILANET.Parser
                         instru.Args = new List<IValue>();
                         foreach (var item in args)
                             instru.Args.Add(ParseValue(item, mainProg, currentBlock));
+                        if (instru.Args.Count > instru.CalledModule.Parameters.Count && !ignoreConsts)
+                            throw new ILAException("Erreur : nombre d'arguments trop élevé");
+                        for (int i = 0; i < instru.Args.Count; i++)
+                        {
+                            if ((instru.CalledModule.Parameters[i].Mode & Parameter.Flags.OUTPUT) != 0 && instru.Args[i] is Variable v && v.Constant && !ignoreConsts)
+                                throw new ILAException("Erreur : impossible de passer une variable constante en paramètre de sortie");
+                        }
                         FastForward(code, ref index);
                         if (code.Substring(index, 2) == "//")
                         {

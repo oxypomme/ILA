@@ -794,10 +794,12 @@ namespace ilaGUI
                 foreach (var item in e.Args)
                 {
                     using (var sr = new StreamReader(item))
-                        ILAcodes.Add(ILANET.Parser.Parser.Parse(sr.ReadToEnd()));
+                        ILAcodes.Add(ILANET.Parser.Parser.Parse(sr.ReadToEnd(), true));
+                    Workspaces.Add(item);
                 }
                 CurrentILAcode = ILAcodes.First();
                 CurrentExecutable = CurrentILAcode;
+                CurrentWorkspace = Workspaces.First();
             }
         }
     }
