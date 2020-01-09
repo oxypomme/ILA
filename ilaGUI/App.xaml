@@ -287,6 +287,7 @@
         </Style>
 
         <Style x:Key="StandardStyle" TargetType="{x:Type local:MainWindow}">  
+            <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.shell.windowchrome?redirectedfrom=MSDN&view=netframework-4.8-->
             <Setter Property="shell:WindowChrome.WindowChrome">  
                 <Setter.Value>  
                     <shell:WindowChrome />  
