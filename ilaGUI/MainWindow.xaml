@@ -9,6 +9,7 @@
         x:Class="ilaGUI.MainWindow"
         mc:Ignorable="d"
         UseLayoutRounding="True"
+        Style="{StaticRessource StandardStyle}"
         Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico" Background="Black" Closed="Window_Closed">
     <Grid>
         <Grid.RowDefinitions>
