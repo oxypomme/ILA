@@ -150,6 +150,13 @@ namespace ILANET
                 textWriter.Write("\n");
                 Program.Indent--;
             }
+            if(IfInstructions.Count == 0)
+            {
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("pass\n");
+                Program.Indent--;
+            }
 
             foreach (var elif in Elif)
             {
@@ -163,6 +170,13 @@ namespace ILANET
                     Program.Indent++;
                     instruction.WritePython(textWriter);
                     textWriter.Write("\n");
+                    Program.Indent--;
+                }
+                if(elif.Item2.Count == 0)
+                {
+                    Program.Indent++;
+                    Program.GenerateIndent(textWriter);
+                    textWriter.Write("pass\n");
                     Program.Indent--;
                 }
             }

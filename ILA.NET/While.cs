@@ -90,6 +90,13 @@ namespace ILANET
                 textWriter.Write("\n");
                 Program.Indent--;
             }
+            if(Instructions.Count == 0)
+            {
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("pass\n");
+                Program.Indent--;
+            }
         }
 
         #endregion Public Properties
