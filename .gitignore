@@ -350,3 +350,6 @@ MigrationBackup/
 
 #doxygen files
 doxygen-doc/*
+
+# VS Code files
+.vscode/
