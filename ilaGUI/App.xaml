@@ -5,6 +5,16 @@
              StartupUri="MainWindow.xaml"
              Startup="Application_Startup">
     <Application.Resources>
+        <!--<Style TargetType="{x:Type local:MainWindow}">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome GlassFrameThickness="1"
+                  ResizeBorderThickness="4"
+                  CaptionHeight="0" />
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+
         <!--<SolidColorBrush x:Key="variableColor" Color="Red" />
         <SolidColorBrush x:Key="stringColor" Color="Red" />
         <SolidColorBrush x:Key="moduleColor" Color="Red" />
@@ -285,34 +295,5 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style x:Key="StandardStyle" TargetType="{x:Type local:MainWindow}">  
-            <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.shell.windowchrome?redirectedfrom=MSDN&view=netframework-4.8-->
-            <Setter Property="shell:WindowChrome.WindowChrome">  
-                <Setter.Value>  
-                    <shell:WindowChrome />  
-                </Setter.Value>  
-            </Setter>  
-            <Setter Property="Template">  
-                <Setter.Value>  
-                    <ControlTemplate TargetType="{x:Type local:MainWindow}">  
-                        <Grid>  
-                            <Border Background="White"  
-                                    Margin="{Binding Source={x:Static shell:SystemParameters2.Current}, Path=WindowNonClientFrameThickness}">  
-                                <ContentPresenter Content="{TemplateBinding Content}" />  
-                            </Border>  
-                            <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}"   
-                                    VerticalAlignment="Top" HorizontalAlignment="Left"   
-                                    Margin="36,8,0,0"/>  
-                            <Image Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon}"  
-                                VerticalAlignment="Top" HorizontalAlignment="Left"  
-                                Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(shell:WindowChrome.WindowChrome).ResizeBorderThickness}"   
-                                Width="{Binding Source={x:Static shell:SystemParameters2.Current}, Path=SmallIconSize.Width}"  
-                                shell:WindowChrome.IsHitTestVisibleInChrome="True"/>  
-                        </Grid>  
-                    </ControlTemplate>  
-                </Setter.Value>  
-            </Setter>  
-        </Style>  
     </Application.Resources>
 </Application>
