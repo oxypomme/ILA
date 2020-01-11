@@ -9,8 +9,15 @@
         x:Class="ilaGUI.MainWindow"
         mc:Ignorable="d"
         UseLayoutRounding="True"
-        Style="{StaticRessource StandardStyle}"
+        Style="{StaticResource CustomWindowStyle}"
         Title="ILA" Height="700" Width="1200" MinWidth="900" MinHeight="500" WindowState="Maximized" Icon="/logo/logo.ico" Background="Black" Closed="Window_Closed">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CustomWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="27" />
