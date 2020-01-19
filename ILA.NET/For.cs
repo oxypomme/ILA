@@ -112,7 +112,10 @@ namespace ILANET
             Program.GenerateIndent(textWriter);
             Index.WritePython(textWriter);
             textWriter.Write(" = ");
-            Start.WritePython(textWriter);
+            if (Start != null)
+                Start.WritePython(textWriter);
+            else
+                textWriter.Write("0");
             textWriter.Write("\n");
 
             // While condition
@@ -120,7 +123,11 @@ namespace ILANET
             textWriter.Write("while (");
             Index.WritePython(textWriter);
             textWriter.Write(" != ");
-            End.WritePython(textWriter);
+            if (End != null)
+                End.WritePython(textWriter);
+            else
+                textWriter.Write("0");
+
             textWriter.Write(") :\n");
 
             // While content
@@ -131,7 +138,7 @@ namespace ILANET
                 textWriter.Write("\n");
                 Program.Indent--;
             }
-            if(Instructions.Count == 0)
+            if (Instructions.Count == 0)
             {
                 Program.Indent++;
                 Program.GenerateIndent(textWriter);
@@ -143,6 +150,7 @@ namespace ILANET
             Index.WritePython(textWriter);
             textWriter.Write("+=");
             Step.WritePython(textWriter);
+            textWriter.Write("\n");
             Program.Indent--;
         }
 

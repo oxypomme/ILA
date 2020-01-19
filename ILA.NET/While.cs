@@ -81,7 +81,10 @@ namespace ILANET
         {
             Program.GenerateIndent(textWriter);
             textWriter.Write("while (");
-            Condition.WritePython(textWriter);
+            if (Condition != null)
+                Condition.WritePython(textWriter);
+            else
+                textWriter.Write("True");
             textWriter.Write(") :\n");
             foreach (var instruction in Instructions)
             {
@@ -90,7 +93,7 @@ namespace ILANET
                 textWriter.Write("\n");
                 Program.Indent--;
             }
-            if(Instructions.Count == 0)
+            if (Instructions.Count == 0)
             {
                 Program.Indent++;
                 Program.GenerateIndent(textWriter);
