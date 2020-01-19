@@ -39,18 +39,55 @@ namespace ilaGUI
             return new System.Drawing.Bitmap(bitmap);
         }
 
-        public static void CopyInstruction(IDropableInstruction toCopy)
+        public static void CopyInstruction(IEnumerable<IDropableInstruction> toCopy)
         {
-            var instru = (toCopy as Linked).Link as Instruction;
             using var sw = new StringWriter();
-            instru.WriteILA(sw);
+            foreach (var item in toCopy)
+            {
+                var instru = (item as Linked).Link as Instruction;
+                instru.WriteILA(sw);
+            }
             Clipboard.SetText(sw.ToString());
         }
 
-        public static void CutInstruction(IDropableInstruction toCut)
+        public static void CutInstruction(IEnumerable<IDropableInstruction> toCut)
         {
             CopyInstruction(toCut);
-            toCut.Remove();
+            foreach (var item in toCut)
+                item.Remove();
+        }
+
+        public static void DarkmodeUrBtns(UIElementCollection headerItems)
+        {
+            for (int i = 0; i < headerItems.Count; i++)
+            {
+                Button menuItem;
+                try
+                {
+                    menuItem = (Button)headerItems[i];
+                }
+                catch (InvalidCastException) { i++; menuItem = (Button)headerItems[i]; }
+                if (menuItem.Content != null)
+                    (menuItem.Content as Image).Source = MakeDarkTheme((menuItem.Content as Image).Source as BitmapSource);
+            }
+        }
+
+        public static void DarkmodeUrMenus(ItemCollection headerItems)
+        {
+            for (int i = 0; i < headerItems.Count; i++)
+            {
+                MenuItem menuItem;
+                try
+                {
+                    menuItem = (MenuItem)headerItems[i];
+                }
+                catch (InvalidCastException) { i++; menuItem = (MenuItem)headerItems[i]; }
+                if (menuItem.Icon != null)
+                    (menuItem.Icon as Image).Source = MakeDarkTheme((menuItem.Icon as Image).Source as BitmapSource);
+
+                if (menuItem.Items.Count > 0)
+                    DarkmodeUrMenus(menuItem.Items);
+            }
         }
 
         public static BitmapImage GetBitmapImage(Stream stream)
@@ -171,7 +208,7 @@ namespace ilaGUI
                     firstLine.Children.Add(new TextBlock
                     {
                         Text = "sinon si ",
-                        Foreground = new SolidColorBrush(Colors.LightBlue),
+                        Foreground = App.KeywordColorBrush,
                         FontFamily = font,
                         Margin = new System.Windows.Thickness(21, 0, 0, 0)
                     });
@@ -180,12 +217,12 @@ namespace ilaGUI
                     firstLine.Children.Add(new TextBlock
                     {
                         Text = " alors",
-                        Foreground = new SolidColorBrush(Colors.LightBlue),
+                        Foreground = App.KeywordColorBrush,
                         FontFamily = font
                     });
                     elifStruct.comment = new TextBlock
                     {
-                        Foreground = new SolidColorBrush(Colors.DarkGray),
+                        Foreground = commentsColorBrush,
                         FontFamily = font,
                         FontStyle = System.Windows.FontStyles.Italic,
                         Margin = new System.Windows.Thickness(5, 0, 0, 0)
@@ -251,7 +288,7 @@ namespace ilaGUI
                     firstLine.Children.Add(new TextBlock
                     {
                         Text = " : ",
-                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        Foreground = App.SymbolColorBrush,
                         FontFamily = font
                     });
                     caseStruct.instructions = new StackPanel();
@@ -460,6 +497,13 @@ namespace ilaGUI
             return bitmap;
         }
 
+        public static void NewFile()
+        {
+            var dialog = new NewFileDialog();
+            dialog.Owner = Current.MainWindow;
+            dialog.ShowDialog();
+        }
+
         public static void OpenFile()
         {
             string path = CurrentWorkspace != null ? CurrentWorkspace : "";
@@ -479,7 +523,7 @@ namespace ilaGUI
                     Program prog;
                     try
                     {
-                        prog = ILANET.Parser.Parser.Parse(sr.ReadToEnd());
+                        prog = ILANET.Parser.Parser.Parse(sr.ReadToEnd(), true);
                         Console.WriteLine("'" + prog.Name + "' chargé avec succès");
                     }
                     catch (Exception e)
@@ -495,15 +539,28 @@ namespace ilaGUI
             }
         }
 
+        public static void OpenSettings()
+        {
+            var dialog = new SettingsDialog();
+            dialog.Owner = Current.MainWindow;
+            dialog.ShowDialog();
+        }
+
         public static void PasteInstruction(IDropableInstruction insertHere)
         {
-            var clipContent = Clipboard.GetText();
-            if (!string.IsNullOrWhiteSpace(clipContent))
+            var clipContent = Clipboard.GetText().Trim();
+            if (!string.IsNullOrEmpty(clipContent))
             {
+                var instrus = new List<Instruction>();
                 try
                 {
-                    var instru = GetInstructionControl(ILANET.Parser.Parser.ParseInstruction(clipContent, CurrentILAcode, CurrentExecutable));
-                    insertHere.DropRecieved(instru as IDropableInstruction);
+                    int index = 0;
+                    while (index < clipContent.Length)
+                    {
+                        var tmp = ILANET.Parser.Parser.ParseInstruction(clipContent, CurrentILAcode, CurrentExecutable, ref index, true);
+                        if (tmp != null)
+                            instrus.Add(tmp);
+                    }
                 }
                 catch (ILANET.Parser.Parser.ILAException e)
                 {
@@ -511,6 +568,11 @@ namespace ilaGUI
                 }
                 catch (Exception)
                 { }
+                foreach (var instru in instrus)
+                {
+                    var control = GetInstructionControl(instru);
+                    insertHere.DropRecieved(control as IDropableInstruction);
+                }
             }
         }
 
@@ -535,6 +597,18 @@ namespace ilaGUI
                 MessageBox.Show("Veuillez fermer le programme actuel", "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (SaveCurrent())
             {
+                {
+                    using var stream = new StreamReader(CurrentWorkspace);
+                    try
+                    {
+                        var prog = ILANET.Parser.Parser.Parse(stream.ReadToEnd());
+                    }
+                    catch (ILANET.Parser.Parser.ILAException e)
+                    {
+                        MessageBox.Show(e.Message, "erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
                 var proc = new Process();
                 proc.Exited += (sender, e) =>
                 {
@@ -562,6 +636,7 @@ namespace ilaGUI
                 proc.BeginOutputReadLine();
                 Console.RuntimeInput = proc.StandardInput;
                 Console.UnlockConsoles();
+                Console.ActiveConsoles.Last().inputTB.Focus();
             }
         }
 

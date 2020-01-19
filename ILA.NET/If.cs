@@ -140,7 +140,10 @@ namespace ILANET
         {
             Program.GenerateIndent(textWriter);
             textWriter.Write("if (");
-            IfCondition.WritePython(textWriter);
+            if (IfCondition != null)
+                IfCondition.WritePython(textWriter);
+            else
+                textWriter.Write("True");
             textWriter.Write(") :\n");
 
             foreach (var instruction in IfInstructions)
@@ -148,6 +151,13 @@ namespace ILANET
                 Program.Indent++;
                 instruction.WritePython(textWriter);
                 textWriter.Write("\n");
+                Program.Indent--;
+            }
+            if (IfInstructions.Count == 0)
+            {
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("pass\n");
                 Program.Indent--;
             }
 
@@ -163,6 +173,13 @@ namespace ILANET
                     Program.Indent++;
                     instruction.WritePython(textWriter);
                     textWriter.Write("\n");
+                    Program.Indent--;
+                }
+                if (elif.Item2.Count == 0)
+                {
+                    Program.Indent++;
+                    Program.GenerateIndent(textWriter);
+                    textWriter.Write("pass\n");
                     Program.Indent--;
                 }
             }

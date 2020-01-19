@@ -30,7 +30,7 @@ namespace ilaGUI.Editor
                 if (i < value.DimensionsIndex.Count - 1)
                     parameters.Children.Add(new TextBlock()
                     {
-                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        Foreground = App.SymbolColorBrush,
                         FontFamily = linkToFont.FontFamily,
                         Text = ", "
                     });

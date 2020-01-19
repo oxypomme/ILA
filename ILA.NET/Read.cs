@@ -19,6 +19,8 @@ namespace ILANET
         {
             Name = "lire";
             Parameters = new List<Parameter>();
+            for (int i = 0; i < 200; i++) //enough parameters that we can imagine lmao
+                Parameters.Add(new Parameter { Mode = Parameter.Flags.OUTPUT });
             Instructions = null;
         }
 

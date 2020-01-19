@@ -89,10 +89,20 @@ namespace ILANET
                 textWriter.Write("\n");
                 Program.Indent--;
             }
+            if (Instructions.Count == 0)
+            {
+                Program.Indent++;
+                Program.GenerateIndent(textWriter);
+                textWriter.Write("pass\n");
+                Program.Indent--;
+            }
             Program.Indent++;
             Program.GenerateIndent(textWriter);
             textWriter.Write("if not (");
-            Condition.WritePython(textWriter);
+            if (Condition != null)
+                Condition.WritePython(textWriter);
+            else
+                textWriter.Write("True");
             textWriter.Write(") :\n");
             Program.Indent++;
             Program.GenerateIndent(textWriter);

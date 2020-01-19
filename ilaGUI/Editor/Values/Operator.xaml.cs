@@ -50,27 +50,27 @@ namespace ilaGUI.Editor
 
                 case ILANET.Operator.Tag.INT_DIV:
                     operatorType.Text = " div ";
-                    operatorType.Foreground = new SolidColorBrush(Colors.LightBlue);
+                    operatorType.Foreground = App.KeywordColorBrush;
                     break;
 
                 case ILANET.Operator.Tag.MOD:
                     operatorType.Text = " mod ";
-                    operatorType.Foreground = new SolidColorBrush(Colors.LightBlue);
+                    operatorType.Foreground = App.KeywordColorBrush;
                     break;
 
                 case ILANET.Operator.Tag.AND:
                     operatorType.Text = " et ";
-                    operatorType.Foreground = new SolidColorBrush(Colors.LightBlue);
+                    operatorType.Foreground = App.KeywordColorBrush;
                     break;
 
                 case ILANET.Operator.Tag.OR:
                     operatorType.Text = " ou ";
-                    operatorType.Foreground = new SolidColorBrush(Colors.LightBlue);
+                    operatorType.Foreground = App.KeywordColorBrush;
                     break;
 
                 case ILANET.Operator.Tag.NOT:
                     operatorType.Text = " non ";
-                    operatorType.Foreground = new SolidColorBrush(Colors.LightBlue);
+                    operatorType.Foreground = App.KeywordColorBrush;
                     break;
 
                 case ILANET.Operator.Tag.EQUAL:

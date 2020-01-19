@@ -8,11 +8,11 @@
              d:DesignWidth="1050" d:DesignHeight="200">
     <Grid Margin="10,0,10,0">
         <ScrollViewer x:Name="consoleScroll" VerticalScrollBarVisibility="Auto" Margin="0,0,0,25">
-            <TextBox IsReadOnly="True" Name="outputTB" TextWrapping="Wrap" Foreground="White" FontFamily="Consolas" Background="{x:Null}" />
+            <RichTextBox IsReadOnly="True" Name="outputTB" Foreground="White" FontFamily="{DynamicResource firacode}" Background="{x:Null}" />
         </ScrollViewer>
         <Grid Height="20" VerticalAlignment="Bottom" Margin="0,0,0,5">
-            <TextBlock x:Name="inputSign" Text="&gt;" Foreground="White" FontFamily="Consolas" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" Background="{x:Null}" Foreground="White" Margin="15,0,20,0" FontFamily="Consolas" BorderBrush="{x:Null}" CaretBrush="White" />
+            <TextBlock x:Name="inputSign" Text="&gt;" Foreground="White" FontFamily="{DynamicResource firacode}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox x:Name="inputTB" KeyDown="inputTB_KeyDown" Background="{x:Null}" Foreground="White" Margin="15,0,20,0" FontFamily="{DynamicResource firacode}" BorderBrush="{x:Null}" CaretBrush="White" />
             <Button x:Name="newConsole" Width="20" HorizontalAlignment="Right" Click="Button_Click">
                 <Image Stretch="None" Source="icons/png/new console window.png" />
             </Button>

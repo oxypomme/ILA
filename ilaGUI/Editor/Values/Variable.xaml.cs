@@ -25,7 +25,7 @@ namespace ilaGUI.Editor
             InternalValue = value;
             variable.Text = value.Name;
             if (value.Constant)
-                variable.Foreground = new SolidColorBrush(Colors.LightCoral);
+                variable.Foreground = App.ConstColorBrush;
         }
 
         public ILANET.Variable InternalValue { get; set; }

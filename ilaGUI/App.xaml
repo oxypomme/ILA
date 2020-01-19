@@ -5,6 +5,28 @@
              StartupUri="MainWindow.xaml"
              Startup="Application_Startup">
     <Application.Resources>
+        <!--<SolidColorBrush x:Key="variableColor" Color="Red" />
+        <SolidColorBrush x:Key="stringColor" Color="Red" />
+        <SolidColorBrush x:Key="moduleColor" Color="Red" />
+        <SolidColorBrush x:Key="symbolColor" Color="Red" />
+        <SolidColorBrush x:Key="numbersColor" Color="Red" />
+        <SolidColorBrush x:Key="constColor" Color="Red" />
+        <SolidColorBrush x:Key="keywordColor" Color="Red" />
+        <SolidColorBrush x:Key="charColor" Color="Red" />
+        <SolidColorBrush x:Key="commentsColor" Color="Red" />
+        <SolidColorBrush x:Key="insertLineColor" Color="Red" />-->
+        <SolidColorBrush x:Key="variableColor" Color="White" />
+        <SolidColorBrush x:Key="stringColor" Color="Khaki" />
+        <SolidColorBrush x:Key="moduleColor" Color="LightGreen" />
+        <SolidColorBrush x:Key="symbolColor" Color="OrangeRed" />
+        <SolidColorBrush x:Key="numbersColor" Color="Plum" />
+        <SolidColorBrush x:Key="constColor" Color="LightCoral" />
+        <SolidColorBrush x:Key="keywordColor" Color="LightBlue" />
+        <SolidColorBrush x:Key="charColor" Color="Orange" />
+        <SolidColorBrush x:Key="commentsColor" Color="Gray" />
+        <SolidColorBrush x:Key="insertLineColor" Color="OrangeRed" />
+        <FontFamily x:Key="roboto">./fonts/Roboto/#Roboto Light</FontFamily>
+        <FontFamily x:Key="firacode">./fonts/FiraCode/#Fira Code Regular</FontFamily>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -119,7 +141,7 @@
         </Style>
 
         <Style x:Key="MenuItemBaseStyle" TargetType="{x:Type MenuItem}">
-            <Setter Property="FontFamily" Value="./fonts/Roboto/#Roboto Light" />
+            <Setter Property="FontFamily" Value="{DynamicResource roboto}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -237,7 +259,7 @@
         </ControlTemplate>
 
         <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
-            <Setter Property="FontFamily" Value="./fonts/Roboto/#Roboto Light" />
+            <Setter Property="FontFamily" Value="{DynamicResource roboto}" />
             <Setter Property="Foreground" Value="White" />
             <!-- TODO: Non hard-coded background color-->
             <Setter Property="Background" Value="#2D2A2E" />

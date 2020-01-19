@@ -68,7 +68,7 @@ namespace ilaGUI.Editor
                     parameters.Children.Add(new TextBlock
                     {
                         Text = ", ",
-                        Foreground = new SolidColorBrush(Colors.OrangeRed),
+                        Foreground = App.SymbolColorBrush,
                         FontFamily = comment.FontFamily
                     });
             }

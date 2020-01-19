@@ -14,11 +14,11 @@
         <Separator Grid.Row="1" VerticalAlignment="Bottom" />
         <StackPanel Orientation="Horizontal">
             <Image x:Name="iconType" Stretch="None" />
-            <TextBlock  Margin="5,0,0,0" Name="prefixName" Foreground="White" />
-            <TextBlock  Name="dbPoints" Foreground="OrangeRed" Text="::" />
-            <TextBlock Grid.Row="0" x:Name="paramName" Foreground="White" Text="name" />
-            <TextBlock Grid.Row="0" Foreground="OrangeRed" Text=":" />
-            <TextBlock Grid.Row="0" x:Name="paramType" Foreground="LightBlue" Text="type" />
+            <TextBlock FontFamily="{DynamicResource firacode}" Margin="5,0,0,0" Name="prefixName" Foreground="{StaticResource variableColor}" />
+            <TextBlock FontFamily="{DynamicResource firacode}" Name="dbPoints" Foreground="{StaticResource symbolColor}" Text="::" />
+            <TextBlock FontFamily="{DynamicResource firacode}" Grid.Row="0" x:Name="paramName" Foreground="{StaticResource variableColor}" Text="name" />
+            <TextBlock FontFamily="{DynamicResource firacode}" Grid.Row="0" Foreground="{StaticResource symbolColor}" Text=":" />
+            <TextBlock FontFamily="{DynamicResource firacode}" Grid.Row="0" x:Name="paramType" Foreground="{StaticResource keywordColor}" Text="type" />
         </StackPanel>
         <Button Grid.RowSpan="2" x:Name="gripBtn" Background="#02000000" BorderBrush="{x:Null}" Foreground="{x:Null}" Cursor="SizeAll" />
         <StackPanel Margin="0,0,5,0" Grid.Row="1" FlowDirection="RightToLeft" Orientation="Horizontal">

@@ -178,9 +178,7 @@ namespace ilaGUI
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new NewFileDialog();
-            dialog.Owner = Application.Current.MainWindow;
-            dialog.ShowDialog();
+            App.NewFile();
         }
 
         private void openBtn_Click(object sender, RoutedEventArgs e)
@@ -205,6 +203,7 @@ namespace ilaGUI
 
         private void settingsBtn_Click(object sender, RoutedEventArgs e)
         {
+            App.OpenSettings();
         }
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)

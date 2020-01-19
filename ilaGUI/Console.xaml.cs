@@ -29,6 +29,8 @@ namespace ilaGUI
             (newConsole.Content as Image).Source = App.MakeDarkTheme((newConsole.Content as Image).Source as BitmapSource);
             ActiveConsoles.Add(this);
             inputTB.IsEnabled = ConsolesUnlocked;
+            outputTB.Document.Blocks.Clear();
+            outputTB.Document.Blocks.Add(MainParagraph = new Paragraph());
             if (ConsolesUnlocked)
             {
                 upperSeparator.Background = new SolidColorBrush(Colors.DodgerBlue);
@@ -44,9 +46,8 @@ namespace ilaGUI
         }
 
         public static TextWriter RuntimeInput { get; set; }
-
         public static TextWriter StandardOutput { get; set; }
-
+        public Paragraph MainParagraph { get; }
         internal static List<Console> ActiveConsoles { get; set; }
 
         public static void LockConsoles()
@@ -75,25 +76,19 @@ namespace ilaGUI
                 });
         }
 
-        public static void Write(object obj)
+        public static void Write(object obj, ConsoleColor color = ConsoleColor.White)
         {
             if (obj != null)
-                StandardOutput.Write(obj.ToString());
+                StandardOutput.Write((char)color + obj.ToString());
         }
 
-        public static void WriteLine(object obj)
+        public static void WriteLine(object obj, ConsoleColor color = ConsoleColor.White)
         {
             if (obj != null)
-                StandardOutput.WriteLine(obj.ToString());
+                StandardOutput.WriteLine((char)color + obj.ToString());
         }
 
         public static void WriteLine() => StandardOutput.WriteLine();
-
-        private static void ScrollConsolesDown()
-        {
-            foreach (var item in ActiveConsoles)
-                item.Dispatcher.Invoke(() => item.consoleScroll.ScrollToVerticalOffset(double.MaxValue));
-        }
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -107,6 +102,13 @@ namespace ilaGUI
             dialog.Content = content;
             dialog.Closed += (sender, e) => ActiveConsoles.Remove(content);
             dialog.Show();
+            content.inputTB.Focus();
+        }
+
+        private static void ScrollConsolesDown()
+        {
+            foreach (var item in ActiveConsoles)
+                item.Dispatcher.Invoke(() => item.consoleScroll.ScrollToVerticalOffset(double.MaxValue));
         }
 
         private void inputTB_KeyDown(object sender, KeyEventArgs e)
@@ -116,7 +118,7 @@ namespace ilaGUI
                 case Key.Return:
                     RuntimeInput.WriteLine(inputTB.Text);
                     RuntimeInput.Flush();
-                    StandardOutput.WriteLine(inputTB.Text);
+                    WriteLine(inputTB.Text);
                     inputTB.Text = "";
                     break;
             }
@@ -156,8 +158,79 @@ namespace ilaGUI
             public override void Write(byte[] buffer, int offset, int count)
             {
                 var content = Encoding.UTF8.GetString(buffer, offset, count);
+                var color = (ConsoleColor)content[0];
                 foreach (var item in ActiveConsoles)
-                    item.Dispatcher.Invoke(() => item.outputTB.Text += content);
+                    item.MainParagraph.Dispatcher.Invoke(() =>
+                    {
+                        var block = new Run() { Text = content.Substring(1) };
+                        switch (color)
+                        {
+                            case ConsoleColor.Black:
+                                block.Foreground = App.DarkBackground;
+                                break;
+
+                            case ConsoleColor.DarkBlue:
+                                block.Foreground = new SolidColorBrush(Colors.DarkBlue);
+                                break;
+
+                            case ConsoleColor.DarkGreen:
+                                block.Foreground = new SolidColorBrush(Colors.DarkGreen);
+                                break;
+
+                            case ConsoleColor.DarkCyan:
+                                block.Foreground = new SolidColorBrush(Colors.DarkCyan);
+                                break;
+
+                            case ConsoleColor.DarkRed:
+                                block.Foreground = new SolidColorBrush(Colors.DarkRed);
+                                break;
+
+                            case ConsoleColor.DarkMagenta:
+                                block.Foreground = new SolidColorBrush(Colors.DarkMagenta);
+                                break;
+
+                            case ConsoleColor.DarkYellow:
+                                block.Foreground = new BrushConverter().ConvertFromString("#ff8b8b8b") as Brush;
+                                break;
+
+                            case ConsoleColor.Gray:
+                                block.Foreground = new SolidColorBrush(Colors.Gray);
+                                break;
+
+                            case ConsoleColor.DarkGray:
+                                block.Foreground = new SolidColorBrush(Colors.DarkGray);
+                                break;
+
+                            case ConsoleColor.Blue:
+                                block.Foreground = new SolidColorBrush(Colors.Blue);
+                                break;
+
+                            case ConsoleColor.Green:
+                                block.Foreground = new SolidColorBrush(Colors.Green);
+                                break;
+
+                            case ConsoleColor.Cyan:
+                                block.Foreground = new SolidColorBrush(Colors.Cyan);
+                                break;
+
+                            case ConsoleColor.Red:
+                                block.Foreground = new SolidColorBrush(Colors.Red);
+                                break;
+
+                            case ConsoleColor.Magenta:
+                                block.Foreground = new SolidColorBrush(Colors.Magenta);
+                                break;
+
+                            case ConsoleColor.Yellow:
+                                block.Foreground = new SolidColorBrush(Colors.Yellow);
+                                break;
+
+                            case ConsoleColor.White:
+                                block.Foreground = App.DarkFontColor;
+                                break;
+                        }
+                        item.MainParagraph.Inlines.Add(block);
+                    });
                 ScrollConsolesDown();
             }
         }

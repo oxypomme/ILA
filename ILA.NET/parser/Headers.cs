@@ -12,11 +12,15 @@ namespace ILANET.Parser
         /// Parse the ila code and returns the structure of the code
         /// </summary>
         /// <param name="ilaCode">code to parse</param>
+        /// <param name="ignoreConstValues">
+        /// true if the parser doesn't throw an exception if a constant has a variable value
+        /// </param>
         /// <returns>structure of the code</returns>
-        public static Program Parse(string ilaCode)
+        public static Program Parse(string ilaCode, bool ignoreConstValues = false)
         {
             //quick fix to avoid crashes because my code sucks lmao
             ilaCode += "     ";
+            bool constLock = !ignoreConstValues;
             var returnProg = new Program();
             ilaCode = new string(ilaCode.Where(c => c != '\r').ToArray());
             returnProg.Declarations = new List<IDeclaration>();
@@ -451,7 +455,9 @@ namespace ILANET.Parser
                             break;
 
                         default:
-                            throw new ILAException("Erreur : '" + varType + "' ne peut pas être constant ");
+                            if (constLock)
+                                throw new ILAException("Erreur : '" + varType + "' ne peut pas être constant ");
+                            break;
                     }
                     FastForward(ilaCode, ref index, true);
                     if (ilaCode.Substring(index, 2) != "<-")
@@ -464,7 +470,7 @@ namespace ILANET.Parser
                         constValue += ilaCode[index];
                         index++;
                     }
-                    variable.ConstantValue = ParseValue(constValue, returnProg, returnProg, true);
+                    variable.ConstantValue = ParseValue(constValue, returnProg, returnProg, constLock);
                     if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
                     {
                         index += 2;
@@ -598,7 +604,7 @@ namespace ILANET.Parser
                                         }
                                         if (ilaCode[index] == ',')
                                             index++;
-                                        type.DimensionsSize.Add(new Range(ParseValue(min, returnProg, returnProg, true), ParseValue(max, returnProg, returnProg, true)));
+                                        type.DimensionsSize.Add(new Range(ParseValue(min, returnProg, returnProg, constLock), ParseValue(max, returnProg, returnProg, constLock)));
                                     }
                                     index++;
                                     FastForward(ilaCode, ref index, true);
@@ -812,7 +818,7 @@ namespace ILANET.Parser
                         index = disp.Key;
                         while (ilaCode[index] != '}')
                         {
-                            returnProg.Instructions.Add(ParseInstru(ilaCode, returnProg, returnProg, ref index));
+                            returnProg.Instructions.Add(ParseInstruction(ilaCode, returnProg, returnProg, ref index, ignoreConstValues));
                             SkipLine(ilaCode, ref index, true);
                         }
                     }
@@ -1108,7 +1114,7 @@ namespace ILANET.Parser
                                 constValue += ilaCode[index];
                                 index++;
                             }
-                            variable.ConstantValue = ParseValue(constValue, returnProg, fct, true);
+                            variable.ConstantValue = ParseValue(constValue, returnProg, fct, constLock);
                             if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
                             {
                                 index += 2;
@@ -1205,7 +1211,7 @@ namespace ILANET.Parser
                         fct.Instructions = new List<Instruction>();
                         while (ilaCode[index] != '}')
                         {
-                            fct.Instructions.Add(ParseInstru(ilaCode, returnProg, fct, ref index));
+                            fct.Instructions.Add(ParseInstruction(ilaCode, returnProg, fct, ref index, ignoreConstValues));
                             SkipLine(ilaCode, ref index, true);
                         }
                         index++;
@@ -1458,7 +1464,7 @@ namespace ILANET.Parser
                                 constValue += ilaCode[index];
                                 index++;
                             }
-                            variable.ConstantValue = ParseValue(constValue, returnProg, module, true);
+                            variable.ConstantValue = ParseValue(constValue, returnProg, module, constLock);
                             if (index < ilaCode.Length - 1 && ilaCode.Substring(index, 2) == "//")
                             {
                                 index += 2;
@@ -1555,7 +1561,7 @@ namespace ILANET.Parser
                         module.Instructions = new List<Instruction>();
                         while (ilaCode[index] != '}')
                         {
-                            module.Instructions.Add(ParseInstru(ilaCode, returnProg, module, ref index));
+                            module.Instructions.Add(ParseInstruction(ilaCode, returnProg, module, ref index, ignoreConstValues));
                             SkipLine(ilaCode, ref index, true);
                         }
                         index++;
