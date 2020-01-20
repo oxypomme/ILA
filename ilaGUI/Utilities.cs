@@ -90,6 +90,10 @@ namespace ilaGUI
             }
         }
 
+        public static void EditInstruction(IDropableInstruction instruction)
+        {
+        }
+
         public static BitmapImage GetBitmapImage(Stream stream)
         {
             //https://stackoverflow.com/a/9564425
