@@ -56,7 +56,7 @@ namespace ilaGUI.Editor
         {
             comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             fctName.Text = InternalInstruction.Function.Name;
-            valueHolder.Content = App.GetValueControl(InternalInstruction.Value);
+            valueHolder.Content = App.GetValueControl(InternalInstruction.Value, App.SymbolColorBrush.Color);
         }
 
         private void UserControl_DragEnter(object sender, DragEventArgs e)

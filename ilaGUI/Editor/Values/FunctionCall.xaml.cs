@@ -19,14 +19,19 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class FunctionCall : UserControl, Linked
     {
-        public FunctionCall(ILANET.FunctionCall value)
+        public readonly Color ParenthesisColor;
+
+        public FunctionCall(ILANET.FunctionCall value, Color c)
         {
             InitializeComponent();
             InternalValue = value;
             fctName.Text = value.CalledFunction.Name;
+            ParenthesisColor = c;
+            leftParenthesis.Foreground = new SolidColorBrush(c);
+            rightParenthesis.Foreground = new SolidColorBrush(c);
             for (int i = 0; i < value.Args.Count; i++)
             {
-                parameters.Children.Add(App.GetValueControl(value.Args[i]));
+                parameters.Children.Add(App.GetValueControl(value.Args[i], App.HashColor(c)));
                 if (i < value.Args.Count - 1)
                     parameters.Children.Add(new TextBlock()
                     {

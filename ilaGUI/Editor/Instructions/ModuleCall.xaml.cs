@@ -62,7 +62,7 @@ namespace ilaGUI.Editor
             parameters.Children.Clear();
             for (int i = 0; i < InternalInstruction.Args.Count; i++)
             {
-                parameters.Children.Add(App.GetValueControl(InternalInstruction.Args[i]));
+                parameters.Children.Add(App.GetValueControl(InternalInstruction.Args[i], App.HashColor(App.SymbolColorBrush.Color)));
                 if (i < InternalInstruction.Args.Count - 1)
                     parameters.Children.Add(new TextBlock
                     {

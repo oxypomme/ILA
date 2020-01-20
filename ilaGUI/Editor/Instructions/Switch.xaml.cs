@@ -94,13 +94,13 @@ namespace ilaGUI.Editor
         {
             comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
-            varHolder.Content = App.GetValueControl(InternalInstruction.Value);
+            varHolder.Content = App.GetValueControl(InternalInstruction.Value, App.SymbolColorBrush.Color);
             for (int i = 0; i < InternalInstruction.Cases.Count; i++)
             {
                 Cases[i].conditions.Children.Clear();
                 for (int j = 0; j < InternalInstruction.Cases[i].Item1.Count; j++)
                 {
-                    Cases[i].conditions.Children.Add(App.GetValueControl(InternalInstruction.Cases[i].Item1[j]));
+                    Cases[i].conditions.Children.Add(App.GetValueControl(InternalInstruction.Cases[i].Item1[j], App.SymbolColorBrush.Color));
                     if (j < InternalInstruction.Cases[i].Item1.Count - 1)
                         Cases[i].conditions.Children.Add(new TextBlock { Text = ", ", Foreground = App.SymbolColorBrush, FontFamily = comment.FontFamily });
                 }

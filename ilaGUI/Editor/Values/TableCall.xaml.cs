@@ -19,14 +19,17 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class TableCall : UserControl, Linked
     {
-        public TableCall(ILANET.TableCall value)
+        public readonly Color ParenthesisColor;
+
+        public TableCall(ILANET.TableCall value, Color c)
         {
             InitializeComponent();
             InternalValue = value;
-            variable.Content = App.GetValueControl(value.Table);
+            ParenthesisColor = c;
+            variable.Content = App.GetValueControl(value.Table, c);
             for (int i = 0; i < value.DimensionsIndex.Count; i++)
             {
-                parameters.Children.Add(App.GetValueControl(value.DimensionsIndex[i]));
+                parameters.Children.Add(App.GetValueControl(value.DimensionsIndex[i], c));
                 if (i < value.DimensionsIndex.Count - 1)
                     parameters.Children.Add(new TextBlock()
                     {

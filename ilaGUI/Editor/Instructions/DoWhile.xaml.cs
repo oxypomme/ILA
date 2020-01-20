@@ -69,7 +69,7 @@ namespace ilaGUI.Editor
         {
             comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
-            condHolder.Content = App.GetValueControl(InternalInstruction.Condition);
+            condHolder.Content = App.GetValueControl(InternalInstruction.Condition, App.SymbolColorBrush.Color);
         }
 
         private void hitbox_DragEnter(object sender, DragEventArgs e)

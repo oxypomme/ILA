@@ -54,8 +54,8 @@ namespace ilaGUI.Editor
         public void UpdateVisuals()
         {
             comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
-            leftHolder.Content = App.GetValueControl(InternalInstruction.Left);
-            rightHolder.Content = App.GetValueControl(InternalInstruction.Right);
+            leftHolder.Content = App.GetValueControl(InternalInstruction.Left, App.SymbolColorBrush.Color);
+            rightHolder.Content = App.GetValueControl(InternalInstruction.Right, App.SymbolColorBrush.Color);
         }
 
         private void UserControl_DragEnter(object sender, DragEventArgs e)

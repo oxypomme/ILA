@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Horizontal">
         <TextBlock x:Name="fctName" FontFamily="{DynamicResource firacode}" Foreground="{StaticResource moduleColor}" />
-        <TextBlock FontFamily="{DynamicResource firacode}" Foreground="{StaticResource symbolColor}" Text="(" />
+        <TextBlock FontFamily="{DynamicResource firacode}" Name="leftParenthesis" Text="(" />
         <StackPanel Orientation="Horizontal" Name="parameters" />
-        <TextBlock FontFamily="{DynamicResource firacode}" Foreground="{StaticResource symbolColor}" Text=")" />
+        <TextBlock FontFamily="{DynamicResource firacode}" Name="rightParenthesis" Text=")" />
     </StackPanel>
 </UserControl>

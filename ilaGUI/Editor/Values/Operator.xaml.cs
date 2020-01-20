@@ -19,13 +19,18 @@ namespace ilaGUI.Editor
     /// </summary>
     public partial class Operator : UserControl, Linked
     {
-        public Operator(ILANET.Operator value)
+        public readonly Color ParenthesisColor;
+
+        public Operator(ILANET.Operator value, Color c)
         {
             InitializeComponent();
+            ParenthesisColor = c;
+            leftParenthesis.Foreground = new SolidColorBrush(c);
+            rightParenthesis.Foreground = new SolidColorBrush(c);
             InternalValue = value;
             if (value.Left != null)
-                leftOperand.Content = App.GetValueControl(value.Left);
-            rightOperand.Content = App.GetValueControl(value.Right);
+                leftOperand.Content = App.GetValueControl(value.Left, App.HashColor(c));
+            rightOperand.Content = App.GetValueControl(value.Right, App.HashColor(c));
             switch (value.OperatorType)
             {
                 case ILANET.Operator.Tag.MINUS:

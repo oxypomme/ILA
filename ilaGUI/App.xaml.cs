@@ -36,27 +36,27 @@ namespace ilaGUI
             CurrentExecutable = CurrentILAcode;
         }
 
-        public static Brush charColorBrush => (Brush)Current.FindResource("charColor");
-        public static Brush commentsColorBrush => (Brush)Current.FindResource("commentsColor");
-        public static Brush ConstColorBrush => (Brush)Current.FindResource("constColor");
+        public static SolidColorBrush charColorBrush => (SolidColorBrush)Current.FindResource("charColor");
+        public static SolidColorBrush commentsColorBrush => (SolidColorBrush)Current.FindResource("commentsColor");
+        public static SolidColorBrush ConstColorBrush => (SolidColorBrush)Current.FindResource("constColor");
         public static IExecutable CurrentExecutable { get; set; }
         public static Program CurrentILAcode { get; set; }
         public static string CurrentWorkspace { get; set; }
-        public static Brush DarkBackground => new SolidColorBrush(DarkThemeColor);
+        public static SolidColorBrush DarkBackground => new SolidColorBrush(DarkThemeColor);
         public static Control Dragged { get; set; }
         public static EditorView Editor { get; set; }
         public static System.Diagnostics.Process Executing { get; set; }
         public static List<Program> ILAcodes { get; set; }
-        public static Brush KeywordColorBrush => (Brush)Current.FindResource("keywordColor");
+        public static SolidColorBrush KeywordColorBrush => (SolidColorBrush)Current.FindResource("keywordColor");
         public static MainWindow MainDialog { get; set; }
-        public static Brush ModuleColorBrush => (Brush)Current.FindResource("moduleColor");
-        public static Brush NumbersColorBrush => (Brush)Current.FindResource("numbersColor");
+        public static SolidColorBrush ModuleColorBrush => (SolidColorBrush)Current.FindResource("moduleColor");
+        public static SolidColorBrush NumbersColorBrush => (SolidColorBrush)Current.FindResource("numbersColor");
         public static List<IDropableInstruction> SelectedInstructions { get; set; }
-        public static Brush StringColorBrush => (Brush)Current.FindResource("stringColor");
-        public static Brush SymbolColorBrush => (Brush)Current.FindResource("symbolColor");
+        public static SolidColorBrush StringColorBrush => (SolidColorBrush)Current.FindResource("stringColor");
+        public static SolidColorBrush SymbolColorBrush => (SolidColorBrush)Current.FindResource("symbolColor");
         public static TabControl Tabs { get; set; }
         public static Tree Tree { get; set; }
-        public static Brush VariableColorBrush => (Brush)Current.FindResource("variableColor");
+        public static SolidColorBrush VariableColorBrush => (SolidColorBrush)Current.FindResource("variableColor");
         public static List<string> Workspaces { get; set; }
 
         public static void createModule(bool isFct)

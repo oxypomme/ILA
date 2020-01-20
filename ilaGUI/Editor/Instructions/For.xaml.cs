@@ -70,10 +70,10 @@ namespace ilaGUI.Editor
 
         public void UpdateVisuals()
         {
-            varHolder.Content = App.GetValueControl(InternalInstruction.Index);
-            infHolder.Content = App.GetValueControl(InternalInstruction.Start);
-            supHolder.Content = App.GetValueControl(InternalInstruction.End);
-            stepHolder.Content = App.GetValueControl(InternalInstruction.Step);
+            varHolder.Content = App.GetValueControl(InternalInstruction.Index, App.SymbolColorBrush.Color);
+            infHolder.Content = App.GetValueControl(InternalInstruction.Start, App.SymbolColorBrush.Color);
+            supHolder.Content = App.GetValueControl(InternalInstruction.End, App.SymbolColorBrush.Color);
+            stepHolder.Content = App.GetValueControl(InternalInstruction.Step, App.SymbolColorBrush.Color);
             comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
         }
