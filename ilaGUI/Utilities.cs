@@ -50,6 +50,17 @@ namespace ilaGUI
             Clipboard.SetText(sw.ToString());
         }
 
+        public static IDropableInstruction createInstruction(int type)
+        {
+            IDropableInstruction result = null;
+
+            if (type == 0)
+            {
+            }
+
+            return result;
+        }
+
         public static void CutInstruction(IEnumerable<IDropableInstruction> toCut)
         {
             CopyInstruction(toCut);
