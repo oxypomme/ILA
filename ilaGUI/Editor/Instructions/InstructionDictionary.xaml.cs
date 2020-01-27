@@ -33,7 +33,7 @@ namespace ilaGUI
             }
             else if (GetCaller(sender).PlacementTarget is Grid)
             {
-                //(((sender as MenuItem).Parent as ContextMenu).Tag as IDropableInstruction).Edit();
+                App.EditInstruction(((sender as MenuItem).Parent as ContextMenu).Tag as IDropableInstruction);
             }
         }
 
