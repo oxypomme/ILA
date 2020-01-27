@@ -24,7 +24,7 @@ namespace ilaGUI.Editor
             InitializeComponent();
             InternalValue = value;
             memberName.Text = value.Name;
-            structValue.Content = App.GetValueControl(value.Struct);
+            structValue.Content = App.GetValueControl(value.Struct, App.SymbolColorBrush.Color);
         }
 
         public ILANET.StructCall InternalValue { get; set; }

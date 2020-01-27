@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Horizontal">
-        <TextBlock Text="(" Foreground="{StaticResource symbolColor}" FontFamily="{DynamicResource firacode}" />
+        <TextBlock Text="(" Name="leftParenthesis" FontFamily="{DynamicResource firacode}" />
         <ContentControl x:Name="leftOperand" />
         <TextBlock x:Name="operatorType" Foreground="{StaticResource symbolColor}" FontFamily="{DynamicResource firacode}" />
         <ContentControl x:Name="rightOperand" />
-        <TextBlock Text=")" Foreground="{StaticResource symbolColor}" FontFamily="{DynamicResource firacode}" />
+        <TextBlock Text=")" Name="rightParenthesis" FontFamily="{DynamicResource firacode}" />
     </StackPanel>
 </UserControl>

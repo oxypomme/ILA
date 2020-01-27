@@ -4,6 +4,23 @@ using System.Text;
 
 namespace ILANET.Parser
 {
+    public static class Extensions
+    {
+        public static string GetILAString(IBaseObject baseObject)
+        {
+            using var tw = new System.IO.StringWriter();
+            baseObject.WriteILA(tw);
+            return tw.ToString();
+        }
+
+        public static string GetPythonString(IBaseObject baseObject)
+        {
+            using var tw = new System.IO.StringWriter();
+            baseObject.WritePython(tw);
+            return tw.ToString();
+        }
+    }
+
     public partial class Parser
     {
         internal static string CatchString(string str, ref int index)

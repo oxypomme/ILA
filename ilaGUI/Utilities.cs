@@ -16,6 +16,7 @@ namespace ilaGUI
     public partial class App
     {
         public static BitmapImage ConvertBitmapToWPF(System.Drawing.Bitmap src)
+
         {
             MemoryStream ms = new MemoryStream();
             src.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
@@ -48,6 +49,17 @@ namespace ilaGUI
                 instru.WriteILA(sw);
             }
             Clipboard.SetText(sw.ToString());
+        }
+
+        public static IDropableInstruction createInstruction(int type)
+        {
+            IDropableInstruction result = null;
+
+            if (type == 0)
+            {
+            }
+
+            return result;
         }
 
         public static void CutInstruction(IEnumerable<IDropableInstruction> toCut)
@@ -88,6 +100,10 @@ namespace ilaGUI
                 if (menuItem.Items.Count > 0)
                     DarkmodeUrMenus(menuItem.Items);
             }
+        }
+
+        public static void EditInstruction(IDropableInstruction instruction)
+        {
         }
 
         public static BitmapImage GetBitmapImage(Stream stream)
@@ -327,7 +343,9 @@ namespace ilaGUI
                 return null;
         }
 
-        public static Color GetRGB((double, double, double) c) => GetRGB(255, c.Item1, c.Item2, c.Item3);
+        public static Color GetRGB(byte a, (double, double, double) c) => GetRGB(a, c.Item1, c.Item2, c.Item3);
+
+        public static Color GetRGB((double, double, double) c) => GetRGB(255, c);
 
         public static Color GetRGB(byte alpha, double hue, double satur, double lum)
         {
@@ -399,7 +417,7 @@ namespace ilaGUI
             return rgb;
         }
 
-        public static Control GetValueControl(IValue value)
+        public static Control GetValueControl(IValue value, Color currentParenthesisTheme)
         {
             if (value is ConstantBool)
                 return new Editor.ConstantBool(value as ConstantBool);
@@ -414,18 +432,49 @@ namespace ilaGUI
             else if (value is EnumCall)
                 return new Editor.EnumCall(value as EnumCall);
             else if (value is FunctionCall)
-                return new Editor.FunctionCall(value as FunctionCall);
+                return new Editor.FunctionCall(value as FunctionCall, currentParenthesisTheme);
             else if (value is Operator)
-                return new Editor.Operator(value as Operator);
+                return new Editor.Operator(value as Operator, currentParenthesisTheme);
             else if (value is StructCall)
                 return new Editor.StructCall(value as StructCall);
             else if (value is TableCall)
-                return new Editor.TableCall(value as TableCall);
+                return new Editor.TableCall(value as TableCall, currentParenthesisTheme);
             else if (value is Variable)
                 return new Editor.Variable(value as Variable);
             else
                 return null;
         }
+
+        public static Color HashColor(Color c)
+        {
+            var colorList = new List<Color>()
+            {
+                SymbolColorBrush.Color,
+                Color.FromArgb(255, 255, 153, 0),
+                Color.FromArgb(255, 255, 20, 147),
+                Color.FromArgb(255, 154, 205, 50),
+                Color.FromArgb(255, 148, 0, 211)
+            };
+            for (int i = 0; i < colorList.Count - 1; i++)
+            {
+                if (c == colorList[i])
+                    return colorList[i + 1];
+            }
+            var hsl = GetHSL(c);
+            hsl.Item1 = (120 + hsl.Item1) % 360;
+            return GetRGB(hsl);
+        }
+
+        /*
+         * 0 = assign
+         * 1 = comment
+         * 2 = while/dowhile
+         * 3 = for
+         * 4 = if
+         * 5 = module call
+         * 6 = return
+         * 7 = switch
+         */
 
         public static bool isNameAvailable(string name, IExecutable source, Program ilacode)
         {

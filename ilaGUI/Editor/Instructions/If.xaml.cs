@@ -103,11 +103,11 @@ namespace ilaGUI.Editor
         {
             comment.Text = string.IsNullOrEmpty(InternalInstruction.Comment) ? "" : "//" + InternalInstruction.Comment;
             endComment.Text = string.IsNullOrEmpty(InternalInstruction.EndComment) ? "" : "//" + InternalInstruction.EndComment;
-            conditionHolder.Content = App.GetValueControl(InternalInstruction.IfCondition);
+            conditionHolder.Content = App.GetValueControl(InternalInstruction.IfCondition, App.SymbolColorBrush.Color);
             for (int i = 0; i < InternalInstruction.Elif.Count; i++)
             {
                 elifList[i].comment.Text = string.IsNullOrEmpty(InternalInstruction.ElifComments[i]) ? "" : "//" + InternalInstruction.ElifComments[i];
-                elifList[i].condition.Content = App.GetValueControl(InternalInstruction.Elif[i].Item1);
+                elifList[i].condition.Content = App.GetValueControl(InternalInstruction.Elif[i].Item1, App.SymbolColorBrush.Color);
             }
         }
 

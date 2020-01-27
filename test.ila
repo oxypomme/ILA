@@ -54,7 +54,7 @@ algo Carre
     bou <- vrai
     variableStruct.variable1 <- 5
     variableStruct.variable2 <- ""
-    resultat <- fnc_carre(nombre)
+    resultat <- fnc_carre(1+(3*((nombre+2*3)/5)))
     modu_resultat(resultat, message, bou)
     si (message = "") alors
         pour i <- 1 a 5 faire
