@@ -51,15 +51,88 @@ namespace ilaGUI
             Clipboard.SetText(sw.ToString());
         }
 
+        /// <summary>
+        /// 0 = assign; 1 = comment; 2 = while/dowhile; 3 = for; 4 = if; 5 = module call; 6 =
+        /// return; 7 = switch;
+        /// </summary>
         public static IDropableInstruction createInstruction(int type)
         {
-            IDropableInstruction result = null;
-
-            if (type == 0)
+            switch (type)
             {
-            }
+                case 0:
+                    {
+                        var result = new Editor.Assign();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
 
-            return result;
+                case 1:
+                    {
+                        var result = new Editor.Comment();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
+
+                case 2:
+                    {
+                        var result = new Editor.While();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
+
+                case 3:
+                    {
+                        var result = new Editor.For();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
+
+                case 4:
+                    {
+                        var result = new Editor.If();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
+
+                case 5:
+                    {
+                        var result = new Editor.ModuleCall();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
+
+                case 6:
+                    {
+                        var result = new Editor.Return();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
+
+                case 7:
+                    {
+                        var result = new Editor.Switch();
+                        if (EditInstruction(result))
+                            return result;
+                        else
+                            return null;
+                    }
+                default:
+                    return null;
+            }
         }
 
         public static void CutInstruction(IEnumerable<IDropableInstruction> toCut)
@@ -102,8 +175,15 @@ namespace ilaGUI
             }
         }
 
-        public static void EditInstruction(IDropableInstruction instruction)
+        public static bool EditInstruction(IDropableInstruction instruction)
         {
+            if (instruction is Editor.Assign assign)
+            {
+            }
+            else if (instruction is Editor.Comment comment)
+            {
+            }
+            return true;
         }
 
         public static BitmapImage GetBitmapImage(Stream stream)
@@ -464,17 +544,6 @@ namespace ilaGUI
             hsl.Item1 = (120 + hsl.Item1) % 360;
             return GetRGB(hsl);
         }
-
-        /*
-         * 0 = assign
-         * 1 = comment
-         * 2 = while/dowhile
-         * 3 = for
-         * 4 = if
-         * 5 = module call
-         * 6 = return
-         * 7 = switch
-         */
 
         public static bool isNameAvailable(string name, IExecutable source, Program ilacode)
         {
