@@ -22,6 +22,7 @@ namespace ilaGUI.Editor
         public Return()
         {
             InitializeComponent();
+            App.DarkmodeUrMenus(mainGrid.ContextMenu.Items);
             icon.Source = App.MakeDarkTheme(icon.Source as BitmapSource);
             mainGrid.ContextMenu.Tag = this;
         }

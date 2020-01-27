@@ -152,7 +152,7 @@
                                     <Path x:Name="GlyphPanel" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Visibility="Collapsed" VerticalAlignment="Center" />
                                     <ContentPresenter x:Name="_content" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                 </DockPanel>
-                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom">
+                                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="100" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom">
                                     <!-- TODO: Non hard-coded background color-->
                                     <Border BorderThickness="1" BorderBrush="#413c42" Background="#2D2A2E">
                                         <ScrollViewer x:Name="SubMenuScrollViewer" CanContentScroll="true" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
@@ -264,9 +264,11 @@
             <!-- TODO: Non hard-coded background color-->
             <Setter Property="Background" Value="#2D2A2E" />
             <Setter Property="BorderBrush" Value="#413c42" />
+            <Setter Property="HorizontalOffset" Value="50" />
         </Style>
 
         <Style TargetType="{x:Type ContextMenu}">
+            <Setter Property="FontFamily" Value="./fonts/Roboto/#Roboto Light" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Grid.IsSharedSizeScope" Value="true" />

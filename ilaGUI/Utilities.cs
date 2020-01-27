@@ -788,6 +788,14 @@ namespace ilaGUI
             }
         }
 
+        public static void Undo()
+        {
+        }
+
+        public static void Redo()
+        {
+        }
+
         public static System.Drawing.Color ToClassic(Color c) => System.Drawing.Color.FromArgb(c.A, c.R, c.G, c.B);
 
         public static Color ToWPF(System.Drawing.Color c) => Color.FromArgb(c.A, c.R, c.G, c.B);

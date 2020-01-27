@@ -24,6 +24,7 @@ namespace ilaGUI
         public TreeElement(IBaseObject linkedTo)
         {
             InitializeComponent();
+            App.DarkmodeUrMenus(globalButton.ContextMenu.Items);
             constant.Source = App.MakeDarkTheme(constant.Source as BitmapSource);
             (deleteButton.Content as Image).Source = App.MakeDarkTheme((deleteButton.Content as Image).Source as BitmapSource);
             (editButton.Content as Image).Source = App.MakeDarkTheme((editButton.Content as Image).Source as BitmapSource);
@@ -35,8 +36,10 @@ namespace ilaGUI
                 deleteButton.Visibility = Visibility.Collapsed;
                 Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources.algo)));
                 Title.Text = pr.Name;
-                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(3)); //Remove Copy from contextmenu
-                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(4)); //Remove Cut from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(6)); //Remove a separator from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(5)); //Remove Cut from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(4)); //Remove Copy from contextmenu
+                globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(2)); //Remove Delete from contextmenu
             }
             else if (linkedTo is Function fct)
             {
@@ -84,11 +87,13 @@ namespace ilaGUI
                     Icon.Source = App.MakeDarkTheme(App.GetBitmapImage(new MemoryStream(Properties.Resources._enum)));
                 Title.Text = td.CreatedType.Name;
             }
+            globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(1)); //Remove Add from contextmenu
+            globalButton.ContextMenu.Items.Remove(globalButton.ContextMenu.Items.GetItemAt(globalButton.ContextMenu.Items.Count - 4)); //Remove Paste from contextmenu
         }
 
         public IBaseObject Link { get; private set; }
 
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        public void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show(App.MainDialog, "Voulez-vous vraiment supprimer \"" + Title.Text + "\" ?", "supprimer", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                 return;
@@ -113,7 +118,7 @@ namespace ilaGUI
             }
         }
 
-        private void editButton_Click(object sender, RoutedEventArgs e)
+        public void editButton_Click(object sender, RoutedEventArgs e)
         {
             if (Link is ILANET.Module)
                 App.editModule((ILANET.Module)Link);

@@ -23,6 +23,12 @@ namespace ilaGUI.Editor
             InitializeComponent();
 
             App.DarkmodeUrMenus(hitbox.ContextMenu.Items);
+
+            hitbox.ContextMenu.Items.Remove(hitbox.ContextMenu.Items.GetItemAt(5)); // Remove Cut from contextmenu
+            hitbox.ContextMenu.Items.Remove(hitbox.ContextMenu.Items.GetItemAt(4)); // Remove Copy from contextmenu
+            hitbox.ContextMenu.Items.Remove(hitbox.ContextMenu.Items.GetItemAt(3)); // Remove a separator from contextmenu
+            hitbox.ContextMenu.Items.Remove(hitbox.ContextMenu.Items.GetItemAt(2)); // Remove Delete from contextmenu
+            hitbox.ContextMenu.Items.Remove(hitbox.ContextMenu.Items.GetItemAt(0)); // Remove Edit from contextmenu
         }
 
         public bool DropVisual

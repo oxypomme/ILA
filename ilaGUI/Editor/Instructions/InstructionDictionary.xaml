@@ -10,36 +10,6 @@
                 <Image Source="/icons/png/edit.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Name="deleteMenu" Header="Supprimer" Click="deleteMenu_click">
-            <MenuItem.Icon>
-                <Image Source="/icons/png/remove.png" />
-            </MenuItem.Icon>
-        </MenuItem>
-        <Separator />
-        <MenuItem Name="copyMenu" Header="Copier" InputGestureText="Ctrl+C">
-            <MenuItem.Icon>
-                <Image Source="/icons/png/copy.png" />
-            </MenuItem.Icon>
-        </MenuItem>
-        <MenuItem Name="cutMenu" Header="Couper" InputGestureText="Ctrl+X">
-            <MenuItem.Icon>
-                <Image Source="/icons/png/cut.png" />
-            </MenuItem.Icon>
-        </MenuItem>
-        <Separator />
-        <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False">
-            <MenuItem.Icon>
-                <Image Source="/icons/png/undo.png" />
-            </MenuItem.Icon>
-        </MenuItem>
-        <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False">
-            <MenuItem.Icon>
-                <Image Source="/icons/png/redo.png" />
-            </MenuItem.Icon>
-        </MenuItem>
-    </ContextMenu>
-
-    <ContextMenu x:Key="EmptyInstructionContextMenu" x:Shared="true" Foreground="White">
         <MenuItem Name="addMenu" Header="Ajouter" Style="{StaticResource SubMenuItemBaseStyle}">
             <MenuItem.Icon>
                 <Image Source="/icons/png/add.png" />
@@ -91,18 +61,34 @@
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
-        <MenuItem Name="pasteMenu" Header="Coller" InputGestureText="Ctrl+V" IsEnabled="False">
+        <MenuItem Name="deleteMenu" Header="Supprimer" Click="deleteMenu_click">
+            <MenuItem.Icon>
+                <Image Source="/icons/png/remove.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator />
+        <MenuItem Name="copyMenu" Header="Copier" InputGestureText="Ctrl+C" Click="copyMenu_Click">
+            <MenuItem.Icon>
+                <Image Source="/icons/png/copy.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Name="cutMenu" Header="Couper" InputGestureText="Ctrl+X" Click="cutMenu_Click">
+            <MenuItem.Icon>
+                <Image Source="/icons/png/cut.png" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Name="pasteMenu" Header="Coller" InputGestureText="Ctrl+V" IsEnabled="False" Click="pasteMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/paste.png" />
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Name="EundoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False">
+        <MenuItem Name="undoMenu" Header="Annuler" InputGestureText="Ctrl+Z" IsEnabled="False" Click="undoMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/undo.png" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Name="EredoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False">
+        <MenuItem Name="redoMenu" Header="Rétablir" InputGestureText="Ctrl+Y" IsEnabled="False" Click="redoMenu_Click">
             <MenuItem.Icon>
                 <Image Source="/icons/png/redo.png" />
             </MenuItem.Icon>

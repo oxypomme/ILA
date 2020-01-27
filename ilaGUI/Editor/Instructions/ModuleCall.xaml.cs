@@ -23,6 +23,7 @@ namespace ilaGUI.Editor
         public ModuleCall()
         {
             InitializeComponent();
+            App.DarkmodeUrMenus(mainGrid.ContextMenu.Items);
             mainGrid.ContextMenu.Tag = this;
         }
 
