@@ -118,7 +118,7 @@ namespace ilaGUI
             /* OPEN SHORTCUT (Ctrl+O) */
             keyShortcut = new RoutedCommand();
             keyShortcut.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(keyShortcut, newBtn_Click));
+            CommandBindings.Add(new CommandBinding(keyShortcut, openBtn_Click));
 
             /* SAVE SHORTCUT (Ctrl+S) */
             keyShortcut = new RoutedCommand();
@@ -155,14 +155,25 @@ namespace ilaGUI
             keyShortcut = new RoutedCommand();
             keyShortcut.InputGestures.Add(new KeyGesture(Key.Tab, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(keyShortcut, (sender, e) =>
-            App.Tabs.SelectedIndex = (App.Tabs.SelectedIndex + 1) % App.Tabs.Items.Count
-            ));
+            App.Tabs.SelectedIndex = (App.Tabs.SelectedIndex + 1) % App.Tabs.Items.Count));
+
             /* CHANGE ALGO² */
             keyShortcut = new RoutedCommand();
             keyShortcut.InputGestures.Add(new KeyGesture(Key.Tab, ModifierKeys.Control | ModifierKeys.Shift));
             CommandBindings.Add(new CommandBinding(keyShortcut, (sender, e) =>
-            App.Tabs.SelectedIndex = (App.Tabs.SelectedIndex - 1 + App.Tabs.Items.Count) % App.Tabs.Items.Count
-            ));
+            App.Tabs.SelectedIndex = (App.Tabs.SelectedIndex - 1 + App.Tabs.Items.Count) % App.Tabs.Items.Count));
+
+            /**/
+
+            /*UNDO*/
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, undoBtn_Click));
+
+            /*REDO*/
+            keyShortcut = new RoutedCommand();
+            keyShortcut.InputGestures.Add(new KeyGesture(Key.Y, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(keyShortcut, redoBtn_Click));
         }
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
@@ -212,6 +223,26 @@ namespace ilaGUI
         private void unbindConsole_Click(object sender, RoutedEventArgs e)
         {
             Console.Button_Click(sender, e);
+        }
+
+        private void undoBtn_Click(object sender, EventArgs e)
+        {
+            App.Undo();
+        }
+
+        private void redoBtn_Click(object sender, EventArgs e)
+        {
+            App.Redo();
+        }
+
+        private void addModMenu_Click(object sender, RoutedEventArgs e)
+        {
+            TreePannel.newModBtn_Click(sender, e);
+        }
+
+        private void addFncMenu_Click(object sender, RoutedEventArgs e)
+        {
+            TreePannel.newFncBtn_Click(sender, e);
         }
     }
 }
