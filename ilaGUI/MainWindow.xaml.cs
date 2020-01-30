@@ -25,6 +25,7 @@ namespace ilaGUI
             InitializeComponent();
             runBtn.IsEnabled = false;
             stopBtn.IsEnabled = false;
+            buildMenu.IsEnabled = false;
 
             App.DarkmodeUrMenus(menuTop.Items);
             App.DarkmodeUrBtns(MainToolbar.Children);
