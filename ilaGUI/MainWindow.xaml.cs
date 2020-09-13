@@ -22,6 +22,9 @@ namespace ilaGUI
     {
         public MainWindow()
         {
+            var splashScreen = new SplashScreen("Splashscreen.png");
+            splashScreen.Show(true);
+
             InitializeComponent();
             runBtn.IsEnabled = false;
             stopBtn.IsEnabled = false;
